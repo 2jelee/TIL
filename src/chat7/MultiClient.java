@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class MultiClient {
 
+	//홈커밍에서 연결됨
 	public static void main(String[] args) {
 		
 		System.out.print("이름을 입력하세요:");
