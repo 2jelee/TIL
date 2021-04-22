@@ -63,34 +63,47 @@ public class MultiServer {
 	
 	public static void main(String[] args) {
 		MultiServer ms = new MultiServer();
-		ms.init();	
+		ms.init();
 	}
 	
 	//접속된 모든 클라이언트측으로 서버의 메세지를 Echo해주는 역할 담당
-	public void sendAllMsg(String name, String msg) {
+	public void sendAllMsg(String name, String msg, String flag) {
 		
 		//Map에 저장된 객체의 키값(대화명)을 먼저 얻어온다.
 		Iterator<String> it = clientMap.keySet().iterator();
 		
 		//저장된 객체(클라이언트)의 갯수만큼 반복한다.
-		while(it.hasNext()) {
+		while(it.hasNext()) { //전체의 반복
 			try {
+				//컬렉션의 key는 클라이언트의 대화명이다.
+				String clientName = it.next();
 				//각 클라이언트의 PrintWriter 객체를 얻어옴.
 				PrintWriter it_out =
-						(PrintWriter)
-				clientMap.get(it.next());
+						(PrintWriter) clientMap.get(clientName);
 				
-				/*
-				클라이언트에게 메세지를 전달할 때
-				매개변수로 name이 있는 경우와 없는 경우를 구분해서 전달하게 됨.
-				 */
-				if(name.equals("")) {
-					//입장, 퇴장에서 사용되는 부분
-					it_out.println(msg);
+				//chat7에서 추가된 매개변수 >> flag
+				if(flag.equals("One")) {
+					//flag가 One이면 해당 클라이언트 한명에게만 전송한다. (귓속말)
+					
+					if(name.equals(clientName)) { //여기서 name은 메세지를 받는 사람을 의미.
+						//컬렉션에 저장된 접속자명과 일치하는 경우에만 메세지를 전송한다.
+						it_out.println("[귓속말]"+msg);
+					}
 				}
 				else {
-					//메세지를 보낼 때 사용되는 부분
-					it_out.println("["+name+"]:"+msg);
+					//그외에는 모든 클라이언트에게 전송한다.
+					/*
+					클라이언트에게 메세지를 전달할 때
+					매개변수로 name이 있는 경우와 없는 경우를 구분해서 전달하게 됨.
+					 */
+					if(name.equals("")) {
+						//입장, 퇴장에서 사용되는 부분
+						it_out.println(msg);
+					}
+					else {
+						//메세지를 보낼 때 사용되는 부분
+						it_out.println("["+name+"]:"+msg);
+					}
 				}
 			}
 			catch (Exception e) {
@@ -122,41 +135,46 @@ public class MultiServer {
 			String name = "";
 			String s = "";
 			try {
-//				if(in != null) {
-					//클라이언트의 이름을 읽어온다.
-					name = in.readLine();
-					//방금 접속한 클라이언트를 제외한 나머지에게 입장을 알림.
-					sendAllMsg("",name+"님이 입장하셨습니다.");
-					//현재 접속한 클라이언트를 HashMap에 저장한다.
-					clientMap.put(name, out);
+				//클라이언트의 이름을 읽어온다.
+				name = in.readLine();
+				//방금 접속한 클라이언트를 제외한 나머지에게 입장을 알림.
+				sendAllMsg("",name+"님이 입장하셨습니다.", "All");
+				//현재 접속한 클라이언트를 HashMap에 저장한다.
+				clientMap.put(name, out);
 					
-					//접속자의 이름을 서버의 콘솔에 띄워주고
-					System.out.println(name+" 접속");
-					//HashMap에 저장된 객체의 수로 현재 접속자를 파악할 수 O
-					System.out.println("현재 접속자 수는" + clientMap.size()+"명 입니다.");
+				//접속자의 이름을 서버의 콘솔에 띄워주고
+				System.out.println(name+" 접속");
+				//HashMap에 저장된 객체의 수로 현재 접속자를 파악할 수 O
+				System.out.println("현재 접속자 수는" + clientMap.size()+"명 입니다.");
 	
-					//입력한 메세지는 모든 클라이언트에게 Echo 됨.
-					while(in != null) {
-						s=in.readLine();
-						if(s==null)
-							break;
+				//입력한 메세지는 모든 클라이언트에게 Echo 됨.
+				while(in != null) {
+					s=in.readLine();
+					if(s==null)
+						break;
 						
-						//서버의 콘솔에 출력되고,
-						System.out.println(name + " >> " +s);
-						//클라이언트 측으로 전송함.
-						sendAllMsg(name,s);
+					//서버의 콘솔에 출력되고,
+					System.out.println(name + " >> " +s);
+						
+						
+					//클라이언트 측으로 전송함.
+					if(s.charAt(0)=='/') { //0번 인덱스에 있는 '/'
+						String[] strArr = s.split(" "); //스페이스를 의미
+						String msgContent = "";
+						for(int i=2; i<strArr.length; i++) {
+							msgContent += strArr[i]+" "; //묶어서 msgContent에 저장을 하겠다.
+						}
+						if(strArr[0].equals("/to")){
+							sendAllMsg(strArr[1], msgContent, "One"); //1번=>받는 사람 이름, 실제대화 내용, 1명한테만 보내겠다.
+						}
 					}
-//				}
-//				while(in != null) {
-//					s=in.readLine();
-//					if(s==null)
-//						break;
-//					
-//					//서버의 콘솔에 출력되고,
-//					System.out.println(name + " >> " +s);
-//					//클라이언트 측으로 전송함.
-//					sendAllMsg(name,s);
-//				}
+					else {
+						sendAllMsg(name, s, "All");
+					}
+						
+//						sendAllMsg(name,s);
+						
+				}
 			}
 			catch (Exception e) {
 				System.out.println("예외:"+e);
@@ -169,7 +187,7 @@ public class MultiServer {
 				이때 "대화명"을 통해 정보를 삭제한다.
 				 */
 				clientMap.remove(name);
-				sendAllMsg("", name+"님이 퇴장하셨습니다.");
+				sendAllMsg("", name+"님이 퇴장하셨습니다.", "All"); //sendAllMsg 모두 뒤에 플래그 "All" 추가
 				System.out.println(name + " ["+ Thread.currentThread().getName()+"] 퇴장");
 				System.out.println("현재 접속자 수는" +clientMap.size()+"명 입니다.");
 				
