@@ -34,7 +34,7 @@ public class Receiver extends Thread {
 			try {
 				
 //				if (in.readLine()==null) {
-//					System.out.println("집나감");
+					//System.out.println("이미 존재하는 아이디입니다.");
 //					break;
 //				}
 //				else {

@@ -101,15 +101,40 @@ public class MultiServer {
 					if(name.equals(clientName)) {
 						//컬렉션에 저장된 접속자명과 일치하는 경우에만 메세지를 전송한다. 
 						it_out.println("[귓속말]"+name+":"+ msg);
-					}	
+					}
+//					else if(name.equals(clientName)){
+//						//컬렉션에 저장된 접속자명과 일치하는 
+//						it_out.println("[귓속말]"+name+":"+ msg);
+//						
+//					}
+				}
+				else if(flag.equals("Fix")) {
+					if(name.equals(clientName)) {
+						//컬렉션에 저장된 접속자명과 일치하는 경우에만 메세지를 전송한다. 
+						it_out.println("[고정된 귓속말]"+name+":"+ msg);
+					}
 				}
 				
 				else if(flag.equals("Isol")) {
 					
-					for(String a:clientMap.keySet()) { //for~each문 사용
-						System.out.println(a.equals(name)==true);
-						it_out.println(a+msg); //현재 다 출력됨. 현재 a는 client1와 client2(즉, 모든 사용자가 출력된다)
-						
+					for(String n:clientMap.keySet()) { //for~each문 사용
+//						System.out.println(a.equals(name));
+						it_out.println(n+msg); //현재 다 출력됨. 현재 a는 client1와 client2(즉, 모든 사용자가 출력된다)
+//						if(name.equals(clientName)) {
+//							if(n.contains(name)==false) {
+//								
+//								it_out.println(n+msg);	
+//							}
+//						}
+//					for(String n:clientMap.keySet()) {
+//						if(n.contains(clientName)==true) {
+////							String n2 =n;
+//						}	
+//						if(n.equals(clientName)) {
+//							if(n.contains(clientName)==false) {
+//								it_out.println(n);	
+//							}
+//						}
 					}
 				}
 				
@@ -184,15 +209,15 @@ public class MultiServer {
 				//클라이언트의 이름을 읽어온다.
 				name = in.readLine();
 				
-//				if (clientMap.containsKey(name)==true) {
+				if (clientMap.containsKey(name)==true) {
 
 //					name = name+"Temp";
 //					this.interrupt();
 //					clientMap.remove(name);
 					//this.인터럽트...
 					
-//				}
-//				else {
+				}
+				else {
 					//방금 접속한 클라이언트를 제외한 나머지에게 입장을 알린다.
 					sendAllMsg("", name + "님이 입장하셨습니다.", "All");
 					//현재 접속한 클라이언트를 HashMap에 저장한다. 
@@ -223,13 +248,21 @@ public class MultiServer {
 							if(strArr[0].equals("/to")) { //귓속말
 								sendAllMsg(strArr[1], msgContent, "One");
 							}
-//							else if (strArr[0].equals("/fixto")) {
-//								sendAllMsg(strArr[1], msgContent, "fix");
-//							}
+							else if (strArr[0].equals("/fixto")) {
+								
+								while(true) {
+									sendAllMsg(strArr[1], msgContent, "Fix");
+									//설정을 해제한다면 고정귓속말 탈출
+									if(strArr[0].equals("/fixto")) {
+										break;
+									}
+								}
+							}
 							//접속자리스트 출력
 							else if (strArr[0].equals("/list")) {
-								//자신을 제외한 모든 접속자의 대화명을 출력한다. 
+								//문제 : 자신을 제외한 모든 접속자의 대화명을 출력한다. 
 								sendAllMsg("", "", "Isol");
+//								sendAllMsg(strArr[1], "", "Isol");
 							}
 							
 						}
@@ -253,7 +286,7 @@ public class MultiServer {
 //						}
 					}
 				}
-//			}
+			}
 			catch (Exception e) {
 				System.out.println("예외:"+ e);
 			}
@@ -264,11 +297,12 @@ public class MultiServer {
 				finally절로 진입하게 된다. 이때 "대화명"을 통해 정보를 
 				삭제한다. 
 				 */
-				clientMap.remove(name+"Temp");
+//				clientMap.remove(name+"Temp"); ??
+				clientMap.remove(name);
 				sendAllMsg("", name + "님이 퇴장하셨습니다.", "All");
 				System.out.println(name + " [" + Thread.currentThread().getName() +  "] 퇴장");
 				System.out.println("현재 접속자 수는 "+clientMap.size()+"명 입니다.");
-								
+				
 				try {
 					in.close();
 					out.close();
@@ -277,7 +311,6 @@ public class MultiServer {
 				catch(Exception e) {
 					e.printStackTrace();
 				}
-				
 			}
 		}		
 	}
