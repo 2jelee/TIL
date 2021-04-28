@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C01Selector02.html</title>
+    <style>
+        h1{color:green;}
+        input{
+            color: blue; font-size: 20px; font-weight: bold;
+        }
+
+        /*
+        8. 속성선택자 : 해당 속성이 정의되어진 태그를 선택함
+            속성을 기술하거나 속성과 속성값을 동시에 기술할 수 O
+            속성값은 "(더블), '(싱글)로 감싸거나 감싸지 않아도 적용 O
+        */
+        h1[title]{
+            border:1px solid red;
+        }
+        input[type='text']{
+            color:red;
+        }
+        input[type="tel"]{
+            border:none;
+            border-bottom:2px solid gray;
+            border-right:5px solid purple;
+        }
+        input[type=password]{
+            background-color: yellow;
+        }
+
+        /*
+        9. 정규표현식 : 선택자 속성에 정규표현식을 사용할 수 있다.
+            * : 문자열이 포함됨을 의미
+            $ : 문자열로 끝남을 의미
+            ^ : 문자열로 시작됨을 의미 (hat)
+            = : 문자열과 같음을 의미
+        }
+        */
+        a[href*='da']{
+            color:#ff6699; font-size: 20px; font-weight: bold;
+        }
+        a[href$=com]{
+            border: 5px green dotted;
+        }
+        a[href^=http]{
+            font-size: 30px;
+        }
+        a[herf="www.nate.com"]{
+            background-color: yellow;
+        }
+
+        /*
+        10. 동위선택자 : 같은 수준(depth)의 태그를 선택하거나
+            바로 아래의 태그를 선택함.
+            ~(틸트) : 같은 수준의 태그 전체를 선택
+            + : 같은 수준의 태그들 중 바로 아래 '하나만' 선택
+        */
+        h2~div{
+            color: blue;
+        }
+        /* div1만 빨간색으로 표현됨 */
+        h2+div{
+            color: red; font-weight: bold; background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>title속성이 없는 h1 태그</h1>
+    <h1 title="제목태그임">title속성이 있는 h1태그</h1>
+
+    <form action="">
+        이름 : <input type="text" /><br/>
+        아이디 : <input type="text" /><br/>
+        비밀번호 : <input type="password" /><br />
+        전화번호 : <input type="tel" />
+    </form>
+
+    <h2>정규표현식으로 사용한 선택자</h2>
+    <a href="http://www.naver.com">난 네이버</a>
+    <br />
+    <a href="http://www.daum.net">난 다음</a>
+    <br />
+    <a href="http://www.nate.com">난 네이트</a>
+    
+    <h2 id="title">동위(~, +) 선택자</h2>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+</body>
+</html>
