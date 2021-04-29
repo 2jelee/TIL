@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C03Font02.html</title>
+
+    <style>
+        body{
+            /*해당 문서의 기본폰트를 12px로 지정*/
+            font-size: 12px;
+        }
+        /* 해당 문서의 모든 a태그를 선택하여 적용함. */
+        a{
+            text-decoration: none; color:black;
+        }
+        /* 링크에 마우스를 올렸을 때 밑줄 생성*/
+        a:hover{
+            text-decoration: underline; color:green;
+            font-size: 30px; font-weight: bold;
+        }
+        /* 링크를 마우스로 클릭했을 때 윗줄 생성*/
+        a:active {
+            text-decoration: overline; color:red;
+        }
+        /* 방문이력이 있을 때 파란색으로 표시*/
+        a:visited {
+            color:blue;
+        }
+        /* a태그 중에서 class명이 other인 요소 선택*/
+        a.other{
+            text-decoration: none; color: brown;
+        }
+        a.other:hover {
+            text-decoration: underline; color:#EEEEEE;
+            font-size: 20px; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>기본폰트를 12px로 설정했을때 텍스트 크기</h2>
+    기본폰트
+    <br>
+    <span style="font-size: 12px;">글자크기12px</span><br>
+    <span style="font-size: 9pt;">글자크기9pt</span><br>
+    <span style="font-size: 1em;">글자크기1em</span><br>
+    <span style="font-size: 1.5em;">글자크기1.5em</span><br>
+    <span style="font-size: 2em;">글자크기2em</span><br>
+
+    <h2>텍스트 꾸미기</h2>
+    <div>
+        <ul class="link">
+            <li><a href="http://naver.com">네이버</a></li>
+            <li><a href="http://nate.com">네이트</a></li>
+            <li><a href="http://daum.net">다음</a></li>
+            <li><a href="http://google.com">구글</a></li>
+            <li><a href="http://yahoo.com">야후</a></li>
+        </ul>
+    </div>
+    <div>
+        <a href="http://www.tmon.co.kr" class="other">다른효과주기</a>
+    </div>
+</body>
+</html>

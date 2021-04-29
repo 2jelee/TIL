@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C05Border02.html</title>
+    <style>
+        div div {
+            width: 200px; height: 200px;
+        }
+        
+        .radius{
+            border:5px solid red; background-color: blue;
+            text-align: center; line-height: 200px; color:yellow;
+
+            /*
+            box모델의 모서리를 둥글게 처리함.
+            속성값의 순서는 좌상, 우상, 우하, 좌하로 시계방향으로 지정함.
+            전체크기의 50%를 깎아내면 원을 만들 수 있다.
+            */
+            border-radius: 100px 30px 50px 100px;
+        }
+        #shadow{
+            margin-top: 50px; margin-bottom: 50px;
+            background-color: red;
+
+            /*
+            그림자 효과를 설정함.
+            속성값의 순서는 좌측여백, 상단여백, 흐림정도, 색깔 순서로 지정함.
+            흐림정도는 0에 가까우면 선명, 커질수록 흐려짐.
+            */
+            box-shadow: 20px 30px 50px #6d0202;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>둥근 테두리 및 그림자 표현하기</h2>
+
+    <div>
+        <div class="radius">
+            꼭지점 둥글게
+        </div>
+        <div id="shadow">
+            그림자효과 주기
+        </div>
+
+    </div>
+</body>
+</html>
