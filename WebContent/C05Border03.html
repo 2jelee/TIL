@@ -2,89 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C05Border03.html</title>
     <style>
-        #back1 div{
-            width: 80%; height: 400px;
-            /* 배경이미지 설정 */
-            background-image: url('./images/3.png');
-            /* 배경의 반복은 y축(세로) 방향을 반복 */
-            background-repeat: reapeat;
-        }
-        /*
-        back1 아이디 속성 하위의 div 태그를 테두리 설정
-        */
-        #back1 div:first-child{
-            border:1px solid red;
-
-        }
-        #back1 div:last-child{
-            border:1px solid blue;
-        }
-        #back2{
-            background-image: url('./images/apple.png');
-            /*
-            repeat 속성값
-                repeat-x : 가로로 반복
-                repeat-y : 세로로 반복
-                repeat : 전체를 반복
-                no-repeat : 반복없이 한번만 출력
-            */
-            background-repeat: no-repeat; /*repeat; 으로 바꿔보기*/
-            /*
-            배경이미지의 시작위치값 설정 : 좌측, 상단순으로 설정하여
-                좌, 상단에서 공간이 생기게 된다.
-            */
-            background-position: 20px 40px;
-            background-color: yellow;
-            width: 400px; height: 250px;
-        }
-        
-        /*
-        background 속성값을 동시에 적용.
-        (rerererererererere)
-        */
-        #back3{
-            background:url("./images/banana.png") 20px 40px
-                rgb(15, 107, 6) repeat-x;
-
-            width: 400px; height: 250px; 
-        }
+    *{margin:0 0 0 20px; padding:0}
+    /*
+    공통으로 적용된 div는 높이 200px, 테두리 1px*2, 패딩 10px*2
+    이 적용되어 전체 222px이 된다. 
+    */
+    div{         
+        width:200px; height:200px; line-height:200px;
+        text-align:center; border:1px solid red; 
+        padding:10px;
+    }
+    /*
+    위에서 적용한 padding과 border를 모두 0으로 재설정하여
+    원래크기인 200px로 변경되어 출력된다. 
+    */
+	#box1{	
+		border:0; padding:0; background-color:orange;
+	}
+    /*
+    div에 공통적으로 적용한 padding을 유지한테 박스사이즈를
+    200px으로 강제적으로 맞춰 출력한다. border-box는 가로 세로
+    모두 패딩과 보더값을 포함하여 설정한 크기대로 맞춰주는
+    역할을 한다. 
+    */
+    #box2{        
+        background-color:purple;
+        box-sizing:border-box;
+    }
+    /*
+    공통으로 적용된 padding이 10px이므로 우측 및 하단으로 
+    20px만큼 사이즈가 커진 상태로 출력된다. 
+    */
+    #box3{
+		background-color:#CECECE;
+		box-sizing:content-box;
+	}
     </style>
 </head>
 <body>
-    <h2>배경관련 CSS 속성</h2>
-
-    <div>
-        <h3>배경색 지정</h3>
-        <!-- 블럭엘리먼트는 컨텐츠에 상관없이 하나의 블럭 전체를 차지함.-->
-        <div style="background-color:#FF0000">
-            블럭엘리먼트
-        </div
-        <!--인라인 엘리먼트는 컨텐츠의 크기만큼만 공간을 차지. -->
-        <div>
-        <span style="background-color:#00FF00">
-            인라인엘리먼트 <br> 인라인엘리먼트
-        <span>
-    </div>
-
-    <div id="back1">
-        <div>안녕하세요? 저는 뚱이입니다.</div>
-        <div>반가워요.</div>
-    </div>
-
-    <div id="back2">
-        div태그는 Division의 줄임말입니다. 
-    </div>
-
-    <div id="back3">
-        background속성을 동시에 사용
-    </div>
-
-
-    </style>
-    
+	<h2>box-sizing 속성</h2>
+	
+	<div id="box1">box1</div>
+	<br />
+	<div id="box2">box2</div>
+	<br />
+	<div id="box3">box3</div>	
 </body>
 </html>
