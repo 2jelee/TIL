@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C11MediaImport.html</title>
+
+    <style>
+        /*
+        @import
+        - <link> 태그를 대체할 수 있다.
+        - style태그 안에서 사용해야하고 반드시 최상단에 선언해야 한다. (링크는 원래 스타일 태그 바깥에 있)
+        - CSS 파일에 오류가 있는 경우 다운로드 하지 않는다.
+        */
+        @import url('./style/import.css');
+        .content{
+            background-color: black; color:red;
+        }
+
+        /*
+        @media
+        -해당 웹페이지를 디바이스의 종류에 따라 각각 다르게 화면을 구성할 수 있게
+          해주는 기능을 가지고 있다.
+        -스크린용과 프린트용을 구분해야할 때 사용
+        */
+        @media screen {
+            .content{ /*모니터에서는 검은바탕에 흰색글씨로 출력*/
+                background-color: black; color:white;
+            }
+        }
+
+        @media print{
+            .content{ /*프린트했을 경우 빨간바탕에 노란색 글씨로 출력*/
+                background-color: red; color: yellow;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>media 속성</h2>
+    <div class="content">
+        <p>
+            <h3>기사의 제목을 삽입하세요.</h3>
+            기사의 내용을 삽입하세요
+        </p>
+    </div>
+    
+</body>
+</html>
