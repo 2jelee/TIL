@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J07Array.html</title>
+    <script>         
+        /*                                                      코드 rererererere
+        배열 : Java와는 다르게 여러타입의 자료를 저장할 수 있는
+                메모리 구조를 가진다.
+        */
+        //선언방법 1 : 코어 객체를 사용하고 크기를 지정하여 선언.
+        var array = new Array(5);
+
+        document.write("배열의 크기:"+ array.lenth); //배열의 크기 반환
+        document.write("<h2>배열 초기화 전 출력</h2>");
+        //초기화하지 않았으므로 undefined이 출력됨.
+        for(var i=0; i<array.lenth; i++){
+            document.write("array[" + i + "]=" + array[i] +"<br>");
+        }
+
+        //배열 초기화 : JS에서는 어떤 타입의 값이든 모두 저장할 수 O
+        array[0] = 100;
+        array[1] = '자바스크립트';
+        array[2] = new Date();
+        array[3] = 3.14;
+        array[4] = false;
+
+        document.write("<h2>배열 초기화 후 출력</h2>");
+        //위에서 초기화한 값이 정상적으로 출력됨.
+        for(var i=0; i<array.lenth; i++){
+            document.write(i +"번방의 자료형:" + typeof(array[i]) 
+                    +", array[" + i + "]=" + array[i] + "<br>");
+        }
+
+        //선언방법 2 : 선언과 동시에 초기화를 진행.
+        var init = new Array("홍길동", 20, "가산디지털", "010-0000-000");
+        document.write("<h2>선언과 동시에 초기화 후 출력</h2>");
+        //크기가 4인 배열로 초기화되어 출력됨.
+        for(var i=0; i<init.lenth; i++){
+            document.write(i +"번방의 자료형:" + typeof(init[i]) 
+                    +", init[" + i + "]=" +  init[i] + "<br>");
+        }
+        
+        /*
+        선언방법 3 : 선언과 동시에 초기화하는 방법으로,
+                    해당 방식은 차후 JSON에서 객체배열로 많이 사용됨.
+        */
+        var initNoNew = ["KOSMO", 1 , "Javascript", '메르디앙'];
+        document.write("<h2> []를 이용하여 배열선언 후 출력</h2>");
+        //크기가 4인 배열로 선언되어 출력됨.
+        for(var i=0; i<initNoNew.lenth; i++){
+            document.write(i +"번방의 자료형:" + typeof(initNoNew[i]) 
+                    +", initNoNew[" + i + "]=" + initNoNew[i] + "<br>");
+        }
+
+        /*
+        선언방법4 : 웹프로그래밍에서 가장 많이 사용하는 방법으로,
+                    배열의 크기를 지정하지 않은 상태로 선언하고
+                    마지막 자료에 의해 크기가 결정된다.
+        */
+        document.write("<h2>배열의 크기 미지정</h2>");
+        var nosize = new Array();
+        document.write("배열의크기:"+nosize.lenth+"<br>"); //크기 : 0
+        nosize[0] = 100;
+        nosize[3] = 'Javascript'; //1,2번 방은 빈값으로 채워짐
+        document.write("배열의크기:"+nosize.lenth+"<br>"); //크기 : 4
+
+        for(var i=0; i<nosize.lenth; i++){
+            document.write(i +"번방의 자료형:" + typeof(nosize[i]) 
+                    +", nosize[" + i + "]=" + nosize[i] + "<br>");
+        }
+        
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        //해당 페이지 전체에서 사용할 수 있는 전역변수
+        var studentArray = new Array();
+
+        //무기명 함수(이름이 없는 함수) 형태로 선언
+        var getAverage = function(){
+            
+            var vountOfStudent =
+                document.getElementById("numOfStudent").value;
+
+            //alret("countOfStudent="+countOfStudent);
+            //return; //JS에서는 함수 중간에 return을 사용하더라도 에러 발생X
+                        //java의 경우 return 이후 문장은 없어지는..?
+
+            var total = 0;
+            for(var i=0; i<countOfStudent; i++){
+                countOfSudent[i]=
+                    parseInt(prompt(i+1 +"번째 학생점수", "50"));
+                total += studentArray[i];
+        }
+
+            var getAverage = total / countOfStudent;
+
+            var stringResult = "";
+            for(var i=0; i<countOfStudent; i++){
+                stringResult += (i+1) +"번째 학생의 점수:" +
+                    studentArray[i] + "\r\n";
+            }
+            stringResult += "총점:" + total +", 평균:" + average;
+            alert(stringResult);
+        }
+    </script>
+    
+    <h2>배열을 이용한 평균구하기</h2>
+    <!-- table>tr*2>td*2 -->
+    <table border="1">
+        <tr>
+            <td>학생수입력:</td>
+            <td><input type="text" id="numOfStudent" size="5" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" 
+                onclick="getAverage();">평균구하기</button>
+            </td>
+        </tr>
+    </table>
+
+
+    
+</body>
+</html>

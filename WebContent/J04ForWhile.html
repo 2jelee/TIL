@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J04ForWhile.html</title>
+    <script>
+        /*                                              코드 rerererererererere
+        Java : for문 안에서 선언된 변수 for문을 벗어나면 소멸됨.
+        JS(JavaScript) : script 태그 내에서 선언된 변수는
+                        해당 페이지의 모든 영역에서 사용할 수 있다. 
+                        for문 내에서 선언된 변수 역시 전역적으로 사용할 수 있다.
+        */
+        for(var i=0; i<5; i++){
+            var varInFor = 100;
+            document.write('i='+i+"<br>");
+        }
+        document.write("for문이 끝난 후 i의 값 :" + i + "<br>"); //정상 출력됨
+        document.write("for문 안에서 선언한 변수 varInFor:"+ varInFor); //정상 출력됨
+
+
+
+
+        document.write("<h2>이중 for문을 통한 출력</h2>");
+        for(var i=1; i<=5; i++){
+            for(var j=1; j<=5; j++){
+                if(i==j) //i와 J가 같을때만 1을 출력
+                    document.write("1&nbsp;");
+                else
+                    document.write("0&nbsp;");
+            }
+            document.write("<br>");
+        }
+
+        /*
+        시나리오] for문으로 위와 같은 모양을 출력하는 JS를 작성하시오(while 문으로 변경).
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        0 0 0 0 1
+        */
+       document.write("<h2>이중 while문으로 수정하여 출력하기</h2>") 
+       var x=1; /*rerererererere 코드 re*/
+       while(x<=5){
+           var y=1;
+           while(y<=5){
+               if(x==y)
+                    document.write("1 ");
+                else
+                    document.write("0 ");
+                y++;
+           }
+           document.write("<br>");
+           X++;
+       }
+
+    </script>
+</head>
+<body>
+    <script>
+        /*
+        head 영역에서 선언한 변수는 HTML문서 전체에서 사용 가능하므로
+        아래 부분은 error없이 정상 출력됨.
+        */
+       document.write("여기는 body영역<br>");
+       document.write("for문이 끝난 후 body에서의 i값 출력: " +i+ "<br>");
+       document.write("for문 안에서 선언한 varInfo:"+varInfor);
+
+        function gugudanPrint(){
+            /*
+            HTML 문서 내 정의된 요소 중 id값을 통해 DOM객체를 가져온다.
+            그리고 모든 폼 하위 태그에는 value속성이 있으므로
+            아래 코드는 해당 폼에 입력된 값을 얻어와 변수에 저장한다.
+            */
+            var dan = document.getElementById("dan").value;
+            var su = document.getElementById("su").value;
+            
+            /*
+            읽어온 dan만큼 tr(행)이 반복되고
+            su만큼 td(셀, 열)이 반복되어 구구단이 출력된 표를 구성함
+            */
+            var strGugu = "<table border='1'>";
+            for(var x = 2; x<=dan; x++){
+                strGugu += "<tr>";
+
+                for(var y=1; y<=su; y++){
+                    strGugu += "<td>"+ x + "*" + y + "=" +(x*y) + "</td>";
+                }
+
+                strGugu += "</tr>";
+            }
+            strGugu += "</table>";
+
+            /*
+            위에서 생성된 구구단 테이블 태그를 아래 span태그에
+            innerHTML 속성을 통해 동적으로 입력한다.
+            */
+            document.getElementById("here_gugugdan").innerHTML = strGugu;
+        }
+    
+
+    </script>
+     <!-- table>tr*3>td*2 -->
+	<table border=1>
+		<tr>
+			<td>단</td>
+			<td>
+				<input type="text" id="dan" />
+			</td>
+		</tr>
+		<tr>
+			<td>수</td>
+			<td>
+				<!-- select>option*9 -->
+				<select id="su">
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="구구단출력"
+					onclick="gugudanPrint();" />
+			</td>
+		</tr>
+	</table>
+	<div>
+		<span id="here_gugudan">
+			구구단은 여기에 출력됩니다.
+		</span>
+	</div>
+</body>
+</html>
