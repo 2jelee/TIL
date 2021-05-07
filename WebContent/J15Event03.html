@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event03.html</title>
+    <script>
+        //이벤트 활용3 : window객체의 addEventListener를 이용
+        window.addEventListener("load", function() {
+            //함수를 이용하므로 on을 제외한 이벤트명만 기술하면 된다.
+            alert("Load 이벤트활용 3. 문서 로딩 완료됨");
+            var mydiv = document.getElementById("mydiv").innerHTML;
+            alert("mydiv의 내용="+ mydiv);            
+        });
+        function myFunc() {
+            var mydiv = document.getElementById("mydiv").innerHTML;
+            alert("mydiv의 내용="+ mydiv);
+        }
+    </script>
+</head>
+<body>
+    <script>
+        alert("문서의 마지막 부분");
+    </script>
+    <div id="mydiv" onclick="myFunc();" style="cursor:pointer">
+        여기는 div 영역입니다.
+    </div>
+    <script>
+        /*
+        JS는 인터프리터 방식이므로 DOM이 등장하기 전에 해당 내용을 가져오면
+        에러가 발생하게 됨.
+        따라서 HTML문서의 로드가 끝난 이후 읽어올 수 있도록 함수로 정의하거나
+        아예 문서 하단에 script를 기술해야 한다. 
+        */
+        //var mydiv = document.getElementById("mydiv").innerHTML;
+        //alert("mydiv의 내용="+ mydiv);
+    </script>
+</body>
+</html>

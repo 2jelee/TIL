@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J18FormObject01.html</title>
+
+    <script>
+        function formValidate(){
+            /*
+            form 태그를 배열 형태로 얻어와서 사용하는 방법
+            퍼블리싱이 변경되는 경우에는 반드시 JS에서도 인덱스를 수정해야 함.
+            */
+            var frm = document.forms[0];
+            /*
+            input 태그에 입력값이 있는지 검사하여
+            만약 빈값이라면 경고창을 띄워주고 포커스를 이동한다.
+            그리고 폼값이 서버로 전송되지 않도록 submit 리스너에게 false를 반환함.
+            */
+            if(frm.id.value==""){ //""를 통해 빈값인지 확인
+                alert("아이디를 입력해주세요.");
+                frm.id.focus();
+                return false;
+            }
+            if(!frm.pw.value){ // !(not연산자)를 통해 빈값인지 확인
+                alert("패스워드를 입력해주세요.");
+                frm.pw.focus();
+                return false;
+            }
+            //return true; //생략 가능
+        }
+        
+        function jsSubmit(){
+            /*
+            form태그의 name 속성값을 통해 DOM 객체를 얻어온다.
+            퍼블리싱이 변경되더라도 동작이 보장되므로 실무에서 주로 사용하는 방식임.
+            */
+            var f = document.loginFrm2;
+            
+            /*
+            form 태그의 DOM객체를 얻어왔으므로 검증하는 방식은 동일함.
+            JS에서는 문자와 문자열을 구분하지 X.
+            so, '' 또는 "" 둘다 가능.
+            */
+            if(f.id.value==''){ //''던 ""던 상관없다. JS => 문자, 문자열을 별도로 구별하지 않기 때문
+                alert("아이디를 입력하세요.");
+                f.id.focus();
+                return;
+            }
+
+            /*
+            폼값의 유효성을 검증한 후 문제가 있다면
+            아직까지 submit 이벤트가 발생하기 전이므로
+            함수의 실행만 종료하기 위해 return을 사용함.
+            */
+            if(f.pw.value==""){
+                alert("패스워드를 입력하세요");
+                f.pw.focus();
+                return; //패스워드가 입력되지 않으면 여기서? 함수 종료됨.
+            }
+
+            /*
+            JS에서 action, method 속성을 부여하는 방식으로
+            이 경우, HTML의 form 태그에서 부여한 속성보다 우선순위가 높다.
+            */
+            f.action ="http://ikosmo.co.kr";
+            f.method ="get";
+            //JS의 submit함수를 통해 폼값을 서버로 전송함.
+            f.submit();
+        }
+    </script>
+</head>
+<body>
+    <h2>form 전송방식 - HTML을 사용하는 방법</h2>
+    <!--
+        1. 폼값 전송을 위해 submit버튼을 눌러 이벤트를 발생시킨다.
+        2. 이벤트 리스너가 감지하여 formValidate()함수를 호출한다.
+        3. JS함수에서 폼값이 입력되었는지 검증한 후
+        4. false를 반환하면 전송은 중단된다.
+        5. false가 반환되지 않는다면 서버로 입력한 폼값이 전송됨.
+    -->
+    <form name="loginFrm1" method="get" onsubmit="return formValidate();">
+        아이디 : <input type="text" name="id">
+        <br>
+        패스워드 : <input type="password" name="pw">
+        <br>
+        <input type="submit" value="로그인">
+    </form>
+
+    <h2>form전송방식 - Javascript를 사용하는 방법</h2>
+    <!--
+        JS를 이용해서 폼값을 전송할 때는 submit이벤트를 이용하는 것이 아니라,
+        submit()함수를 이용해서 폼값을 전송하게 된다.
+    -->
+    <form name="loginFrm2" method="post" action="abcd.html">
+        아이디 : <input type="text" name="id">
+        <br>
+        패스워드 : <input type="password" name="pw">
+        <br>
+        <input type="button" value="로그인" onclick="jsSubmit();">
+    </form>
+</body>
+</html>

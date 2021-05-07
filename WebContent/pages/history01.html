@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/pages/history01.html</title>
+</head>
+<body>
+    <h2>hitory01 - 마이페이지</h2>
+
+    <h3>마이페이지에 오신 것을 환영합니다.</h3>
+    <!--
+        한 페이지 뒤로 이동할 때 history.go(-1) 또는 
+            history.back()을 사용함
+        둘다 동일한 기능을 제공.
+    -->
+
+    <p>
+        <a href="#" onclick="history.back();">뒤로가기</a> <!-- onclick 리스너의 경우, javascript: 를 붙여도 붙이지 않아도 된다.
+                                                            단, a 태그의 경우 바로 붙으면 안되고 javascript: 가 꼭 필요.-->
+    </p>
+</body>
+</html>
