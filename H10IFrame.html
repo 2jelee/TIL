@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>H10IFrame.html</title>
+</head>
+<body>
+ 	<!-- 
+		iframe태그 : Inline frame으로 페이지내에 또 다른 페이지를
+			삽입해야할때 사용한다. 
+			src : 프레임안에 내용을 구성할 문서경로 혹은 URL이 삽입된다. 
+			scrolling : 프레임의 내용에 따라 스크롤바 생성여부를 결정한다. 			 
+		인라인 엘리먼트(가로형 배치)
+	  -->
+	<h4>iframe의 이름 : topWin</h4>
+	<iframe src="./iframe/innerFrame01.html" name="topWin" 
+		frameborder="1" scrolling="auto" width="500"
+		height="500"></iframe>
+	
+	<h2>iframe Bottom(하단)</h2>
+	<p>
+		<a href="http://ikosmo.co.kr" target="topWin">
+			topWin에서 이동함
+		</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href="http://nate.com" target="innerWin01">
+			innerWin01에서 이동함
+		</a>
+	</p>
+</body>
+</html>
