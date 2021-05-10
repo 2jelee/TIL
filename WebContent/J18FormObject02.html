@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J18FormObject02.html</title>
+
+    <script>
+        //name 속성으로 checkbox의 DOM 객체를 얻어옴.
+        var chkArr = document.getElementsByName("spo");
+        //전체선택
+        function allChecked(){
+            //얻어온 checkbox의 DOM객체의 갯수만큼 반복
+            for(var i=0; i<chkArr.length; i++){
+                //체크시에는 아래 두가지 모두 사용 가능O (checked / true)
+                chkArr[i].checked='checked'; //체크를 하겠다.
+                chkArr[i].checked='true';
+            }
+        }
+        //전체 선택 해제
+        function allUnChecked(){
+            for(var i=0; i<chkArr.length; i++){
+                //체크 해제시에도 아래 두가지 모두 사용 가능.(null / false)
+                chkArr[i].checked=null;
+                chkArr[i].checked=false;
+                
+            }
+        }
+        //반전 선택
+        function allReverse(){
+            for(var i=0; i<chkArr.length; i++){
+                /*
+                checkbox에서 체크여부를 확인할 때는
+                반드시 true/false로만 사용해야 한다.
+                */
+                if (chkArr[i].checked==true){
+                    chkArr[i].checked=false;
+                }
+                else{
+                    chkArr[i].checked=true;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>checkbox 전체선택/해제 반전하기</h2>
+
+    <fieldset>
+        <legend>좋아하는 운동 2가지만 고르세요.</legend>
+        <input type="checkbox" name="spo" value="야구" />야구
+        <input type="checkbox" name="spo" value="농구" />농구
+        <input type="checkbox" name="spo" value="축구" />축구
+        <input type="checkbox" name="spo" value="배구" />배구
+        <input type="checkbox" name="spo" value="핸드볼" />핸드볼
+        <input type="checkbox" name="spo" value="테니스" />테니스
+        <input type="checkbox" name="spo" value="골프" />골프
+        
+    </fieldset>
+
+    <p>
+        <button type="button" onclick="allChecked()">
+            전체선택하기</button>
+        <button type="button" onclick="allUnChecked()">
+            전체해제하기</button>    
+        <button type="button" onclick="allReverse()">
+            반전선택하기</button>         
+    </p>
+</body>
+</html>
