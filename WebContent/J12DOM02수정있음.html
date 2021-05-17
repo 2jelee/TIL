@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J12DOM.html</title>
+</head>
+<body>
+<script>
+function fnGetElementsByName(){	
+	var names = document.getElementsByName("inter");
+	for(var i=0 ; i<names.length ; i++){                         
+		if(names[i].checked==true){
+			names[i].checked = null;
+			//names[i].checked = false;
+		}	
+		else if(names[i].checked==false){
+			names[i].checked = "checked";
+			//names[i].checked = true;
+		}
+	}
+}
+function fnGetElementsClass(){	
+	var portals = document.getElementsByClassName("portal");        
+	for(var i=0 ; i<portals.length ; i++){	
+		alert(portals[i].innerHTML);
+	}	
+}
+</script>
+
+<h3>이름으로 얻어오기</h3>
+<input type="checkbox" name="inter" value="POL" checked="checked" />정치
+<input type="checkbox" name="inter" value="ECO" />경제
+<input type="checkbox" name="inter" value="ENT" checked="checked" />연예
+<input type="button" value="name속성에 지정한 값으로 DOM객체 얻기" 
+	onclick="fnGetElementsByName();" />
+   
+<h2>클래스명으로 객체얻기</h2>
+<ul>
+	<li><a href="#" class="portal">네<b>이</b>버</a></li>
+	<li><a href="#" class="portal">다음</a></li>
+	<li><a href="#" class="portal">네이트</a></li>
+</ul>
+<button onclick="fnGetElementsClass();">
+	클래스명으로 DOM객체 얻어오기
+</button>
+
+
+
+<script>  
+function fnChangeImg(imgNum){
+	var img_tag = document.getElementById("trump");
+	img_tag.src = "./images/"+ imgNum +".jpg";
+	img_tag.width = parseInt(imgNum * 50);
+}
+</script>
+<h2>동적으로 이미지 교체하기(ID로 DOM객체얻기)</h2>
+<fieldset>
+	<legend>이미지 동적 교체</legend>
+	<a href="javascript:fnChangeImg(1);">1번이미지</a>
+	<a href="javascript:fnChangeImg(2);">2번이미지</a>
+	<a href="javascript:fnChangeImg(3);">3번이미지</a>
+	<a href="javascript:fnChangeImg(4);">4번이미지</a>
+	<a href="javascript:fnChangeImg(5);">5번이미지</a>
+	<a href="javascript:fnChangeImg(6);">6번이미지</a>
+	<a href="javascript:fnChangeImg(7);">7번이미지</a>
+	<a href="javascript:fnChangeImg(8);">8번이미지</a>
+	<a href="javascript:fnChangeImg(9);">9번이미지</a>
+	<a href="javascript:fnChangeImg(10);">10번이미지</a>
+	<hr />
+	<img id="trump" src="" width="100" alt="이미지교체하기" />
+</fieldset>
+
+
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
+</body>
+</html>

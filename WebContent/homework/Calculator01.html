@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>계산기만들기</title>
+<style type="text/css">
+	table{
+		border:1px solid #c7c7c7;
+		background-color:#dddddd;
+		border-radius:10px;
+	}
+	button, input{
+		border:1px solid #dddddd; 
+		border-radius:10px;
+		font-size:1.5em; height:50px;
+		color:#ffffff;
+	}
+	button.key_type1{
+		width:204px; background-color:#7b7b7b;
+	}
+	button.key_type2, input.key_type2{
+		width:100px; background-color:#373737;
+	}
+	button.key_type3, input.key_type3{
+		width:100px; background-color:#fa960a;
+	}
+	#lcd{
+		background-color:#70c738; font-size:40px;
+		color:#373737; font-weight:bold; 
+		text-align:right; border-radius:10px;
+		padding:10px;		
+	}
+	h2{
+		text-align:center;
+	}
+</style>
+<script type="text/javascript">
+	function inputNum(param)
+	{
+		var lcd = document.getElementById("lcd");
+		
+		/* 만약 lcd창에 0이 입력되있다면 0을 지운다.
+		그렇지 않으면 01 과 같이 입력될 것이다. */
+		if(parseInt(lcd.innerHTML)==0){
+			lcd.innerHTML = "";
+		}
+		
+		/* 기존문자열뒤에 파라미터로 전달된 문자를 
+		연결한다.*/
+		if(param=='='){
+			// =을 누를경우 계산의 결과가 출력되야한다. 
+			calculate();	
+		}
+		else{
+			lcd.innerHTML += param;	
+		}		
+	}
+	function calculate(){
+		var lcd = document.getElementById("lcd");
+		var result = eval(lcd.innerHTML);
+		lcd.innerHTML = result;
+		/*
+		소수점 두번째자리까지만 출력해줌		
+		*/
+		lcd.innerHTML = result.toFixed(2);
+	}
+	function clearScreen()
+	{
+		document.getElementById("lcd").innerHTML = "0";
+	}
+	function backSpace()
+	{
+		//LCD창에 입력된 텍스트 가져오기
+		var lcdStr = document.getElementById("lcd");
+		//위에서 가져온 텍스트의 길이 알아내기		
+		var strLen = parseInt(lcdStr.innerHTML.length);
+		//가장 오른쪽의 문자 하나 잘라내기
+		lcdStr.innerHTML 
+			= lcdStr.innerHTML.substr(0, (strLen-1));
+		
+		//LCD창의 모든 텍스트가 지워지면 0을 입력한다.
+		if(lcdStr.innerHTML=="")
+		{
+			lcdStr.innerHTML = "0";
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>계산기Ver1.0</h2>
+	
+	<!-- table>tr*6>td*4 -->
+	<table align="center">
+		<tr>
+			<!-- 디스플레이창 -->
+			<td colspan="4" >
+				<div style="width:410px;overflow:hidden;">
+					<div id="lcd" width="100%">0</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<!-- Backspace, Clear버튼 -->
+			<td colspan="2">
+				<button class="key_type1" 
+					onclick="backSpace();">Backspace</button>
+			</td>
+			<td colspan="2">
+				<button class="key_type1"
+					onclick="clearScreen();">C</button>
+			</td>			
+		</tr>
+		<tr>
+			<td><input type="button" value="1" class="key_type2"
+				onclick="inputNum(this.value);"/></td>
+			<td><input type="button" value="2" class="key_type2" 
+				onclick="inputNum(this.value);" /></td>
+			<td><input type="button" value="3" class="key_type2" 
+				onclick="inputNum(this.value);" /></td>	
+			<td><input type="button" value="+" class="key_type3" 
+				onclick="inputNum(this.value);" /></td>	
+		</tr>
+		<tr>
+			<td><button class="key_type2" 
+				onclick="inputNum('4');">4</button></td>
+			<td><button class="key_type2" 
+				onclick="inputNum('5');">5</button></td>
+			<td><button class="key_type2" 
+				onclick="inputNum('6');">6 </button></td>
+			<td><button class="key_type3" 
+				onclick="inputNum('-');">-</button></td>
+		</tr>
+		<tr>
+			<td><button class="key_type2" 
+				onclick="inputNum('7');">7</button></td>
+			<td><button class="key_type2" 
+				onclick="inputNum('8');">8</button></td>
+			<td><button class="key_type2" 
+				onclick="inputNum('9');">9</button></td>
+			<td><button class="key_type3" 
+				onclick="inputNum('*');">×</button></td>
+		</tr>
+		<tr>
+			<td><button class="key_type2" 
+				onclick="inputNum('=');">=</button></td>
+			<td><button class="key_type2" 
+				onclick="inputNum('0');">0</button></td>
+			<td><button class="key_type2" 
+				onclick="inputNum('.');">.</button></td>
+			<td><button class="key_type3" 
+				onclick="inputNum('/');">÷</button></td>
+		</tr>
+	</table>
+</body>
+</html>
