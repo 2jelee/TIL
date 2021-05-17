@@ -52,5 +52,11 @@ public class MemberDTO { //멤버테이블 [열]의 column_name과 같게
 	public void setRegidate(java.sql.Date regidate) {
 		this.regidate = regidate;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", pass=" + pass + ", name=" + name + ", regidate=" + regidate + "]";
+	}
+	
 	
 }

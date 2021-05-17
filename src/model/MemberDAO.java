@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 DAO (Data Access Object)
 	: 데이터베이스의 Data에 접근하기 위한 객체로,
 		DB접근을 위한 로직으로 주로 구성된다.
-		MVC패턴에서는 M(model)에 해당함.
+		MVC패턴에서는 M(model)에 해당함. 
 */
 public class MemberDAO {
 
@@ -22,7 +24,6 @@ public class MemberDAO {
 	//기본생성자를 통한 오라클 연결
 	public MemberDAO() {
 		try {
-				
 			Class.forName("oracle.jdbc.OracleDriver");
 
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -34,10 +35,28 @@ public class MemberDAO {
 			System.out.println("Oracle 연결성공");
 		}
 		catch(Exception e) {
+			System.out.println("Oracle 연결 시 예외발생");
+			e.printStackTrace();
+		}
+	}
+	/*
+ 	JSP에서 컨텍스트 초기화 파라미터를 읽어서 매개변수로
+ 	전달하여 DB연결을 하기위한 인자 생성자
+	*/
+	public MemberDAO(String driver, String url) {
+		try {
+			Class.forName(driver);			
+			String id = "kosmo";
+			String pass = "1234";
+			con = DriverManager.getConnection(url,id,pass);
+			System.out.println("Oracle 연결성공");			 
+		}
+		catch(Exception e) {
 			System.out.println("Oracle 연결시 예외발생");
 			e.printStackTrace();
 		}
 	}
+	
 	
 	//그룹함수 count()를 통해 회원의 존재유무만 판단하는 메소드
 	public boolean isMember(String id, String pass) {
@@ -70,5 +89,72 @@ public class MemberDAO {
 		}
 		return isFlag;
 	}
+	/*
+	로그인 방법2 : 쿼리문을 통해 회원인증 후 MemberDTO객체에 회원정보를
+		저장한 후 JSP 쪽으로 반환해준다. 
+	 * */
+	public MemberDTO getMemberDTO(String uid, String upass) {
+		
+		//회원정보 저장을 위해 DTO객체 생성
+		MemberDTO dto = new MemberDTO();
+		
+		//회원정보 조회를 위한 쿼리문 작성
+		String query = "SELECT id, pass, name FROM "
+				+ " member WHERE id=? AND pass=?";
+		try {
+			//prepared객체 생성
+			psmt = con.prepareStatement(query);
+			//인파라미터 설정
+			psmt.setString(1, uid);
+			psmt.setString(2, upass);
+			//쿼리문 실행
+			rs = psmt.executeQuery();
+			//오라클이 반환해준 ResultSet객체를 통해 결과값이 있는지 확인
+			if(rs.next()) {
+				//결과가 있다면 DTO객체에 회원정보 저장
+				dto.setId(rs.getString("id"));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString(3));
+			}
+			else {
+				System.out.println("결과셋이 없습니다.");
+			}
+		}
+		catch(Exception e) {
+			System.out.println("getMemberDTO오류");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 	
+	public Map<String, String>  getMemberMap(String uid, String upass){
+		
+		//회원정보를 저장할 Map컬렉션 생성
+		Map<String, String> maps = new HashMap<String, String>();
+		
+		String query = "SELECT id, pass, name FROM "
+				+ " member WHERE id=? AND pass=?";		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, uid);
+			psmt.setString(2, upass);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				maps.put("id", rs.getString(1));//아이디
+				maps.put("pass", rs.getString(2));//패스워드
+				maps.put("name", rs.getString("name"));//이름
+			}
+			else {
+				System.out.println("결과셋이 없습니다.");
+			}
+		}
+		catch (Exception e) {
+			System.out.println("getMemberMap오류");
+			e.printStackTrace();		
+		}
+		
+		//Map컬렉션에 저장된 회원정보 반환
+		return maps;
+	}
 }
