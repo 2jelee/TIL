@@ -23,6 +23,17 @@
   	<param-name>ConnectionURL</param-name>
   	<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
   </context-param>
+ 
+ 
+  <context-param>
+  	<param-name>OracleId</param-name>
+  	<param-value>kosmo</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>OraclePwd</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+  
   
   
 <!-- 
@@ -36,8 +47,8 @@
 <!--   </error-page> -->
   
 <!--   <error-page> -->
-<!--   	<error-code>405</error-code> 전송방식 자체가 잘못된 경우. << jsp에서는 볼 수 X -->
-<!--   										Servlet에서 볼 수 O	 --> -->
+<!--   	<error-code>405</error-code> 전송방식 자체가 잘못된 경우.   << jsp에서는 볼 수 X -->
+<!--   										Servlet에서 볼 수 O	 -->
 <!--   	<location>/03ImplicitObject/Exception.jsp</location> -->
 <!--   </error-page> -->
   
@@ -45,7 +56,44 @@
 <!--   	<error-code>500</error-code> 프로그램상에 오류가 있을 때 발생 -->
 <!--   	<location>/03ImplicitObject/Exception.jsp</location> -->
 <!--   </error-page> -->
+ 
+ 
+ 
+ 
+<!--  
+  세션 유지시간 설정하기 : web.xml에서는 '분' 단위로 설정한다.
+-->
+  <session-config>
+  	<session-timeout>60</session-timeout>
+  </session-config>
   
+  
+  <!-- 한글깨짐에 대한 필터설정 -->
+  <!-- 
+  	POST 형식으로 폼값이 전송될 때 한글이 깨지는 것을 방지하기 위해
+  	request.setCharEncoding()을 주로 사용하는데
+  	이 설정을 한번에 처리하기 위해 필터 설정을 한다.
+  -->
+  <filter>
+  	<filter-name>SetCharEncoding</filter-name> <!-- filter-mapping 하위의 filter-name의 사이에 존재하는 SetCharEncoding와 일치해야한다. (복사해서 붙여넣기를 권장) -->
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class> <!-- 맨 뒤 .class는 지워야됨.  -->
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>SetCharEncoding</filter-name>
+  	<url-pattern>/*</url-pattern> <!-- 해당 프로젝트의 모든(*) 경로 -->
+  </filter-mapping>
+  	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
   <!-- 
   	웹 애플리케이션 자체를 실행했을 때
