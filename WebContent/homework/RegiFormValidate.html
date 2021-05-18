@@ -43,8 +43,14 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
     $( function() {
+        //라디오 버튼모양으로 바꿔주는 jQuery UI
         $("input[type=radio]").checkboxradio({
             icon: false
+        });
+
+        //날짜 선택을 편리하게 - Date picker
+        $( "#birthday" ).datepicker({
+            dateFormat : "yy-mm-dd"
         });
     } );
     </script>
@@ -132,7 +138,7 @@
                     <input type="text" class="w05" name="email1" value="" />
                     @
                     <input type="text" class="w05" name="email2" value="" />
-                    <select name="email_domain" class="s01">
+                    <select name="email_domain" class="s01" onchange="inputEmail(this.form)">
                         <option value="">직접입력</option>
                         <option value="naver.com">naver.com</option>
                         <option value="hanmail.net">hanmail.net</option>
