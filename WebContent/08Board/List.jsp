@@ -152,8 +152,10 @@ else{ //컬렉션에 저장된 데이터가 있다면 해당 내용을 반복하
 				
 
 			</td>
+<!-- 			<td width="100"><button type="button" -->
+<!-- 				onclick="location.href='Write.jsp';">글쓰기</button></td> -->
 			<td width="100"><button type="button"
-				onclick="location.href='Write.jsp';">글쓰기</button></td>
+				onclick="location.href='Write.jsp?<%=queryStr %>';">글쓰기</button></td>
 		</tr>
 	</table>
 </body>
