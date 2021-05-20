@@ -4,8 +4,19 @@
     pageEncoding="UTF-8"%>
 <%
 //파라미터 받기
-String num = request.getParameter("num");
+String num = request.getParameter("num"); //일련번호
+
+String searchField = request.getParameter("searchField"); //검색필드 << 상세보기 후 리스트 고정을 위해 추가
+String searchWord = request.getParameter("searchWord"); //검색어 << 상세보기 후 리스트 고정을 위해 추가
 BoardDAO dao = new BoardDAO(application);
+
+
+String queryStr = "";
+
+if(searchWord!=null) {
+	//검색 파라미터 추가하기	 << 페이지 블럭에서 이동 시 검색한 내용을 고정시켜 놓을 용도로 사용할 queryStr
+	queryStr = "searchField="+searchField+"&searchWord="+searchWord; //쿼리스트링 구분 시 &를 사용
+}
 
 //조회수 증가
 dao.updateVisitCount(num);
@@ -20,8 +31,10 @@ dao.close(); //자원 반납
 <head>
 <meta charset="UTF-8">
 <title>회원제 게시판</title>
-
 <script>
+/*
+	JavaScript를 통한 폼값 전송으로 삭제 처리 
+*/
 function isDelete() {
 	var c = confirm("정말로 삭제하겠습니까?");
 	if(c) {
@@ -35,6 +48,11 @@ function isDelete() {
 </head>
 <body>
 <h2>회원제 게시판 - 상세보기(View)</h2>
+
+<!--
+	회원제 게시판에서 게시물 삭제를 위해 상세보기에 게시물의 일련번호를
+	hidden 입력상자를 삽입한다.
+ -->
 <form name="writeFrm">
 <input type="hidden" name="num" value="<%=num %>" />
 <table border="1" width="90%">
@@ -74,15 +92,18 @@ function isDelete() {
 		if(session.getAttribute("USER_ID")!=null &&
 			session.getAttribute("USER_ID").toString().equals(dto.getid())){
 		%>
+<!-- 			<button type="button" -->
+<%-- 				onclick="location.href='Edit.jsp?num=<%=dto.getnum() %>';"> --%>
+<!-- 					수정하기</button> -->
 			<button type="button"
-				onclick="location.href='Edit.jsp?num=<%=dto.getnum() %>';">
+				onclick="location.href='Edit.jsp?num=<%=dto.getnum() %>&<%=queryStr %>';">
 					수정하기</button>
 			<button type="button" onclick="isDelete();">삭제하기</button>
 		<%
 		}
 		%>
 		
-			<button type="button" onclick="location.href='ListSimple.jsp';">
+			<button type="button" onclick="location.href='List.jsp?<%=queryStr %>';">
 				리스트 바로가기
 			</button>
 		</td>

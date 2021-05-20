@@ -8,7 +8,7 @@
 	session 영역에 회원인증 정보가 저장되어 있는지 확인한다.
 	만약 로그인에 성공했다면 USER_ID라는 속성값이 저장되어 있을 것이다.
 	*/
-	if(session.getAttribute("USER_ID")==null) {
+	if(session.getAttribute("USER_ID")==null) { 
 		//로그인 정보가 없다면 로그인 페이지로 이동한다.
 		JSFunction.alertLocation("로그인 후 이용해주십시오.",
 				"../06Session/Login.jsp", out);

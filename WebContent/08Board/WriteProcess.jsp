@@ -23,7 +23,17 @@ dto.setid(session.getAttribute("USER_ID").toString());
 
 //DAO 객체 생성 및 쓰기 처리를 위한 메소드 호출
 BoardDAO dao = new BoardDAO(application);
-int iResult = dao.insertWrite(dto);
+
+/* 여러개의 게시물을 한꺼번에 입력할때 사용하세요. //조작용(한번에 100개)
+int iResult=0;
+
+for(int i=1; i<=100; i++){
+	dto.settitle(i+"번째 "+title);
+	iResult = dao.insertWrite(dto);
+}
+*/
+int iResult = dao.insertWrite(dto); //조작X(원래)시 사용
+
 dao.close();
 if(iResult==1){
 	response.sendRedirect("ListSimple.jsp");

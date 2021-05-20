@@ -7,6 +7,20 @@
 //파라미터 받기
 String num = request.getParameter("num");
 
+
+/* 과제로 추가 */
+String searchField = request.getParameter("searchField"); //검색필드 << 상세보기 후 리스트 고정을 위해 추가
+String searchWord = request.getParameter("searchWord"); //검색어 << 상세보기 후 리스트 고정을 위해 추가
+
+String queryStr = "";
+
+if(searchWord!=null) {
+	//검색 파라미터 추가하기	 << 페이지 블럭에서 이동 시 검색한 내용을 고정시켜 놓을 용도로 사용할 queryStr
+	queryStr = "searchField="+searchField+"&searchWord="+searchWord; //쿼리스트링 구분 시 &를 사용
+}
+/* 과제로 추가					~~여기까지 */
+
+
 //DAO객체 생성 후 게시물 조회
 BoardDAO dao = new BoardDAO(application);
 BoardDTO dto = dao.selectView(num);
@@ -79,7 +93,8 @@ dao.close();
 		<td colspan="2" align="center">
 		<button type="submit">작성완료</button>
 		<button type="submit">RESET</button>
-		<button type="button" onclick="location.href='List.jsp';">리스트 바로가기</button>
+		<button type="button" onclick="location.href='List.jsp?<%=queryStr %>';">리스트 바로가기</button>
+		<!-- searchField=title&searchWord=7번째 -->
 		</td>
 	</tr>
 </table>
