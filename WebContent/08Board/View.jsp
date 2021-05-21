@@ -12,7 +12,6 @@ BoardDAO dao = new BoardDAO(application);
 
 
 String queryStr = "";
-
 if(searchWord!=null) {
 	//검색 파라미터 추가하기	 << 페이지 블럭에서 이동 시 검색한 내용을 고정시켜 놓을 용도로 사용할 queryStr
 	queryStr = "searchField="+searchField+"&searchWord="+searchWord; //쿼리스트링 구분 시 &를 사용
