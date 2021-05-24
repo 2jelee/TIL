@@ -18,6 +18,8 @@
 	<!-- 접두어 : 설정 후 EL에서 메소드 호출 시 사용할 접두어를 기술함. -->
 	<short-name>my</short-name>
 	
+	
+	
 	<!-- 
 	EL에서 호출할 메소드를 등록함. ※※※※※※
 	name 				: EL에서 사용할 메소드명
@@ -31,5 +33,16 @@
 		<function-class>eltag.MyTagLib</function-class>
 		<function-signature>boolean isNumber(java.lang.String)</function-signature>
 	</function>
+	
+	
+	<function>
+		<name>memberLogin</name>
+		<function-class>eltag.MyTagLib</function-class>
+		<function-signature>boolean memberLogin(java.lang.String,
+		java.lang.String, java.lang.String,
+		java.lang.String)</function-signature>
+	</function>
+	
+	
 	
 </taglib>
