@@ -1,32 +1,5 @@
-<%@page import="model.boardSkin.BoardSkinDTO"%>
-<%@page import="model.boardSkin.BoardSkinDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-//파라미터 받기
-String num = request.getParameter("num");
-BoardSkinDAO dao = new BoardSkinDAO(application);
-
-//조회수 증가
-dao.updateVisitCount(num);
-
-//파라미터로 전달된 일련번호를 조회
-BoardSkinDTO dto = dao.selectView(num);
-dao.close(); //자원 반납
-%>
-
-<script>
-function isDelete() {
-	var c = confirm("정말로 삭제하겠습니까?");
-	if(c) {
-		var f = document.writeFrm;
-		f.method = "post";
-		f.action = "DeleteProcess.jsp";
-		f.submit();
-	}
-}
-</script>
-
 <jsp:include page="./inc/boardHead.jsp" />
 <body>
 <div class="container">
@@ -47,26 +20,29 @@ function isDelete() {
 				<tbody>
 					<tr>
 						<th class="text-center table-active align-middle">작성자</th>
-						<td><%=dto.getName() %></td>
+						<td>홍길동</td>
 						<th class="text-center table-active align-middle">작성일</th>
-						<td><%=dto.getPostdate() %></td>
+						<td>2018-07-04</td>
 					</tr>
 					<tr>
 						<th class="text-center table-active align-middle">이메일</th>
 						<td>hong@naver.com</td>
 						<th class="text-center table-active align-middle">조회수</th>
-						<td><%=dto.getvisitcount() %></td>
+						<td>999</td>
 					</tr>
 					<tr>
 						<th class="text-center table-active align-middle">제목</th>
 						<td colspan="3">
-							<%=dto.gettitle() %>
+							제목입니다.
 						</td>
 					</tr>
 					<tr>
 						<th class="text-center table-active align-middle">내용</th>
 						<td colspan="3" class="align-middle" style="height:200px;">
-							<%=dto.getcontent().replace("\r\n", "<br/>") %>
+							내용입니다. <br />
+							내용입니다. <br />
+							내용입니다. <br />
+							내용입니다. <br />
 						</td>
 					</tr>
 					<tr>
@@ -80,14 +56,6 @@ function isDelete() {
 			</div>
 			<div class="row mb-3">
 				<div class="col-6">
-				<%
-				/*
-				로그인이 되었고, 동시에 해당 글을 작성한 작성자이면
-				수정, 삭제 버튼을 보이게 처리한다.
-				*/
-				if(session.getAttribute("USER_ID")!=null &&
-					session.getAttribute("USER_ID").toString(	).equals(dto.getid())){
-				%>
 					<button type="button" class="btn btn-secondary">수정하기</button>
 					<button type="button" class="btn btn-success">삭제하기</button>
 					<button type="button" class="btn btn-info">답글쓰기</button>

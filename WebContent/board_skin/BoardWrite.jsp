@@ -1,31 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="./inc/boardHead.jsp" />
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원제 게시판</title>
-<script type="text/javascript">
-	//쓰기폼에 빈값이 있는지를 확인해주는 함수
-	function formValidate(f){
-		if(f.title.value==""){
-			alert("제목을 입력하세요.");
-			f.title.focus();
-			return false;
-		}
-		if(f.content.value==""){
-			alert("내용을 입력하세요.");
-			f.content.focus();
-			return false;
-		}
-	}
-</script>
-</head>
-
-
 <body>
 <div class="container">
 	<jsp:include page="./inc/boardTop.jsp" />
@@ -33,9 +8,7 @@
 		<jsp:include page="./inc/boardLeft.jsp" />
 		<div class="col-9 pt-3">
 			<h3>게시판 - <small>글작성하기</small></h3>
-			<form name="writeFrm" method="post" action="WriteProcess.jsp"
-				onsubmit="return formValidate(this);">
-	
+						
 			<div class="row mt-3 mr-1">
 				<table class="table table-bordered table-striped">
 				<form action="">
