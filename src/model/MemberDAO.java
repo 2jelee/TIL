@@ -128,17 +128,19 @@ public class MemberDAO {
 		return dto;
 	}
 	
-	public Map<String, String>  getMemberMap(String uid, String upass){
+	public Map<String, String>  getMemberMap(String uid){
+//		public Map<String, String>  getMemberMap(String uid, String upass){
 		
 		//회원정보를 저장할 Map컬렉션 생성
 		Map<String, String> maps = new HashMap<String, String>();
 		
 		String query = "SELECT id, pass, name FROM "
-				+ " member WHERE id=? AND pass=?";		
+				+ " member WHERE id=?";		
+//		+ " member WHERE id=? AND pass=?";		
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, uid);
-			psmt.setString(2, upass);
+//			psmt.setString(2, upass);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				maps.put("id", rs.getString(1));//아이디
