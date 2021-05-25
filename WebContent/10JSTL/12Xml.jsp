@@ -11,7 +11,7 @@
 <title>JSTL-xml</title>
 </head>
 <body>
-<!--                                   코드rerererererererere
+<!--                                   
 XML(eXtensive Markup Language)
  - 사전적 의미 : 확장이 가능한 마크업 언어라는 뜻
  - HTML과 비슷하게 태그로 표현하지만

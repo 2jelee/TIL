@@ -14,21 +14,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!--  											code rerererererererere(글자에 색상이 나와야,,)
+	<!--  										
 	forEach태그의 두번째 문법 : 확장 for문 형태
 		주로 배열이나 컬렉션에서 값을 순차적으로 접근하고 싶을 때
 		사용한다.
 		varStatus에 지정된 값들 중 index속성은 0부터 시작함.
 		필수 속성으로 items, var가 존재.
 	-->
- 	<h2>확장for문 형태의 forEach 태그</h2>
- 	<%
- 	String[] colors = {"red", "green", "blue", "#573838"};
- 	%>
- 	
- 	<h3>JSP 코드로 배열 출력</h3>
- 	<% for(String c:colors){%>
-		<h4 sytle="color:<%=c %>;">JSP코드로 출력</h4>
+ 	<h2>확장 for문 형태의 forEach태그</h2>
+	<%
+	String[] colors = {"red","green","blue","#573838"};
+	%>
+	<h3>JSP코드로 배열출력</h3>
+	<% for(String c : colors){ %>
+		<h4 style="color:<%=c %>;">JSP코드로출력</h4>
 	<% } %>
 	
 	
@@ -37,12 +36,12 @@
 	set태그로 변수 선언한다.
 	즉, 영역에 저장해야 JSTL에서 사용할 수 O.
 	-->
-	<h3>JSTL및 EL로 배열 출력</h3>
+	<h3>JSTL 및 EL로 배열출력</h3> 
 	<c:set var="colors" value="<%=colors %>" />
 	<c:forEach items="${colors }" var="c">
-		<h4 style="colocr:${c };">
-			JSTL로 출력
-		</h4>
+		<h4 style="color:${c};">
+			JSTL로출력
+		</h4>	
 	</c:forEach>
 	
 	<!--  
@@ -52,8 +51,8 @@
 	- count : 실제 반복횟수를 반환함. 1부터 시작.
 	-->
 	<h3>varStatus속성 알아보기</h3>
-	<c:forEach items="${colors }" var="c" varStatus="loopStatus">
-		<h4>${loopStatus.count }번째 반복</h4>
+	<c:forEach items="${colors }" var="c" varStatus="loopStatus" >
+		<h4>${loopStatus.count } 번째 반복</h4>
 		<ul>
 			<li>index : ${loopStatus.index }</li>
 			<li>first : ${loopStatus.first }</li>
@@ -66,18 +65,19 @@
 	
 	<h3>리스트 계열의 컬렉션</h3>
 	<%
-	List lists = new Vector();
-	lists.add(new MemberDTO("Hong", "1111", "홍씨", null));
-	lists.add(new MemberDTO("Park", "2222", "박씨", null));
-	lists.add(new MemberDTO("Sung", "3333", "성씨", null));
+	//List컬렉션을 생성한 후 3개의 DTO객체를 저장한다. 
+	List<MemberDTO> lists = new Vector<MemberDTO>();
+	lists.add(new MemberDTO("Hong","1111","홍씨",null));
+	lists.add(new MemberDTO("Park","2222","박씨",null));
+	lists.add(new MemberDTO("Sung","3333","성씨",null));
 	%>
 	<!-- JSTL에서 사용하기 위해 영역에 저장 -->
-	<c:set var="lists" value="<%=lists  %>"/>
+	<c:set var="lists" value="<%=lists %>"/>
 	
 	
 	<h3>일반for문 형태의 JSTL의 forEach태그</h3>
 	<ul>
-		<!-- index는 컬렉션 크기 -1까지 존재함 -->
+		<!-- index는 컬렉션크기-1 까지 존재함 -->
 		<c:forEach begin="0" end="${lists.size()-1 }" var="i">
 			<li>
 				<!-- index를 사용하므로 컬렉션변수에 []를 사용한다. -->
@@ -91,13 +91,13 @@
 	<h3>확장for문 형태의 JSTL의 forEach태그</h3>
 	<ul>
 		<!-- 확장형에서는 참조변수를 '바로 사용'할 수 있다. -->
-		<c:forEach items="${lists }" var="lists">
+		<c:forEach items="${lists }" var="list">
 		<li>
 			아이디:${list.id },
-			패스워드:${list.pass },
+			비번:${list.pass },
 			이름:${list.name }
 		</li>
-		</c:forEach>
+		</c:forEach>	
 	</ul>
 	
 	
@@ -106,8 +106,8 @@
 	
 	<h3>맵 계열 컬렉션 사용</h3> <!-- 키:String | 밸류:MemberDTO -->
 	<%
-	Map<String, MemberDTO> maps = new HashMap<String, MemberDTO>(); 
-	//리스트의 객체를 인덱스로 얻어와서 맵에 저장
+	Map<String, MemberDTO> maps = new HashMap<String, MemberDTO>();
+ 	//리스트의 객체를 인덱스로 얻어와서 맵에 저장함
 	maps.put("first", lists.get(0));
 	maps.put("second", lists.get(1));
 	maps.put("third", lists.get(2));
@@ -119,21 +119,21 @@
 	<h4>키 값을 알고 있을때 : EL변수.키값 혹은 EL변수["키값"]</h4>
 	<ul>
 		<li>
-			아이디:${maps.first.id },
+			아이디:${maps.first.id }, 
 			비번:${maps.first.pass },
 			이름:${maps.first.name }
 		</li>
 		<li>
-			아이디:${maps.second.id },
+			아이디:${maps.second.id }, 
 			비번:${maps.second.pass },
 			이름:${maps.second.name }
 		</li>
 		<li>
-			아이디:${maps.third.id },
+			아이디:${maps.third.id }, 
 			비번:${maps.third.pass },
 			이름:${maps.third.name }
 		</li>
-	</ul>
+	</ul>		
 	
 	
 	<%--
@@ -143,16 +143,16 @@
 	 --%>
 	<h4>키값을 모를 때 : 확장 for문 사용</h4>
 	<ul>
-		<c:forEach items="${maps }" var="map">
+		<c:forEach items="${maps }" var="map">	
 		<li>
 			<dl>
 				<dt>Key값:${map.key }</dt>
-				<dd>Value값 =></dd>
-					아이디:${maps.value.id },
-					비번:${maps.value.pass },
-					이름:${maps.value.name }</dd>
+				<dd>Value값=>
+						아이디:${map.value.id },
+						비번:${map.value.pass },
+						이름:${map.value.name }</dd>
 			</dl>
-		</li>
+		</li>	
 		</c:forEach>
 	</ul>
 </body>

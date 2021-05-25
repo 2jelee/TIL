@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title> <!-- rererererere : MemberDAO 클래스에 추가코드 확인 -->
+<title>08Url.jsp</title>
 </head>
 <body>
 	<!--  
