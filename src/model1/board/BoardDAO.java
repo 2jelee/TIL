@@ -51,7 +51,6 @@ public class BoardDAO {
 			
 			
 			Class.forName(drv);			
-
 			con = DriverManager.getConnection(url,id, pwd);
 			System.out.println("JDBC 연결성공");			 
 		}

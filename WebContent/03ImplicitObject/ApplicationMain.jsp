@@ -44,8 +44,8 @@ while(names.hasMoreElements()){ //hasMoreElements을 통해 있는지 확인
 </ul>
 
 <%--
-ServletContext의 메소드인 getRealPath()로 서버의 물리적(절대)경로를
-얻어올 수 있다.
+ServletContext의 메소드인 getRealPath()로
+	서버의 물리적(절대)경로를 얻어올 수 있다.
 사용 시, 컨텍스트루트를 제외한 /로 시작하는 절대경로를 입력해야 한다.
 컨텍스트 루트는 프로젝트명이 된다.
  --%>
