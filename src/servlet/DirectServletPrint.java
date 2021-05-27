@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DirectServletPrint extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp)	//405에러
 			throws ServletException, IOException {
 		/*
 		사용자의 요청을 처리한 후 View(jsp파일)없이 서블릿에서 직접 내용을 출력하고자 할때는

@@ -1,5 +1,8 @@
 package utils;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspWriter;
 
 public class JSFunction {
@@ -27,5 +30,37 @@ public class JSFunction {
 			out.println(str);// history.go(-1) 을 사용해도 된다. 
 		}
 		catch(Exception e) {}
+	}
+	
+	
+	
+	/*
+	서블릿에서 Javascript를 출력하기 위한 메소드
+	 */
+	public static void alertLocation(HttpServletResponse resp, String msg, String url) {
+		String str = "";
+		try {
+			resp.setContentType("text/html;charset=UTF-8");
+			PrintWriter writer = resp.getWriter();
+			str = "<script>"
+					+ " alert('"+msg+"');  "
+					+ " location.href='"+url+"';  "
+					+ "</script>";
+			writer.print(str);
+		}
+		catch (Exception e) {}
+	}
+	public static void alertBack(HttpServletResponse resp, String msg) {
+		String str = "";
+		try {
+			resp.setContentType("text/html;charset=UTF-8");
+			PrintWriter writer = resp.getWriter();
+			str = "<script>"
+					+ " alert('"+msg+"');  "
+					+ " history.back(); "
+					+ "</script>";
+			writer.print(str);
+		}
+		catch (Exception e) {}
 	}
 }
