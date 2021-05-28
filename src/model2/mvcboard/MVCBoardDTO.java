@@ -10,7 +10,7 @@ public class MVCBoardDTO {
 	private String sfile; 
 	private int downcount;
 	private String pass;
-	private int visitcount;
+	private int visitCount;
 	
 	
 	public String getIdx() {
@@ -67,11 +67,11 @@ public class MVCBoardDTO {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public int getVisitcount() {
-		return visitcount;
+	public int getVisitCount() {
+		return visitCount;
 	}
-	public void setVisitcount(int visitcount) {
-		this.visitcount = visitcount;
+	public void setVisitCount(int visitCount) {
+		this.visitCount = visitCount;
 	}
 	
 

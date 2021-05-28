@@ -48,26 +48,36 @@ public class ListController extends HttpServlet {
 		
 		//한 페이지에 출력할 게시물의 범위 결정 (between절에서 사용할)
 		int start = (pageNum-1) * pageSize +1;
-		
 		int end = pageNum * pageSize;
 		map.put("start", start);
 		map.put("end", end);
 		/*** 페이지처리 end***/
 		
-		//실제 출력할 레코드를 가져옴
+		//실제 출력할 레코드를 가져옴 (DB작업 끝)
 		List<MVCBoardDTO> boardLists = dao.selectListPage(map);
 		dao.close();
 		
 		
-		//View(jsp)에 출력할 페이지번호를 문자열로 저장
-		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../mvcboard/list.do");
+		//View(jsp)에 출력할 페이지번호를 문자열(pagingStr)로 저장 | pagingImg 이미지로 저장
+		String pagingImg = BoardPage.pagingImg(totalCount, pageSize,
+				blockPage, pageNum, "../mvcboard/list.do");
 		map.put("pagingImg", pagingImg); //페이지번호 문자열
 		map.put("totalCount", totalCount); //게시물의 갯수
 		map.put("pageSize", pageSize); //페이지 수
-		map.put("pageNum", pageNum); //페이지 번호
+		map.put("pageNum", pageNum); //현재 페이지 번호
 		
 		req.setAttribute("boardLists", boardLists); //페이지에 출력할 게시물
 		req.setAttribute("map", map); //각종 파라미터 및 페이지관련 값(변수들)
 		req.getRequestDispatcher("/14MVCBoard/List.jsp").forward(req, resp);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

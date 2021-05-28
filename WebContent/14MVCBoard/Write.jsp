@@ -32,8 +32,8 @@
     }
 </script>
 </head>
-<h2>파일첨부형 게시판-글쓰기(Write)</h2>
-<form name="writeFrm" method="post" enctype="multipart/form-data"
+<h2>파일첨부형 게시판-글쓰기(Write)</h2> <!-- enctype  -->
+<form name="writeFrm" method="post" enctype="multipart/form-data" 
     action="../mvcboard/write.do" onsubmit="return formValidate(this);">
 <table border="1" width="90%">
     <tr>

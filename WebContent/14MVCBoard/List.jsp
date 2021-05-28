@@ -3,7 +3,7 @@
 
 <!-- JSTL 사용을 위한 taglib 지시어 추가 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+    								<!-- rerererererererere 주석 확인하기 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +61,7 @@
 				<a href="../mvcboard/view.do?idx=${row.idx }">${row.title }</a>
 			</td>
 			<td>${row.name }</td>
-			<td>${row.visitcount }</td>
+			<td>${row.visitCount }</td>
 			<td>${row.postdate }</td>
 			<td>
 			<!-- 첨부된 파일이 있는(not empty) 경우에만 다운로드 링크 출력됨. -->

@@ -6,6 +6,6 @@ package common;
 객체 생성없이 클래스명으로 가져다 쓸 수 있기 때문임.
  */
 public interface BoardConfig {
-	int PAGE_PER_SIZE = 5; //게시판 목록에서 한 페이지에 출력할 개시물의 갯수
-	int PAGE_PER_BLOCK = 5; //한 블럭당 출력할 페이지 번호의 갯수
+	int PAGE_PER_SIZE = 2; //게시판 목록에서 한 페이지에 출력할 개시물의 갯수
+	int PAGE_PER_BLOCK = 2; //한 블럭당 출력할 페이지 번호의 갯수
 }
