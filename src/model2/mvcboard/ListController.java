@@ -19,7 +19,7 @@ public class ListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		//DAO객체 생성 (커넥션 풀 사용함)
+		//DAO객체 생성 (커넥션 풀 사용함) 
 		MVCBoardDAO dao = new MVCBoardDAO();
 		
 		//검색 파라미터 및 view로 전달할 여러가지 데이터 저장용 Map컬렉션 생성
@@ -55,7 +55,7 @@ public class ListController extends HttpServlet {
 		
 		//실제 출력할 레코드를 가져옴 (DB작업 끝)
 		List<MVCBoardDTO> boardLists = dao.selectListPage(map);
-		dao.close();
+		dao.close(); 
 		
 		
 		//View(jsp)에 출력할 페이지번호를 문자열(pagingStr)로 저장 | pagingImg 이미지로 저장
@@ -70,14 +70,4 @@ public class ListController extends HttpServlet {
 		req.setAttribute("map", map); //각종 파라미터 및 페이지관련 값(변수들)
 		req.getRequestDispatcher("/14MVCBoard/List.jsp").forward(req, resp);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

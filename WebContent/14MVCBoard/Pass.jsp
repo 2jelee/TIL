@@ -12,7 +12,7 @@
 			alert("비밀번호를 입력하세요");
 			f.pass.focus();
 			return false;
-		}
+		} 
 	}
 </script>
 </head>

@@ -21,7 +21,7 @@ public class PassController extends HttpServlet {
 		//파라미터를 request내장객체로 받은 후 request 영역에 저장
 		req.setAttribute("mode", req.getParameter("mode"));
 		req.getRequestDispatcher("/14MVCBoard/Pass.jsp").forward(req, resp);
-	}
+	} 
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

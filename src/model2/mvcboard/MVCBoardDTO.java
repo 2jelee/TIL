@@ -10,9 +10,9 @@ public class MVCBoardDTO {
 	private String sfile; 
 	private int downcount;
 	private String pass;
-	private int visitCount;
+	private int visitCount;    
 	
-	
+	 
 	public String getIdx() {
 		return idx;
 	}

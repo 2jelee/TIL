@@ -11,7 +11,7 @@
 		if(f.name.value==""){
 			alert("작성자를 입력하세요");
 			f.name.focus();
-			return false;
+			return false; 
 		}
 		if(f.title.value==""){
 			alert("제목을 입력하세요");

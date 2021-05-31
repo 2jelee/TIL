@@ -22,7 +22,7 @@ public class DownloadController extends HttpServlet{
 		String sfile = req.getParameter("sfile");
 		String idx = req.getParameter("idx");
 		
-		//파일 다운로드를 위한 메소드 호출
+		//파일 다운로드를 위한 메소드 호출 
 		FileUtil.downloadFile(req, resp, "/Uploads", sfile, ofile);
 		
 		//다운로드수 업데이트

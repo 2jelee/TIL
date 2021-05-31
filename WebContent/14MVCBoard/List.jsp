@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>파일첨부형 게시판</title>
 <style>a{text-decoration:none;}</style>
-</head>
+</head>  
 <body>
 	<h2>파일첨부형 게시판-목록보기(List)</h2>
 	<form method="get"> <!-- get방식으로 -->
@@ -61,14 +61,14 @@
 				<a href="../mvcboard/view.do?idx=${row.idx }">${row.title }</a>
 			</td>
 			<td>${row.name }</td>
-			<td>${row.visitCount }</td>
+			<td>${row.visitCount }</td> <%--   ${row.visitcount }가 맞음 아니면 error --%>
 			<td>${row.postdate }</td>
 			<td>
 			<!-- 첨부된 파일이 있는(not empty) 경우에만 다운로드 링크 출력됨. -->
 			<c:if test="${not empty row.ofile }">
 				<!-- 파일 다운로드 시 다운로드 횟수를 증가 해야하므로 게시물의 일련번호가 필요함 -->
 				<a href="../mvcboard/download.do?ofile=${row.ofile 
-					}&sfile=${row.sfile }&idx=${row.idx}">[Down]</a>
+					}&sfile=${row.sfile }&idx=${row.idx }">[Down]</a>
 			</c:if>
 			</td>
 		</tr>

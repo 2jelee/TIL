@@ -24,7 +24,7 @@ public class WriteController extends HttpServlet{
 			throws ServletException, IOException { 
 		req.getRequestDispatcher("/14MVCBoard/Write.jsp").forward(req, resp);
 	}
-	
+	 
 	//글쓰기 내용 입력 후 전송했을 때는 post방식 요청
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

@@ -26,7 +26,7 @@ public class EditController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
-		//파라미터로 전달된 일련번호를 통해 기존 게시물을 조회함
+		//파라미터로 전달된 일련번호를 통해 기존 게시물을 조회함 
 		String idx = req.getParameter("idx");
 		MVCBoardDAO dao = new MVCBoardDAO();
 		MVCBoardDTO dto = dao.selectView(idx);

@@ -19,7 +19,7 @@ public class MVCBoardDAO extends ConnectionPool {
 		if(map.get("searchWord")!=null) {
 			query += " WHERE " + map.get("searchField") +" "
 					+ " LIKE '%" + map.get("searchWord") +"%'";
-		}
+		} 
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);

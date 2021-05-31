@@ -82,7 +82,7 @@ public class BoardPage {
 		아래는 그 갯수만큼 반복하여 페이지번호를 출력하는 부분이다.
 		 */
 		while(blockCount<=blockPage && pageTemp<=totalPage) {
-			/*
+			/* 
 			현재 진입한 페이지 번호에는 링크를 걸지 않는다.
 			현재 페이지를 제외한 나머지에만 링크를 걸어준다.
 			 */

@@ -18,7 +18,7 @@
    		 alert("제목을 입력하세요");
    		 f.title.focus();
    		 return false;
-   	 }
+   	 } 
    	 if(f.content.value==""){
    		 alert("내용을 입력하세요");
    		 f.content.focus();
