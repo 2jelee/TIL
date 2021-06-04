@@ -21,7 +21,7 @@ String today =
 
 out.println("<h2>메시지:"+ msg +"</h2>");
 out.println("<h2>varStr:"+ varStr +"</h2>");
-out.println("<h2>오늘날자:"+ today +"</h2>");
+out.println("<h2>오늘날짜:"+ today +"</h2>");
 %>
 
 
