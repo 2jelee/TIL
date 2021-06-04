@@ -8,7 +8,6 @@
  -->
 <%@ include file="./isLogin.jsp" %>
 <%
-request.setCharacterEncoding("UTF-8");
 //폼값 받기
 String title = request.getParameter("title");
 String content = request.getParameter("content");

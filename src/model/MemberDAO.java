@@ -157,11 +157,11 @@ public class MemberDAO {
 		
 		String query = "SELECT id, pass, name FROM "
 				+ " member WHERE id=? AND pass=?";	
-//		+ " member WHERE id=? AND pass=?";		
+	
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, uid);
-//			psmt.setString(2, upass);
+			psmt.setString(2, upass);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				maps.put("id", rs.getString(1));//아이디

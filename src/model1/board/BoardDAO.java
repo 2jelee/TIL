@@ -216,9 +216,9 @@ public class BoardDAO {
 		try {
 			//인파라미터가 있는 insert 쿼리문 작성
 			String query = "INSERT INTO board ( "
-				+ " num,title,content,id,visitcount) "
+				+ " title,content,id,visitcount) "
 				+ " VALUES ( "
-				+ " seq_board_num.NEXTVAL, ?, ?, ?, 0)";
+				+ " ?, ?, ?, 0)";
 			//prepare 객체 생성후 인파라미터 설정
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.gettitle());
