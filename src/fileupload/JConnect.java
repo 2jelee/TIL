@@ -9,10 +9,9 @@ import java.sql.Statement;
 import javax.servlet.ServletContext;
 
 public class JConnect {
-
-										//MemberDAO에서 주석 지우고 가져옴
+	
 	Connection con;
-	Statement stmt; 		//BoardDAO에서 가져옴 (보통 stmt, psmt를 멤버번수로 지정함)
+	Statement stmt;
 	PreparedStatement psmt;
 	ResultSet rs;
 	
@@ -23,24 +22,22 @@ public class JConnect {
 			String id = "kosmo";
 			String pass = "1234";
 			con = DriverManager.getConnection(url,id,pass);
-			System.out.println("JConnect 연결성공");
+			System.out.println("JConnect 연결성공");			 
 		}
 		catch(Exception e) {
-			System.out.println("JConnect 연결 시 예외발생");
+			System.out.println("JConnect 연결시 예외발생");
 			e.printStackTrace();
 		}
 	}
-	
-	
 	public JConnect(ServletContext application) {
 		try {
-			String drv = application.getInitParameter("JDBCDriver");  
+			String drv = application.getInitParameter("JDBCDriver");
 			String url = application.getInitParameter("ConnectionURL");
 			String id = application.getInitParameter("OracleId");
 			String pwd = application.getInitParameter("OraclePwd");
 			
-			Class.forName(drv);			
-			con = DriverManager.getConnection(url,id, pwd);
+			Class.forName(drv);			 
+			con = DriverManager.getConnection(url, id, pwd);
 			System.out.println("JDBC 연결성공");			 
 		}
 		catch(Exception e) {
@@ -51,12 +48,12 @@ public class JConnect {
 	public void close() {
 		try {
 			if(rs!=null) rs.close();
-			if(stmt!=null) stmt.close(); //stmt를 추가했으므로 해제에서 이 또한 추가
+			if(stmt!=null) stmt.close();
 			if(psmt!=null) psmt.close();
 			if(con!=null) con.close();
 		}
-		catch (Exception e) {
-			System.out.println("Oracle 자원반납 시 예외발생");
+		catch(Exception e) {
+			System.out.println("Oracle 자원반납시 예외발생");
 		}
-	}
+	}	
 }

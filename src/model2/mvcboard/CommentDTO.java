@@ -4,12 +4,12 @@ public class CommentDTO {
 	private String idx;
 	private String board_idx; 
 	private String name;
-	private String pass;
-	private String comments;
-//	private String commentsEdit; //댓글 수정때문에 추가
-	private String postdate; //작성일을 to_char()를 통해 문자열로 변경하기 때문에
-							// java.sql.Date 타입이 아닌, String타입으로 정의함. 
-	
+	private String pass; 
+	private String comments; 
+	//private String commentsEdit;
+	//작성일을 to_char()를통해 문자열로 변경하기 때문에 java.sql.Date타입이 
+	//아닌 String타입으로 정의한다. 
+	private String postdate;
 	
 	public String getIdx() {
 		return idx;
@@ -41,17 +41,16 @@ public class CommentDTO {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-//	public String getCommentsEdit() {
-//		return commentsEdit;
-//	}
-//	public void setCommentsEdit(String commentsEdit) {
-//		this.commentsEdit = commentsEdit;
-//	}
 	public String getPostdate() {
 		return postdate;
 	}
 	public void setPostdate(String postdate) {
 		this.postdate = postdate;
 	}
-	
+//	public String getCommentsEdit() {
+//		return commentsEdit;
+//	}
+//	public void setCommentsEdit(String commentsEdit) {
+//		this.commentsEdit = commentsEdit;
+//	}
 }

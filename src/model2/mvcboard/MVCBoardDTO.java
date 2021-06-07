@@ -1,18 +1,17 @@
 package model2.mvcboard;
 
 public class MVCBoardDTO {
-	private String idx; 
-	private String name; 
-	private String title;
-	private String content;
-	private java.sql.Date postdate; 
-	private String ofile;
-	private String sfile; 
-	private int downcount;
-	private String pass;
-	private int visitCount;    
-	
-	 
+	private String idx;
+    private String name;
+    private String title;
+    private String content;
+    private java.sql.Date postdate;
+    private String ofile;
+    private String sfile;
+    private int downcount;
+    private String pass;
+    private int visitcount;
+
 	public String getIdx() {
 		return idx;
 	}
@@ -67,12 +66,12 @@ public class MVCBoardDTO {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public int getVisitCount() {
-		return visitCount;
+	public int getVisitcount() {
+		return visitcount;
 	}
-	public void setVisitCount(int visitCount) {
-		this.visitCount = visitCount;
+	public void setVisitcount(int visitcount) {
+		this.visitcount = visitcount;
 	}
-	
-
 }
+
+

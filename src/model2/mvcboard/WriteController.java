@@ -16,46 +16,49 @@ import com.oreilly.servlet.MultipartRequest;
 import fileupload.FileUtil;
 import utils.JSFunction;
 
-public class WriteController extends HttpServlet{
-	
-	//글쓰기 페이지로 진입 시에는 get방식 요청
+public class WriteController extends HttpServlet { 
+
+	/*
+	글쓰기 페이지로 진입시에는 get방식 요청
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException { 
+			throws ServletException, IOException {
 		req.getRequestDispatcher("/14MVCBoard/Write.jsp").forward(req, resp);
 	}
-	 
-	//글쓰기 내용 입력 후 전송했을 때는 post방식 요청
+	
+	/*
+	글쓰기 내용 입력후 전송했을때는 post방식 요청
+	 */
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
-		//서블릿에서 디렉토리의 물리적 경로 얻어오기
+		//서블릿에서 디렉토리의 물리적경로 얻어오기
 		String saveDirectory = req.getServletContext().getRealPath("/Uploads");
 		//서블릿에서 컨텍스트 초기화 파라미터 얻어오기
 		ServletContext application = this.getServletContext();
-		//파일 업로드 제한용량
+		//파일 업로드 제한 용량
 		int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
 		//파일 업로드 처리
 		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
-		
-		if(mr!=null) {
-			//파일외 파라미터 받기
+		if(mr!=null){
+			//파일 외 파라미터 받기
 			String name = mr.getParameter("name");
 			String title = mr.getParameter("title");
 			String content = mr.getParameter("content");
 			String pass = mr.getParameter("pass");
-			
+ 
 			MVCBoardDTO dto = new MVCBoardDTO();
 			dto.setName(name);
 			dto.setTitle(title);
-			dto.setContent(content);
+			dto.setContent(content);			
 			dto.setPass(pass);
 			
-			//서버에 저장된 파일명 변경
+			//서버에 저장된 파일명 변경하기
 			String fileName = mr.getFilesystemName("ofile");
 			if(fileName!=null) {
-				String nowTime = new SimpleDateFormat("yyyyMMdd_hmsS").format(new Date());
+				String nowTime = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
 				int extIdx = fileName.lastIndexOf(".");
 				String newFileName = nowTime + fileName.substring(extIdx, fileName.length());
 				
@@ -68,19 +71,22 @@ public class WriteController extends HttpServlet{
 			}
 			
 			//DAO에서 insert 처리
-			MVCBoardDAO dao = new MVCBoardDAO();
-			int result = dao.insertWrite(dto);
+			MVCBoardDAO dao = new MVCBoardDAO();			
+			int result = dao.insertWrite(dto);				
 			dao.close();
-			if(result==1) {
+			if(result==1){
 				resp.sendRedirect("../mvcboard/list.do");
 			}
-			else {
+			else{
 				resp.sendRedirect("../mvcboard/write.do");
 			}
 		}
-		else {
-			//파일 첨부를 위한 객체생성이 안된 경우
-			JSFunction.alertLocation(resp, "글 작성중 오류가 발생했습니다.", "../mvcboard/write.do");
+		else{
+			//파일 첨부를 위한 객체 생성이 안된 경우
+			JSFunction.alertLocation(resp, "글 작성 중 오류가 발생하였습니다.", 
+					"../mvcboard/write.do");
 		}
 	}
 }
+
+

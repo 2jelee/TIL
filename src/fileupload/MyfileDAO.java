@@ -5,50 +5,44 @@ import java.util.Vector;
 
 import javax.servlet.ServletContext;
 
-public class MyfileDAO extends JConnect{	//상속받음으로써 반복 줄이는.. 반복되는 것은 별도의 클래스로 빼낸다.
-	
-	//생성자에서는 부모생성자를 호출하기 위해 super()를 통해 호출함.
+public class MyfileDAO extends JConnect {
+
 	public MyfileDAO(ServletContext application) {
 		super(application);
 	}
-	
-	//파일(게시물) 등록하는 부분
-	public int myfileInsert(MyfileDTO dto) {
+
+	public int myfileInsert(MyfileDTO dto) {				
 		int applyResult = 0;
-		try {
+		try {			
 			String query = "INSERT INTO myfile ( "
-					+ " idx, name, title, cate, ofile, sfile) "
-					+ " VALUES ( "
-					+ " seq_board_num.nextval, ?, ?, ?, ?, ?)";
-			
-			psmt = con.prepareStatement(query);
+				+ " idx, name, title, cate, ofile, sfile) "
+				+ " VALUES ( "
+				+ " seq_board_num.nextval, ?, ?, ?, ?, ?)";
+						
+			psmt = con.prepareStatement(query); 
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getCate());
 			psmt.setString(4, dto.getOfile());
 			psmt.setString(5, dto.getSfile());
-			
-			applyResult = psmt.executeUpdate();
+		
+			applyResult = psmt.executeUpdate();		
 		}
-		catch (Exception e) {
+		catch(Exception e) {
 			System.out.println("insert중 예외발생");
 			e.printStackTrace();
-		}
+		}		
 		return applyResult;
-	}
-	
-	
-	
-	//파일리스트 가져오기
+	}	
+	//파일 리스트 가져오기	
 	public List<MyfileDTO> myFileList(){
 		List<MyfileDTO> fileList = new Vector<MyfileDTO>();
 		String query = "SELECT * FROM myfile ORDER BY idx DESC";
-		try{
+		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-			
 			while(rs.next()) {
-				MyfileDTO dto = new MyfileDTO();
+				MyfileDTO dto = new MyfileDTO();								
 				dto.setIdx(rs.getString(1));
 				dto.setName(rs.getString(2));
 				dto.setTitle(rs.getString(3));
@@ -60,11 +54,11 @@ public class MyfileDAO extends JConnect{	//상속받음으로써 반복 줄이�
 				fileList.add(dto);
 			}
 		}
-		catch (Exception e) {
+		catch(Exception e) {
 			System.out.println("Select시 예외발생");
 			e.printStackTrace();
-		}
-		
+		}		
+		 
 		return fileList;
-	}
+	}	
 }

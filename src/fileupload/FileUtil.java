@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
-
 public class FileUtil {
 
 	public static MultipartRequest uploadFile(HttpServletRequest req, 
@@ -29,28 +28,21 @@ public class FileUtil {
 			e.printStackTrace();
 		}		
 		return mr;
-	}	
-	
-	
-	
-	//유틸리티 클래스 		>> fileupload.FileUtil.java 메소드 추가
+	}
 	//파일 삭제
-	public static void deleteFile(HttpServletRequest req, String directory, String filename) {
+	public static void deleteFile(HttpServletRequest req, String directory, 
+			String filename) {
 		//서버의 물리적 경로 얻어오기
 		String sDirectory = req.getServletContext().getRealPath(directory);
-		//물리적 경로와 파일명을 통해 파일객체 생성
+		//물리적경로와 파일명을 통해 파일객체 생성
 		File f = new File(sDirectory+File.separator+filename);
-		
-		//파일이 존재하면,
-		if(f.exists()) { 
-			f.delete(); //해당 파일을 삭제하겠다.
+		//파일이 존재하면..
+		if(f.exists()) {
+			//해당 파일 삭제
+			f.delete();
 		}
-	}
-	
-	
-	
-//	유틸리티 클래스
-//	fileupload.FileUtil.java 메소드 추가
+	}	
+		
 	public static void downloadFile(HttpServletRequest req, HttpServletResponse resp,
 			String directory, String sfileName, String ofileName) {
 		
@@ -92,11 +84,5 @@ public class FileUtil {
 			e.printStackTrace();
 		}
 	}	
-
-	
-	
-	
-	
-	
-	
 }
+

@@ -18,17 +18,16 @@
   	<param-name>MariaPass</param-name>
   	<param-value>1234</param-value>
   </context-param>
-  
-  
-    <!-- 한글깨짐에 대한 필터설정 -->
-  <!-- 
-  	POST 형식으로 폼값이 전송될 때 한글이 깨지는 것을 방지하기 위해
-  	request.setCharEncoding()을 주로 사용하는데
-  	이 설정을 한번에 처리하기 위해 필터 설정을 한다.
+
+  <!-- 한글깨짐에 대한 필터설정 -->
+  <!--  
+  	POST형식으로 폼값이 전송될때 한글이 깨지는 것을 방지하기 위해 
+  	request.setCharEncoding()을 주로 사용하는데, 이 설정을 한번에
+  	처리하기 위해 필터 설정을 한다. 
   -->
   <filter>
-  	<filter-name>SetCharEncoding</filter-name> <!-- filter-mapping 하위의 filter-name의 사이에 존재하는 SetCharEncoding와 일치해야한다. (복사해서 붙여넣기를 권장) -->
-  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class> <!-- 맨 뒤 .class는 지워야됨.  -->
+  	<filter-name>SetCharEncoding</filter-name>
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
   	<init-param>
   		<param-name>encoding</param-name>
   		<param-value>utf-8</param-value>
@@ -36,37 +35,43 @@
   </filter>
   <filter-mapping>
   	<filter-name>SetCharEncoding</filter-name>
-  	<url-pattern>/*</url-pattern> <!-- 해당 프로젝트의 모든(*) 경로 -->
+  	<url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-  
-  
-  
-  
- <!-- 글쓰기 매핑 -->
- <servlet>
-  	<servlet-name>MVCBoardWrite</servlet-name>
-  	<servlet-class>model2.mvcboard.WriteController</servlet-class>
+
+
+  <!-- 모델2 방식의 파일첨부형 게시판 만들기 -->
+  <!-- 목록 매핑 -->
+  <servlet>
+    <servlet-name>MVCBoardList</servlet-name>
+    <servlet-class>model2.mvcboard.ListController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>MVCBoardWrite</servlet-name>
-  	<url-pattern>/mvcboard/write.do</url-pattern>
+    <servlet-name>MVCBoardList</servlet-name>
+    <url-pattern>/mvcboard/list.do</url-pattern>
+  </servlet-mapping>
+  <!-- 글쓰기 매핑 -->
+  <servlet>
+    <servlet-name>MVCBoardWrite</servlet-name>
+    <servlet-class>model2.mvcboard.WriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MVCBoardWrite</servlet-name>
+    <url-pattern>/mvcboard/write.do</url-pattern>
   </servlet-mapping> 
-  <!-- 내용보기 매핑 없음 -->
+  <!-- 내용 보기 매핑 없음-->
   <!-- 글 수정하기 매핑 없음 -->
   <!-- 글 삭제하기 매핑 없음 -->
-  <!-- 답변글 쓰기 매핑 없음 -->
+  <!-- 답변글 쓰기 매핑 없음-->
   
   <!-- 파일 업로드 최대 용량 : 1MB -->
- <context-param>
- 	<param-name>maxPostSize</param-name>
- 	<param-value>1024000</param-value>
- </context-param>
+  <context-param>
+    <param-name>maxPostSize</param-name>
+    <param-value>1024000</param-value>
+  </context-param>  
   
   
   
-  
-  
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

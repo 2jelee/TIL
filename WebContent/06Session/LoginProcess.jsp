@@ -9,9 +9,12 @@
 String id = request.getParameter("user_id");
 String pw = request.getParameter("user_pw");
 
+//web.xml의 컨텍스트 초기화 파라미터 읽어옴
+String drv = application.getInitParameter("JDBCDriver");
+String url = application.getInitParameter("ConnectionURL");
 
 //DAO객체 생성 및 DB연결
-MemberDAO dao = new MemberDAO();
+MemberDAO dao = new MemberDAO(drv, url);
 
 //폼값으로 받은 아이디, 패스워드를 통해 로그인 처리 메소드 호출
 boolean isMember = dao.isMember(id, pw);

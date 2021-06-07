@@ -1,15 +1,14 @@
 package fileupload;
 
 public class MyfileDTO {
-	private String idx;
-	private String name; 
-	private String title; 
-	private String cate;
-	private String ofile; //원본파일명(original)
-	private String sfile; //저장된 파일명(save)
-	private String postdate; //등록일
-	
-	//getter/setter
+	private String idx ; 
+    private String name ;
+    private String title ;
+    private String cate ; 
+    private String ofile;//원본 파일명
+    private String sfile;//저장된 파일명
+    private String postdate;
+    //getter/setter
 	public String getIdx() {
 		return idx;
 	}
@@ -27,7 +26,7 @@ public class MyfileDTO {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
+	}	 
 	public String getCate() {
 		return cate;
 	}
@@ -52,5 +51,4 @@ public class MyfileDTO {
 	public void setPostdate(String postdate) {
 		this.postdate = postdate;
 	}
-	
 }

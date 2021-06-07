@@ -9,8 +9,6 @@
 String id = request.getParameter("user_id");
 String pw = request.getParameter("user_pw");
 
-
-
 //DAO객체 생성 및 DB연결
 MemberDAO dao = new MemberDAO();
 

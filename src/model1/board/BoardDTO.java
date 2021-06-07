@@ -1,40 +1,39 @@
 package model1.board;
 
 public class BoardDTO {
-	//멤버변수는 무조건 있어야
-	private String num;	//JavaBeans 규약에 따라 private로 
-	private String title;
-	private String content;
-	private String id;
-	private java.sql.Date postdate; 
-	private String visitcount;
-	private String name; 	//member테이블과 조인 후 회원이름을 출력해야할 때 사용
-	
-	
-	//생성자 : 필요한 경우에만 생성. (필요X 시 생성 X)
-	//setter/getter는 무조건 생성
-	public String getnum() {
+	//멤버변수
+    private String num;
+    private String title;
+    private String content;
+    private String id;    
+    private java.sql.Date postdate;
+    private String visitcount;
+    //member테이블과 조인후 회원이름을 출력해야 할때 사용
+    private String name;
+	//생성자 : 필요한 경우에만 생성한다.
+    //setter/getter는 무조건 생성한다. 
+	public String getNum() {
 		return num;
 	}
-	public void setnum(String num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
-	public String gettitle() {
+	public String getTitle() {
 		return title;
 	}
-	public void settitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getcontent() {
+	public String getContent() {
 		return content;
 	}
-	public void setcontent(String content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getid() {
+	public String getId() {
 		return id;
 	}
-	public void setid(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public java.sql.Date getPostdate() {
@@ -43,25 +42,16 @@ public class BoardDTO {
 	public void setPostdate(java.sql.Date postdate) {
 		this.postdate = postdate;
 	}
-	//	public String getPOSTDATE() {
-//		return POSTDATE;
-//	}
-//	public void setPOSTDATE(String pOSTDATE) {
-//		POSTDATE = pOSTDATE;
-//	}
-	public String getvisitcount() {
+	public String getVisitcount() {
 		return visitcount;
 	}
-	public void setvisitcount(String visitcount) {
+	public void setVisitcount(String visitcount) {
 		this.visitcount = visitcount;
 	}
-	public String getName() {
+    public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
 }
