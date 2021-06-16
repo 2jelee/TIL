@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08Event.html</title>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <!-- 
+        React에서 이벤트 핸들러 사용시 주의사항
+        - 이벤트 핸들러는 반드시 CamelCase형식으로 기술해야됨.
+            onclick << 에러발생.
+            onClick << 정상동작.
+        - DOM요소에만 이벤트를 지정할 수 있다.
+    -->
+    <h3>Event 핸들러 사용방법</h3>
+    <div id="myEvent1"></div>
+    <script type="text/babel">
+    /*
+    이벤트 사용방법
+        방법 1 : 렌더링 시점에 함수를 만들어 전달하는 방식
+        방법 2 : 함수를 미리 만들어놓고 호출하는 방식.
+            기능적 차이는 없으나, 2번째 방법이 가독성 높, 유지보수에 편리
+    */
+    function myAlert(){
+        alert("click이벤트가 발생되었습니다.");
+    }
+    const myElement = (
+        <div>
+            <button onClick={
+                function(){
+                    console.log("click이벤트가 발생됨")
+
+                }
+
+            }>Click이벤트1-console</button>
+            <button onClick={myAlert}>Click이벤트2-myAlert()</button>
+        </div>
+    );
+    ReactDOM.render(myElement, document.getElementById('myEvent1'));
+    </script>
+
+    <h3>this 사용하기1-화살표함수</h3>
+    <div id="myEvent2"></div>
+    <script type="text/babel">
+    /*
+    ES6에서의 화살표 함수에서 사용되는 this는
+    호출되는 대상에 관계없이 항상 정의된 객체를 가리킴. 
+    ThisComp1 객체이므로 "object"라는 경고창이 뜨게 된다.
+    */
+    class ThisComp1 extends React.Component {
+        //화살표 함수로 멤버함수를 정의함
+        thisFunc = () => {
+            alert("ThisComp1 나는 누구? "+this);
+        }
+        render(){
+            return(
+                <button onClick={this.thisFunc}>this는 누구죠?</button>
+            );
+        }
+    }
+    ReactDOM.render(<ThisComp1 />, document.getElementById('myEvent2'));
+    </script>
+
+    <h3>this사용하기2-일반함수</h3>
+    <div id="myEvent3"></div>
+    <script type="text/babel">
+    /*
+    해당 컴포넌트의 생성자에서 bind()를 통해 바인딩하지 않으면
+    undefined이 출력된다.
+    */
+    class ThisComp2 extends React.Component{
+        constructor(props){
+            super(props);
+            //생성자에서 this(ThisComp2객체)와 thisFunc() 함수를 바인딩한다. //여기서 this자체가 객체임.
+            this.thisFunc = this.thisFunc.bind(this); //이를 주석처리할 경우 alert창에서 ThisComp2 나는 누구?undefined << 가 뜬다.
+        }
+        thisFunc(){
+            alert("ThisComp2 나는 누구?" +this);
+        }
+        render(){
+            return (
+                <button onClick={this.thisFunc}>this는 누구죠?</button> //랜더링할 내용
+            );
+        }
+    }
+    ReactDOM.render(<ThisComp2 />, document.getElementById('myEvent3')); //랜더링 처리하는 부분
+    </script>
+</body>
+</html>
