@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 public class Ex06Define3Consumer {
 
 	/*
-	Consuber<T>
+	Consumer<T>
 		: 소비자라는 뜻을 가지고 있어, 매개변수는 있으나
 		반환값은 없는 accept() 메소드를 가지고 있다.
 		즉, 매개변수를 소비하는 형태라 보면 되고

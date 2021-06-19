@@ -5,6 +5,7 @@ public class Human {
 	String gender;
 	int score;
 	
+	//생성자
 	public Human(String name, String gender, int score) {
 		this.name = name;
 		this.gender = gender;
@@ -12,6 +13,7 @@ public class Human {
 		
 	}
 
+	//getter, setter 
 	public String getName() {
 		return name;
 	}

@@ -13,9 +13,9 @@ public class Ex06Define4Function {
 	 */
 	public static void main(String[] args) {
 		/*
-		interface Function<T,E>{
-			E apply(T);
-		}
+			interface Function<T,E>{
+				E apply(T);
+			}
 		 */
 		//매개변수는 String, 반환값은 Integer인 람다식을 정의함.
 		//문자열을 받아서 길이를 반환함.

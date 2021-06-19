@@ -44,7 +44,7 @@ public class Ex06Define1Predicate {
 		System.out.println("======================");
 		
 		
-		Human p3 = new Human("임재범", "남", 97);
+		Human p3 = new Human("차은우", "남", 97);
 		Human p4 = new Human("아이유", "여", 99);
 		
 		//인자로 주어진 객체를 List 컬렉션으로 반환해줌
