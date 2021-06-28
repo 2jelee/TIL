@@ -5,7 +5,7 @@ public class SpringBbsDTO {
 	private int idx;
 	private String name;
 	private String title;
-	private String content;
+	private String contents;
 	private java.sql.Date postdate;
 	private int hits;
 	private int bgroup;
@@ -17,7 +17,7 @@ public class SpringBbsDTO {
 	private int virtualNum;
 	
 	
-
+	//getter/setter만 선언
 	public int getIdx() {
 		return idx;
 	}
@@ -42,13 +42,22 @@ public class SpringBbsDTO {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
+//	public String getContent() {
+//		return content;
+//	}
+//
+//	public void setContent(String content) {
+//		this.content = content;
+//	}
+	
+	public String getContents() {
+		return contents;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
+	
 
 	public java.sql.Date getPostdate() {
 		return postdate;
@@ -105,6 +114,7 @@ public class SpringBbsDTO {
 	public void setVirtualNum(int virtualNum) {
 		this.virtualNum = virtualNum;
 	}
+
 	
 	
 }

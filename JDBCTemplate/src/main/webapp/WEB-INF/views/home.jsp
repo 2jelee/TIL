@@ -12,14 +12,14 @@
 <!-- </h1> -->
 
 <%-- <P>  The time on the server is ${serverTime}. </P> --%>
-
+ 
 
 	<h2>스프링 MVC 시작하기</h2>
 	
 	<h3>Spring 답변형 비회원제 게시판 제작</h3>
 	<li>
 		<a href="board/list.do" target="_blank">
-			SPRING JDBC(JdbcTemplate)을 이용한 게시판
+			SPRING JDBC(JdbcTemplate)을 이용한 게시판 
 		</a>
 	</li>
 </body>

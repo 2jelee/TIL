@@ -14,6 +14,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<!-- 매핑정보 추가 -->
+	<resources location="/resources/" mapping="/images/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -52,6 +54,8 @@
 		해당 빈은 스프링 컨테이너가 시작될 때
 		미리 만들어지고 차후 컨트롤러나 DAO에서 주입(Injection)받아 사용함.
 	 -->
+	
+	
 	
 	
 	

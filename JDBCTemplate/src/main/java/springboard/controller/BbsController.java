@@ -7,10 +7,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import model.JDBCTemplateDAO;
 import model.JdbcTemplateConst;
+import model.SpringBbsDTO;
 import springboard.command.BbsCommandImpl;
+import springboard.command.DeleteActionCommand;
+import springboard.command.EditActionCommand;
+import springboard.command.EditCommand;
 import springboard.command.ListCommand;
+import springboard.command.ReplyActionCommand;
+import springboard.command.ReplyCommand;
+import springboard.command.ViewCommand;
+import springboard.command.WriteActionCommand;
 
 /*
 기본패키지로 설정한 곳에 컨트롤러를 선언하면
@@ -57,11 +67,161 @@ public class BbsController {
 		사용자로부터 받은 모든 요청은 request객체에 저장되고
 		이를 ListCommand객체로 전달하기 위해 
 		model에 저장한 후 매개변수로 전달한다.
+		
+		이하 3줄 >> 핵심적인 부분!!
 		 */
 		model.addAttribute("req", req);
 		command = new ListCommand();
 		command.execute(model);
 		
 		return "07Board/list";
+	}
+	
+	
+	//글쓰기 - 폼에 진입시에는 get방식으로 처리
+	@RequestMapping("/board/write.do")
+	public String write(Model model) {
+		
+		return "07Board/write";
+	}
+	
+	//글쓰기 처리 - post방식으로 전송되므로 value, method를 둘다 명시했음.
+	@RequestMapping(value="/board/writeAction.do", method=RequestMethod.POST)
+	public String writeAction(Model model, HttpServletRequest req, SpringBbsDTO springBbsDTO) {
+		/*
+		글쓰기 페이지에서 전송된 모든 폼값을 SpringBbsDTO객체가 한번에 받는다.
+		Spring에서는 커맨드 객체를 통해 이와같이 할 수 있다.
+		
+		**SpringBbsDTO가 한번에 받기 때문에 HttpServletRequest req는 없어도 상관없다.
+		 */
+		
+		//뷰에서 전송된 폼값을 저장한 커맨드객체를 model에 저장한다.
+		model.addAttribute("req", req);
+		model.addAttribute("springBbsDTO", springBbsDTO);
+		command = new WriteActionCommand();
+		command.execute(model);
+		
+		//redirect: : 페이지에 대한 이동이 일어나게 된다(=페이지이동). 마치 sendRedirect처럼
+		/*
+		redirect: 이동한페이지경로(요청명)
+		과 같이 하면 뷰를 호출하지 않고 페이지 이동이 된다.
+		 */
+		return "redirect:list.do?nowPage=1";
+	}
+	
+	
+	//글 내용보기
+	@RequestMapping("/board/view.do")
+	public String view(Model model, HttpServletRequest req) {
+		model.addAttribute("req", req);
+		command = new ViewCommand();
+		command.execute(model);
+		
+		return "07Board/view";
+	}
+	
+	
+	//패스워드 검증 폼 		<<총 3개의 파라미터가 전달됨
+	@RequestMapping("/board/password.do")
+	public String password(Model model, HttpServletRequest req) {
+		//[방법1] 3개의 파라미터 중 일련번호는 받아서 model에 저장
+		model.addAttribute("idx", req.getParameter("idx"));
+		return "07Board/password";
+	}
+	
+	//패스워드 검증 처리
+	@RequestMapping("/board/passwordAction.do")
+	public String passwordAction(Model model, HttpServletRequest req) {
+		String modePage = null;
+		
+		String mode = req.getParameter("mode");
+		String idx = req.getParameter("idx");
+		String nowPage = req.getParameter("nowPage");
+		String pass = req.getParameter("pass");
+		
+		JDBCTemplateDAO dao = new JDBCTemplateDAO();
+		int rowExist = dao.password(idx, pass);
+		if(rowExist<=0) {
+			/*
+			게시물의 일련번호가 0이하의 값을 가질 수 없으므로 
+			검증 실패로 판단할 수 있다.
+			 */
+			model.addAttribute("isCorrMsg", "패스워드가 일치하지 않습니다.");
+			model.addAttribute("idx", idx);
+			modePage = "07Board/password";
+		}
+		else {
+			System.out.println("검증완료"); //Console창의 로그로 확인할 수 있음.
+			
+			//mode가 edit인 경우, 수정페이지로 진입
+			if(mode.equals("edit")) {
+				//수정이면 수정폼으로 이동한다.
+				model.addAttribute("req", req);
+				command = new EditCommand();
+				command.execute(model);
+				
+				modePage = "07Board/edit";
+			}
+			else if(mode.equals("delete")) {
+				//mode가 delete인 경우, 즉시 삭제처리
+				model.addAttribute("req", req);
+				command = new DeleteActionCommand();
+				command.execute(model);
+				
+				model.addAttribute("nowPage", req.getParameter("nowPage"));
+				modePage = "redirect:list.do";
+			}
+		}
+		return modePage;
+	}
+	
+	
+	//수정 처리
+	@RequestMapping("/board/editAction.do")
+	public String editAction(HttpServletRequest req, Model model, SpringBbsDTO springBbsDTO) {
+		
+		model.addAttribute("req", req);
+		model.addAttribute("springBbsDTO", springBbsDTO);
+		command = new EditActionCommand();
+		command.execute(model);
+		
+		/*
+		뷰로 이동 시 redirect를 이용하면 해당 페이지로 리다이렉트 된다.
+		이때 파라미터가 필요하다면 model에 저장하기만 하면 자동으로 쿼리스트링이 추가된다.
+		
+		따라서 return문에 ?를 붙이지 않음. 
+		 */
+		model.addAttribute("idx", req.getParameter("idx"));
+		model.addAttribute("nowPage", req.getParameter("nowPage"));
+		return "redirect:view.do"; //뷰에 대한 이동
+	}
+	
+	
+	//답변글 작성폼
+	@RequestMapping("/board/reply.do")
+	public String reply(HttpServletRequest req, Model model) {
+		System.out.println("reply() 메소드 호출");
+		
+		model.addAttribute("req", req);
+		command = new ReplyCommand();
+		command.execute(model);
+		
+		model.addAttribute("idx", req.getParameter("idx"));
+		return "07Board/reply";
+	}
+	
+	
+	//답변글 쓰기 처리
+	@RequestMapping("/board/replyAction.do")
+	public String replyAction(HttpServletRequest req, Model model, SpringBbsDTO springBbsDTO) {
+		
+		//작성폼에서 전송한 내용은 커맨드 객체로 한번에 저장
+		model.addAttribute("springBbsDTO", springBbsDTO);
+		model.addAttribute("req", req);
+		command = new ReplyActionCommand();
+		command.execute(model);
+		
+		model.addAttribute("nowPage", req.getParameter("nowPage"));
+		return "redirect:list.do";
 	}
 }

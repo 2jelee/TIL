@@ -79,6 +79,17 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		
+		
+		<!-- 추가 -->
+		<!-- 페이지번호 -->
+		<table border="1" width="90%">
+			<tr>
+				<td align="center">
+					${pagingImg }
+				</td>
+			</tr>
+		</table>
 	</table>
 </div>
 
