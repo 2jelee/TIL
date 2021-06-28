@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<!-- 
-		Spring Legacy ㅍ로젝트 생성 후 제일 먼저 스프링 프레임워크
+		Spring Legacy 프로젝트 생성 후 제일 먼저 스프링 프레임워크
 		버전을 수정함. 4.3.30(4.XX에서 마지막 버젼)
 	 -->
 	<properties>
