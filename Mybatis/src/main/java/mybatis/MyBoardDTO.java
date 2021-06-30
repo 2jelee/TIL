@@ -7,7 +7,7 @@ public class MyBoardDTO {
 	private String name;
 	private String contents;
 	 
-	
+	 
 	//getter/setter만 생성
 	public int getIdx() {
 		return idx;
