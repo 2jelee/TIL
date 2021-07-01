@@ -23,26 +23,33 @@
 	 	  
 	parameterType
 		: 쿼리문에서 사용할 파라미터를 저장한 DTO 혹은 VO 객체의 타입을 명시함.
-		  패키지명을 													주석 rererererererere
+		  패키지명을 포함한 풀 경로를 기술해야 한다.
 -->
 <!-- 
 Mapper에서의 파라미터 사용법
-형식 1] listPage(int s, int e)와 같이 추상메소드를 통해 파라미터가 전달되면
-	순서대로 param1, param2로 사용할 수 있다.
+형식 1] 
+	listPage(int s, int e)와 같이 추상메소드를 통해 
+	파라미터가 전달되면 순서대로 param1, param2로 사용할 수 있다.
 형식 2]
+	인덱스를 사용하는 방법. 순서대로 0부터 시작
+	{0}, {1}, ...
 
 형식 3]
+	@Param 어노테이션을 사용하는 방법
+	@Param(_변수명) String 변수명) => mapper에서는 _변수명
+	으로 사용할 수 O.
 
+형식 4]
+	DTO와 같은 객체를 사용하는 방법
+
+
+	
 넘겨지는 순서 : 
-	MybatisController(ArrayList<MyBoardDTO> lists = 
-			sqlSession.getMapper(MybatisDAOImpl.class)
-				.listPage(start, end);)
+	MybatisController(ArrayList<MyBoardDTO> lists = sqlSession.getMapper(MybatisDAOImpl.class).listPage(start, end);)
 				
 				
-				public interface MybatisDAOImpl {
-	//게시물 수 카운트하기
+	public interface MybatisDAOImpl {
 	public int getTotalCount();
-	//목록에 실제 출력할 게시물 가져오기
 	public ArrayList<MyBoardDTO> listPage(int s, int e);
 -->
 <!-- 
@@ -70,7 +77,7 @@ update/delete :
 
 		<!-- [3차버전] 추가 -->
 		<!-- 
-		반복을 통해 동적쿼리를 만들때는 foreach 태그를 사용한다.
+		반복을 통해 동적쿼리를 만들 때는 foreach 태그를 사용한다.
 			collection : 반복에 사용할 컬렉션 객체
 			item : 반복시 사용할 변수
 			open : 동적 쿼리문의 시작 부분
@@ -173,5 +180,44 @@ update/delete :
 	<delete id="delete">
 		DELETE FROM myboard WHERE idx=#{param1} AND id=#{param2}
 	</delete>
+	
+	
+	
+	
+	<!-- 둘다 가능 : java.util.Map 또는 map -->
+<!-- 	<select id="hashMapUse" resultType="mybatis.MyBoardDTO" parameterType="java.util.Map"> -->
+	<select id="hashMapUse" resultType="mybatis.MyBoardDTO" parameterType="map">
+		SELECT * FROM myboard
+		WHERE id=#{key_id} and name=#{key_name} or contents=#{key_contents}
+		ORDER BY idx DESC
+	</select>
+	<!-- 
+	컨트롤러에서 저장한 값
+		hashMap.put("key_id", "test"); 	
+		hashMap.put("key_name", "고스톱");
+		
+		hashMap.put("key_contents", "잔치집");
+	 -->
+	
+	
+	<!-- 둘다 가능 : java.util.ArrayList 또는 list -->
+<!-- 	<select id="arrayListUse" resultType="mybatis.MyBoardDTO" parameterType="java.util.ArrayList"> -->
+	<select id="arrayListUse" resultType="mybatis.MyBoardDTO" parameterType="list">
+		SELECT * FROM myboard
+		WHERE
+		<!-- 리스트의 경우, collection="list"와 같이 파라미터명을 list로 쓰기로 정해져있다. 
+		impl의 alist 또는 위의 java.util.ArrayList로 쓸 수 X -->
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator="or">
+			name = #{item}
+		</foreach>
+		ORDER BY idx DESC
+	</select>
+	<!--  
+		위의 <foreach 태그를 통해 아래와 같은 쿼리가 만들어진다.
+		(
+			name='고스톱' or name='메타몽' or ...
+		)
+	-->
+	
 </mapper>
 
