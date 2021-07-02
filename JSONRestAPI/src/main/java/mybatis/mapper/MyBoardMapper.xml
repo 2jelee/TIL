@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace를 통해 서비스 역할의 인터페이스와 연결한다. -->
+<mapper namespace="mybatis.IBoardDAO">
+
+	<!-- 쿼리 실행 후 반환타입은 정수이고, 파라미터는 DTO객체를 통해 받아온다. -->
+	<select id="getTotalCount" resultType="int" 
+	parameterType="mybatis.ParameterDTO">
+
+		SELECT COUNT(*) FROM board
+		<if test="searchTxt!=null"> <!-- 검색어가 있는 경우에, -->
+			WHERE <!-- List컬렉션에 저장된 검색어의 갯수만큼 반복하여 쿼리 추가 -->
+			<foreach collection="searchTxt" item="str" open="(" close=")" 
+				separator="or">
+				${searchField} like '%'||#{str}||'%'
+			</foreach>
+		</if> 
+	</select>
+	<select id="listPage" resultType="mybatis.BoardDTO" 
+		parameterType="mybatis.ParameterDTO"> 
+		
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM (
+				SELECT * FROM board 
+				<if test="searchTxt!=null">
+					WHERE 
+					<foreach collection="searchTxt" item="str" open="("
+						close=")" separator="or">
+						${searchField} like '%' || #{str} || '%'
+					</foreach>
+				</if>
+				ORDER BY num DESC
+			) Tb
+		)
+		WHERE rNum BETWEEN #{start} AND #{end}
+		
+	</select>
+
+
+
+
+
+
+
+
+	<!--
+	@Param 어노테이션에서 지정한 명칭을 사용하여 인파라미터를 처리한다.
+	일련번호는 기존 방식과 동일하게 시퀀스를 통해 부여한다.
+	 -->
+	<insert id="write">
+		INSERT INTO myboard (idx, id, name, contents)
+		VALUES 
+		(myboard_seq.nextval, #{_id}, #{_name}, #{_contents})
+	</insert>
+	
+	
+	<!-- 
+		매개변수로 전달된 DTO객체의 멤버변수명만 명시하면
+		내부적으로 getter()가 호출되어 값을 얻어올 수 있다.
+		(EL과 동일하다.)
+	 -->
+	<select id="view" resultType="mybatis.MyBoardDTO"
+		parameterType="mybatis.ParameterDTO">
+		SELECT * FROM myboard WHERE idx=#{board_idx}
+			AND id=#{user_id}	
+	</select>
+	
+	
+	<!-- 게시물 수정하기 -->
+	<update id="modify" parameterType="mybatis.MyBoardDTO">
+		UPDATE myboard
+			SET name=#{name}, contents=#{contents}
+			WHERE idx=#{idx} AND id=#{id}
+	</update>
+	
+	
+	<!-- 게시물 삭제하기 -->
+	<delete id="delete">
+		DELETE FROM myboard WHERE idx=#{param1} AND id=#{param2}
+	</delete>
+	
+	
+	
+	
+	<!-- 둘다 가능 : java.util.Map 또는 map -->
+<!-- 	<select id="hashMapUse" resultType="mybatis.MyBoardDTO" parameterType="java.util.Map"> -->
+	<select id="hashMapUse" resultType="mybatis.MyBoardDTO" parameterType="map">
+		SELECT * FROM myboard
+		WHERE id=#{key_id} and name=#{key_name} or contents=#{key_contents}
+		ORDER BY idx DESC
+	</select>
+	<!-- 
+	컨트롤러에서 저장한 값
+		hashMap.put("key_id", "test"); 	
+		hashMap.put("key_name", "고스톱");
+		
+		hashMap.put("key_contents", "잔치집");
+	 -->
+	
+	
+	<!-- 둘다 가능 : java.util.ArrayList 또는 list -->
+<!-- 	<select id="arrayListUse" resultType="mybatis.MyBoardDTO" parameterType="java.util.ArrayList"> -->
+	<select id="arrayListUse" resultType="mybatis.MyBoardDTO" parameterType="list">
+		SELECT * FROM myboard
+		WHERE
+		<!-- 리스트의 경우, collection="list"와 같이 파라미터명을 list로 쓰기로 정해져있다. 
+		impl의 alist 또는 위의 java.util.ArrayList로 쓸 수 X -->
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator="or">
+			name = #{item}
+		</foreach>
+		ORDER BY idx DESC
+	</select>
+	<!--  
+		위의 <foreach 태그를 통해 아래와 같은 쿼리가 만들어진다.
+		(
+			name='고스톱' or name='메타몽' or ...
+		)
+	-->
+	
+</mapper>
+
