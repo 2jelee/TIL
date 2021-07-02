@@ -5,12 +5,13 @@
 
 	<!--
 	스프링 시큐리티 설정 파일 생성 및 위치 지정
+	210702 : -context1->2로 변경함
 	-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
-			/WEB-INF/spring/security-context1.xml
+			/WEB-INF/spring/security-context3.xml
 		</param-value>
 	</context-param>
 	

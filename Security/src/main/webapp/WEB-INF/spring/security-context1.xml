@@ -20,7 +20,7 @@
 		<security:intercept-url pattern="/security1-1/**"
 			access="hasRole('USER')" />
 		<!-- 권한없이 누구나 접근 가능한 경로를 설정한다. -->
-		<security:intercept-url pattern="/**" access="permitAll"/>
+		<security:intercept-url pattern="/**" access="permitAll"/> <!-- security: 가 몇개가 되든, permitAll (아래에) 꼭 필요 -->
 		<!-- 로그인 폼과 로그아웃을 기본 설정 그대로 사용한다. -->
 		<security:form-login />
 		<security:logout />
