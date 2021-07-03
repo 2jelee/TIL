@@ -21,12 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.kosmo.jasonrestapi" />
+	<context:component-scan base-package="com.kosmo.jsonrestapi" />
 	
 	
-	
-	
-	<!-- 빈 생성 -->
 	<!-- DB연결 정보를 가진 데이터소스 빈 -->
 	<beans:bean name="dataSource" 
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -35,17 +32,17 @@
 		<beans:property name="username" value="kosmo" />
 		<beans:property name="password" value="1234" />
 	</beans:bean>
-	
 	<!-- Mybatis 사용을 위한 빈 생성 -->
-	<beans:bean id="sqlSessionFactory"
+	<beans:bean id="sqlSessionFactory" 
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="mapperLocations" 
+		<beans:property name="mapperLocations"
 			value="classpath:mybatis/mapper/*.xml" />
 	</beans:bean>
-	<beans:bean id="sqlSession"
+	<beans:bean id="sqlSession" 
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
 	</beans:bean>
+	
 	
 </beans:beans>
