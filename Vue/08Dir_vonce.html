@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>08Dir_vonce.html</title>
     <style>
         #red{color: red;}
         #blue{color: blue;} 
-        </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </style>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!--
         v-once
@@ -29,14 +29,16 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <h2>{{title}}</h2>
+	<div id="app">
+		<h2>{{title}}</h2>
 
-        <input type="text" v-model='message'>
-        <br>
-        <span id='red' v-once>v-once 적용 : {{message}}</span>
-        <br>
-        <span id='blue'>v-once 미적용 : {{message}}</span>
-    </div>
+		<input type="text" v-model='message'>
+		<br>
+		<!-- input에 입력하더라도 초기값을 그대로 유지한다.  -->
+		<span id='red' v-once>v-once 적용 : {{message}}</span>
+		<br>
+		<span id='blue'>v-once 미적용 : {{message}}</span id='blue'>
+	</div>
 </body>
+</html>
 </html>

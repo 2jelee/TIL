@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!--
     computed : Vue 생성자의 함수형 속성으로 '계산 프로퍼티'라고 함.
@@ -34,7 +34,7 @@
                     }
                     else{
                         //1~N까지의 누적합을 구해서 반환함. 10이라면 55반환.
-                        return ((1+n)*n) / 2;
+                        return ((1+n) * n) / 2;
                     }
                 }
             }
@@ -46,9 +46,9 @@
     <div id="app">
         <h2>{{title}}</h2>
 
-        <h3>1부터 입력된 수까지의 합구하기</h3>
+        <h3>1부터 입력된 수까지의 합 구하기</h3>
         <b>입력</b>
-        <input type="text" v-model='num' placeholder="숫자하나를입력하세요.">
+        <input type="text" v-model='num' placeholder="숫자 하나를 입력하세요.">
         <br>
         <div style='font-size: 2em; color: brown;'>
             결과 : {{sum}}

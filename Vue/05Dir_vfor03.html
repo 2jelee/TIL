@@ -1,24 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!--  
-	시나리오] 다음의 단위 속성을 가진 상품객체를 JSON 배열로 정의한후
-	쇼핑카트에 담긴 상품으로 처리하여 출력하세요.
-	할인율을 선택 : 10%, 20%, 30%, 50%
-	단위 상품 속성 : 상품명, 가격, 갯수, 계, 할인여부, 할인후금액
-	임의의 상품 3개를 카트에 추가 등록하고, 총비용 출력처리
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>06Dir_vfor03.html</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!--  
+	시나리오]
+    다음의 단위 속성을 가진 상품객체를 JSON 배열로 정의한후
+    쇼핑카트에 담긴 상품으로 처리하여 출력하세요.
+    할인율을 선택 : 10%, 20%, 30%, 50%
+    단위 상품 속성 : 상품명, 가격, 갯수, 계, 할인여부, 할인후금액
+    임의의 상품 3개를 카트에 추가 등록하고, 총비용 출력처리
 	-->
-    <script>
-        
-    </script>
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'[시나리오]v-for 사용한 장바구니',
+				discountSel : 0.1,  //선택한 할인률
+				discount : {
+					'10%':0.1,'20%':0.2,'30%':0.3,'50%':0.5
+				},
+				products : [//isDiscount : 할인률 적용여부
+					{name:'사과', price:3000, cnt:1, isDiscount:false}, 
+					{name:'배', price:4000, cnt:2, isDiscount:true},
+					{name:'딸기', price:5000, cnt:3, isDiscount:false}
+				],
+				sum:0, 
+				totalPrice:0
+			}
+		});
+	});
+	</script>
 </head>
 <body>
-    
+	<div id="app">
+		<h2>{{title}}</h2>
+		<!-- 
+			모델데이터는 discount 객체를 v-for 디렉티브로 반복하여 
+			option 태그를 출력.
+			Key는 option의 텍스트로, value는 v-bind를 통해 value
+			속성에 삽입
+		 -->
+        할인율 :       		
+			<select v-model="discountSel">
+				<option v-for="(v, k) in discount" :value="v">{{k}}</option>
+			</select>
+		<!-- 
+			v-show가 false이므로 랜더링은 되나 화면상에서는 출력되지
+			않는다. input태그의 hidden속성과 비슷한 용도로 사용된다. 
+			만약 아래 부분을 제거하면 금액은 계속 합산되어 증가하기만 한다.
+		 -->
+		<span v-show="false">{{totalPrice=0}}</span>
+		<table border='1'>
+			<tr>
+				<th>NO</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>갯수</th>
+				<th>계</th>
+				<th>할인여부</th>
+				<th>할인적용계</th>
+            </tr>		
+			<!-- 
+				모델데이터인 products 객체형 배열을 v-for를 통해 반복출력				
+			 -->
+			<tr v-for="(pdt, idx) in products">
+				<td>{{idx+1}}</td>
+				<td>{{pdt.name}}</td>
+				<td>{{pdt.price}}</td>
+				<td>{{pdt.cnt}}</td>
+				<td>{{pdt.price*pdt.cnt}}</td>
+				<td>
+					<!-- 
+						v-model을 통해서 모델데이터와 양방향 통신이 가능하므로
+						check여부에 따라 값이 반영됨
+					 -->
+					<input type="checkbox" v-model="pdt.isDiscount" :value="pdt.isDiscount">					
+				</td>
+				<td>
+					<!--
+						비교연산의 
+						==은 값이 같은지를 비교하고,
+						===은 값이 동일하고, 데이터형까지 동일하지 비교한다. 
+					
+						위 체크박스에서 체크여부가 아래 합계금액에 실시간으로 반영된다. 
+					-->
+					{{
+						sum = (pdt.isDiscount===true) ? 
+							((pdt.price*pdt.cnt)-(pdt.price*pdt.cnt*discountSel))
+							:
+							(pdt.price*pdt.cnt)
+                    }}
+					<span v-show="false">{{totalPrice+=sum}}</span>
+				</td>				
+			</tr>
+			<tr>
+				<td colspan="7" style="text-align:right;">
+					총합계금액 : {{totalPrice}}
+				</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

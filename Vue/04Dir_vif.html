@@ -5,27 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
     /*
-    v-if 디렉티브
-    1. 조건에 부합되는 내용만 렌더링하고
-        부합되지 않으면 렌더링 하지 않는 디렉티브
-    2. 형식]
-            요소객체 v-if="model의 boolean값"
-                    v-else-if ...
-                    v-else ...                                      코드rererere
+    v-if 디렉티브 
+        1. 조건에 부합되는 내용만 렌더링하고
+            부합되지 않으면 렌더링 하지 않는 디렉티브
+        2. 형식]
+                요소객체 v-if="model의 boolean값"
+                        v-else-if ...
+                        v-else ...                                      코드rererere
     */
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'디렉티브 : v-if',
-                age:0
-            }
-        });
-    });
+    $(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'디렉티브 : v-if',
+				age:0
+			}
+		});
+	});
     </script>
 </head>
 <body>
@@ -41,11 +41,11 @@
             {{age}}살은
                 <b>
                     <span v-if='age<8'>유아</span>
-                    <span v-eles-if='age>=8 && age<=13'>초등학생</span>
-                    <span v-eles-if='age>=14 && age<=16'>중학생</span>
-                    <span v-eles-if='age>=17 && age<=19'>고등학생</span>
-                    <span v-eles-if='age>=20 && age<=60'>대학생&성인</span>
-                    <span v-else>노인</span>
+					<span v-else-if='age>=8 && age<=13'>초등학생</span>
+					<span v-else-if='age>=14 && age<=16'>중학생</span>
+					<span v-else-if='age>=17 && age<=19'>고등학생</span>
+					<span v-else-if='age>=20 && age<=60'>대학생&성인</span>
+					<span v-else>노인</span>
                 </b>
             입니다.
         </div>

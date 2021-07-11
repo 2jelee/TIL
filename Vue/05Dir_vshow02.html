@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!--
         [퀴즈] v-if/v-show를 이용해서 나이에 따른 입장료를 계산하여             코드rererere
@@ -21,45 +21,45 @@
             만약 나이가 숫자로 입력되지 않는다면 '숫자로 입력'이라고 표시한다.
     -->
     <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'[퀴즈]v-if/v-show를 이용한 입장료 계산',
-                age:0,
-                price:50000
-            }
-        });
-    });
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'[퀴즈]v-if/v-show를 이용한 입장료 계산',
+				age:0, 
+				price:50000
+			}
+		});
+	});
     </script>
 </head>
 <body>
     <div id="app">
         <h2>{{title}}</h2> 
         <!-- 입력한 나이가 model 데이터인 age에 실시간 반영 -->
-        나이입력 : <input type="number" step="5" v-model="age" /> 
+        <!--나이입력 : <input type="number" step="5" v-model="age" /> -->
+        나이입력:<input type="text" step="5" v-model="age" />
         <!-- 
             v-if의 경우 조건에 만족하는 DOM요소만 화면에 랜더링한다. 
         -->
         <p>
-            <span v-if="isNaN(age)">나이는 숫자로 입력하세요.</span>
-            <span v-else-if="age<4 || age>=65">무료입장</span>
-            <span v-eles-if="age<=7">
-                유아 50% 할인 : {{price-(price*0.5)}}원
-            </span>
-            <span v-eles-if="age<=19">
-                청소년 30% 할인 : {{price-(price*0.3)}}원
-            </span> 
-            <span v-else>
-                일반입장 : {{price}}
-            </span>  
-        </p>
-        <!-- 
-            v-show의 경우 일단 렌더링이 진행되고
-            조건에 만족할때만 노출된다.
-        --> 
-        <img src="./img/free_admission.jpg" width="100"
-            v-show="age<4 || age>=65">  
-    </div>
+			<span v-if="isNaN(age)">나이는 숫자로 입력하세요.</span>
+			<span v-else-if="age<4 || age>=65">무료입장</span>
+			<span v-else-if="age<=7">
+				유아50%할인 : {{price-(price*0.5)}}원
+			</span>
+			<span v-else-if="age<=19">
+				청소년30%할인 : {{price-(price*0.3)}}원
+			</span>
+			<span v-else>
+				일반입장 : {{price}}
+			</span>
+		</p>
+		<!-- 
+		v-show의 경우 일단 렌더링이 진행되고, 조건에 만족할때만 노출됨.
+		-->
+		<img src="./img/free_admission.jpg" width="100" 
+			v-show="age<4 || age>=65">
+	</div>
 </body>
 </html>
