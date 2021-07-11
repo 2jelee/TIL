@@ -7,33 +7,33 @@
     <title>Document</title> 
 </head>
 <body>
-    <!--
-        filter() 함수
-            : filter함수는 명칭과 같이 콜백함수의 조건에 해당하는 요소만
-            반환하여 새로운 배열을 생성하는 역할을 한다.
+<!--
+    filter() 함수
+        : filter함수는 명칭과 같이 콜백함수의 조건에 해당하는 요소만
+        반환하여 새로운 배열을 생성하는 역할을 한다.
 
-            형식]
-                var oldArr = [1,2,3, ...]
-                var newArr = oldArr.filter(
-                    callBackFunction(요소값, 요소인덱스, 사용하는배열객체){
-                        return 필터링할 조건;
-                    }, thisArgs
-                );
+        형식]
+            var oldArr = [1,2,3, ...]
+            var newArr = oldArr.filter(
+                callBackFunction(요소값, 요소인덱스, 사용하는배열객체){
+                    return 필터링할 조건;
+                }, thisArgs
+            );
 
-            형식 마지막의 thisArgs는 filter에서 사용할 this값으로 선택적으로 사용한다.
-            만약 사용하지 않을 경우 undefined이 전달됨.
-    -->
+        형식 마지막의 thisArgs는 filter에서 사용할 this값으로 선택적으로 사용한다.
+        만약 사용하지 않을 경우 undefined이 전달됨.
+-->
 
-    <script>
-        console.error("filterTest1() called.. 기본사용법");
+<script>
+    console.error("filterTest1() called.. 기본사용법");
     (function filterTest1(){
         var oldArray = [1,2,3,4,5];
-    
+
         var newArray = oldArray.filter(function(element, index, array){
             //oldArray의 크기만큼 자동으로 반복하면서 각 요소를 출력함.
-            console.log("현재인자값"+element);
-            console.log("인덱스"+index);
-            console.log("배열"+array); 
+            console.log("현재인자값" + element);
+            console.log("인덱스" + index);
+            console.log("배열" + array); 
         }); 
     })();
     /*
@@ -44,7 +44,7 @@
                                 실행부;
                             })();
     */
-    
+
     console.error("filterTest2() called.. 조건에 맞는 엘리먼트만 추출");
     (function filterTest2(){
         var oldArray = [1,2,3,4,5];
@@ -53,8 +53,8 @@
             return elt<=3;
         });
         console.log("배열:"+ newArray);
-    })();
-    
+    }) ();
+
     console.error("filterTest3() called.. JSON 객체형배열 사용 및 검색");
     (function filterTest3(){
         var objJsonArray = [
@@ -67,14 +67,14 @@
         ];
         
         var newJson = objJsonArray.filter(function(elt, i, arr){
-            console.log("현재요소의 이름="+elt.name);
+            console.log("현재요소의 이름=" + elt.name);
             //급여가 300000이상인 JSON객체만 추출하여 복사함.
             return elt.salary>=300000;
         }, undefined);
         console.log("newJson", newJson);
     })();
 
-    
+
     console.error("filterTest4() called.. thisArg 매개변수 사용하기");
     (function filterTest4(){
         var testArray = [1, 2, 3, 4, 5, 50, 100];
@@ -87,6 +87,6 @@
         var newArray = testArray.filter(getMinMax, thisArg);
         console.log('thisArgs 사용결과', newArray);
     })();
-    </script>
+</script>
 </body>
 </html>
