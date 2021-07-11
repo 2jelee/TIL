@@ -73,8 +73,12 @@ public class RestAPIController {
 				
 		//가져온 데이터는 줄바꿈 처리
 		for(BoardDTO dto : lists){
-			String temp = dto.getContent().replace("\r\n","<br/>");
-			dto.setContent(temp);
+			/*
+			리액트에서는 줄바꿈을 위한 <br>이 적용되지 X
+			API를 통해 내려받은 데이터를 리액트에서 출력하면 태그가 그대로 화면에 출력됨.
+			 */
+//			String temp = dto.getContent().replace("\r\n","<br/>");
+//			dto.setContent(temp);
 		}
 		
 		return lists;
@@ -96,7 +100,7 @@ public class RestAPIController {
 		for(BoardDTO dto : record) {
 			map.put("num", dto.getNum());
 			map.put("title", dto.getTitle());
-			map.put("content", dto.getContent());
+			map.put("content", dto.getContent()); //줄바꿈처리 필요없음.
 			map.put("id", dto.getId());
 			map.put("postdate", dto.getPostdate().toString());
 			map.put("visitcount", dto.getVisitcount());
