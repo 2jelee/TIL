@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>  
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+    <!--
+        v-on 디렉티브
+            : DOM 요소에 이벤트를 적용할 때 사용하는 디렉티브
+
+            형식 1]
+                v-on:이벤트명 = "처리할 명령 혹은 함수 호출"
+            형식 2]
+                @이벤트명 = '처리할 명령 혹은 함수 호출'
+    -->
+    <script>
+    $(function(){
+        var vue = new Vue({
+            el:'#app',
+            data:{
+                title:'이벤트처리 : v-on or @이벤트',
+                amount:0, balance:0
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <p>
+            금액입력 : <input type="text" v-model="amount">
+        </p>
+        <p>
+            <button type='button' @click="balance += parseInt(amount)">
+                예금
+            </button>
+            <button type='button' v-on:click="balance -= parseInt(amount)">
+                출금
+            </button>
+        </p>
+        <h3>현재잔고 : {{balance}}</h3>
+    </div>
+</body>
+</html>

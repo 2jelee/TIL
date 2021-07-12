@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title> 
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
     $(function(){
+        //모델 데이터 외부 선언
         var model = {
             title:'computed > 검색기능 구현하기',
             countryName : "",
@@ -32,13 +33,54 @@
             ]
         }
 
+        //
         var vue = new Vue({
-            
-        })
-    })
+            el:'#app',
+            data:model,
+            computed :{
+                filtered : function(){
+                    var cname = this.countryName;
+                    return this.countries.filter(function(item,index){
+                        /*
+                        모델 데이터 countries 갯수만큼 반복하면서 각 객체를 item으로 반환함.
+                        반환된 객체의 name과 우리가 입력한 국가명을 비교해서 존재할 때만 값을 반환한다.
+                        */
+                        if(item.name.indexOf(cname) > -1){
+                            return true;
+                        }
+                    });
+                }
+            }
+        });
+    });
     </script>
 </head>
 <body>
-    
+    <div id="app">
+        <h2>{{title}}</h2>
+        <div>
+            <!-- 검색을 위해 입력한 국가명은 모델데이터 countryName에 실시간 반영됨. -->
+            국가명 : <input type="text" v-model='countryName' placeholder="검색할 국가명을 입력하세요.">
+        </div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>번호</th><th>국가명</th><th>수도</th><th>지역</th>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+            <!--
+                computed 속성의 결과로 반환되는 filtered는 여러개의 결과값을 가지고 있으므로
+                v-for 디렉티브를 이용해서 반복 출력한다.
+            -->
+            <tr v-for="c in filtered">
+                <td>{{c.no}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.capital}}</td>
+                <td>{{c.region}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

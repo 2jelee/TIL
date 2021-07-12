@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--
+        methods VS computed
+            : 선언과 호출방법은 거의 동일하나, computed의 myGop3는
+            자신이 참조하고 있는 num이 변경될때만 재실행된다.
+            methods의 myGop2()는 num 뿐만 아니라 자신과는 상관없는 diffNum이 변경될 때에도
+            재실행 된다.
+            즉, 모든상황에서 재실행이 필요하다면 methods를 사용하고
+            참조하는 변수의 변경에만 재실행되게 하려면 computed가 효율적임.
+    -->
+    <script>
+    $(function(){
+        var vue = new Vue({
+            el:'#app',
+            data:{
+                title:'methods vs computed',
+                num:0,
+                diffNum : 0 //추가
+            },
+            methods : {
+                myGop2 : function(){
+                    let result = this.num*2
+                    console.log('myGop2', result);
+                    return result;
+                }
+            },
+            computed : {
+                myGop3 : function(){
+                    let result = this.num*3
+                    console.log('myGop3', result);
+                    return result;
+                }
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <p>num : {{num}}</p>
+        <p>methods(num*2) : {{myGop2()}}</p>
+        <p>computed(num*3) : {{myGop3}}</p>
+        <p>diffNum : {{diffNum}}</p> 
+
+        <button v-on:click="num++">클릭하세요1(num++)</button>
+        <button v-on:click="diffNum++">클릭하세요2(diffNum++)</button> 
+    </div>
+</body>
+</html>
