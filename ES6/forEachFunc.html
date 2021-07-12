@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!--
+    forEach() 함수
+        : array의 인자값만큼 콜백함수가 반복되고 thisArgs는 콜백함수 내에서의 this값으로 사용한다.
+        선택적으로 사용할 수 O.
+
+        형식]
+            var oldArr = [1,2,3, ...]
+            var newArr = oldArr.forEach(
+                callbackFunction(현재값, 현재값의 인덱스, 호출된 배열){
+                    
+                },
+                thisArgs
+            );
+-->
+<script>
+    /*
+    콜백 함수에서의 반환값이 없으므로 단순히 5번 반복되어 출력됨.
+    */
+    console.error("forEachTest1() called.. 기본사용법");
+    (function forEachTest1(){
+        console.error("기본사용법");
+        var testArray = [1,2,3,4,5];
+        testArray.forEach(function(currentValue, index, array){
+            console.log('현재값:'+currentValue, '인덱스:'+index,
+                '배열:'+array);
+        });
+    })();
+
+
+    console.error("forEachTest2() called.. 배열 요소의 합계");
+    (function forEachTest2(){
+        var testArray = [1,2,3,4,5];
+        //콜백함수 내에서 사용할 변수를 선언
+        var sum = 0;
+        //콜백함수 선언. 이때 인자는 현재 요소만 사용함. 인덱스와 배열은 인자로 사용하지 X
+        function getSum(value){
+            sum += value; //현재요소를 변수 sum에 누적함
+        }
+        //앞에서 선언한 콜백함수를 forEach()의 첫번째 인자로 사용함
+        testArray.forEach(getSum); // 1~15까지의 합을 출력 : 15
+        console.log(sum);
+    })();
+
+
+    console.error("forEachTest3() called.. thisArg 매개변수 사용하기");
+    (function forEachTest3(){
+        var testArray = [1,2,3,4,5,6,7,8,9,10];
+        var sum = 0;
+        function getSum(value){
+            /*
+            thisArgs로 전달되는 인자를 사용하여 조건에 적용
+            */
+            if(value>=this.min && value<=this.max){
+                sum+=value;
+            }
+        }
+        //thisArgs 사용할 JSON객체를 정의
+        var thisArgs = {min:3, max:7};
+        //콜백함수와 thisArgs를 매개변수로 forEach()함수 호출
+        testArray.forEach(getSum, thisArgs);
+        console.log(sum); // 3~7까지의 합 : 25
+    })();
+</script>
+</body>
+</html>
