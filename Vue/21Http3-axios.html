@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+	$(function(){
+		var vue = new Vue({
+			el : '#app',
+			data : {
+				title : 'Http통신 - axios.get()', 			
+				httpData: ''
+			},
+			methods : {
+				testFunc : function(param){
+					console.log("testFunc()", param);
+				},
+				getData : function(tname){
+					let a = '';
+					axios.get('http://nakja.co.kr/kosmoAPI/json/board_list_json.php?tname='+tname)
+						.then((resData)=>{		
+							/*
+							then절 안에서 함수를 정의할때 화살표 함수가 아닌 일반 함수를
+							정의하면 아래 this는 vue객체가 아닌 window객체를 가리키게 된다. 
+							따라서 문장이 실행되지 않으므로 반드시 화살표 함수를 사용해야한다. 
+							*/
+							console.log("화살표함수this", this); 
+							//콜백데이터를 모델데이터에 삽입함
+							this.httpData = resData.data; 
+							return "여기서 반환하면 다음 then함수로 전달됨"
+						}) 
+						.catch(function(){
+							console.log("예외발생");
+						})
+						// .then(function(){
+						// 	console.log("일반함수의this", this);//window객체를 가리킴
+						// 	this.testFunc();//Vue객체 내부의 함수를 호출할 수 없음(에러발생)
+						// 	outFunc();
+						// })
+						.then((d)=>{	
+							//화살표 함수를 정의했으므로 호출가능 		 
+							this.testFunc(d);
+							outFunc();
+						});
+				}				
+			}
+		});
+		vue.getData('nboard_jquery');
+	});
+	function outFunc(){
+		console.log('나 호출되고 있니?');
+	}
+	</script>
+</head>
+<body>
+	<div id="app">
+		<h2>{{title}}</h2>
+		<button type="button" v-on:click="getData('nboard_news')">news게시판</button>
+		<button type="button" v-on:click="getData('nboard_jquery')">jquery게시판</button>
+		<button type="button" v-on:click="getData('nboard_homepage')">nboard_homepage게시판</button>
+		<table border='1' style="width:700px;">
+			<colgroup>
+				<col width="10%">
+				<col width="*">
+				<col width="10%">
+				<col width="15%">
+				<col width="10%">			
+			</colgroup>
+			<tr>
+				<th>NO</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</tr>		
+			<tr v-for="(row, idx) in httpData">
+				<td>{{row.idx}}</td>
+				<td>{{row.subject}}</td>
+				<td>{{row.name}}</td>
+				<td>{{row.regdate}}</td>
+				<td>{{row.hit}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

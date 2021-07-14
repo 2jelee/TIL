@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>19Component02.html</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+	<script>
+	//Vue객체를 통해 생성된 컴포넌트는 전역컴포넌트가 된다. 
+	Vue.component('global-component', {
+		template : '<div>전역 컴포넌트</div>'
+	});
+	//컴포넌트로 사용할 JSON객체
+	var local_comp = {
+		template : '<div>지역 컴포넌트</div>'
+	}
+
+	$(function(){
+		new Vue({
+			el : '#app',
+			//Vue객체 생성시 지역컴포넌트를 등록한다. 
+			components : {
+				'local-component' : local_comp
+			}
+		});
+		new Vue({
+			el : '#app2',
+			/*
+			지역 컴포넌트를 등록하지 않으면 사용시 오류가 발생한다. 
+			유효범위가 다르기 때문에 사용할 수 없다. 
+			*/
+			// components : {
+			// 	'local-component' : local_comp
+			// }
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="app">
+		<h2>첫번째 인스턴스 지역</h2>	 
+		<!-- 전역 컴포넌트는 등록없이 즉시 사용할 수 있다. -->
+		<global-component></global-component>		 
+		<!-- 지역 컴포넌트는 Vue객체에 등록한 후 사용할 수 있다. -->
+		<local-component></local-component>
+	</div>
+
+	<hr />
+
+	<div id="app2">
+		<h2>두번째 인스턴스 지역</h2>
+		<global-component></global-component>
+		<!-- 에러발생 -->
+		<local-component></local-component>
+	</div>
+</body>
+</html>

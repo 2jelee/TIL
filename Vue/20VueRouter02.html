@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>     
+    <script> 
+    var BodyTpl = { template : '<div><h2 class="red">Main 화면</h2></div>' }
+    var HeaderTpl = { template : '<div><h2 class="red">Main 화면</h2></div>' }
+    var FooterTpl = { template : '<div><h2 class="red">Main 화면</h2></div>' }
+     
+    var routes = [
+        { path:'/main', component:Main},
+        { path:'/login', component:Login}
+    ];
+     
+    var router = new VueRouter({
+        routes
+    });
+
+    $(function() { 
+        var vue = new Vue({ 
+            data : {
+                title : '뷰 라우터'
+            },
+            router
+        }).$mount('#app');
+    });
+</script>  
+</head> 
+<body>  
+    <div id="app"> 
+        <h2>{{title}}</h2>
+        <h3>한 화면에 컴포넌트 1개만 표시하기</h3> 
+        <p>
+            <router-link to="/main">Main 컴포넌트로 이동</router-link>
+            <router-link to="/login">Login 컴포넌트로 이동</router-link> 
+
+            <a href="#/main">Main 사용자링크</a>
+            <a href="#/login">login 사용자링크</a>
+        </p> 
+        <router-view></router-view>
+    </div>
+</body>
+</html>

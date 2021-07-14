@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>       
+    <!--
+    라우팅
+        : SPA(Single Page Application)에서 주로 사용하는 페이지 이동 방법을 말함.
+        웹 페이지를 이동할때마다 서버에 새로운 페이지를 요청하지 않고
+        미리 페이지를 받아놓은 후 화면을 갱신하는 방법임.
+        화면의 깜빡임이 없고 더 빠르고 매끄럽게 전환할 수 있게 됨.
+        ex) 카카오뱅크
+    VueRouter
+        : Vue에서 라우터 기능을 사용할 수 있도록 지원하는 공식 라이브러리
+    -->
+    <script>
+    //2개의 지역 컴포넌트를 정의.
+    var Main = {
+        template : '<div><h2 class="red">Main 화면</h2></div>'
+    }
+    var Login = {
+        template : '<div><h2 class="blue">Login 화면</h2></div>'
+    }
+    
+    //각 URL에 해당하는 컴포넌트를 등록함. 이때 routes는 속성명이므로 변경할 수 X.
+    var routes = [
+        { path:'/main', component:Main},
+        { path:'/login', component:Login}
+    ];
+    
+    //뷰 라우터 객체를 정의
+    var router = new VueRouter({
+        routes
+    });
+
+    $(function() {
+        /*
+        $mount()는 el속성과 동일하게 인스턴스를 화면에 붙여주는 역할을 함.
+        아래에는 el속성을 이용해도 동일하게 표현된다.
+        */
+        var vue = new Vue({
+            //el : '#app',
+            data : {
+                title : '뷰 라우터'
+            },
+            router
+        }).$mount('#app');
+    });
+</script>  
+</head> 
+<body>  
+    <div id="app"> 
+        <h2>{{title}}</h2>
+        <h3>한 화면에 컴포넌트 1개만 표시하기</h3>
+        <!--
+            아래 코드는 웹 브라우저에 a태그로 변환되어 출력된다.
+            a태그는 앵터를 사용하는 것과 동일함.
+        -->
+        <p>
+            <router-link to="/main">Main 컴포넌트로 이동</router-link>
+            <router-link to="/login">Login 컴포넌트로 이동</router-link> 
+
+            <a href="#/main">Main 사용자링크</a>
+            <a href="#/login">login 사용자링크</a>
+        </p>
+        <!-- 갱신된 URL에 해당하는 화면을 보여준다. -->
+        <router-view></router-view>
+    </div>
+</body>
+</html>

@@ -41,7 +41,7 @@
 <body>
     <div id="app">
         <h2>{{title}}</h2>
-        <p><input type="text" v-model:"amount" /></p>
+        <p><input type="text" v-model="amount" /></p>
         <p>
             <!-- 이벤트명 뒤에 .once를 붙여준다. -->
             <button id="create" v-on:click.once="specialEvent">계좌개설 10000원 이벤트</button>

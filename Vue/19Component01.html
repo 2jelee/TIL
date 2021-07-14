@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19Component01.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<!-- 
+		component에 root 요소는 단일 1개로 선언하여야 한다. 
+		만약 root요소가 2개 이상이 되면 컴파일 에러가 발생한다. 
+	 -->
+	<template id="tmp01">	
+		<div>
+			<h2>즐거운 토요일!!</h2>
+			<p>
+				나머지 시간 잘 활용하시길...~~나머지 시간 잘 활용하시길...~~
+				나머지 시간 잘 활용하시길...~~나머지 시간 잘 활용하시길...~~
+			</p>
+		</div>		
+	</template>
+
+    <script>
+	/*
+	컴포넌트 생성1 : template를 바로 선언한후 내용을 삽입
+		Vue.component(컴퍼넌트명, {
+			template : 출력할내용
+		});	
+	*/
+	Vue.component('hello-component', {
+		template : '<div>hello world!!!</div>'
+	});	
+	Vue.component("greet", { 
+		template:"<h2>안녕하세요</h2>"
+	});	
+
+ 	/*
+	컴포넌트 생성2 : template 태그로 먼저 선언한 후 id를 부여하고 
+		#아이디명으로 호출해서 생성한다. 
+	*/
+	Vue.component("comp2",{ template:"#tmp01"});	
+	
+	$(function(){	
+		Vue.config.devtools = true;
+		var v = new Vue({
+			el : '#app',
+			data : {
+				title : '컴포넌트01'
+			}
+		});
+	});
+	</script>
+
+</head>
+<body> 
+	<!--  
+		컴포넌트의 최상위 계층은 body하위에 선언된다. 
+		계층구조로 부모에서 자식, 자식에서 손자로 계속해서 선언할수 있다. 
+		컴포넌트 생성 후 적용시에는 아래와 같이 태그형태로 삽입한다. 
+	-->
+    <div id="app">
+        <h2>{{title}}</h2>
+		<hello-component></hello-component>
+		<greet></greet>
+		<comp2></comp2>
+		<hello-component></hello-component>
+		<greet></greet>
+		<hello-component></hello-component>
+		<comp2></comp2>
+    </div>    
+</body>
+</html>
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20VueRouter01.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <script>
+	/*
+	각각의 컴포넌트를 템플릿 객체의 정의. 특히 WebSite템플릿을 만들때
+	하위 컴포넌트를 표시할 router-view를 포함하고 있음.
+	*/	
+	var WebSite = {
+		template : `
+			<div>
+				KOSMO 웹사이트
+				<router-view></router-view>
+			</div>
+		`
+	};
+	var UserProfile = { template : '<p>프로필 컴포넌트</p>' }
+	var UserCompany = { template : '<p>회사소개 컴포넌트</p>' }
+	/*
+	라우터 정보를 정의함. 첫번째 path에 상위컴포넌트의 URL을 정의하고
+	children속성에는 하위컴포넌트의 URL을 정의한다. 
+	*/
+	var routes = [
+		{
+			path : '/user',
+			component : WebSite, 
+			children : [
+				{ path:'company', component:UserCompany},
+				{ path:'profile', component:UserProfile}
+			]
+		}
+	];
+	//뷰라우터 객체 생성
+	const router = new VueRouter({
+		routes
+	});
+    $(function(){
+        var vue = new Vue({
+            //el : '#app',
+            data : {
+                title : '뷰라우터'
+            },
+			router
+        }).$mount('#app');
+    });        
+    </script>
+</head>
+<body>
+    <div id="app">
+		<h2>{{title}}</h2>
+		<h3>네스티드 라우터 : 상위컴포넌트 1개에 하위컴포넌트 1개를 포함하는 구조의 라우터</h3>
+		<p>
+			<router-link to="/user">user</router-link>
+			<router-link to="/user/company">user/company</router-link>
+			<router-link to="/user/profile">user/profile</router-link>
+		</p> 
+		<!-- WebSite 컴포넌트가 출력될 영역을 정의 -->
+		<router-view></router-view>		
+		<!-- 
+			WebSite컴포넌트가 하위 컴포넌트를 표시할 수 있는 router-view를 
+			포함하고 있는 형태로 정의됨.
+		 -->
+    </div>    
+</body>
+</html>
+
+
