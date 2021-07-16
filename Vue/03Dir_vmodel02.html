@@ -2,50 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>03Dir_vmodel02.html</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+    <script> 
     /*
-    모델데이터가 배열일 때
-    1. 체크박스인 경우 >> 체크할때 실시간으로 mapping 처리됨
-    2. v-model='배열모델' >> 순서에 따라 checkbox의 value값과 연동된다.
-    3. 아래의 경우 checkbox를 check했을때 mapping된 value값을 fruits 배열에 할당처리한다.
-
+    모델데이터가 배열일때
+    1. 체크박스인 경우 체크할때 실시간으로 mapping 처리됨
+    2. v-model='배열모델'은 순서에 따라 checkbox의 value값과 연동된다. 
+    3. 아래의 경우 checkbox를 check했을때 mapping된 value값을 fruits 
+        배열에 할당 처리한다. 
+    
     v-html
-    1. 하위에 데이터를 포함하는 DOM객체에 모델데이터와 연동을 해주는 속성으로
-        모델속성과 연결되는 값이 출력됨.
-    2. v-html은 모델데이터가 html태그를 포함하여
-        태그가 적용된 내용을 랜더링해서 보여줄 때 사용하는 디렉티브임.
+    1. 하위에 데이터를 포함하는 DOM객체에 모델데이터와 연동을 해주는
+        속성으로 모델속성과 연결되는 값이 출력된다. 
+    2. v-html은 모델데이터가 html태그를 포함하여, 태그가 적용된
+        내용을 랜더링해서 보여줄때 사용하는 디렉티브이다.    
     */
-    $(function(){
+    $(function(){		
         var vue = new Vue({
             el:'#app',
             data:{
-                title:'디렉티브 : v-model > 채크박스 활용하기',
-                fruits :['기본']
+                title:'디렉티브 : v-model > 체크박스 활용하기',
+                fruits : ['기본']
             }
         });
     });
     </script>
-</head>
-<body>
-    <div id="app">
-        <h2>{{title}}</h2>
+    </head>
+    <body>
+        <div id="app">
+            <h2>{{title}}</h2>
+            
+            <h3>좋아하는 과일을 선택하세요</h3>
+            <label><input type="checkbox" value="사과" v-model="fruits">사과</label>
+            <label><input type="checkbox" value="키위" v-model="fruits">키위</label>
+            <input type="checkbox" value="포도" v-model="fruits" id="f3">
+                <label for="f3">포도</label>
+            <input type="checkbox" value="수박" v-model="fruits">수박
+            <input type="checkbox" value="참외" v-model="fruits">참외
 
-        <h3>좋아하는 과일을 선택하세요</h3>
-        <label><input type="checkbox" value="사과" v-model="fruits">사과</label>
-        <label><input type="checkbox" value="키위" v-model="fruits">키위</label>
-        <input type="checkbox" value="포도" v-model="fruits" id="f3"></label>
-            <label for="f3">포도</label>
-        <input type="checkbox" value="수박" v-model="fruits">수박
-        <input type="checkbox" value="참외" v-model="fruits">참외
-        <!-- 사과, 키위, 포도의 경우 체크박스가 아닌 텍스트를 눌러도 체크 가능-->
-        <div>
-            선택한과일 : <span v-html='fruits'></span>
+            <div>
+                선택한과일 : <span v-html='fruits'></span>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>06Dir_vfor02.html</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'디렉티브 : v-for01 > 객체형배열사용',
+                telLists : [
+                    {name:"정우성", tel:"010-1111-1111", age:25},
+                    {name:"박보검", tel:"010-2222-2222", age:30},
+                    {name:"김규리", tel:"010-3333-3333", age:35},
+                    {name:"한가인", tel:"010-4444-4444", age:40}
+                ],
+                gradeLists : [
+                    {name:"정우성",kor:80,eng:70,math:90},
+                    {name:"박보검",kor:88,eng:77,math:99},
+                    {name:"김규리",kor:75,eng:65,math:85},
+                    {name:"한가인",kor:72,eng:62,math:78}
+                ]
+			}
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="app">
+        <h2>{{title}}</h2>
+        
+        <h3>전화번호부</h3>
+        <table border="1">
+            <tr>
+                <th>No</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>나이</th>
+            </tr>
+            <tr v-for='(mem, idx) in telLists'>
+                <td>{{idx+1}}</td>
+                <td>{{mem.name}}</td>
+                <td>{{mem.tel}}</td>
+                <td>{{mem.age}}</td>
+            </tr>
+        </table>
+
+        <!-- 
+        연습문제] 객체형 배열을 사용하여 다음 조건에 주어진 내용을 출력하시오. 
+        출력] 이름, 국어, 영어, 수학, 총점, 평균
+        Model데이터는 gradeLists를 사용한다. 
+        -->
+        <h3>성적관리</h3>
+        <table border="1">
+            <tr>
+                <th>No</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>수학</th>
+                <th>영어</th>
+                <th>총점</th>
+                <th>평균</th>
+            </tr>
+            <tr v-for="(val, idx) in gradeLists">
+                <td>{{idx+1}}</td>
+                <td>{{val.name}}</td>
+                <td>{{val.kor}}</td>
+                <td>{{val.eng}}</td>
+                <td>{{val.math}}</td>
+                <td>{{val.kor+val.eng+val.math}}</td>
+                <td>{{Math.round((val.kor+val.eng+val.math)/3)}}</td>
+            </tr>
+        </table>
+	</div>
+</body>
+</html>

@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>05Dir_vshow02.html</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!--
-        [퀴즈] v-if/v-show를 이용해서 나이에 따른 입장료를 계산하여             코드rererere
-        해당 내용을 출력하시오.
-        기본 입장료 : 50000
-        나이 : [ ]
-        조건 : 나이에 따른 등급 표기
-            4세미만, 65이상은 무료 입장 출력
-            5~7세 : 50% 할인
-            8~19세 : 청소년 요금제(30% 할인)
-            20~64세 : 일반입장
-            
-            만약 나이가 숫자로 입력되지 않는다면 '숫자로 입력'이라고 표시한다.
-    -->
-    <script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+	[시나리오] v-if/v-show를 이용해서, 나이에 따른 입장료를 계산하여 해당 
+	내용을 출력하세요
+	기본 입장료 : 50000
+	나이 : [   ]
+	조건 : 나이에 따른 등급 표기. 
+		4세미만, 65이상은 무료 입장 출력.
+		5 ~ 7세 : 50%할인
+		8 ~ 19세 : 청소년요금제(30%할인)
+		20 ~ 64세 : 일반입장
+		만약 나이가 숫자로 입력되지 않는다면 '숫자로입력'이라고 표시한다.
+	 -->
+	<script>
 	$(function(){		
 		var vue = new Vue({
 			el:'#app',
@@ -31,18 +30,17 @@
 			}
 		});
 	});
-    </script>
+	</script>
 </head>
 <body>
-    <div id="app">
-        <h2>{{title}}</h2> 
-        <!-- 입력한 나이가 model 데이터인 age에 실시간 반영 -->
-        <!--나이입력 : <input type="number" step="5" v-model="age" /> -->
-        나이입력:<input type="text" step="5" v-model="age" />
-        <!-- 
-            v-if의 경우 조건에 만족하는 DOM요소만 화면에 랜더링한다. 
-        -->
-        <p>
+	<div id="app">
+		<h2>{{title}}</h2> 
+		<!-- 입력한 나이가 model데이터인 age에 실시간 반영 -->
+		나이입력:<input type="text" step="5" v-model="age" />
+		<!-- 
+			v-if의 경우 조건에 만족하는 DOM요소만 화면에 랜더링한다. 
+		-->
+		<p>
 			<span v-if="isNaN(age)">나이는 숫자로 입력하세요.</span>
 			<span v-else-if="age<4 || age>=65">무료입장</span>
 			<span v-else-if="age<=7">

@@ -9,15 +9,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
     /*
-    Vue는 MVVM패턴의 방식을 사용함.
-    -Model : Vue에서 '데이터 처리'를 담당함.
-    -View Model : Model과 View의 중재자 역할로 vue 객체를 인스턴스화 하여 처리하는 부분임.
-                (마치 Service 같은)
-    -View : body하위나 component화면에 대한 대상을 지정한다.
-            주로 selector(id, class, tag)로 선언함.
+    Vue는 MVVM패턴의 방식을 사용한다. 
+    -Model : Vue에서 데이터 처리를 담당한다. 
+    -View Model : Model과 View의 중재자 역할로 Vue객체를 
+        인스턴스화 하여 처리하는 부분이다. 
+    -View : body하위나 component화면에 대한 대상을 지정한다. 
+        주로 selector(id, class, tag)로 선언한다.    
     */
     $(function(){
-        //모델 데이터를 JSON객체로 선언
+        //모델데이터를 JSON객체로 선언
         var model = {
             title:'처음 만나는 Vue.js',
             name:"정우성",
@@ -25,9 +25,9 @@
             addr:"서울 삼성동"
         };
         /*
-        Vue의 기본형식 => new Vue({속성:속성값, ...})
-        속성1 : el => View에 대한 선택자 선언    (출력할 엘리먼트를 선택)
-        속성2 : data => model에 대한 선언        (실제 출력할 것.)
+        Vue의 기본형식 => new Vue({속성:속성값, .....})
+        속성1 : el => View에 대한 선택자 선언
+        속성2 : data => model에 대한 선언
         */
         var VM = new Vue({
             el:'#app',
@@ -38,26 +38,25 @@
 </head>
 <body>
     <div id="app">
-        <!--
-            Mustache(콧수염괄호) 
-                : 뷰 인스턴스의 데이터를 HTML 태그에 연결하는 
-                가장 기본적인 '텍스트 삽입'방식으로 사용됨. 
+        <!--  
+        Mustache(콧수염괄호) : 뷰 인스터스의 데이터를 Html태그에
+            연결하는 가장 기본적인 텍스트 삽입방식으로 사용된다.
         -->
-        <h2>{{title}}</h2>
-        <table>
-            <tr>
-                <th>이름</th>
-                <td>{{name}}</td>
-            </tr>
-            <tr>
-                <th>나이</th>
-                <td>{{age}}</td>
-            </tr>
-            <tr>
-                <th>주소</th>
-                <td>{{addr}}</td>
-            </tr>
-        </table>
-    </div>
+		<h2>{{title}}</h2>
+		<table>
+			<tr>
+				<th>이름</th>
+				<td>{{name}}</td>
+			</tr>
+			<tr>
+				<th>나이</th>
+				<td>{{age}}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>{{addr}}</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
