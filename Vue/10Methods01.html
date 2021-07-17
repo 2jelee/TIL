@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>10Methods01.html</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!--
-        Vue의 methods 속성
-            : 기본적인 사용법은 computed와 동일.
-            단, {{}}에서 사용 시 함수 호출 문장처럼 사용해야 한다.
-    -->
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'methods',
-                num:0
-            },
-            methods : {
-                sum : function(){
-                    console.log(Date.now());
-                    var n = Number(this.num);
-                    if(Number.isNaN(n)||n<1)
-                        return 0;
-                    return ((1+n)*n)/2;
-                }
-            }
-        });
-    });
-    </script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+		Vue의 methods속성
+			: 기본적인 사용법은 computed와 동일하다.
+			단 {{}} 에서 사용시 함수 호출문장처럼 사용해야 한다. 
+	 -->
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'methods',
+				num : 0
+			} ,
+			methods : {
+				sum : function() {
+					console.log(Date.now());
+					var n = Number(this.num);
+					if(Number.isNaN(n) || n<1) 
+						return 0;
+					return ((1+n) * n) / 2;
+				}
+			}
+		});
+	});
+	</script>
 </head>
 <body>
-    <div id="app">
-        <h2>{{title}}</h2>
+	<div id="app">
+		<h2>{{title}}</h2>
 
-        <input type="text" v-model="num" /><br>
-        1부터 입력된 수까지의 합 : <span>{{sum()}}</span>
-    </div>
+		<input type="text" v-model="num" /><br>
+		1부터 입력된 수까지의 합 : <span>{{sum()}}</span>
+	</div>
+</div>
 </body>
 </html>

@@ -1,100 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>    
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>17Style03.html</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
-    <!--
-        Vue에서 CSS속성과 model 데이터의 연동
-        - 모델데이터와 CSS속성을 연동하면 동적인 화면처리가 가능함.
-        - CSS의 기본형식을 JSON 객체형식으로 변환하여 Vue에 적용한다.
-    -->
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'CSS와 Model 데이터 연동', 
-                // foot이미지의 초기위치값 설정
-                pos:{left:100, top:200},
-                //input태그의 초기 스타일 지정
-                iStyle : {backgroundColor:"white", border:'solid 1px black'}
-            },
-            methods:{
-                ctxStop : function(e){
-                    //우클릭을 방지하기 위한 부분으로 alert는 주석처리함.
-                    //alert("우클릭방지");
-                },
-                leftMouse : function(e){
-                    //마우스 왼쪽버튼 클릭 시 이미지가 좌측으로 30px 이동
-                    if(this.pos.left > 30){
-                        //좌측 여백이 30미만일때는 더이상 이동 X
-                        this.pos.left -= 30;
-                    }
-                },
-                rightMouse : function(e){
-                    //마우스 우클릭 시 이미지가 우측으로 30px 이동
-                    this.pos.left += 30;
-                },
-                go:function(e){
-                    //상하좌우 키를 눌렀을 때 이동처리
-                    if(e.keyCode==37) this.pos.left -= 30;
-                    if(e.keyCode==38) this.pos.top -= 30;
-                    if(e.keyCode==39) this.pos.left += 30;
-                    if(e.keyCode==40) this.pos.top += 30;
-                },
-                overOut : function(param){
-                    //foot 이미지에 마우스 오버/아웃 시 input태그의 스타일이 변경됨.
-                    if(param==1){
-                        console.log("over");
-                        this.iStyle.backgroundColor = "purple";
-                        this.iStyle.border = "dotted 3px yellow"; //dotted : 점선
-                    }
-                    else if(param==2){
-                        console.log("out");
-                        this.iStyle.backgroundColor = "white";
-                        this.iStyle.border = "solid 1px black"; //solid : 직선
-                    }
-                }
-            }
-        });
-    });
-    </script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!--  
+		Vue에서 CSS속성과 model데이터의 연동
+		-모델데이터와 CSS 속성을 연동하면 동적인 화면처리가 가능하다.
+		-CSS의 기본형식을 JSON객체형식으로 변환하여 Vue에 적용한다. 
+	-->
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'CSS와 Model데이터 연동',
+				//foot 이미지의 초기위치값 설정
+				pos:{left:100, top:200},
+				//input태그의 초기 스타일 지정
+				iStyle : {backgroundColor:"white", border:'solid 1px black'}
+			},
+			methods:{
+				ctxStop : function(e){
+					//우클릭을 방지하기 위한 부분으로 alert는 주석처리한다. 
+					//alert("우클릭방지");
+				},
+				leftMouse : function(e){
+					//마우스 왼쪽버튼 클릭시 이미지가 좌측으로 30px 이동
+					if(this.pos.left > 30){
+						//좌측여백이 30미만일때는 더 이상 이동하지 않음
+						this.pos.left -= 30;
+					}
+				},
+				rightMouse : function(e){
+					//마우스 우 클릭시 이미지가 우측으로 30px 이동
+					this.pos.left += 30;
+				},
+				go : function(e){
+					//상하좌우 키를 눌렀을때 이동 처리
+					if(e.keyCode==37) this.pos.left -= 30;
+					if(e.keyCode==38) this.pos.top -= 30;
+					if(e.keyCode==39) this.pos.left += 30;
+					if(e.keyCode==40) this.pos.top += 30;
+				},
+				overOut : function(param){
+					//foot이미지에 마우스오버/아웃시 input태그의 스타일이 변경됨
+					if(param==1){						
+						console.log("over");
+						this.iStyle.backgroundColor = "purple";
+						this.iStyle.border = "dotted 3px yellow";
+					}
+					else if(param==2){
+						console.log("out");
+						this.iStyle.backgroundColor = "white";
+						this.iStyle.border = "solid 1px black";
+					}
+				}
+			}
+		});
+	});
+	</script>
+	<style>
+		html, body { margin: 0;padding: 0; }
+		#app {
+		 	height: 98vh; min-height: 100%; padding:10px;
+		}
+	</style>
 </head>
-<style>
-    html, body { margin: 0;padding: 0;}
-    #app {
-        height: 98vh; min-height: 100%; padding: 10px;
-    }
-</style>
 <body>
-    <!--
-        @mouseup.left : 마우스 왼쪽 버튼 클릭 시 이벤트 발생
-        @mouseup.right : 우 클릭 시 (상동)
-    -->
-    <div id="app" v-on:contextmenu.prevent="ctxStop" @mouseup.left="leftMouse" @mouseup.right="rightMouse">
-        <h2>{{title}}</h2>
-        <div>
-            Left Click : 왼쪽으로 <br>
-            Right Click : 오른쪽으로 <br>
-            이미지에 마우스를 over/out 해보세요.
-        </div>
-        <!--
-            1. 키보드를 눌렀다가 뗐을 때 go() 함수 호출
-            2. 초기스타일은 모델 데이터인 iStyle로 설정됨
-        -->
-        <input type="text" @keyup="go" size="40" placeholder="포커스 이동 후 상하좌우 키를 눌러보세요." :style="iStyle" />
+	<!-- 
+		@mouseup.left : 마우스 왼쪽 버튼 클릭시 이벤트 발생
+		@mouseup.right : 우 클릭시 ...
+	 -->
+	<div id="app" v-on:contextmenu.prevent="ctxStop"
+    	@mouseup.left="leftMouse" @mouseup.right="rightMouse">
+		<h2>{{title}}</h2>
+		<div>
+			Left Click : 왼쪽으로<br /> 
+			Right Click : 오른쪽으로<br /> 
+			이미지에 마우스를 over/out해보세요
+		</div>	
+		<!-- 
+			1.키보드를 눌렀다가 땠을때 go()함수 호출
+			2.초기스타일은 모델데이터인 iStyle로 설정됨
+		 -->
+		<input type="text" @keyup="go" size="40" 
+			placeholder="포커스이동후 상하좌우 키를 눌러보세요"
+			:style="iStyle" />
 
-        <!--
-            @mouseover.stop : 이미지에 마우스를 올렸을 때
-            @mouseout.stop : 마우스를 내릴때 발생되는 이벤트
-        -->
-        <img src="./img/foot.jpg" v-bind:style="{position:'absolute', left:pos.left+'px', top:pos.top+'px'}"
-            @mouseover.stop="overOut(1)" @mouseout.stop="overOut(2)" />
-        
-    </div>
+		<!-- 
+			@mouseover.stop : 이미지에 마우스를 올렸을때
+			@mouseout.stop : 마우스를 내릴때 발생되는 이벤트
+		 -->
+		<img src="./img/foot.jpg" 
+			v-bind:style="{position:'absolute',left:pos.left+'px',top:pos.top+'px'}" 
+			@mouseover.stop="overOut(1)" @mouseout.stop="overOut(2)" />
+	</div>
 </body>
 </html>

@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
-    <!-- 
-        시나리오)watch를 이용해서 투수의 평균자책점을 계산하는 프로그램을 구현하시오.
-        
-        투수의 출전 이닝수 : [   ]
-        투수의 회당 자책점 : [   ]
-        평균 자책점: ???
-        공식] 9*자책점/이닝
-    -->
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                msg : "[시나리오] 평균자책점(방어율) 계산",
-                inning:0, earnedRun:0, ERA:0
-            },
-            watch : {
-                //'이닝'의 값이 변화할때 실행
-               inning:function(v){
-                   console.log('#이닝', v);
-                   var result = 9.0 * this.earnedRun / Number(v);
-                   // Infinity : JS에서 0으로 나누는 경우, 계산이 불가할 때 발생되는 에러
-                   this.ERA = (isNaN(result)||result===Infinity) ? 0 : result;
-                   //계산의 결과가 숫자가 아니거나, 무한대인 경우에는 0으로 출력
-               },
-               //'자책점'의 값이 변화할 때 실행
-               earnedRun:function(v){
-                   console.log('#자책점', v);
-                   var result = 9.0 * v / this.inning;
-                   this.ERA = (isNaN(result)||result===Infinity) ? 0 : result;
-               }
-            }
-        });
-    });
-    </script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>11Watch02.html</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+	Quiz) watch를 이용해서 투수의 평균자책점을 계산하는 프로그램을 구현하시오.
+	
+	투수의 출전 이닝수 : [   ]
+	투수의 회당 자책점 : [   ]
+	평균 자책점: ???
+	공식] 9*자책점/이닝
+	-->
+	<script>
+	$(function(){
+		var vm = new Vue({
+			el : '#app',
+			data : {
+				msg : "[퀴즈]평균자책점(방어율) 계산",
+				inning:0, earnedRun:0, ERA:0
+			},
+			watch : {
+				//'이닝'의 값이 변화할때 실행
+				inning:function(v){
+					console.log('#이닝', v);
+					var result = 9.0 * this.earnedRun / Number(v);
+					//Infinity : JS에서 0으로 나누는경우 계산이 불가할때 발생되는 에러
+					this.ERA = (isNaN(result) || result===Infinity) ? 0 : result;
+					//계산의 결과가 숫자가 아니거나 무한대인 경우에는 0으로 출력
+				},
+				//'자책점'의 값이 변화할때 실행
+				earnedRun:function(v){
+					console.log('#자책점', v);
+					var result = 9.0 * v / this.inning;
+					this.ERA = (isNaN(result) || result===Infinity) ? 0 : result;
+				}
+			}
+		});
+	});
+	</script>
 </head>
 <body>
-    <div id="app">
-        <h2>{{msg}}</h2>
-        투수의 출전 이닝 수 : <input type='text' v-model="inning" /><br/>
-        투수의 회당 자책점 : <input type='text' v-model="earnedRun" /><br/>
-        평균자책점 : {{ERA}}
-    </div>
+<div id="app">
+	<h2>{{msg}}</h2>	 
+	투수의 출전 이닝수 : <input type='text' v-model="inning" /><br />
+	투수의 회당 자책점 : <input type='text' v-model="earnedRun" /><br />
+	평균자책점 : {{ERA}}
+</div>
 </body>
 </html>

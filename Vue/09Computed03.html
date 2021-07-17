@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>09Computed03.html</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'간단한 회원인증폼 만들기',
-                id:'',
-                pass:''
-            },
-            computed:{
-                login:function(){
-                    var loginMsg = this.id+"님 인증 전입니다."
-                    //입력된 아이디, 패스워드를 통해 회원인증                           // 코드 rererererererererere
-                    if(this.id=='kosmo' && this.pass=='1234'){
-                        loginMsg = "<span style='color:red;'>"+this.id +"님 인증되었습니다. 환영합니다.</span>";               
-                    }
-                    return loginMsg;
-                }
-            }
-        });
-    });
-    </script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'[Quiz] 간단한 회원인증폼 만들기',
+				id:'', pass:''
+			},
+			computed : {
+				login : function(){
+					var loginMsg = this.id +"님, 인증전입니다."
+					//입력된 아이디,패스워드를 통해 회원인증
+					if(this.id=='kosmo' && this.pass=='1234'){
+						loginMsg = "<span style='color:red;'>"+this.id +"님, 인증되었습니다."
+							+" 환영합니다.</span>";
+					}
+					return loginMsg;
+				}
+			}
+		});
+	});
+	</script>
 </head>
 <body>
-    <div class="app">
-        <h2>{{title}}</h2>
+	<div id="app">
+		<h2>{{title}}</h2>
 
-        아이디 : <input type="text" v-model="id"><br>
-        패스워드 : <input type="text" v-model="pass"><br>
-        <!--
-            v-show 디렉티브는 첫 렌더링이 진행된 후 조건이 일치할때만
-            해당 엘리먼트를 화면에 표시함.
-        -->
-        <span v-show="id!=''">{{login}}</span>
-    </div>
-    
+		아이디 : <input type="text" v-model="id" ><br>
+		패스워드 : <input type="text" v-model="pass" ><br>
+		<!-- 
+			v-show 디렉티브는 첫 랜더링이 진행된 후 조건에 일치할때만
+			해당 엘리먼트를 화면에 표시한다. 
+		 -->
+		<span v-show="id!=''">{{login}}</span>
+	</div>
 </body>
 </html>

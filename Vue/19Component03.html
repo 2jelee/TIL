@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>    
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
-    <script>
-        var comp1 = {
-            template : "<div>첫번째 지역 컴포넌트 : {{ compData1 }}</div>",
-            data : function(){
-                return {
-                    compData1 : 100
-                }
-            }
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>19Component03.html</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+	<script>		
+		var comp1 = {
+			template : "<div>첫번째 지역 컴포넌트 : {{ compData1 }}</div>",
+			data : function(){
+				return {
+					compData1 : 100
+				}
+			}
+		} 
+		/*
+		Vue는 컴포넌트로 화면을 구성하므로 같은 웹 페이지라고 하더라도
+		데이터를 서로 공유할 수 없다. 컴포넌트간의 유효범위(Scope)가 있기
+		때문이다. 
+		*/
+		var comp2 = {
+			template : "<div>두번째 지역 컴포넌트 : {{ compData2 }}</div>",
+			data : function(){
+				return {
+					//comp1의 지역 데이터는 참조할 수 없다. 
+					compData2 : comp1.data.compData1 
+				}
+			}
+		}
+		//전역 컴포넌트 생성 
+		Vue.component('props-test-component', {
+			/*
+			props속성 : 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달할때	
+				사용하는 속성. 아래와 같이 하위 컴포넌트의 속성에 정의한다. 
+				그리고 컴포넌트의 v-bind:props의 속성명과 연결된다. 
+				Vue에서는 props를 배열로 받게 약속되어 있다. 
+			*/
+			props: ['propsdata', 'kosmodata'],
+			template : '<div>전역 컴포넌트 : {{ propsdata }}, {{ kosmodata }}</div>'
+		});
 
-        var comp2 = {
-            template : "<div>두번째 지역 컴포넌트 : {{ compData2 }}<div>",
-            data : function(){
-                return {
-                    compData2 : comp1.data.compData11 //참조되지 X
-                }
-            }
-        }
-        
-        //전역 컴포넌트 생성
-        Vue.component('props-test-component', {
-            /*
-            props 속성 : 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달할때 사용하는 속성ㄴ
-            */
-            props : ['propsdata'],
-            template : '<div>전역 컴포넌트 : {{ propsdata }} </div>'
-        });
-
-        $
-    </script>  
-</head> 
-<body>  
-    <div id="todolistapp">
-        <div id="header" class="header">
-            <h2>Todo List App</h2>
-            <input class="input" type="text" id="task" placeholder="입력 후 엔터!">
-            <span class="addbutton">추 가</span>
-        </div>
-        <ul id="todolist">
-            <li>
-                <span>Task 1</span>
-                <span class="close">&#x00D7;</span>
-            </li>
-            <li class="checked">
-                <span>Task2</span>
-                <span> (완료) </span>
-                <span class="close">&#x00D7;</span>
-            </li>
-            <li>
-                <span>Task3</span>
-                <span class="close">&#x00D7;</span>
-            </li>
-        </ul>
-    </div>
+		$(function(){		 
+			/*
+			아래 Vue객체(인스턴스) 자체가 상위 컴포넌트가 된다. 즉 새롭게
+			등록된 컴포넌트는 항상 Vue객체의 하위(자식) 컴포넌트가 된다. 
+			*/
+			new Vue({
+				el : '#app',
+				//지역컴포넌트 2개를 등록한다. 
+				components : {				 
+					'my-component1' : comp1,
+					'my-component2' : comp2
+				}, 
+				//Vue객체에서 하위 컴포넌트로 전달할 데이터를 정의한다. 
+				data : {				 					
+					parameter : "오늘은 좋은날~~!!",
+					parameter2 : "내일부터 휴가~!"
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="app">
+		<!-- Vue객체에 등록한 후 사용함 -->
+		<my-component1></my-component1>
+		<my-component2></my-component2>
+		<!-- 
+			Vue객체 등록없이 사용함(전역 컴포넌트)
+			모델 데이터로 등록한 parameter를 propsdata를 통해 하위 컴포넌트로
+			전달한다. 
+			추가로 kosmodata를 통해 모델데이터 parameter2를 전달한다. 
+			이때 v-bind는 생략 가능하다. 
+		 -->
+		<props-test-component v-bind:propsdata="parameter" :kosmodata="parameter2"></props-test-component>
+	</div>
 </body>
 </html>

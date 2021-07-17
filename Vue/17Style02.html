@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>    
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>17Style02.html</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
-    <!--  
-        시나리오]
-        1. 화면 구성.
-            3X3 테이블 만들기.
-            방향의 이벤트를 인식할 수 있는 input  객체 선언..
-        2. 이벤트 함수 정의
-            1) keyup
-            2) e.keyCode을 확인(상하/좌우)해서.
-        3. cell의  style  속성값 변경처리	
-    --> 
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'[퀴즈]상하좌우 방향 이벤트 적용하기',
-                //중간, 상, 하, 좌, 우, 하 순서
-                pos:['yellow','','','','']
-            },
-            methods:{
-                go:function(e){
-                    //버튼을 누를 때마다 배열을 생성. 즉, 초기화한다.
-                    this.pos = new Array(5);
-                    //눌러진 키보드의 키 코드를 확인
-                    console.log("keyCode", e.keyCode);
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!--  
+	시나리오]	
+		1. 화면 구성.
+			3X3 테이블 만들기.
+			방향의 이벤트를 인식할 수 있는 input 객체 선언..
+		2. 이벤트 함수 정의
+			1) keyup
+			2) e.keyCode을 확인(상하/좌우)해서.
+		3. cell의 style 속성값 변경처리	
+	-->
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'[시나리오]상하좌우 방향 이벤트 적용하기',
+				//중간, 상, 좌, 우, 하 순서
+				pos:['yellow','','','','']
+			},
+			methods:{
+				go:function(e){
+					//버튼을 누를때 마다 배열을 생성, 즉 초기화한다.
+					this.pos = new Array(5);
+					//눌러진 키보드의 키코드를 확인
+					console.log("keyCode", e.keyCode);
 
-                    if(e.keyCode==37) this.pos[2] = 'yellow'; //좌
-                    if(e.keyCode==38) this.pos[1] = 'yellow'; //상
-                    if(e.keyCode==39) this.pos[3] = 'yellow'; //우
-                    if(e.keyCode==40) this.pos[4] = 'yellow'; //하
-                    if(e.keyCode==13) this.pos[0] = 'yellow'; //Enter
-                }
-            }
-        });
-    });
-    </script>
+					if(e.keyCode==37) this.pos[2] = "yellow";//좌
+					if(e.keyCode==38) this.pos[1] = "yellow";//상
+					if(e.keyCode==39) this.pos[3] = "yellow";//우
+					if(e.keyCode==40) this.pos[4] = "yellow";//하
+					if(e.keyCode==13) this.pos[0] = "yellow";//Enter
+				}
+			}
+		});
+	});
+	</script>
+	<style>
+		td{width:33.3%;text-align:center;}
+	</style>
 </head>
-<style>
-    td{width: 33.3%; text-align: center;}
-</style>
 <body>
-    <div id="app">
-        <h2>{{title}}</h2>
-        <!--
-            input태그에 keyup 이벤트를 연결하여 go() 함수를 호출.
-            @대신 v-on으로도 사용가능.
-        -->
-        방향이벤트 : <input type="text" @keyup="go">
-        <table width="200" height="200" border="1">
-            <tr>
-                <td>무</td>
-                <td :style="{backgroundColor:pos[1]}"></td>
-                <td>무</td>
-            </tr>
-            <tr>
-                <td :style="{backgroundColor:pos[2]}"></td>
-                <td :style="{backgroundColor:pos[0]}"></td>
-                <td :style="{backgroundColor:pos[3]}"></td>
-            </tr> 
-            <tr>
-                <td>무</td>
-                <td :style="{backgroundColor:pos[4]}"></td>
-                <td>무</td>
-            </tr>
-        </table>
-    </div>
+	<div id="app">
+		<h2>{{title}}</h2>
+		<!-- 
+			input 태그에 keyup 이벤트를 연결하여 go() 함수를 호출.
+			@대신 v-on으로도 사용가능.
+		 -->
+		방향이벤트 : <input type="text" @keyup="go">
+		<table width="200" height="200" border="1">
+			<tr>
+				<td>무</td>
+				<td :style="{backgroundColor:pos[1]}"></td>
+				<td>무</td>
+			</tr>
+			<tr>
+				<td :style="{backgroundColor:pos[2]}"></td>
+				<td :style="{backgroundColor:pos[0]}"></td>
+				<td :style="{backgroundColor:pos[3]}"></td>
+			</tr>
+			<tr>
+				<td>무</td>
+				<td :style="{backgroundColor:pos[4]}"></td>
+				<td>무</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

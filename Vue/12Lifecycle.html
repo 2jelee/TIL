@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
-    <!--
-        생애주기 훅(Lifecyle hook)
-            : Vue 인스턴스의 생성부터 소멸까지의 과정을 말한다.
-              모든 프로그래밍 언어에서는 생애주기가 존재한다.
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>12Lifecycle.html</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+		생애주기 훅(Lifecycle hook)
+		: Vue인스턴스의 생성부터 소멸까지의 과정을 말한다. 
+		모든 프로그래밍 언어에서는 생애주기가 존재한다.
 
-        종류]
-            (before)Create
-                : Vue 인스턴스가 생성된 다음, 데이터가 초기화되는 시점 및 끝난 시점.
-            (before)Mount
-                : 인스턴스가 DOM요소에 마운트되거나 끝난 시점
-            (before)Update
-                : 데이터(변수)가 수정되어 DOM요소에 반영되거나 끝난 시점.
-            (before)Destroy
-                : 인스턴스가 폐기되기 전과 다음
-    -->
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                msg : "Vue.js의 Lifecycle",
-                x:0, y:0
-            },
-            created:function(){
-                // Vue 객체의 life cycle 시작단계
-                console.log("## created 실행 ##");
-                console.log('x:'+this.x, 'y:'+this.y);
-            },
-            beforeUpdate:function(){
-                // Vue객체의 life cycle 수정직전 단계
-                console.log("## beforeUpdate 실행 ##");
-                console.log('x:'+this.x, 'y:'+this.y);
-            },
-            updated:function(){
-                //수정 후 단계
-                console.log("## updated 실행 ##");
-                console.log('x:'+this.x, 'y:'+this.y);
-            },
-            computed:{
-                sum:function(){
-                    var result = Number(this.x) + Number(this.y);
-                    if(isNaN(result)) return 0;
-                    else return result;
-                }
-            } 
-        });
-    });
-    </script>
+		종류]
+			(before)Create
+				: Vue인스턴스가 생성된 다음 데이터가 초기화되는 시점 및 끝난시점
+			(before)Mount
+				: 인스턴스가 DOM요소에 마운트되거나 끝난시점
+			(before)Update
+				: 데이터(변수)가 수정되어 DOM요소에 반영되거나 끝난시점
+			(before)Destroy
+				: 인스턴스가 폐기되기 전과 다음	
+	 -->
+	<script>
+	$(function(){
+		var vm = new Vue({
+			el : '#app',
+			data : {
+				msg : "Vue.js 의 Lifecycle hook",
+				x:0, y:0
+			} ,
+			created:function(){
+				// Vue객체의 life cycle 시작 단계 
+				console.log("## created 실행 ##");
+				console.log('x:'+this.x, 'y:'+this.y);
+			},
+			beforeUpdate:function(){
+				// Vue객체의 life cycle 수정 직전 단계
+				console.log("## beforeUpdate 실행 ##");
+				console.log('x:'+this.x, 'y:'+this.y);
+			},
+			updated:function(){
+				// 수정 후 단계
+				console.log("## updated 실행 ##");
+				console.log('x:'+this.x, 'y:'+this.y);
+			},
+			computed:{
+				sum:function(){
+					var result = Number(this.x) + Number(this.y);
+					if(isNaN(result)) return 0;
+					else return result;
+				}
+			}
+		});
+	});
+	</script>
 </head>
 <body>
-    <div id="app">
-        <h2>{{msg}}</h2>
-        x : <input type='text' v-model="x" /><br/>
-        y : <input type='text' v-model="y" /><br/>
-        덧셈결과 : {{sum}}
-    </div>
+
+
+<div id="app">
+	<h2>{{msg}}</h2>	 
+	x : <input type='text' v-model="x" /><br />
+    y : <input type='text' v-model="y" /><br />
+    덧셈 결과 : {{sum}}
+</div>
+
 </body>
 </html>

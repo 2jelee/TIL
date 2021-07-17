@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>   
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>16Once.html</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
-    <!--
-        로딩된 화면에서 한번만 처리하는 함수
-        
-        형식] v-on:이벤트명.once="함수명"
-    -->
-    <script>
-    $(function(){
-        var vue = new Vue({
-            el:'#app',
-            data:{
-                title:'이벤트를 한번만 처리하는 once',
-                amount:0, balance:0
-            },
-            methods:{
-                specialEvent:function(e){
-                    alert("계좌개설 이벤트 10,000원 입금됨(1회만 적용)");
-                    this.balance+=10000;
-                },
-                deposite:function(e){
-                    var amt = parseInt(this.amount);
-                    this.balance += amt;
-                },
-                withdraw:function(e){
-                    var amt = parseInt(this.amount);
-                    this.balance -= amt;
-                }
-            }
-        });
-    });
-    </script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+		로딩된 화면에서 한번만 처리하는 함수
+		형식] v-on:이벤트명.once="함수명"
+	 -->
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'이벤트를 한번만 처리하는 once',
+				amount:0, balance:0
+			},
+			methods:{
+				specialEvent:function(e){
+					alert("계좌개설 이벤트 10000원 입금됨(1회만적용)");
+					this.balance += 10000;
+				},
+				deposit:function(e){
+					var amt = parseInt(this.amount);
+					this.balance += amt;
+				},
+				withdraw:function(e){
+					var amt = parseInt(this.amount);
+					this.balance -= amt;
+				}
+			}
+		});
+	});
+	</script>
 </head>
 <body>
-    <div id="app">
-        <h2>{{title}}</h2>
-        <p><input type="text" v-model="amount" /></p>
-        <p>
-            <!-- 이벤트명 뒤에 .once를 붙여준다. -->
-            <button id="create" v-on:click.once="specialEvent">계좌개설 10000원 이벤트</button>
-            <button id="create" v-on:click="deposite($event)">예금</button>
-            <button id="withdraw" v-on:click="withdraw">인출</button> 
-        </p>
-        <h3>계좌 잔고 : {{balance}}</h3>
-    </div>
+	<div id="app">
+		<h2>{{title}}</h2>
+		<p><input type="text" v-model="amount" /></p>
+		<p>
+			<!-- 이벤트명 뒤에 .once를 붙여준다. -->
+			<button id="create" v-on:click.once="specialEvent">계좌 개설 10000원 이벤트</button>
+			<button id="deposit" v-on:click="deposit($event)">예금</button>
+			<button id="withdraw" v-on:click="withdraw">인출</button>
+		</p>            
+		<h3>계좌 잔고 : {{balance}}</h3>
+	</div>
 </body>
 </html>

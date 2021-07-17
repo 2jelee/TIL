@@ -2,52 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
-    <!--
-        하위에서 상위 컴포넌트로 데이터 전달 : 이벤트를 통해 전달함.                코드, 주석 re
-        $emit / v-on 속성 : 이벤트 발생과 수신을 위해 사용됨.
-        이벤트 발생 : this.$emit('이벤트명')
-        이벤트 수신 : <컴포넌트 v-on:이벤트명='상위 컴포넌트의 메소드명'></컴포넌트>
-    -->
-    <script>
-        //전역 컴포넌트 선언
-        Vue.component('my-component', {  
-            //1. 아래 버튼을 누르면 showLog() 메소드가 호출됨.
-            template : '<button v-on:click="showLog">보여주세요</button>',
-            methods:{
-                showLog : function(){
-                    //2. 메소드가 호출되면 show-log 이벤트가 발생됨.
-                    this.$emit('show-log');
-                }
+    <title>19Component04.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 
+        하위에서 상위 컴포넌트로 데이터 전달
+            : 이벤트를 통해 전달한다. 
+        $emit / v-on 속성 : 이벤트 발생과 수신을 위해 사용된다. 
+        이벤트발생 : this.$emit('이벤트명')
+        이벤트수신 : <컴포넌트 v-on:이벤트명='상위컴포넌트의 메소드명'></컴포넌트>            
+     -->
+    <script>      
+    //전역 컴포넌트 선언
+    Vue.component('my-component', {
+        //1.아래 버튼을 누르면 showLog() 메소드가 호출된다. 
+        template : '<button v-on:click="showLog()">보여주세욤</button>',
+        methods: {
+            showLog : function(){
+                //2.메소드가 호출되면 show-log 이벤트가 발생된다. 
+                this.$emit('show-log');
+            }
+        },
+    });
+    $(function(){
+        new Vue({
+            el : '#app',
+            data : {
+                message : "상위 컴포넌트의 메세지"
             },
-        });
-
-        $(function (){
-            new Vue({
-                el: '#app',
-                data:{
-                    message : "상위 컴포넌트의 메세지"
-                },
-                methods : {
-                    printText : function(){
-                        console.log("발생된 이벤트를 받았습니다.");
-                    }
+            methods : {
+                printText : function(){
+                    console.log("발생된 이벤트를 받았습니다.");
                 }
-            });
+            }
         });
-    </script>  
-</head> 
-<body>  
+    });
+	</script>
+</head>
+<body>
     <div id="app">
         <h2>{{message}}</h2>
-        <!--
-            3. show-log 이벤트를 v-on이 핸들링 시켜서 printText()를 호출
-        -->
-        <my-component v-on:show-log="printText()"></my-component>
-    </div>
+        <!-- 
+            3.show-log 이벤트를 v-on이 핸들링해서 printText()를 호출한다. 
+         -->
+		<my-component v-on:show-log="printText()"></my-component>
+	</div>    
 </body>
 </html>
+
+
