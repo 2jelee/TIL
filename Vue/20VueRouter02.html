@@ -2,48 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
-    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>     
-    <script> 
-    var BodyTpl = { template : '<div><h2 class="red">Main 화면</h2></div>' }
-    var HeaderTpl = { template : '<div><h2 class="red">Main 화면</h2></div>' }
-    var FooterTpl = { template : '<div><h2 class="red">Main 화면</h2></div>' }
-     
-    var routes = [
-        { path:'/main', component:Main},
-        { path:'/login', component:Login}
-    ];
-     
-    var router = new VueRouter({
-        routes
-    });
+    <title>20VueRouter01.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+	<!-- 
+		네임드뷰(named view)
+			: 특정 페이지로 이동했을때 여러개의 컴포넌트를 동시에
+			표시하는 라우팅 방식
+	 -->
+	<script>		
+	//각 영역에 해당하는 템플릿을 생성
+	var BodyTpl = { template: '<div>바디 영역</div>'};
+	var HeaderTpl = { template: '<div>헤더 영역</div>'};
+	var FooterTpl = { template: '<div>푸터 영역</div>'};
 
-    $(function() { 
-        var vue = new Vue({ 
+	//뷰라우터 객체를 생성하고 위헤서 선언한 템플릿을 컴포넌트로 등록
+	var router = new VueRouter({
+		routes : [
+			{
+				path : '/',
+				components : {
+					default : BodyTpl,
+					header : HeaderTpl,
+					footer : FooterTpl
+				}
+			}
+		]
+	});
+
+    $(function(){	 
+        var vue = new Vue({
+            //el : '#app',
             data : {
-                title : '뷰 라우터'
-            },
-            router
+                title : '뷰라우터'
+			},
+			router
         }).$mount('#app');
-    });
-</script>  
-</head> 
-<body>  
-    <div id="app"> 
-        <h2>{{title}}</h2>
-        <h3>한 화면에 컴포넌트 1개만 표시하기</h3> 
-        <p>
-            <router-link to="/main">Main 컴포넌트로 이동</router-link>
-            <router-link to="/login">Login 컴포넌트로 이동</router-link> 
-
-            <a href="#/main">Main 사용자링크</a>
-            <a href="#/login">login 사용자링크</a>
-        </p> 
-        <router-view></router-view>
-    </div>
+    });        
+    </script>
+</head>
+<body>
+    <div id="app">
+		<h2>{{title}}</h2>
+		<h3>네임드뷰 : 한 화면에 동일레벨의 여러 컴포넌트를 표시</h3>
+		<!-- 컴포넌트명이 default인 경우에는 name속성 생략 가능 -->
+		<p>
+			<router-view name="header"></router-view>
+			<router-view></router-view>
+			<router-view name="footer"></router-view>
+		</p>
+    </div>    
 </body>
 </html>
+
+
