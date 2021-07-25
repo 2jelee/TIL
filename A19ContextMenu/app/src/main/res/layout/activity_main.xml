@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:id="@+id/layout"
-    android:background="#ffff00"
-    >
+    android:background="#ffff00">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +20,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_imagescale"
-            android:text="이미지크기" />
+            android:text="이미지크기"/>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="256px"
+            android:layout_height="256px"
+            android:src="@drawable/arrow"
+            android:id="@+id/imageview"/>
+    </LinearLayout>
 </LinearLayout>
