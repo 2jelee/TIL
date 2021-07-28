@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Local Spring 서버와 연동하기2"
-        android:textSize="25dp"/>
+        android:text="Local Spring서버와 연동하기2"
+        android:textSize="25dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             <TextView
                 android:layout_width="80dp"
                 android:layout_height="50dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:text="아 이 디"/>
             <EditText
                 android:layout_width="match_parent"
@@ -40,12 +41,17 @@
                 android:layout_height="50dp"
                 android:textSize="15sp"
                 android:text="패스워드"/>
+
             <EditText
                 android:id="@+id/user_pw"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="패스워드 입력"
                 android:inputType="textPassword" />
+            <!--
+            HTML5의 input 태그의 속성인 type과 동일하다.
+            입력형식에 따라 다른 키보드가 선택된다.
+            -->
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,14 +68,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="결과출력"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:id="@+id/text_result"  />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="결과출력"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:id="@+id/text_result"/>
     </ScrollView>
 
 </LinearLayout>
-
