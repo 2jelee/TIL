@@ -12,16 +12,14 @@ function App() {
     <Navigation />
     <Route path="/" exact={true} component={Home} />
     <Route path="/about" component={About} />
-    <Route path="/movie-detail" component={Detail} />
+    <Route path="/movie/:id" component={Detail} /> 
   </HashRouter>
   );
 }
 
 export default App;
 /* 
-정리]
-Detail.js와 같은 방식으로 리다이렉트하거나, 유저들의 네이게이션 방식을 바꿈.
->> Router를 통해서 주어진 props를 이용해서.
+Route path="/movie-detail" component={Detail}를 더 나은 코드로 만들기]
 
-Detail은 컴포넌트 Route에 있는 것이기 때문. (네비게이션은 props가 없다.)
+path="/movie/:id"로 바꾸기 >> id는 변수가 됨.
 */

@@ -1,19 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes, { string } from "prop-types";
 
-function Movie({id, year, title, summary, poster, genres}){
+function Movie({year, title, summary, poster, genres}){
     return (
-        <Link to={{
-            pathname:`/movie/${id}`, // 백쿼트 사용, ${} 사용 >> /movie/1212112(예) << 숫자로 표현됨
-            state:{
-                year,
-                title,
-                summary,
-                poster, 
-                genres
-            }
-        }}>
         <div class="movie">
                 <img src={poster} alt={title} title={title} /> 
             <div class="movie__data">
@@ -29,7 +18,6 @@ function Movie({id, year, title, summary, poster, genres}){
                 <p class="movie__summary">{summary.slice(0,180)}...</p>
             </div>
         </div>
-        </Link>
     );
 }
 

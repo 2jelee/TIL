@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes, { string } from "prop-types";
 
-function Movie({id, year, title, summary, poster, genres}){
+function Movie({year, title, summary, poster, genres}){
     return (
         <Link to={{
-            pathname:`/movie/${id}`, // 백쿼트 사용, ${} 사용 >> /movie/1212112(예) << 숫자로 표현됨
+            pathname:'/movie-detail',
             state:{
                 year,
                 title,
