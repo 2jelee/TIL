@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href=".\bootstrap4.6.0\css\bootstrap.css">
+    <script src=".\bootstrap4.6.0\jquery\jquery-3.6.0.js"></script>
+    <script src=".\bootstrap4.6.0\js\bootstrap.js"></script>
+</head>
+<body>
+<style>
+    div{ border:1px solid red; }
+</style>
+<div class="container">
+    <h2>Grid System 사용해보기</h2>
+    <!-- 
+    Grid 시스템
+        : 웹브라우저의 가로를 12개로 나누어 사용자가 원하는
+        레이아웃을 잡을때 적당히 병합해서 쓸수있도록 제공하는 
+        시스템이다. 
+    사용법
+        col-디바이스 종류-사용할 크기
+    -->
+    <h4>* 사용</h4>
+    <div class="row">
+        <div class="col-*-*">col01</div>
+        <div class="col-*-*">col02</div>
+    </div>
+    <div class="row">
+        <div class="col-*-*">col01</div>
+        <div class="col-*-*">col02</div>
+        <div class="col-*-*">col03</div>
+    </div>
+
+    <h4>col 사용</h4>
+    <div class="row">
+        <div class="col">col01</div>
+        <div class="col">col02</div>
+        <div class="col">col03</div>
+    </div>
+
+    <h4>디바이스 사이즈 지정</h4>
+    <h5>sm-xx</h5>
+    <div class="row">
+        <div class="col-sm-2">col-sm-2</div>
+        <div class="col-sm-4">col-sm-4</div>
+        <div class="col-sm-6">col-sm-6</div>
+    </div>
+    <h5>md-xx</h5>
+    <div class="row">
+        <div class="col-md-2">col-md-2</div>
+        <div class="col-md-4">col-md-4</div>
+        <div class="col-md-6">col-md-6</div>
+    </div>
+    <h5>lg-xx</h5>
+    <div class="row">
+        <div class="col-lg-2">col-lg-2</div>
+        <div class="col-lg-4">col-lg-4</div>
+        <div class="col-lg-6">col-lg-6</div>
+    </div>
+    <h5>xl-xx</h5>
+    <div class="row">
+        <div class="col-xl-2">col-xl-2</div>
+        <div class="col-xl-4">col-xl-4</div>
+        <div class="col-xl-6">col-xl-6</div>
+    </div>
+
+
+
+
+
+
+</div>    
+</body>
+</html>

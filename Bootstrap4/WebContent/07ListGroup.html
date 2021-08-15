@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07ListGroup.html</title>
+    <link rel="stylesheet" href=".\bootstrap4.6.0\css\bootstrap.css">
+    <script src=".\bootstrap4.6.0\jquery\jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src=".\bootstrap4.6.0\js\bootstrap.js"></script>
+</head>
+<body>
+<style>
+    div>div{ border:1px solid gray; }
+</style>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+      <img src="http://www.ikosmo.co.kr/images/common/logo_center_v2.jpg" alt="logo" style="width:100px;">
+    </a>
+    
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 3</a>
+      </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <h2>상단영역</h2>
+    </div>
+    <div class="row">
+        <div class="col-xl-3">
+            <!-- 좌측메뉴 영역 -->
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">First item</a>
+                <a href="#" class="list-group-item list-group-item-action active">Second item</a>
+                <a href="#" class="list-group-item list-group-item-action dropdown-toggle"
+                    data-toggle="dropdown">Third item</a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Link 1</a>
+                    <a class="dropdown-item" href="#">Link 2</a>
+                    <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9">
+            <!-- 컨텐츠 영역 -->
+            <table class="table table-striped table-bordered table-hover ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-info">
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr class="table-danger">
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <h2>하단영역</h2>
+    </div>
+</div>    
+</body>
+</html>

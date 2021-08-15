@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02Typography.html</title>
+    <link rel="stylesheet" href=".\bootstrap4.6.0\css\bootstrap.css">
+    <script src=".\bootstrap4.6.0\jquery\jquery-3.6.0.js"></script>
+    <script src=".\bootstrap4.6.0\js\bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>hn태그</h2>
+
+    <h1>h1 Bootstrap heading (2.5rem = 40px) <small>secondary text</small></h1>
+    <h2>h2 Bootstrap heading (2rem = 32px)</h2>
+    <h3>h3 Bootstrap heading (1.75rem = 28px)<small>secondary text</small></h3>
+    <h4>h4 Bootstrap heading (1.5rem = 24px)</h4>
+    <h5>h5 Bootstrap heading (1.25rem = 20px)<small>secondary text</small></h5>
+    <h6>h6 Bootstrap heading (1rem = 16px)</h6>
+
+    <h2>display</h2>
+    <h1 class="display-1">Display 1</h1>
+    <h1 class="display-2">Display 2</h1>
+    <h1 class="display-3">Display 3</h1>
+    <h1 class="display-4">Display 4</h1>
+
+    <h1>Highlight Text</h1>    
+    <p>Use the mark element to <mark>highlight</mark> text.</p>
+
+
+    <p>The abbr element is used to mark up an abbreviation or acronym:</p>
+    <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+
+
+    <h2>pre태그 사용하기</h2>
+    <p>
+        pre태그는 줄바꿈, 띄어쓰기 등 작성한 그대로의 
+        형태를 유지하는 태그이다. 코드 등을 표현할때 유용하다. 
+    </p>
+<pre>
+Text in a pre element
+is displayed in a fixed-width
+font, and it preserves
+both      spaces                            and
+line breaks.
+
+public MemberDAO() { 
+    try {
+        try {
+        Class.forName("oracle.jdbc.OracleDriver");
+        String url = "jdbc:oracle:thin:@localhost:1521:xe";
+        String id = "kosmo";
+        String pass = "1234";
+        con = DriverManager.getConnection(url,id,pass);
+        System.out.println("Oracle 연결성공");			 
+    }
+    catch(Exception e) {
+        System.out.println("Oracle 연결시 예외발생");
+        e.printStackTrace();
+    }
+}
+</pre>
+
+
+</div>  
+</body>
+</html>

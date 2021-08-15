@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href=".\bootstrap4.6.0\css\bootstrap.css">
+    <script src=".\bootstrap4.6.0\jquery\jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src=".\bootstrap4.6.0\js\bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>속이 채워진 버튼</h2>
+    <button type="button" class="btn">Basic</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-dark">Dark</button>
+    <button type="button" class="btn btn-light">Light</button>
+    <button type="button" class="btn btn-link">Link</button>
+    
+    <h2>외곽선만 있는 버튼</h2>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+    <button type="button" class="btn btn-outline-success">Success</button>
+    <button type="button" class="btn btn-outline-info">Info</button>
+    <button type="button" class="btn btn-outline-warning">Warning</button>
+    <button type="button" class="btn btn-outline-danger">
+        Danger
+        <div class="spinner-grow text-muted"></div>
+    </button>
+    <button type="button" class="btn btn-outline-dark">Dark</button>
+    <button type="button" class="btn btn-outline-light text-dark">Light</button>
+
+    <h2>버튼에 드롭다운 메뉴 생성하기</h2>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">
+            Apple
+            <span class="badge badge-warning">99</span>
+        </button>
+        <button type="button" class="btn btn-primary">
+            Samsung
+            <span class="badge badge-pill badge-danger">100</span>
+        </button>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Sony
+            <div class="spinner-border text-success"></div>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Tablet</a>
+            <a class="dropdown-item" href="#">Smartphone</a>
+            <a class="dropdown-item" href="#">드롭다운 서브메뉴</a>
+          </div>
+        </div>
+      </div>    
+</div>    
+</body>
+</html>

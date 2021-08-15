@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 
+        뷰포트(Viewport)
+        width=device-width
+            : 단말기(모바일장치)의 화면폭에 따라 페이지의 가로폭을
+            재설정하게 해준다. 디바이스에 따라 스케일이 달라지게 되는데
+            이를 100% 스케일에서 CSS픽셀들로 계산된 화면의 폭을 의미한다. 
+        initial-scale=1.0
+            : 페이지가 처음 브라우저에 로딩된 초기 줌 레벨을 지정한다. 
+            즉 초기확대값을 설정하게된다. 
+     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href=".\bootstrap4.6.0\css\bootstrap.css">
+    <script src=".\bootstrap4.6.0\jquery\jquery-3.6.0.js"></script>
+    <script src=".\bootstrap4.6.0\js\bootstrap.js"></script>
+</head>
+<body>
+    <!-- 
+    부트스트랩의 컨테이너
+    container : 반응형 변동폭 컨테이너를 제공하는 클래스명으로
+        화면 좌우측에 약간의 공백이 포함된다. 
+     -->
+    <div class="container">
+        <h2>container class 사용</h2>	
+    </div>
+    <!--  
+    container-fluid : 화면 전체폭에 펼쳐진 컨테이너를 제공한다. 
+        좌우측의 공백이 없이 꽉 채워진 형태를 가진다. 
+    -->
+    <div class="container-fluid">
+        <h2>container-fluid class 사용</h2>
+    </div>    
+
+    <script>
+        $(function(){
+            alert("jQuery 잘 실행되나요?");
+        });
+    </script>
+
+    <div>
+        기본버튼 : <input type="button" value="기본버튼">
+        <br>
+        BS버튼 : <input type="button" value="BS버튼" class="btn btn-success">
+        <br>
+        BS버튼 : <input type="button" value="BS버튼" class="btn btn-danger">
+    </div>
+</body>
+</html>
