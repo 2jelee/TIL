@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>H09Form03.html</title>
+</head>
+<body>
+	<h2>input태그의 버튼속성</h2>
+	
+	<fieldset>
+		<!-- 
+			아래와 같이 <form> 태그를 선언하면
+				action => 현재페이지로 폼값 전송
+				method => get방식으로 지정됨
+		 -->
+		<form action="">
+			<!-- 
+				text타입은 입력이 가능하므로 value속성은 필수는 아니다. 
+				value속성을 미리 지정하더라도 차후 사용자가 값을 변경할수있다. 
+			-->
+			이름 : <input type="text" name="name" value="코스모" />
+			<br />
+			<!-- 
+				checkbox, radio타입은 입력이 불가능하므로 value를 반드시
+				미리 지정해야 한다. 
+			 -->
+			직업 : 
+			<input type="radio" name="job" value="S" checked="checked" />학생
+			&nbsp;&nbsp;
+			<input type="radio" name="job" value="T" />강사
+			<br/>
+			자기소개:
+			<textarea name="intro" cols="50" rows="5">내용은 여기에 입력됩니다.</textarea>
+			<br/> 
+			
+			<!-- 
+				type이 image와 submit은 둘다 폼값을 전송할때 사용한다. 
+				단, image인 경우에는 커스텀 이미지를 사용하여 버튼을 표현할수 있다. 
+				또한 버튼을 마우스로 클릭하지 않고 엔더만 눌러도 즉시 전송이된다. 
+			 -->
+			<input type="image" src="./images/button.jpg" />			
+			<br/>			
+			<input type="submit" value="전송" />
+			<br />
+			
+			<!-- 페이지의 초기 입력상태로 되돌려준다.(내용이 삭제되는게 아님) -->
+			<input type="reset" value="리셋" />
+			<br />
+
+			<!-- 
+				button태그는 input의 type='button'과 동일하다
+				눌렀을때 기본동작이 없기때문에 주로 이벤트핸들러와 JS의 함수를
+				연동하여 사용한다. 
+			 -->
+			<button type="button" onclick="alert('경고창입니다.');">버튼타이틀</button>
+			<br />
+			<input type="button" onmouseover="alert('마우스올렸나요?');" 
+				value="MouseOver이벤트 " />
+			&nbsp;&nbsp;
+			<input type="button" onMouseOut="alert('마우스내렸나요?');" 
+				value="MouseOut이벤트 " />
+		</form>
+	</fieldset>
+	<br /><br /><br /><br /><br /><br /><br />
+</body>
+</html>
