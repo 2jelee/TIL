@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+rotate : 회전
+    fromDegrees : 시작 각도
+    toDegrees : 종료 각도
+    pivotX | pivotY : 애니메이션을 적용할 뷰의 x, y 좌표.
+                      50%이면 뷰의 중심점이 됨.
+
+translate : 이동
+    fromXDelta, toXDelta : 이동을 시작/종료할 x좌표(y도 사용가능)
+    startOffset : 효과가 시작될 시간 설정
+-->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- alpha : 투명도-->
+    <rotate
+        android:fromDegrees="0"
+        android:toDegrees="270"
+        android:pivotX="100%"
+        android:pivotY="100%"
+        android:duration="2000" />
+    <translate
+        android:fromXDelta="0%"
+        android:toXDelta="200%"
+        android:startOffset="2000"
+        android:duration="2000" />
+</set>
