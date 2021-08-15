@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>14Prevent.html</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+	v-on:contextmenu.prevent="함수명"
+		1. 전체화면에서 오른쪽 마우스 클릭시, 호출할 함수를 정의한다. 
+		2. 오른쪽 마우스 클릭 방지 처리시 활용한다.
+	preventDefault() :
+		요소객체가 가지고 있는 내장된 기능을 방지처리한다. 
+		a 태그의 경우 페이지이동 처리가 되는것을 방지한다. 
+	-->	
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'preventDefault() 함수'
+			},
+			methods:{
+				ctxStop:function(e){
+					alert("마우스 우클릭 금지..!!");
+				},
+				ctxGo:function(e){
+					//취소 버튼을 누를경우 preventDefault()가 실행되어 페이지 이동 안됨.
+					if(!confirm("페이스북으로 이동할까요?")){						
+						e.preventDefault();
+					}
+				}
+			}
+		});
+	});
+	</script>
+	<style>
+		div{background-color: aqua; padding: 50px;}
+	</style>
+</head>
+<body>
+	<div id="app" v-on:contextmenu.prevent="ctxStop">
+		<h2>{{title}}</h2>
+
+		<a href="https://facebook.com" @click="ctxGo">페이스북 바로가기</a>	 
+	</div>
+</body>
+</html>

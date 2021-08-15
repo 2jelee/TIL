@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>11Watch01.html</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- 
+		watch속성
+			: model데이터의 변경에 따른 특정한 프로세스가 필요한 경우에
+			사용하는 속성이다. 
+			형식]
+				watch : {
+					모델데이터 : function(입력한값){
+						처리할내용;
+					}
+				}
+	 -->
+	<script>
+	$(function(){
+		var vm = new Vue({
+			el : '#app',
+			data : {
+				msg : "Watch를 이용한 덧셈구현",
+				x:0, y:0, sum:0
+			}, 
+			watch : {
+				//각 입력한 값이 param으로 전달되어 함수내에서 사용됨.
+				x : function(param){
+					console.log("# x 변경");
+					var result = Number(param) + Number(this.y);
+					if(isNaN(result))
+						this.sum = 0;
+					else
+						this.sum = result;
+				},
+				y : function(param){
+					console.log("# y 변경");
+					var result = Number(param) + Number(this.x);
+					if(isNaN(result))
+						this.sum = 0;
+					else
+						this.sum = result;
+				}
+			}
+		});
+	});
+	</script>
+</head>
+<body>
+<div id="app">
+	<h2>{{msg}}</h2>	 
+	x : <input type='text' v-model="x" /><br />
+	y : <input type='text' v-model="y" /><br />
+	덧셈 결과 : {{sum}}
+</div>
+
+</body>
+</html>

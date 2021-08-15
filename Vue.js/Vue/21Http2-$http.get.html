@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+	<!-- 
+		vue-resource는 Vue이전 버전에서 지원되던 라이브러리로 현재는
+		업데이트가 중단된 상태. 호환성을 위해 사용은 가능함. 
+	 -->
+	<script>
+	$(function(){
+		var vue = new Vue({
+			el : '#app',
+			data : {
+				title : 'Http통신 - $http.get()', 
+				//통신을 통해 전달받을 JSON 데이터를 저장할 변수
+				httpData : []
+			},
+			methods : {
+				getData : function(tname){
+					this.$http.get('http://nakja.co.kr/kosmoAPI/json/board_list_json.php?tname='+tname)
+						.then((resData)=>{
+							console.log(resData); 
+							console.log((resData.data));
+							//요청 성공시의 콜백데이터를 모델 데이터에 저장한다.
+							this.httpData = resData.data;
+						})
+						.catch((errData)=>{
+							console.log("에러발생", errData);
+						});
+				}
+			}
+		});
+		//Vue객체에 정의된 getData() 메소드를 첫 진입시 호출함 
+		vue.getData('nboard_news');
+	});
+	</script>
+</head>
+<body>
+	<div id="app">
+		<h2>{{title}}</h2>
+		<button type="button" v-on:click="getData('nboard_news')">news게시판</button>
+		<button type="button" v-on:click="getData('nboard_jquery')">jquery게시판</button>
+		<button type="button" v-on:click="getData('nboard_homepage')">nboard_homepage게시판</button>
+		<p>
+			{{ httpData }}
+		</p>
+	</div>
+</body>
+</html>

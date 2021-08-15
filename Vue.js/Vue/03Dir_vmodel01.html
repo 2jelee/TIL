@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+    <script> 
+    /*
+    v-model
+        : 모델 데이터를 입력하거나 선택하는 form하위요소에 따라
+        모델데이터가 양방향으로 변경 처리된다. 즉 사용작 입력한 
+        내용이 모델데이터에 실시간 반영된다. 
+        형식
+            v-model="모델명"
+        적용순서
+            1.설정한 대상 DOM객체는 데이터를 입력처리 가능한 form하위의
+            객체의 속성으로 설정한다. 
+            2.v-model은 해당 입력 DOM객체의 입력값이 따라 model데이터에 
+            영향을 주기 때문에 입력하는 순간 model데이터가 변경된다. 
+            3.해당 model로 연동하는 출력처리 디렉티브({{}}, v-html, v-text)를
+            통해 실시간 변경이 되는것을 확인할 수 있다. 
+    */
+    $(function(){		
+        var vue = new Vue({
+            el:'#app',
+            data:{
+                title:'디렉티브 : v-model',
+                name:'',
+                pdtName:'', pdtPrice:0, pdtCnt:0
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+<div id="app">
+    <h2>{{title}}</h2>
+    
+    구매자 : <input type="text" v-model="name">
+    <br>		
+    상품명 : <input type="text" v-model="pdtName">
+    <br>
+    단가 : <input type="number" v-model="pdtPrice">
+    <br>
+    갯수 : <input type="number" v-model="pdtCnt">
+    <br>
+    <table border=1>
+        <tr>
+            <th>구매자</th>
+            <td>{{name}}</td>
+        </tr>
+        <tr>
+            <th>상품명</th>
+            <td>{{pdtName}}</td>
+        </tr>
+        <tr>
+            <th>단가</th>
+            <td>{{pdtPrice}}</td>
+        </tr>
+        <tr>
+            <th>갯수</th>
+            <td>{{pdtCnt}}</td>
+        </tr>
+        <tr>
+            <th>결제금액</th>
+            <td>{{pdtPrice*pdtCnt}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

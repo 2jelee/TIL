@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script> 
+    $(function(){		
+        /*
+        속성 설정이 가능한 Directive
+        : DOM객체의 속성을 model 데이터와 연동하기 위해 directive를 
+        사용한다. 
+
+        v-bind : HTML속성에 값을 설정할때 사용한다. 
+            형식]
+                v-bind:HTML속성='모델속성'
+                혹은
+                :HTML속성='모델속성'
+            ※v-bind는 생략 가능함.
+        v-text : DOM하위에 모델데이터를 랜더링없이 그대로 출력할때 사용
+            {{}}와 동일한 역할을 함.
+            형식
+                v-text="모델속성"     
+        */
+        var vue = new Vue({
+            el:'#app',
+            data:{
+                title:'디렉티브 : v-bind',
+                inputMsg : 'input 태그에 출력됩니다',
+                imagePath : "http://sample.bmaster.kro.kr/photos/61.jpg",
+
+                idMsg:"아이디를 입력하세요!",
+                id:"아이디",
+                passMsg:"패스워드를 입력하세요!",
+                pass:"패스워드",
+                nameMsg:"이름을 입력하세요!",
+                name:"이름",				
+                gender:"성별",
+                genTxt:["남자","여자"],
+                regMsg:"등록",
+                align01:{textAlign:"center"}
+            }
+        });
+    });
+    </script>    
+</head>
+<body>
+<div id="app">
+    <h2>{{title}}</h2>
+    
+    <h3>이미지 출력하기</h3>
+    <input type="text" v-bind:value="inputMsg">
+    <br>
+    <!-- v-bind는 아래와 같이 생략 가능함 -->
+    <img :src="imagePath" alt="이미지">
+            
+    <h3>회원가입폼</h3>
+    <table border='1'>
+        <tr>
+            <th v-text="id"></th>
+            <td>
+                <input type="text" v-bind:placeholder="idMsg"/>
+            </td>
+        </tr>	
+        <tr>	
+            <th v-text="pass"></th>
+            <td><input type="pass" v-bind:placeholder="passMsg"/></td>
+        </tr>	
+        <tr>	
+            <th>{{name}}</th>	
+            <td><input type="text" v-bind:placeholder="nameMsg"/></td>					
+        </tr>
+        <tr>
+            <th>{{gender}}</th>
+            <td>
+                <!-- JSON배열을 활용하여 option태그 설정 -->
+                <select>
+                    <option v-text="genTxt[0]"></option>
+                    <option v-text="genTxt[1]"></option>
+                </select>
+            </td>						
+        </tr> 
+        <tr><!-- style의 경우는 JSON객체를 활용하여 설정 -->
+            <td colspan="2" :style="align01">                
+                <input type="button" :value="regMsg"/>
+            </td>						
+        </tr>			
+    </table>
+</div>
+</body>
+</html>

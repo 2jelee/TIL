@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>05Dir_vshow01.html</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 
+		v-show 디렉티브
+		: 일단 DOM요소를 랜더링한 후 조건에 만족하지 않으면 
+		화면에서 hidden처리하고, 조건에 만족할때 노출한다. 
+	 -->
+	<script>
+	$(function(){		
+		var vue = new Vue({
+			el:'#app',
+			data:{
+				title:'디렉티브 : v-show',
+                amount : 0
+			}
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="app">
+        <h2>{{title}}</h2>
+       
+		입금액 : <input type="text" v-model="amount">
+		
+		<!-- 입금액이 마이너스 일때만 랜더링된다.  -->
+        <img src="./img/error.png" 
+            title="마이너스는 허용하지 않습니다"
+            style="width:15px;height:15px;vertical-align:middle;"
+            v-show="amount<0">
+		<!-- 0이상일때 노출됨 -->
+        <span v-if="amount>=0">정상입력</span>
+		<!-- 만약 입력값이 숫자가 아니라면 노출됨 -->
+        <span v-if="isNaN(amount)">입력값은 숫자형이어야 합니다</span>
+	</div>
+</body>
+</html>
