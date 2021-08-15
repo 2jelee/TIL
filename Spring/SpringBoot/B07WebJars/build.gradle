@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.nakja'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+/*
+https://www.webjars.org/
+에서 필요한 라이브러리의 의존설정 문장을 복사해서 가져온다. 
+compile 을 implementation 으로 변경한다. 
+*/
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'javax.servlet:jstl'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	
+	implementation 'org.webjars:jquery:3.6.0'
+	implementation 'org.webjars:bootstrap:4.6.0'
+}
+
+test {
+	useJUnitPlatform()
+}
