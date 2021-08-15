@@ -1,21 +1,26 @@
 import React from 'react'
 import {HashRouter, Route} from "react-router-dom"
 import About from "./routes/About";
+import Home from "./routes/Home";
+
 
 function App() {
-  return <HashRouter>
-    <Route path="/about" component={About}/>
+  return (
+  <HashRouter>
+    <Route path="/" exact={true} component={Home} />
+    <Route path="/about" component={About} />
   </HashRouter>
+  )
 }
 
 export default App;
 /*
-HashRouter : HashRouter를 import하게 되면,,
-  react-router-dom은 다른 종류들의 라우터들이 있다. 그중 HashRouter를 쓸 것이며
-  또한 Route를 임포트할 것.
 
-이것을 return하는 대신에 HashRouter를 리턴.
-이 안에 Route를 넣어줌.
-Route 안에는 매우 중요한 props가 한 개 들어간다.
-그 prop은 렌더링할 스크린이 들어가며 다른 prop은 무엇을 할지 정해줌.
+  리액트 라우터는 기본적으로 url을 가져옴. 그다음 비교함. 나의 라우터에서.
+  그러므로 /home/introduction을 가져오고 기본적으로 나의 라우터와 비교하며 매치가 된다면 컴포넌트를 보여줌.
+  >> /가 라우트로 여겨진 것. 
+
+  2개의 컴포넌트가 동시에 렌더링 되는 것을 방지하기 위한 방법!!!
+  : exact true를 첫번째 route에 추가. >> url이 /일때만 home을 렌더링.
+  exact의 의미 : 이것이 아니면 렌더링하지 않겠다.!
 */
