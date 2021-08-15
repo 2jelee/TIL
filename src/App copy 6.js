@@ -7,19 +7,16 @@ import Home from "./routes/Home";
 
 function App() {
   return (
-  <BrowserRouter>
+  <HashRouter>
     <Navigation />
     <Route path="/" exact={true} component={Home} />
     <Route path="/about" component={About} />
-  </BrowserRouter>
+  </HashRouter>
   )
 }
 
 export default App;
 /* 
-HashRouter 대신 BrowserRouter를 사용하는 경우]
-
-큰 차이점은 없음. 
-단, HashRouter의 경우 http://localhost:3000/#/ 와 같은 것이 없음.
-또한 github pages에 정확히 설정하기가 다소 어렵.
+Navigation.js의 path는 당연히 App.js의 path와 같아야 한다.
+다를 경우 동작 X.
 */
