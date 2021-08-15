@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event06.html</title>
+    <!--
+        shift + Tab  위로 올라가기
+        tabindex="n"를 사용하여 Tab되는 방향을 바꿀 수 있음.
+    -->
+    <script>
+        function focusNBlur(num){
+            if(num==1){
+                document.getElementById("span").innerText
+                    = "focus 이벤트 발생됨";
+            }
+            else if (num==2) {
+                document.getElementById("span").innerText
+                    = "blur 이벤트 발생됨";
+            }
+        }
+
+        //HTML5의 placeholder와 비슷하게 JS로 구현 (placeholder >> 입력창에 블러식으로 글자 만들어 두는)
+        function idFocus(flag, obj){
+            if(flag==1) {
+                //포커스로 얻었을때 힌트를 지워준다.
+                if(obj.value=="아이디를 입력해주세요."){
+                    obj.value ="";
+                }
+            }
+            else if(flag==2){
+                //포커스를 잃었을 때 입력값이 없다면 힌트를 다시 생성함.
+                if(obj.value==""){
+                    obj.value="아이디를 입력해주세요.";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>focus & blur 이벤트</h2>
+    <input type="text" onfocus="focusNBlur(1);"
+        onblur="focusNBlur(2);" tabindex="3">
+    <span id="span"></span>
+
+    <h3>JS이용한 focus/blur 이벤트 예제</h3>
+    아이디1 : <input type="text" value="아이디를 입력해주세요."
+        onfocus="idFocus(1,this);" onblur="idFocus(2,this);"
+        style="color:gray;" tabindex="2">
+    <br>
+    아이디 2 : <input type="text" placeholder="아이디를 입력해주세요." tabindex="1">
+</body>
+</html>

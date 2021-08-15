@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .lcd{
+            text-align: right; padding:5px; background-color: aqua;
+            border-radius: 10px; height:30px; width:300px; 
+            font-size:1.5em;
+        }
+    </style>
+    <script>
+    function inputNum(num){
+        var lcd = document.getElementById("lcd1");
+        if(lcd.value==0){
+            //계산기를 on한후 최초 입력시..
+            lcd.value = "";//0을 지운후..
+            lcd.value = num;//숫자를 입력한다.
+        }
+        else{
+            lcd.value = lcd.value + num;
+        }
+    }   
+    function clearNum(){
+        document.getElementById("lcd1").value = 0;
+    }
+    function inputNum2(num){
+        var lcd = document.getElementById("lcd2");
+        if(lcd.innerHTML==0){
+            //계산기를 on한후 최초 입력시..
+            lcd.innerHTML = "";//0을 지운후..
+            lcd.innerHTML = num;//숫자를 입력한다.
+        }
+        else{
+            lcd.innerHTML += num;
+        }       
+    }
+    </script>
+</head>
+<body>
+    <div>
+        LCD1 : <input type="text" class="lcd" id="lcd1" value="0" readonly>
+        <br>
+        <input type="button" value="1" onclick="inputNum(1);">
+        <input type="button" value="2" onclick="inputNum(this.value);">
+        <input type="button" value="C" onclick="clearNum();">
+    </div>
+    <div>
+        LCD2 : <div class="lcd" id="lcd2">0</div>
+        <br>
+        <input type="button" value="1" onclick="inputNum2(1);">
+        <input type="button" value="2" onclick="inputNum2(this.value);">
+        <input type="button" value="C" onclick="clearNum2();">
+    </div>
+    
+</body>
+</html>

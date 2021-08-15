@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event04.html</title>
+</head>
+<body>
+    <h2>이벤트 - click</h2>
+    <!--
+        click 이벤트 : HTML에서 가장 많이 사용하는 이벤트로
+            마우스를 클릭했을 때 발생.
+            HTML의 모든 엘리먼트에 부착할 수 있다.
+
+        cursor 속성 : 마우스커서의 모양을 변경할 수 있는 CSS 속성
+    -->
+    <div style="border:1px solid red; cursor:pointer;"
+        onclick="alert('div에 클릭이벤트 발생됨');">
+        div 클릭이벤트
+    </div>
+
+    <h3 style="border:1px solid blue; cursor:crosshair;"
+        onclick="alert('h3에 클릭이벤트 발생');">
+        h3 클릭이벤트
+    </div>
+
+    <h2>이벤트 - change</h2>
+    <!--
+        change 이벤트 : select 태그에서 option을 변경할 때마다 발생하는 이벤트로,
+                        select 태그에서만 사용할 수 있다.
+
+            selectedIndex : option항목의 인덱스값을 반환함.
+                            인덱스는 0부터 시작.
+            
+            options.length : option태그의 갯수를 반환.
+
+            option태그의 value값 가져오기
+                방법1 : DOM객체.value
+                방법2 : DOM객체.options[인덱스값].value
+
+            option 태그 사이의 text값 가져오기
+                방법1 : DOM[인덱스값].text
+                방법2 : DOM.options[인덱스값].text
+    -->
+    <script>
+        function fnSelect(obj) {
+            /*
+            매개변수로 전달된 obj와 아래 obj2는 동일한 DOM객체
+            */
+            var obj2 = document.getElementById("fruit");
+
+            alert("선택항목의 인덱스:"+obj2.selectedIndex);
+
+            var items = obj.options.length; //5개
+            alert("총 아이템:"+items);
+
+            alert("value값:"+obj.value);
+            alert("value값:"+obj.options[obj.selectedIndex].value);
+
+            alert("텍스트얻기:"+obj[obj.selectedIndex].text);
+            alert("텍스트얻기:"+    obj.options[obj.selectedIndex].text);
+            
+
+            //최초로 선택한 항목 외의 option의 text가 ===로 변경됨
+            for(var i=0; i<items; i++){ //5번 반복
+                if(obj.options[i].selected==true){
+                }
+                else{
+                    obj.options[i].text="======"
+                }
+            }
+        }
+    </script>
+
+    <h2>select에서 발생되는 change 이벤트</h2>
+    <h3>당신이 좋아하는 과일은?</h3>
+    <select id="fruit" onchange="fnSelect(this);">
+        <option value="apple">사과</option>
+        <option value="orange">오렌지</option>
+        <option value="mango">망고</option>
+        <option value="banana">바나나</option>
+        <option value="guaba">구아바</option>
+    </select>
+
+    <script>
+        function fnSubmit() {
+            var txtObj = document.subForm.txt;
+            /*
+                text 입력상자에 아무런 내용이 없는 경우, 서버로 전송되지 않도록
+                false를 반환한다.
+                반환된 값은 submit 이벤트 리스너쪽으로 전달되어 전송이 중단됨. 
+            */
+            if(txtObj.value==""){
+                alert("텍스트를 입력하세요.");
+                txtObj.focus();
+                return false;
+            }
+        }
+        /*
+            form 태그는 문서 내에서 2개 이상 사용가능하므로
+            forms[인덱스값] 형태로 DOM객체에 접근할 수 있다.
+        */
+        window.onload = function(){
+            document.forms[0].onreset=function(){
+                alert("reset 이벤트 발생");
+            }
+        }
+    </script>
+
+    <!--
+        submit(전송)이벤트 : form값을 서버로 전송하기 위해 submit버튼을 눌렀을 때 
+                            발생하는 이벤트로 반환값이 false이면 전송이 중단됨.
+                            true가 반환될 때만 서버로 전송되는데
+                            통상적으로 true는 별도로 사용하지 않는다.
+    -->
+    <h2>submit / reset 이벤트</h2>
+    <form name="subForm" action="http://ikosmo.co.kr"
+        onsubmit="return fnSubmit;"> <!-- onsubmit="return false;">로 할 경우,
+                                    form값이 서버로 전송되지 않으므로 
+                                    서브밋(전송) 버튼을 눌러도 반응없. -->
+
+        <input type="text" name="txt" value="디폴트값" />
+
+        <input type="reset" value="리셋" />
+
+        <!--
+            아래버튼은 둘다 전송(submit)을 위한 버튼이다.
+        -->
+        <input type="submit" value="서브밋(전송)" />
+
+        <input type="image" src="./images/button.jpg" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J12DOM01.html</title>
+
+    <script>
+        //영문값을 받아서 한글로 변환 후 반환
+        var getString = function(param){
+            switch(param){
+                case "POL" : return "정치";
+                case "ECO" : return "경제";
+                case "ENT" : return "연예";
+            }
+        }
+        function fnGetElementsByTag() {
+            /*
+            태그명으로 DOM 객체를 얻어와서 배열로 저장함.
+            */
+            var inputs = document.getElementsByTagName("input");
+            var checkString = "", inputString;
+            
+            //얻어온 input 태그의 갯수만큼 반복
+            for(var i=0; i<inputs.length; i++) { //배열로 얻어왔기 때문에 .length (이 경우, 얻어온 갯수만큼) 반복
+                /*얻어온 요소가 checkbox 이면서 체크된 상태인지 확인*/
+                if(inputs[i].type=="checkbox" && inputs[i].checked==true){
+                    //해당 체크박스의 value값을 읽어와 한글로 변환 후 문자열 연결
+                    checkString += getString(inputs[i].value)+" ";
+                       
+                        // 얻어온 요소의 속성을 변경하는 것도 가능.
+                        inputs[i].type = "button"; //type에 다른 속성(button)을 집어넣음
+                        inputs[i].value = "동적 변경 버튼";
+                }
+                //type 속성이 text이면서 name속성이 txt인지 확인
+                if(inputs[i].type=="text" && inputs[i].name=="txt"){
+                    inputString = inputs[i].value;
+                }
+
+            }
+            alert("선택한 값:" +checkString + ", 입력한 값:" +inputString);
+        }
+
+        function fnGetDomain() {
+            var a_tags = document.getElementsByTagName("a"); //a태그를 모두 얻어와 배열 형태로 반환하는
+            for(var i=0; i<a_tags.length; i++){ //배열 형태로 접근 O
+
+                /*
+                해당 DOM요소의 href 속성을 대문자로 변경한 후,
+                WWW라는 문자열이 포함되었는지 확인하여 경고창을 띄워준다.
+                */
+                if(a_tags[i].href.toUpperCase().indexOf("WWW")!= -1) { //속성값을 가져와 www를 대문자로 바꿔, ??
+                                                                        //-1 = 찾지 못했다.
+                                                                        //so, != -1 찾았다.
+                                                                        //Method Chain 형태로 . . . .를 연결시키는
+                    alert(a_tags[i].href);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>DOM 객체 사용하기</h2>
+
+    <h3>태그명으로 얻어오기</h3>
+    <input type="checkbox" name="inter" value="POL"
+        checked="checked" />정치
+    <input type="checkbox" name="inter" value="ECO"
+        checked="checked" />경제
+    <input type="checkbox" name="inter" value="ENT"
+        checked="checked" />연예
+    <input type="text" name="txt" />
+    <input type="button" value="태그명으로 DOM 객체얻기"
+        onclick="fnGetElementsByTag();"/>
+    
+    <h2>태그명으로 객체 얻기2</h2>
+    <ul>
+        <li><a href="http://www.naver.com">네이벙</a></li>
+        <li><a href="http://daum.net">도움</a></li>
+        <li><a href="http://www.nate.com">너이트</a></li>
+    </ul>
+    <button onclick="fnGetDomain();">도메인 얻어오기</button>
+</body>
+</html>

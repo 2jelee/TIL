@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J17CssControl.html</title>
+    
+    <script>
+        //전역변수 : 기사부분의 폰트 사이즈를 저장
+        var pTag, pSize;
+
+        window.onload = function(){
+            //p태그 내에서 작성된 기사의 폰트 크기를 얻어와서 변수에 저장
+            pTag = document.getElementById("article");
+            pSize = parseInt(pTag.style.fontSize); //최초 실행 시 12가 저장됨.
+        }
+
+        /*
+        JS에서 CSS 속성 컨트롤
+            : DOM 객체.style.CSS 속성='속성값';
+            단, 이때 CSS 속성에 하이픈이 들어간다면 제거 후 첫글자를 대문자로 변경함.
+            또한 크기를 부여할 때는 반드시 px와 같은 단위를 기술해야 한다.
+        */
+        function fnArticle(flag){
+
+            switch(flag){
+                case "+":
+                    pSize += 10;
+                    pTag.style.fontSize = pSize+"px";
+                    break;
+                case "-":
+                    pSize -= 10;
+                    pTag.style.fontSize = pSize+"px";
+                    break;
+                case "R":
+                    pTag.style.color = "red";
+                    break;
+                case "G":
+                    pTag.style.color = "green";
+                    break;
+                case "B":
+                    pTag.style.color = "blue";
+                    break;
+                case "Bo":
+                    pTag.style.fontWeight = "bold";
+                    break;
+                case "No":
+                    pTag.style.fontWeight = "normal";
+                    break;
+                case "Ce":
+                    pTag.style.textAlign = "center";
+                    break;
+                case "Le":
+                    pTag.style.textAlign = "left";
+                    break;
+
+                case "글꼴바꾸기":
+                    pTag.style.font-family
+                default:
+                    pTag.style.color = "black";
+                }
+            }
+
+            /*
+            문제]
+            글꼴바꾸기 버튼을 계속 누를때마다
+            아래 5가지 폰트가 토글되어 적용될 수 있도록 함수를 정의하시오.
+            글꼴 : Verdana, 굴림체, 휴먼옛체, 궁서, Impact
+            */
+           var fontToggle = 0; //폰트, 토글을 위한 전역변수
+           function setFont(){
+                //문제에서 제시된 폰트를 배열로 선언(리터럴 표기법)
+                var fontArray = ['Verdana', '굴림체', '휴먼옛체', '궁서', 'Impact'];
+                //정수를 5로 나누면 나머지는 0~4까지 생성됨.
+                var fontIndex = fontToggle % 5;
+                //위에서 구한 수를 인덱스로 사용하여 폰트를 설정.
+                pTag.style.fontFamily = fontArray[fontIndex];
+
+                //함수를 호출할때마다 전역변수 증가
+                fontToggle++;
+           }
+
+
+    </script>
+    
+</head>
+<body>
+    <h2>자바스크립트로 CSS 제어하기</h2>
+    <input type="button" value="글꼴바꾸기" onclick="setFont();"/>
+    <fieldset>
+        <legend>신문기사</legend>
+        <button onclick="fnArticle('+');">+</button>
+        <button onclick="fnArticle('-');">-</button>
+        <button onclick="fnArticle('R');">Red</button>
+        <button onclick="fnArticle('G');">Green</button>
+        <button onclick="fnArticle('B');">Blue</button>
+        <button onclick="fnArticle('');">Black</button>
+        <button onclick="fnArticle('Bo');">볼드체</button>
+        <button onclick="fnArticle('No');">보통체</button>
+        <button onclick="fnArticle('Ce');">가운데 정렬</button>
+        <button onclick="fnArticle('Le');">좌측 정렬</button>
+        
+        
+
+    </fieldset>
+    <p style="font-size:12px;" id="article">
+        오늘의 뉴스<br>
+        환경부는 7일 오후 2시를 기해 서울, 경기, 충남에 황사 위기경보 '주의' 단계를 발령했다고 밝혔다.
+
+        앞서 오후 1시에는 인천시에 주의 단계가 발령됐다.
+
+        이외 강원, 대전, 세종, 충북, 광주, 전북 등 6곳에는 현재 관심 단계가 발령된 상태다.
+
+        황사 위기경보 주의 단계는 황사로 인한 미세먼지 경보가 발령되고, 대규모 재난이 발생할 가능성이 나타날 때 발령된다.
+
+        관심 단계는 우리나라에 영향을 끼칠 가능성이 있는 황사가 발생하고 황사로 인한 미세먼지(PM10)가 '매우 나쁨'(일평균 PM10 150㎍/㎥ 초과) 수준일 때 발령된다.
+
+        위기경보 발령으로 환경부는 황사 대응 매뉴얼에 따라 황사상황반을 구성하고, 유관기관과 해당 지자체에 시설 점검 강화 및 취약계층·옥외근무자 건강보호 전파 등을 요청했다.
+
+        황사는 9일까지 전국에 영향을 미칠 것으로 예상된다.
+    </p>
+
+</body>
+</html>
