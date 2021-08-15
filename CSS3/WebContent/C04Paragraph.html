@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C04Paragraph.html</title>
+</head>
+<body>
+    <!-- 
+    수평방향에서의 정렬
+        블럭엘리먼트 : 컨텐츠의 양에 상관없이 하나의 블럭을 차지하므로
+            우측의 공간이 충분하여 컨텐츠는 우측정렬된다. 
+        인라인엘리먼트 : 컨텐트의 크기만큼만 영역을 차지하므로 컨텐츠가
+            움직일 공간이 없어 정렬되지 않는다. 만약 정렬해야 한다면
+            부모엘리먼트에서 text-align을 설정해야한다. 
+     -->
+    <h2>문단관련 CSS 속성들</h2>	        
+    <div style="border:1px blue dotted; width:400px;">
+		<h2>컨텐츠 수평방향 정렬</h2>
+		<div style="border:1px solid red; text-align:right;">
+			블럭엘리먼트
+		</div>
+        <!-- span을 정렬하기 위해서 아래처럼 부모 div태그가 필요하다. -->
+        <!-- <div style="text-align: right;"> -->
+		<span style="border:1px solid blue; text-align:right;">
+			인라인엘리먼트
+		</span>
+        <!-- </div> -->
+    </div>    
+ 
+    <!-- 
+    line-height : 줄간격. 즉 라인사이의 간격을 띄우는데
+        블럭과 인라인은 조금 다르게 적용된다. 
+        블럭 : 컨텐츠의 영역 중 세로 영역이 늘어나서 마치 줄간격이
+            생긴것처럼 보여지게 된다. 
+        인라인 : 컨텐츠의 영역은 크기의 변화가 없지만, 지정된 사이즈
+            만큼 줄간격이 생겨 사이가 벌어진다. 
+     -->
+    <h3>줄사이의 간격</h3>
+	<h4 style="line-height:4em; border:1px solid blue;">
+		블럭엘리먼트1에 줄간격 적용
+	</h4>
+	<h4 style="border:1px solid black;">블럭 엘리먼트2</h4>
+	<h4 style="border:1px solid black;">블럭 엘리먼트3</h4>
+	
+	<div class="inline">
+		<span style="line-height:4em;border:1px solid black;">
+			인라인엘리먼트1</span><br />
+		<span style="border:1px solid black;">인라인엘리먼트2</span><br />
+		<span style="border:1px solid black;">인라인엘리먼트3</span>
+	</div>
+
+ 
+    <h3>수직상태에서의 가운데 정렬</h3>
+    <!-- div박스의 height와 line-height의 값을 동일하게 지정하면
+    세로상태에서 가운데 정렬이 된다.  -->
+    <h4>블럭엘리먼트 사용시 방법1</h4>
+    <div style="border:1px solid black; height:200px; width:200px;
+		line-height:200px;">
+		나는 텍스트1
+	</div>
+
+    <!-- div박스 내부의 padding을 지정해서 텍스트를 아래쪽으로
+    밀어준다. 이경우 세로영역이 늘어나므로 사이즈는 별도로
+    조절해야 한다.  -->
+    <h4>블럭엘리먼트 사용시 방법2</h4>
+    <div style="border:1px solid red; height:100px; 
+        width:200px; padding-top:80px;">
+		나는 텍스트2
+	</div>
+ 
+    <!-- 인라인 엘리먼트인 경우 세로상태에서의 가운데 정렬은
+    vertical-align을 사용한다.  -->
+    <h4>인라인엘리먼트 사용시</h4>
+	<table border="1" width="200">
+		<tr>
+			<td style="height:100px;vertical-align:top">인라인엘리먼트 세로정렬</td>
+		</tr>
+		<tr>
+			<td style="height:100px;vertical-align:middle">인라인엘리먼트 세로정렬</td>
+		</tr>
+		<tr>
+			<td style="height:100px;vertical-align:bottom">인라인엘리먼트 세로정렬</td>
+		</tr>
+	</table>
+
+    <!-- 각기 다른 길이의 단어를 사용함으로써 발생되는 우측의 불규칙적인
+    여백을 깔끔하게 정리해주는 역할을 한다.  -->
+    <h2>배분정렬</h2>
+	<p style="border:1px solid blue; text-align:justify;">
+        특히 인구 밀도가 높고 젊은 층이 많은 수도권에서의 '폭발적인 발생'을 우려하며 비상한 마음으로 '사회적 거리두기'에 동참해달라고 젊은 층에 호소했다.
+        <br><br>
+        김강립 중앙재난안전대책본부(중대본) 1총괄조정관(보건복지부 차관)은 이날 정부세종청사에서 열린 정례 브리핑에서 "신규 확진자가 50명 내외로 유지되고 있는 점은 긍정적인 신호"라며 "이러한 추세가 지속된다면 중증환자에 대한 안정적인 치료가 가능할 것으로 평가된다"고 말했다.
+        <br><br>
+        국내 코로나19 신규 확진자는 6일과 7일에 각각 47명, 이날은 53명으로 집계됐다. 집계 방식에 일부 변동이 있었지만, 하루 신규 확진자가 50명 이하로 떨어진 것은 2월 20일 이후 46일 만이었다.
+        <br><br>
+        김 총괄조정관은 "2월 18일 31번 환자 발생 이후 신천지대구교회 신도를 중심으로 확진 환자가 급증하며 방역망의 통제를 벗어났던 환자 발생 경로도 점차 통제범위 내로 회복되는 중"이라며 "완치돼 격리 해제된 환자들도 6천800명에 근접하고 있다"고 설명했다.
+        <br><br>
+        다만 국내 사망자가 200명에 이르고 80대 치명률이 20%가 넘는다는 점을 지적하며 여전히 방심할 수 없는 상황임을 강조했다.
+        <br><br>
+    </p>
+
+ 
+    <h2>들여쓰기</h2>
+	<div style="border:1px solid red; text-indent:1em;">
+		블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;
+		블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;
+		블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;블럭엘리먼트&nbsp;
+	</div>
+	<div style="border:1px solid blue; padding-left:10px;">
+		<span style="border:1px solid #000000; text-indent:10em;">
+			인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+			인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+			인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+			인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;인라인엘리먼트&nbsp;
+		</span>
+	</div>
+</body>
+</html>
