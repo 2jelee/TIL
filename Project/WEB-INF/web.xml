@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  
+  <display-name>Project02</display-name>
+ 
+ <!-- 회원가입 member에서 사용 -->
+<!--  <context-param> -->
+<!--   	<param-name>MariaJDBCDriver</param-name> -->
+<!--   	<param-value>org.mariadb.jdbc.Driver</param-value> -->
+<!--   </context-param> -->
+<!--   <context-param> -->
+<!--   	<param-name>MariaConnectURL</param-name> -->
+<!--   	<param-value>jdbc:mariadb://127.0.0.1:3306/project_db</param-value> -->
+<!--   </context-param> -->
+<!--   <context-param> -->
+<!--   	<param-name>MariaUser</param-name> -->
+<!--   	<param-value>kosmo_user</param-value> -->
+<!--   </context-param> -->
+<!--   <context-param> -->
+<!--   	<param-name>MariaPass</param-name> -->
+<!--   	<param-value>1234</param-value> -->
+<!--   </context-param> -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <!-- 공지사항에서 사용 -->
+  <context-param>
+  	<param-name>MariaJDBCDriver1</param-name>
+  	<param-value>org.mariadb.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaConnectURL1</param-name>
+  	<param-value>jdbc:mariadb://127.0.0.1:3306/project_db</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaUser1</param-name>
+  	<param-value>kosmo_user</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaPass1</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+  
+ 
+  
+  
+  <!-- 한마디공간(게시판)에서 사용 -->
+  <context-param>
+  	<param-name>MariaJDBCDriver2</param-name>
+  	<param-value>org.mariadb.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaConnectURL2</param-name>
+  	<param-value>jdbc:mariadb://127.0.0.1:3306/project_db</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaUser2</param-name>
+  	<param-value>kosmo_user</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaPass2</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+
+
+
+  <!-- 자유게시판에서 사용 -->
+  <context-param>
+  	<param-name>MariaJDBCDriver3</param-name>
+  	<param-value>org.mariadb.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaConnectURL3</param-name>
+  	<param-value>jdbc:mariadb://127.0.0.1:3306/project_db</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaUser3</param-name>
+  	<param-value>kosmo_user</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>MariaPass3</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+
+
+
+
+
+
+
+  <!-- 한글깨짐에 대한 필터설정 -->
+  <!--  
+  	POST형식으로 폼값이 전송될때 한글이 깨지는 것을 방지하기 위해 
+  	request.setCharEncoding()을 주로 사용하는데, 이 설정을 한번에
+  	처리하기 위해 필터 설정을 한다. 
+  -->
+  <filter>
+  	<filter-name>SetCharEncoding</filter-name>
+  	<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>SetCharEncoding</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+
+<!-- 구현내용 >> 작업목록 상세 중 메인화면 매핑 -->
+<!--   <servlet> -->
+<!--     <servlet-name>Main</servlet-name> -->
+<!--     <servlet-class>model2.mvcboard.WriteController</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>Main</servlet-name> -->
+<!--     <url-pattern>/main/main.do</url-pattern> -->
+<!--   </servlet-mapping>  -->
+  
+  
+<!--   <servlet> -->
+<!--     <servlet-name>MemberIdCheckAction</servlet-name> -->
+<!--     <servlet-class>member.MemberIdCheckAction</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>MemberIdCheckAction</servlet-name> -->
+<!--     <url-pattern>/member/MemberIdCheckAction.do</url-pattern> -->
+<!--   </servlet-mapping>  -->
+  
+  
+   <!--
+   TLD파일의 경로(위치) 등록
+   	: 파일의 위치와 JSP에서 지시어 등록 시 사용할 uri를 지정함.
+   -->
+   <jsp-config>
+  	<taglib>
+  		<taglib-uri>myTagLibTld</taglib-uri>
+  		<taglib-location>/WEB-INF/tlds/MyTagLib.tld</taglib-location>
+  	</taglib>
+  </jsp-config>
+  
+  
+
+
+
+  <!-- 모델2 방식의 파일첨부형 게시판 만들기 -->
+  <!-- 목록 매핑 -->
+  <servlet>
+    <servlet-name>GalleryList</servlet-name>
+    <servlet-class>sub04.gallery.ListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GalleryList</servlet-name>
+    <url-pattern>/gallery/list.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 글쓰기 매핑 -->
+  <servlet>
+    <servlet-name>GalleryWrite</servlet-name>
+    <servlet-class>sub04.gallery.WriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GalleryWrite</servlet-name>
+    <url-pattern>/gallery/write.do</url-pattern>
+  </servlet-mapping> 
+  <!-- 내용 보기 매핑 없음-->
+  <!-- 글 수정하기 매핑 없음 -->
+  <!-- 글 삭제하기 매핑 없음 -->
+  <!-- 답변글 쓰기 매핑 없음-->
+  
+  <!-- 파일 업로드 최대 용량 : 1MB -->
+  <context-param>
+    <param-name>maxPostSize</param-name>
+    <param-value>1024000</param-value>
+  </context-param>  
+  
+  
+  
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
