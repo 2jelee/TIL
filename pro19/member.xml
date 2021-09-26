@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+                             "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="memberService" class="com.spring.ex03.MemberServiceImpl">
+	   <property name="memberDAO" ref="memberDAO" />
+	</bean>	<!-- 주입되는 데이터가 기본형이 아닌 참조형인 경우 ref속성으로 설정 -->
+	<bean id="memberDAO" class="com.spring.ex03.MemberDAOImpl" />
+	<!-- 의존하는 빈을 주입할 때는 주입되는 타입이 기본형 데이터가 아닌 참조형 데이터인 경우 ref속성을 이용해 주입해야함을 잊지말기 -->
+</beans>
