@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+   "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+   <bean id="calcTarget" class="com.spring.ex01.Calculator" />
+   <bean id="logAdvice" class="com.spring.ex01.LoggingAdvice" />
+   
+   <bean id="proxyCal" class="org.springframework.aop.framework.ProxyFactoryBean">
+   <!-- 스프림 프레임워크에서 제공하는 ProxyFactoryBean을 이용해 타깃과 어드바이스 엮어줌 -->
+      <property name="target" ref="calcTarget"/>
+      <!-- target빈을 calcTarget 빈으로 지정 --> 
+      <property name="interceptorNames">
+         <list>
+            <value>logAdvice</value>
+         </list>
+      </property> 
+      <!-- 
+      스프링의 ProxyFactoryBean의 interceptorNames 속성에 logAdvice를 어드바이스 빈으로 설정하여 
+      타깃 클래스의 메서드 호출 시 logAdivce를 실행.
+      -->
+   </bean>
+</beans>
