@@ -439,10 +439,9 @@ Animation Settings : toggle animation / expand animation
 
 
 
------------------------
------------------------
+----------------------- 
 ## DatePicker ##
--------------------------
+------------- 
 ### - Basic usage ###
 ![image](https://user-images.githubusercontent.com/82863823/137054596-5f4a598a-efbf-45d8-af36-816a21c32d20.png)
 
