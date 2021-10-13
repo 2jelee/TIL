@@ -578,6 +578,7 @@ R2 2020부터 jQuery용 Kendo UI DatePicker 는 렌더링 업데이트와 위젯
 ###### Set component type ######
 mordern <br/>
 classic
+
 ------------- 
 ### 2.3 Range selection ###
 ------------- 
