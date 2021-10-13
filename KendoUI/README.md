@@ -509,8 +509,7 @@ script태그 하위의 start, depth, format의 값을 변경할 경우 반영됨
 ------------- 
 ### 2.1 Basic usage ###
 ------------- 
-### 2.2 Component Type ###
-------------- 
+### 2.2 Component Type ### 
 R2 2020부터 jQuery용 Kendo UI DatePicker 는 렌더링 업데이트와 위젯의 새로운 모양을 도입합니다. 위젯의 새로운 모양과 느낌으로 전환하는 것은 componentType 속성을 "modern" 으로 설정하는 것만큼 간단합니다. <br/>
 선택기 아래의 DropDownList는 구성 요소 유형을 즉석에서 전환하고 현대적 모양과 고전적 모양의 차이점을 관찰할 수 있는 기회를 제공합니다.
 ![image](https://user-images.githubusercontent.com/82863823/137066718-eb794965-37a3-4ad2-a037-74f99a95b3fd.png)
@@ -589,8 +588,5 @@ classic
 ### 2.6 Disable dates ###
 ------------- 
 ### 2.7 Week Column ###
-<br/>
-<br/>    
-<br/>    
-<br/>
+------------- <br/>
 ###### Edit. markup language ######
