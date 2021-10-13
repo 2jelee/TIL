@@ -1,4 +1,5 @@
-# Kendo UI # ### for jQuery ###
+# Kendo UI # 
+### Kendo UI for jQuery ###
 
 1. TreeView
 2. DatePicker
