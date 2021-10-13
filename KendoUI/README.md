@@ -434,4 +434,70 @@ Animation Settings : toggle animation / expand animation
 
 1. treeView에서 노드가 선택될 때 
 
+
+
+
+
+
+-----------------------
+-----------------------
+## DatePicker ##
+-------------------------
+### - Basic usage ###
+![image](https://user-images.githubusercontent.com/82863823/137054596-5f4a598a-efbf-45d8-af36-816a21c32d20.png)
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.mobile.min.css" />
+
+    <script src="js/jquery.min.js"></script>
+    
+    
+    <script src="js/kendo.all.min.js"></script>
+    
+    
+
+</head>
+<body>
+    
+        <div id="example">
+            <div class="demo-section k-content">
+
+                <h4>Show e-mails from:</h4>
+                <input id="datepicker" value="10/10/2011" title="datepicker" style="width: 100%" />
+
+                <h4 style="margin-top: 2em;">Add to archive mail from:</h4>
+                <input id="monthpicker" value="November 2011" title="monthpicker" style="width: 100%" />
+            </div>
+        <script>
+            $(document).ready(function() {
+                // create DatePicker from input HTML element
+                $("#datepicker").kendoDatePicker();
+
+                $("#monthpicker").kendoDatePicker({
+                    // defines the start view
+                    start: "year",
+
+                    // defines when the calendar should return date
+                    depth: "year",
+
+                    // display month and year in the input
+                    format: "MMMM yyyy",
+
+                    // specifies that DateInput is used for masking the input element
+                    dateInput: true
+                });
+            });
+        </script>
+        </div>
+
+</body>
+</html>
+```
+
 ###### Edit. markup language ######
