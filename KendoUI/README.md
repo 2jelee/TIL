@@ -315,10 +315,94 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 
 ## Functionality ##
 ### - Drag & drop ###
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="styles/kendo.default.mobile.min.css" />
+
+    <script src="js/jquery.min.js"></script>
+    
+    
+    <script src="js/kendo.all.min.js"></script>
+    
+    
+
+</head>
+<body>
+    <div id="example">
+    <div class="demo-section k-content">
+        <div>
+            <h4>Treeview One</h4>
+            <div id="treeview-left"></div>
+        </div>
+        <div>
+            <h4>Treeview Two</h4>
+            <div id="treeview-right"></div>
+        </div>
+    </div>
+
+    <script>
+        $("#treeview-left").kendoTreeView({
+            dragAndDrop: true,
+            dataSource: [
+                { text: "Furniture", expanded: true, items: [
+                    { text: "Tables & Chairs" },
+                    { text: "Sofas" },
+                    { text: "Occasional Furniture" }
+                ] },
+                { text: "Decor", items: [
+                    { text: "Bed Linen" },
+                    { text: "Curtains & Blinds" },
+                    { text: "Carpets" }
+                ] }
+            ]
+        });
+
+        $("#treeview-right").kendoTreeView({
+            dragAndDrop: true,
+            dataSource: [
+                { text: "Storage", expanded: true, items: [
+                    { text: "Wall Shelving" },
+                    { text: "Floor Shelving" },
+                    { text: "Kids Storage" }
+                ]
+                },
+                { text: "Lights", items: [
+                    { text: "Ceiling" },
+                    { text: "Table" },
+                    { text: "Floor" }
+                ]
+                }
+            ]
+        });
+    </script>
+
+    <style>
+        .demo-section{
+            display:flex;
+            justify-content:space-evenly;
+        }
+    </style>
+</div>
+
+</body>
+</html>
+```
+dragAndDrop의 값을 false : Disable / true : enables
+dataSources : [{text}]에 text를 추가할 경우 node가 생성됨을 확인
+-----------------------
 ### - Animation effects ###
+-----------------------
 ### - Images ###
+-----------------------
 ### - Checkboxes ###
+-----------------------
 ### - Filter TreeView in dialog ###
+-----------------------
 ### - Templates ###
 
 ## Data Binding ##
