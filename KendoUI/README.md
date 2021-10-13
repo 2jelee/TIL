@@ -7,13 +7,14 @@
 -----------------------
 ## TreeView ##
 jQuery TreeView 구성 요소용 Kendo UI는 계층적 데이터를 트리 구조로 나타냅니다. 
-이를 통해 사용자는 단일 또는 다중 항목 선택, TreeView 내 및 Kendo UI TreeView 구성 요소 전반에 걸쳐 요소를 끌어다 놓을 수 있습니다. 
+이를 통해 사용자는 단일 또는 다중 항목 선택, TreeView 내 및 Kendo UI TreeView 구성 요소 전반에 걸쳐 요소를 끌어다 놓을 수 있습니다. <br/>
 checkbox support, keyboard navigation, RTL support, accessibility and provides templates for complate customization of each node를 제공합니다.
 TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기능을 활용하고 노드가 확장된 경우에만 데이터를 요청할 수 있습니다.
 (드래그 앤 드롭 기능을 사용하여 재정렬 작업을 수행하기 위해 마우스 또는 터치 이벤트를 통한 사용자 상호 작용을 지원.)
-
+<br/>
 즉, 맵 형식의 데이터를 트리형식으로 시각화 해주는 기능.
-    ※node
+<br/>
+※node
 
 -----------------------
 ### - OverView ###
@@ -394,7 +395,7 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 </body>
 </html>
 ```
-dragAndDrop : false : Disable / true : enables
+dragAndDrop : false : Disable / true : enables <br/>
 dataSources : [{text}]에 text를 추가할 경우 node가 생성됨을 확인
 
 -----------------------
@@ -502,10 +503,10 @@ R2 2017부터 DatePicker는 DateInput을 기본 입력으로 사용할 수 있�
 </html>
 ```
 
-input태그를 통해 설정된 값을 확인.
+input태그를 통해 설정된 값을 확인. <br/>
 script태그 하위의 start, depth, format의 값을 변경할 경우 반영됨을 확인할 수 있다. 
-
-    
-    
-
+<br/>
+<br/>    
+<br/>    
+<br/>
 ###### Edit. markup language ######
