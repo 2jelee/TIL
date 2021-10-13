@@ -5,7 +5,7 @@
 2. DatePicker
 
 -----------------------
-## TreeView ##
+## 1. TreeView ##
 jQuery TreeView 구성 요소용 Kendo UI는 계층적 데이터를 트리 구조로 나타냅니다. 
 이를 통해 사용자는 단일 또는 다중 항목 선택, TreeView 내 및 Kendo UI TreeView 구성 요소 전반에 걸쳐 요소를 끌어다 놓을 수 있습니다. <br/>
 checkbox support, keyboard navigation, RTL support, accessibility and provides templates for complate customization of each node를 제공합니다.
@@ -17,7 +17,7 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 ※node
 
 -----------------------
-### - OverView ###
+### 1.1 OverView ###
 ![image](https://user-images.githubusercontent.com/82863823/137049631-30d82166-77f9-46ba-94af-d9129ae21210.png)
 
 ```
@@ -217,7 +217,7 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 
 ```
 -------------------------
-### - Basic usage ###
+### 1.2 Basic usage ###
 ![image](https://user-images.githubusercontent.com/82863823/137050005-0ce9521b-4604-4296-9d26-8123fee342dc.png)
 
 ```
@@ -315,7 +315,7 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 --------------------------------------
 
 ## Functionality ##
-### - Drag & drop ###
+### (1) Drag & drop ###
 ![image](https://user-images.githubusercontent.com/82863823/137052430-7ea74942-b954-4d37-9c8f-43a8133ca3a1.png)
 
 ```
@@ -399,31 +399,31 @@ dragAndDrop : false : Disable / true : enables <br/>
 dataSources : [{text}]에 text를 추가할 경우 node가 생성됨을 확인
 
 -----------------------
-### - Animation effects ###
+### (2) Animation effects ###
 Animation Settings : toggle animation / expand animation
 ![image](https://user-images.githubusercontent.com/82863823/137052300-b518cb0b-af5d-4edf-9567-b05e2bd88d50.png)
 
 -----------------------
-### - Images ###
+### (3) Images ###
 ![image](https://user-images.githubusercontent.com/82863823/137051583-da61f5fc-ad68-44b0-a934-f6f33ceaaec6.png)
 
 -----------------------
-### - Checkboxes ###
+### (4) Checkboxes ###
 ![image](https://user-images.githubusercontent.com/82863823/137051613-e52c7913-06aa-448c-838e-6c2596904e54.png)
 
 -----------------------
-### - Filter TreeView in dialog ###
+### (5) Filter TreeView in dialog ###
 ![image](https://user-images.githubusercontent.com/82863823/137051641-0d043f05-b4ef-46c8-92c3-24f1ec90a9c9.png)
 
 -----------------------
-### - Templates ###
+### (6) Templates ###
 ![image](https://user-images.githubusercontent.com/82863823/137051668-42db5901-a047-4302-a4d7-99e6da02229a.png)
 
 ---------------------------
 ## Data Binding ##
-### Binding to local data ###
-### Binding to remote data ###
-### Binding to OData service ###
+### (1) Binding to local data ###
+### (2) Binding to remote data ###
+### (3) Binding to OData service ###
 
 ## API ##
 ### Events ###
@@ -441,12 +441,12 @@ Animation Settings : toggle animation / expand animation
 
 
 ----------------------- 
-## DatePicker ##
+## 2. DatePicker ##
 demo는 사용자가 캘린더에서 날짜를 손쉽게 편집하고 선택할 수 있는 방법을 보여줍니다. 웹 애플리케이션용 jQuery DatePicker 위젯에서 날짜 편집 기능과 애니메이션 dropdown을 결합합니다.
 R2 2017부터 DatePicker는 DateInput을 기본 입력으로 사용할 수 있습니다. 예제의 두 번째 DatePicker는 DateInput을 사용하도록 구성되어 있습니다.
 
 ------------- 
-### - Basic usage ###
+### 2.1 Basic usage ###
 ![image](https://user-images.githubusercontent.com/82863823/137054596-5f4a598a-efbf-45d8-af36-816a21c32d20.png)
 
 ```
@@ -505,6 +505,25 @@ R2 2017부터 DatePicker는 DateInput을 기본 입력으로 사용할 수 있�
 
 input태그를 통해 설정된 값을 확인. <br/>
 script태그 하위의 start, depth, format의 값을 변경할 경우 반영됨을 확인할 수 있다. 
+
+------------- 
+### 2.1 Basic usage ###
+------------- 
+### 2.2 Component Type ###
+------------- 
+### 2.3 Range selection ###
+------------- 
+### 2.4 Customizing templates ###
+------------- 
+### 2.5 Events ###
+------------- 
+### 2.6 Disable dates ###
+------------- 
+### 2.7 Week Column ###
+
+
+
+
 <br/>
 <br/>    
 <br/>    
