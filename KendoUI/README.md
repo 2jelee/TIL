@@ -398,23 +398,23 @@ dataSources : [{text}]에 text를 추가할 경우 node가 생성됨을 확인
 -----------------------
 ### - Animation effects ###
 Animation Settings : toggle animation / expand animation
-![image](https://user-images.githubusercontent.com/82863823/137051583-da61f5fc-ad68-44b0-a934-f6f33ceaaec6.png)
+![image](https://user-images.githubusercontent.com/82863823/137052300-b518cb0b-af5d-4edf-9567-b05e2bd88d50.png)
 
 -----------------------
 ### - Images ###
-![image](https://user-images.githubusercontent.com/82863823/137051613-e52c7913-06aa-448c-838e-6c2596904e54.png)
+![image](https://user-images.githubusercontent.com/82863823/137051583-da61f5fc-ad68-44b0-a934-f6f33ceaaec6.png)
 
 -----------------------
 ### - Checkboxes ###
-![image](https://user-images.githubusercontent.com/82863823/137051641-0d043f05-b4ef-46c8-92c3-24f1ec90a9c9.png)
+![image](https://user-images.githubusercontent.com/82863823/137051613-e52c7913-06aa-448c-838e-6c2596904e54.png)
 
 -----------------------
 ### - Filter TreeView in dialog ###
-![image](https://user-images.githubusercontent.com/82863823/137051668-42db5901-a047-4302-a4d7-99e6da02229a.png)
+![image](https://user-images.githubusercontent.com/82863823/137051641-0d043f05-b4ef-46c8-92c3-24f1ec90a9c9.png)
 
 -----------------------
 ### - Templates ###
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/82863823/137051668-42db5901-a047-4302-a4d7-99e6da02229a.png)
 
 ---------------------------
 ## Data Binding ##
