@@ -13,8 +13,8 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 (드래그 앤 드롭 기능을 사용하여 재정렬 작업을 수행하기 위해 마우스 또는 터치 이벤트를 통한 사용자 상호 작용을 지원.)
 
 즉, 맵 형식의 데이터를 트리형식으로 시각화 해주는 기능.
+※node
 
-*node
 -----------------------
 ### - OverView ###
 ![image](https://user-images.githubusercontent.com/82863823/137049631-30d82166-77f9-46ba-94af-d9129ae21210.png)
@@ -441,6 +441,9 @@ Animation Settings : toggle animation / expand animation
 
 ----------------------- 
 ## DatePicker ##
+demo는 사용자가 캘린더에서 날짜를 손쉽게 편집하고 선택할 수 있는 방법을 보여줍니다. 웹 애플리케이션용 jQuery DatePicker 위젯에서 날짜 편집 기능과 애니메이션 dropdown을 결합합니다.
+R2 2017부터 DatePicker는 DateInput을 기본 입력으로 사용할 수 있습니다. 예제의 두 번째 DatePicker는 DateInput을 사용하도록 구성되어 있습니다.
+
 ------------- 
 ### - Basic usage ###
 ![image](https://user-images.githubusercontent.com/82863823/137054596-5f4a598a-efbf-45d8-af36-816a21c32d20.png)
@@ -498,5 +501,11 @@ Animation Settings : toggle animation / expand animation
 </body>
 </html>
 ```
+
+<input> 태그를 통해 설정된 값을 확인.
+<script> 태그 하위의 start, depth, format의 값을 변경할 경우 반영됨을 확인할 수 있다. 
+
+    
+    
 
 ###### Edit. markup language ######
