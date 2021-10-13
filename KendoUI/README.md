@@ -392,8 +392,9 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 </body>
 </html>
 ```
-dragAndDrop의 값을 false : Disable / true : enables
+dragAndDrop : false : Disable / true : enables
 dataSources : [{text}]에 text를 추가할 경우 node가 생성됨을 확인
+
 -----------------------
 ### - Animation effects ###
 -----------------------
