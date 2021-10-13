@@ -17,7 +17,7 @@ TreeView를 다양한 데이터 소스에 바인딩하고 요청 시 로드 기�
 ※node
 <br/>
 ※RTL : Register Transfer Level<br/>
-이름 그대로 register transfer가 이루어지는 Level을 추상화 한 것이기 때문에 대부분의 기술 내용이란 것이 어떤 Logic 상태의 변동을 register에 기록했다가 다음에 꺼내서 또 바뿌고 하는 일들의 연속이 됨.<br/>
+이름 그대로 register transfer가 이루어지는 Level을 추상화 한 것이기 때문에 대부분의 기술 내용이란 것이 어떤 Logic 상태의 변동을 register에 기록했다가 다음에 꺼내서 또 바꾸고 하는 일들의 연속이 됨.<br/>
 일반 프로그래밍 언어인 경우 그것이 program counter에 따라 순차적으로 동작하는 개념을 가지고 있어서 윗줄에 기술된 내용이 먼저 실행되는 개념이라 보면, RTL의 경우는 그와 상관없이 동시에 일어나는 것이라고 보면 되는데 여기에 assignment(= 또는 <=)가 연관되면 개념의 혼동이 일어남.
 
 -----------------------
