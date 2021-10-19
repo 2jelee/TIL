@@ -39,3 +39,20 @@ CONNECT BY [NOCYCLE] [PRIOR 계층형 구조 조건]; <br/>
 ### CONNECT BY ###
 연결고리를 가지고 목록을 가져옴.
 먼저 START WITH에서 조건에 맞는 최상위 행을 가져옴. ▶ 최상위 행을 갖게됨.
+
+## MariaDB와 비교 ##
+### MariaDB에서의 계층구조 조회 ###
+```
+SELECT BOM1.ITEM_NAME,
+  BOM1.ITEM_ID,
+  BOM2.ITEM_NAME PRENT_ITEM
+FROM BOMTEST BOM1
+LEFT JOIN BOMTEST BOM2
+  ON BOM1.PARENT_ID = BOM2.ITEM_ID
+ORDER BY BOM1.ITEM_ID;
+```
+![image](https://user-images.githubusercontent.com/82863823/137856931-88a308d5-245a-40ad-9d9c-c27192ffefdf.png)
+
+<br/>
+<br/>
+출처:https://blog.naver.com/sisosw/221721939214
