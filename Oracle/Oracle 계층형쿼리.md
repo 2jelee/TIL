@@ -30,8 +30,7 @@ CONNECT BY [NOCYCLE] [PRIOR 계층형 구조 조건]; <br/>
   START WITH PARENT_CD IS NULL --최 상위노드 설정, 
   CONNECT BY PRIOR DEP_CD = PARENT_CD;--부모노드와 자식노드 연결
   ```
-  레벨-1 * 공백(2)를 앞에 삽입하여 좀 더 계층형 데이터를 직관적으로 데이터를 만들었음을 확인.<br/>
-<br/>
+    레벨-1 * 공백(2)를 앞에 삽입하여 좀 더 계층형 데이터를 직관적으로 데이터를 만들었음을 확인. <br/>
 ------
 #### LEVEL ####
 계층형 쿼리를 조회하면 현재 행이 계층의 몇번째 LEVEL인지 표시해줌. <br/>
