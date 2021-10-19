@@ -16,7 +16,7 @@ START WITH [최상위 조건] <br/>
 CONNECT BY [NOCYCLE] [PRIOR 계층형 구조 조건]; <br/>
 
 ### START WITH ###
-루트노드(행)을 명시. 최상위부터 시작, START WITH에서 column이 <b>NULL<b>인 부분을 조건식으로 넣는다.<br/>
+루트노드(행)을 명시. 최상위부터 시작, START WITH에서 column이 <b>NULL</b>인 부분을 조건식으로 넣는다.<br/>
 즉, START WITH 조건에 계층형 구조의 취상위 계층의 row를 식별하는 조건을 넣는다.<br/>
   LEVEL컬럼은 레벨 의사컬럼(LEVEL Pseudocolumn)이라 하는데, 계층형 정보를 표현할 때 그 계층의 LEVEL을 나타내줌.<br/>
   이는 다양하게 응용을 할 수 있는데 가장 많이 응용하는 방법이 레벨별로 들여쓰기를 하여 좀 더 직관적으로 데이터를 표현하는 것임.<br/>
