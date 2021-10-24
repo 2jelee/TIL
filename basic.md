@@ -15,7 +15,7 @@ REPL(Read Eval Print Loop) : 코드를 곧바로 읽고 실행하고 출력하�
 ### 자주 보는 오류 ###
 1. Reference Error : 단어 오탈자가 발생하면 뜬다.
 2. Syntax Error : 일반적으로 기호에서 오탈자가 발생하면 뜬다. (구문, 문법) 
-3. 
+
 #### 자바스크립트 표준 스타일 ####
 URL : https://standardjs.com/readme-kokr.html
 
@@ -28,11 +28,11 @@ URL : https://standardjs.com/readme-kokr.html
 1. 표현식 : 값을 만들어내는 코드. 무엇을 해도 결과적으로 값이 만들어지면 표현식이다. <br/>
     ex. 사과, 10
     ```
-    10+10 <br/>
+    10+10
     20
     ```
     ```
-    Math.abs(-10) <br/>
+    Math.abs(-10)
     10
     ```
 2. a
