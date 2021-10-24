@@ -14,11 +14,11 @@ REPL(Read Eval Print Loop) : 코드를 곧바로 읽고 실행하고 출력하�
 ### 콘솔에서 오류 확인하기 ###
 ### 자주 보는 오류 ###
 1. Reference Error : 단어 오탈자가 발생하면 뜬다.
-2. Syntax Error : 일반적으로 기호에서 오탈자가 발생하면 뜬다. (구문, 문법)
-<br/>
+2. Syntax Error : 일반적으로 기호에서 오탈자가 발생하면 뜬다. (구문, 문법) 
+3. 
 #### 자바스크립트 표준 스타일 ####
 URL : https://standardjs.com/readme-kokr.html
-<br/>
+
 #### 멀티 커서(키보드 사용) ####
 멀티커서 : Ctrl + Alt + 방향키
 <br/>
