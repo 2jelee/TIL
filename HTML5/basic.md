@@ -150,3 +150,71 @@ http://localhost:7070/H09Form02.html?n1=2jelee111111111111&jumin1=121211&homepag
 onclick >> 리스너
 
 오류찾기 >> 해당 페이지 -> F12 -> 콘솔에서 에러 확인
+	
+	
+
+```
+@06 폼
+form 태그에서 method를 안쓴다면? 
+
+#전송방식
+Get >> text만 전송
+Post >> txt 뿐만 아니라 모든 파일(이미지 등)들
+
+#버튼 형태의 속성에 따른 구분
+submit == image
+image >> 전송
+커스텀..?
+
+button >> onclick 리스너를 사용해야 .... J.S함수
+file >> 웹 브라우져마다 다름..?
+	ㄴ 그러므로 이미지를 사용하는 경우 多
+
+@작성용교안
+H09Form03
+reset : 입력을 지우는 것이 X >> 초기값으로 만들어주는 것
+
+textarea : 밸류값이 없지만 있다. ?
+	코드정렬 하지말라.
+
+자기소개:
+        <textarea name="intro" id="" cols=50 rows="5">내용은 여기에 입력됩니다.</textarea>
+cols, rows 크기지정... 잘 쓰지 X >> CSS에서 상세하게 맞춘다.
+
+#H09Form04
+<col style="width:*" />  : * : 자유롭게.. free
+
+16진수를 가지고 색상..
+<td colspan="2" style="background-color:#ffffff;"> : 화이트
+<td colspan="2" style="background-color:#000000;"> : 궘정
+<td colspan="2" style="background-color:#ff0000;"> 빨강 R
+<td colspan="2" style="background-color:#00ff00;"> 그린 G
+<td colspan="2" style="background-color:#0000ff;"> 블루 B
+
+
+@07 프레임/멀티미디어
+스크롤scrolling  >> 대부분의 경우 auto로 사용함
+
+iframe >> 깊이(depth)를 가짐
+parent 한단계 상위
+top 무조건 최상위
+
+target="topWin" >> _없이 바로 이름 :  딱 찝어서 그곳으로 이동
+_  : html에서 직접적으로 제공하는 / depth내에서 단계별로
+
+타겟이 있으면 해당 타겟에서.
+타겟이 없어지면 새창으로.
+
+#H11Frame
+rows >> 세로형태로 배치하겠다
+100px
+------
+*
+------
+50px
+
+
+#속성
+autoplay
+: 화면이 로딩될때 해당 동영상을 즉시 플레이 하는 옵션.
+  하지만 최근에는 사용자가 원할때만 플레이 할 수 있도록 autoplay를 지원하지 않는 추세
