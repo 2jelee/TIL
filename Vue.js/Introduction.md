@@ -34,3 +34,20 @@ npm install -g @vue/cli
 *WINDOW
 vue.cmd create 프로젝트명
 ```
+```
+local 실행
+npm run serve
+```
+
+필요한 module 설치 (Vue Router)
+Vue Router : Vue에서 라우팅 기능을 구현할 수 있도록 지원해주는 공식 라이브러리
+라우팅 : 웹페이지간 이동하는 방법을 일컬음.
+기존) 서버에 요청 → 새로운 페이지를 받아오는 형식
+라우터) SPA. 즉, 해당하는 모든 컴포넌트 페이지를 다 받아놓고 라우팅을 이용하여 그 부분만 화면을 갱신하는 것.
+<br/>
+Vue, React, Angular 모두 라우팅을 이용하여 화면전환 O.
+```
+npm install vue-router
+```
+
+
