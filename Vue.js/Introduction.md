@@ -11,5 +11,5 @@ SPA(Single Page Application)
 - 빠른 페이지 변환
 - 적은 트래픽 양
 
-***React.js VS Vue.js VS Angular.js***
+***React.js VS Vue.js VS Angular.js***<
 어설프게 3개를 동시에 하기보단 하나를 먼저 깊이있게 학습해보자!
