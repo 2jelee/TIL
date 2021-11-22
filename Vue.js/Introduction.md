@@ -1,4 +1,5 @@
-Vue.js : 웹 프론트엔드 프레임워크
+<h1>Vue.js</h1>
+웹 프론트엔드 프레임워크<br/>
 - Component 기반의 SPA(Single Page Application)를 구축할 수 있게 해주는 프레임워크
 
 Component
@@ -12,4 +13,5 @@ SPA(Single Page Application)
 - 적은 트래픽 양
 
 ***React.js VS Vue.js VS Angular.js*** <br/>
-어설프게 3개를 동시에 하기보단 하나를 먼저 깊이있게 학습해보자!
+어설프게 3개를 동시에 하기보단 하나를 먼저 깊이있게 학습해보자! <br/>
+1가지를 확실히 익히면 나머지도 쉽게 익힐 수 있다.
