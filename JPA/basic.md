@@ -2,9 +2,9 @@
 JPA(Java Persistance API) : 자바 ORM 기술에 대한 API 표준<br>
 ORM : Object Relational Mapping으로 객체와 관계형 데이터베이스를 매핑해주는 것
 
-<h2>JAP란?</h2>
+<h2>JPA란?</h2>
 데이터를 관계형 데이터베이스에서 관리하기 위해서 우리는 SQL문을 사용. SQL 중심 개발의 문제점은 개발자가 CRUD라고 불리는 INSERT, UPDATE, SELECT, DELETE문을 작성해서 객체를 관계형 데이터베이스에 넣어주고 가져오는 작업을 하는 것. 
-<br>
+<br><br>
 즉, 자바 객체를 SQL을 통해 데이터베이스에 관리하게 하고 데이터베이스에 저장된 데이터를 자바 애플리케이션에서 사용하려면 SQL을 통해 다시 자바 객체로 변환하는 반복적인 작업을 해야함. <br>
 이는 개발자가 SQL을 매핑하는 역할을 반복해야 한다는 의미. 
 
