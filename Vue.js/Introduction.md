@@ -118,8 +118,19 @@ App.vue 확인.
 
 * * *
 
+Lifecylce Diagram
 뷰 라우터를 통해서 컴포넌트를 호출하게 되면 컴포넌트 생성이 되고 나중에 또다른 라우터를 통해 넘어가게 되면 기존 것 종료됨.
 뷰 인스턴스에 대한 라이프사이클 이해 중요.
 <img src="https://kr.vuejs.org/images/lifecycle.png"/>
 이미지 출처 : Vue 공식문서
+
+beforeCreate : 가장 먼저 실행되는 hook
+created : 뷰 컴포넌트 내에서 다양한 메소드를 만들거나 특정 데이터를 감시, 데이터라는 옵션을 통해 화면에 바인딩해야하는.. 옵션에 대한 설정을 완료하는 시점이라고 이해
+beforeMount : 컴포넌트가 DOM에 추가되기 전에 실행되는
+mounted : 추가된 후에 호출되는.
+beforeUpdate : 컴포넌트가 DOM에 추가된 후에.. 데이터 변형 시 re-render 되는데 재랜더링 직전에 일어나는 hook
+updated : 재랜더링 후에 나타나는.
+beforeDestroy : 다른 컴포넌트로 이동할 때 발생(제거되기 직전에 호출되는)
+destroyed : 완전히 제거된 후에 호출되는 hook
+
 
