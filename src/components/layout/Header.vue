@@ -40,6 +40,6 @@
 </template>
 <script>
 export default {
-    name: "hehe", 
+    name: "header", 
 };
 </script>
