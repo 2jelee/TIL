@@ -116,3 +116,10 @@ script : 그 디자인에 data를 binding하거나 이벤트를 catch하거나 �
 
 App.vue 확인.
 
+* * *
+
+뷰 라우터를 통해서 컴포넌트를 호출하게 되면 컴포넌트 생성이 되고 나중에 또다른 라우터를 통해 넘어가게 되면 기존 것 종료됨.
+뷰 인스턴스에 대한 라이프사이클 이해 중요.
+<img src="https://kr.vuejs.org/images/lifecycle.png"/>
+이미지 출처 : Vue 공식문서
+
