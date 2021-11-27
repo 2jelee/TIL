@@ -78,3 +78,110 @@ long타입은 사용할 수 X
 <h3>break/continue</h3>
 break : 반복문이나 switch문을 탈출 <br>
 continue : 현재 continue가 속해있는 반복블럭의 처음으로 이동
+
+------------------------------
+
+<h2>배열</h2>
+<h3>Javascript의 객체 유형</h3>
+
+- 코어객체
+- DOM객체
+- 브라우저 객체
+
+Java와는 다르게 JS에서의 배열은 여러타입의 자료를 저장할 수 있는 자료구조(메모리)이다.
+
+<h3>배열 선언</h3>
+
+- 배열크기를 지정하여 선언 ***
+
+```
+var array = new Array(5);
+```
+
+- 선언과 동시에 초기화(new 사용) ***
+
+```
+var init = new Array("2jelee", 20, "서울");
+```
+
+- 선언과 동시에 초기화(new 미사용)
+
+```
+var initNoNew = ["2jelee", '서울'];
+```
+
+- 크기 지정없이 선언
+
+```
+var nosize = new Array();
+```
+
+- 웹 프로그래밍 시 가장 많이 사용되는 방법
+- 배열의 크기는 가장 마지막 자료에 의해 결정됨 
+- 크기를 지정하지 않은 경우, 크기가 0인 배열이 생성
+
+<h3>함수 정의 방법</h3>
+[방법 1] 유명(有名)함수 - 이름이 있는 함수
+
+```
+function 함수명(num1, num2, ...) {
+  함수의 몸체;	
+  return 변수 혹은 값;
+}    
+```
+
+[방법 2] 무명(無名)함수 - 이름이 없는 함수
+
+```
+var 함수명으로사용할변수 = function(매개변수1, ...) {
+  함수의몸체;	
+  return 변수 혹은 값;
+}    
+```
+
+- 함수정의 시 매개변수에는 var를 쓸 수 X → 변수명만 쓸 수 O
+- 함수 안에서 선언된 변수는 함수의 실행이 끝나면 메모리에서 '소멸'되는 "지역변수"가 됨
+
+<h3>지역변수와 전역변수</h3>
+두 개의 변수가 충돌하게 될 경우, 지역변수가 우선순위 ↑ <br> 
+this 키워드는 윈도우 객체를 가리키는 것으로 해당 페이지 안의 script 태그 안에 선언된 모든 멤버에 접근하는 것이 가능. <br>
+즉, 전역변수와 지역변수를 구분하기 위해 사용됨
+
+[형식] <br>
+this.nameVar -> 전역변수 <br>
+nameVar -> 지역변수(매개변수)
+
+<h3>Call By Value</h3>
+값을 통한 호출. 값을 매개변수로 복사해서 전달한다. <br>
+callByValue() 함수로 전달된 param, args는 전달됨과 동시에 새로운 지역변수가 생성됨. <br>
+함수의 실행이 종료되면 해당 지역에서는 소멸.
+
+```
+var param = 100, args = 1;
+function callByValue(param, args){
+  var temp = param;
+  param = args;
+  args = temp;              [출력결과 다름]
+  document.write("param="+param+", args="+args); 
+}
+callByValue(param, args);
+document.write("param="+param+", args="+args); 
+```
+
+<h3>Call By Reference</h3>
+참조에 의한 호출. 값이 아닌 객체의 참조값(주소)을 전달한다. <br>
+지역에 상관없이 동일한 변수(객체)를 참조할 수 O
+
+```
+var array = [100,1];
+function callByReference(arr){
+  var temp = arr[0];
+  arr[0] = arr[1];
+  arr[1] = temp;	           [출력결과 같음]
+  document.write("arr[0]="+ arr[0]+", arr[1]="+ arr[1]);
+}
+callByReference(array);
+document.write("array[0]="+ array[0]+", array[1]="+ array[1]);
+```
+
+
