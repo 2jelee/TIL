@@ -187,7 +187,7 @@ document.write("array[0]="+ array[0]+", array[1]="+ array[1]);
 
 <h2>Javascript의 Core객체</h2>
 <h3>String 객체</h3>
-웹 브라우저상에 문자열을 표현하는 표준 내장 객체
+웹 브라우저상에 문자열을 표현하는 표준 내장 객체 <br>
 [형식] <br>
 방법 1
 
@@ -226,6 +226,150 @@ Math.round(10.49); => 10
 Math.floor(11.95); => 11
 Math.ceil(10.01); => 11
 Math.sin(Math.PI / 2); => 1
-
 ```
 
+------------------------------
+    
+<h2>DOM(Document Object Model)</h2>
+DOM(문서 객체 모델)은 HTML, XML 문서의 프로그래밍 interface로 문서의 구조화된 표현(structured representation)을 제공 <br> 
+프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공하여 그들이 문서의 구조, 스타일, 내용 등을 변경할 수 있게 돕는다. <br>
+개발자도구의 Elements에서 확인할 수 있는 항목을 DOM이라 할 수 있다.
+
+<h3>DOM 객체 얻어오기</h3>
+document객체의 getElementXXX() 계열의 함수를 통해 DOM을 얻어올 수 있다.
+<br>
+[형식]
+1. 태그명으로 얻어오기
+```
+document.getElementsByTagName("태그명");
+```
+
+2. name속성으로 얻어오기
+```
+document.getElementsByName("name속성값");
+```
+
+3. 클래스명으로 얻어오기
+```
+document.getElementsByClassName("class속성값");
+```
+
+4. id값으로 얻어오기
+```
+document.getElementById("id속성값");
+```
+
+- 1,2,3번은 문서상에 1개 이상 존재할 수 있으므로 배열의 형태로 반환됨
+    만약 해당 객체가 없을 때에는 길이가 0인 배열을 반환 
+- 2개 이상의 요소를 대상으로하므로 getElements 즉, 's'가 붙음을 유의!
+- 4번은 하나의 값만 존재하므로 getElement로, 's'가 없다.
+
+<h3>window 객체</h3>
+JavaScript에서 window는 모든 객체의 조상으로 최상위객체임. <br>
+하위에는 대표적으로 screen, location, history, document 같은 객체들이 존재 <br>
+window는 전역객체(글로벌객체)이고 모든 객체를 다 포함하고 있기 때문에 명령어에서 생략 가능
+
+<h4>location 객체</h4>
+페이지를 이동할 때 사용 <br> 
+html의 a태그와 동일한 역할을 한다. <br>
+target을 걸어야 할 경우에는 "타켓.location" 형태로 작성 <br>
+프레임이나 팝업창같이 depth가 존재할 경우 단계를 통해 target을 지정할 수도 있다. 
+
+<h4>history 객체</h4>
+페이지 이동은 동일하나, 이전에 '이동했던 내역이 있는 경우'에만 이동할 수 O <br> 
+IE/크롬과 같은 브라우저에서 "뒤로" 버튼과 동일한 기능을 수행한다. <br>
+history.go()의 경우 2페이지 전으로와 같이 단계를 지정할 수 있다. <br>
+
+<h4>대화창</h4>
+<h5>alert</h5>
+단순한 경고창. 사용자에게 메세지 전달 시 주로 사용
+
+<h5>confirm</h5>
+- 대화상자의 일종으로 사용자에게 어떤 액션을 취할지 여부를 물어볼때 사용
+- '확인'을 누를경우 true가 반환되고, '취소'를 누를경우 false가 반환
+
+<h5>prompt</h5> 
+사용자로부터 입력을 받기 위한 대화상자로, 디폴트값이 필요한 경우에는 두 번째 인자에 입력해주면 된다. <br>
+ex) prompt("창에 보일 메시지","디폴트값");
+
+<h4>팝업창</h4>
+광고나 공지사항을 게시할때 새로운 창을 띄울때 사용하는 함수
+```
+window.open("창의경로", "이름", "속성,모양,위치");
+```
+- open() 함수는 윈도우 객체를 반환
+- 팝업창을 여러개 띄울때 창의이름이 같으면 하나의 창에 계속 띄워짐
+
+<h5>width</h5> 
+팝업창의 가로폭
+
+<h5>height</h5>
+팝업창의 세로폭
+
+<h5>top</h5>
+팝업창을 띄울때 Y좌표 (모니터를 기준으로 상단에서 띄워짐)
+
+<h5>left</h5>
+팝업창을 띄울때 X좌표 (모니터를 기준으로 좌측에서 띄워짐)
+
+<h5>location</h5>
+주소표시줄 on/off
+
+<h5>toolbar</h5>
+도구모음창 on/off
+
+<h5>menubar</h5>
+메뉴바 on/off
+
+<h5>scrollbars</h5>
+스크롤바 on/off
+
+<h5>resizable</h5>
+팝업창의 크기조절 가능여부 on/off
+
+<h4>시간 제어</h4>
+주기적인 작업을 실행하기 위해 setTimeout, setInterval 두가지 함수를 사용할 수 있다.
+
+<h5>setTimeout() / clearTimeout() 함수</h5>
+
+```
+▶ 설정 시
+var 타이머변수 = setTimeout("함수명()", 설정시간);
+▶ 해제 시
+clearTimeout(타이머변수);
+```
+- 설정한 시간이 되면 함수를 딱 한번만 호출
+- 시간은 1000분의 1초 단위로 설정
+
+<h5>setInterval() / clearInterval() 함수</h5>
+
+```
+▶ 설정 시
+var 타이머변수 = setInterval("함수명()", 1000);
+▶ 해제 시
+clearInterval(타이머변수);
+```
+- 설정한 시간 간격마다 함수를 지속적으로 호출
+- 시간은 1000분의 1초 단위로 설정
+- 주기적인 호출이 필요한 경우 주로 사용
+    ex) 남은날짜 혹은 시간 등의 알림.
+
+<h4>기타</h4>
+<h5>escape() / unescape() 함수</h5>
+한글이나 일본어, 중국어 등 2바이트로 표현하는 언어들을 UTF-8로 인코딩 할때 사용 <br>
+숫자나 영문자는 아스키코드(ANSI)로 표현하기 때문에 인코딩의 대상이 X <br> 
+주로 Ajax나 jQuery에서 한글을 처리할때 사용
+
+<h5>eval()</h5>
+매개변수로 전달되는 문자열을 자바스크립트 코드로 해석 <br>
+문자열로 전달되는 매개변수의 양쪽에 있는 더블쿼테이션을 이발하듯 잘라내서 내부에 있는 코드를 자바스크립트로 실행 
+
+<h5>isNaN()</h5>
+Is Not A Number <br>
+매개변수가 숫자가 아닐때 true를 반환하는 함수
+
+<h5>parseInt()</h5>
+문자열에서 숫자부분만 반환해주는 함수이다. <br> 
+단, 숫자가 아닌 문자로 시작하는 경우에는 NaN을 반환한다. 
+
+------------------------------
