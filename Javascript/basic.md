@@ -183,4 +183,49 @@ callByReference(array);
 document.write("array[0]="+ array[0]+", array[1]="+ array[1]);
 ```
 
+------------------------------
+
+<h2>Javascript의 Core객체</h2>
+<h3>String 객체</h3>
+웹 브라우저상에 문자열을 표현하는 표준 내장 객체
+[형식] <br>
+방법 1
+
+```
+var 변수명 = new String("문자열");
+```
+
+방법 2
+
+```
+var 변수명 = '문자열'; 혹은 "문자열"
+```
+=> 즉, '(싱글) 이나 "(더블) 뭐든 상관 X
+
+문자열은 배열과 동일하게 인덱스는 0부터 시작
+<img src="https://blog.kakaocdn.net/dn/dpJMUt/btquGEg3PTd/L7XcRVSupNkRXHgCFj7O71/img.png" />
+
+<h3>Date 객체</h3>
+날짜와 시간을 다루는데 사용되는 표준 내장 객체로 현재시스템의 날짜를 알아낼 수 있고 시스템 날짜를 설정할 수도 있다. 
+
+```
+var date = new Date();
+```
+날짜정보를 설정할 때는 setXXX()계열의 함수 사용, <br>
+날짜정보를 가져올 때는 getXXX()계열의 함수 사용
+
+<h3>Math 객체</h3> 
+수학에서 자주 사용하는 상수와 함수들을 미리 구현해 놓은 표준 내장 객체 <br>
+Math 객체는 다른 객체와는 다르게 생성자(constructor)가 존재하지 않아, <br>
+new 연산자로 인스턴스를 생성하지 않아도 Math 객체의 모든 메소드를 사용할 수 O
+
+```
+Math.min(1, 10, -100, -10, 1000, 0); => -100
+Math.random() * (10 - 1) + 1; => 1~10사이정수
+Math.round(10.49); => 10
+Math.floor(11.95); => 11
+Math.ceil(10.01); => 11
+Math.sin(Math.PI / 2); => 1
+
+```
 
