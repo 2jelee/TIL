@@ -492,4 +492,110 @@ mouseup
 엘리먼트에 마우스를 클릭했다가 떼는순간 발생되는 이벤트
 ```
 
-------------------------------
+------------------------------ 
+
+<h2>CSS 컨트롤</h2>
+CSS속성을 JS에서 컨트롤할 때는 -(하이픈)를 빼고 두 번째 블럭의 첫 글자를 대문자로 변경 <br>
+하이픈이 없는 속성은 원형 그대로 사용
+
+```
+DOM객체.style.CSS속성 = "속성값";
+
+ex)
+font-size:10px; => fontSize='10px';
+background-image:url() => 			
+    backgroundImage="url('이미지경로')";
+color: red; => color = 'red';
+```
+
+<h2>Form(폼)</h2>
+Javascript로 HTML의 <form> 엘리먼트를 가져오는 방법에는 2가지 방법 존재. <br>
+이를 통해 하위요소인 <input>태그에 접근 O
+
+[형식 1]
+
+```
+var frm = document.forms[0];
+```
+
+- form태그를 배열처럼 인식하여 가져옴.
+- forms[0] 이란 HTML페이지에서 첫번째 form이라는 뜻
+- 만약 form의 순서가 변경된다면 수정이 필요
+
+[형식 2]
+
+```
+var frm = document.폼의name속성값;
+```
+
+- form태그의 name 속성값을 통해 가져옴.
+  이 경우, 순서가 변경 되더라도 수정은 필요 X 
+=> 실무에서 주로 사용되는 방법
+
+<h3>checkbox/radio 속성</h3>
+
+<h4>checked</h4>
+체크 되었는지 여부를 판단하거나, 체크/언체크를 제어 O
+
+1. 체크여부 판단
+
+```
+요소.checked==true / false
+```
+
+2. 체크
+
+```
+요소.checked=true or ‘checked’
+```
+
+3. 체크 해제
+
+```
+요소.checked=false or null
+```
+
+<h4>disabled</h4>
+1. 활성화 여부 판단
+
+```
+요소.disabled == true or false
+```
+
+2. 활성화/비활성화
+```
+요소.disabled = true or false
+```
+
+<h3>폼값 검증(Validation)</h3>
+input태그의 type에 따라 검증방법 상이
+
+입력값에 대한 검증
+
+```
+text, password, file
+```
+
+```
+textarea, select
+```
+
+선택값에 대한 검증
+
+```
+checkbox, radio
+```
+
+<h3>this / this.form / this.value 차이</h3>
+
+- this는 해당 엘리먼트 자체를 가리킴
+- this.value는 엘리먼트의 value값을 가리킴
+- this.form은 엘리먼트가 포함된 form태그를 가리킴. 
+  만약 <form>태그 자체에 사용한다면 this를 써야됨
+
+```
+<form name="frm1" onsubmit="return myValidation(this)">     //여기서 this는 frm1을 가리키고
+    <input type="text" name="user_id" value="2jelee" onclick="myFunc(this.value);" />   //여기서 this.value는 해당 input의 value값을,
+    <input type="button" value="로그인" onclick="myFunc(this.form);" />     //여기서 (this.form)은 frm1을 가리킨다.
+</form>
+```
