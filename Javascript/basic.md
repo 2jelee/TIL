@@ -491,6 +491,52 @@ mouseup
 ```
 엘리먼트에 마우스를 클릭했다가 떼는순간 발생되는 이벤트
 ```
+  
+------------------------------
+
+<h2>객체(Object) 생성</h2>
+자바스크립트는 자체적으로 클래스라는 개념이 없기 때문에 기존 C++, Java와 같은 클래스기반 객체지향언어와는 객체생성 방법이 다름. <br>
+객체를 생성할 수 있는 방법은 크게 3가지로 나뉜다.
+
+<h4>1. 기본 객체(Object() 객체)의 생성자 함수를 이용</h4>
+
+```
+function myFunc(){ 실행부; }
+
+var member = new Object();
+member.Id = '2jelee';   //멤버변수
+member.func = myFunc;   //멤버메소드
+```
+
+<h4>2. 객체 리터럴 이용</h4>
+
+```
+var person = {		
+    id : "2jelee",	
+    myFunc : function(){
+        실행부;
+    }	
+};
+```
+
+=> 리터럴 표기법? <br>
+리터럴이란 '문자그대로의...'라는 의미를 가지고 있다. 즉, JS에서 객체와 배열을 간단히 정의하는 방법이라 말할 수 있다. <br>
+정규적이지 않은 방법으로 보일수 있으나 코드는 간단해지고 엔진(브라우저)의 해석속도는 훨씬 ↑
+
+<h4>3. 생성자 함수 이용</h4>
+
+```
+var Member = function(Id,pass,gender) {
+    this.Id  = Id;
+    this.pass = pass;
+    this.gender = gender;
+
+    this.func = function(){
+        return "함수실행";
+    }
+    return this;
+}
+```
 
 ------------------------------ 
 
@@ -556,6 +602,7 @@ var frm = document.폼의name속성값;
 ```
 
 <h4>disabled</h4>
+  
 1. 활성화 여부 판단
 
 ```
