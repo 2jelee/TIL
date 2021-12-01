@@ -36,3 +36,174 @@ MariaDB는 회사에서 상용으로 작업하는 것이 무료이므로 부담 
 ```
 MariaDB Download URL : https://mariaDB.org
 
+
+SELECT
+========================
+구축이 완료된 테이블에서 데이터를 추출하는 기능을 한다.
+
+기본 형식
+
+```
+[SELECT ~ FROM ~ WHERE]
+
+SELECT 열
+    FROM 테이블
+    WHERE 조건식
+
+SELECT 열_이름
+    FROM 테이블_이름
+    WHERE 조건식
+    GROUP BY 열_이름
+    HAVING 조건식
+    ORDER BY 열_이름
+    LIMIT 숫자
+```
+
+```
+DROP DATABASE IF EXISTS market_db; -- 만약 market_db가 존재하면 우선 삭제한다.
+CREATE DATABASE market_db;
+
+USE market_db;
+CREATE TABLE member -- 회원 테이블
+( mem_id  		CHAR(8) NOT NULL PRIMARY KEY, -- 사용자 아이디(PK)
+  mem_name    	VARCHAR(10) NOT NULL, -- 이름
+  mem_number    INT NOT NULL,  -- 인원수
+  addr	  		CHAR(2) NOT NULL, -- 지역(경기,서울,경남 식으로 2글자만입력)
+  phone1		CHAR(3), -- 연락처의 국번(02, 031, 055 등)
+  phone2		CHAR(8), -- 연락처의 나머지 전화번호(하이픈제외)
+  height    	SMALLINT,  -- 평균 키
+  debut_date	DATE  -- 데뷔 일자
+);
+CREATE TABLE buy -- 구매 테이블
+(  num 		INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 순번(PK)
+   mem_id  	CHAR(8) NOT NULL, -- 아이디(FK)
+   prod_name 	CHAR(6) NOT NULL, --  제품이름
+   group_name 	CHAR(4)  , -- 분류
+   price     	INT  NOT NULL, -- 가격
+   amount    	SMALLINT  NOT NULL, -- 수량
+   FOREIGN KEY (mem_id) REFERENCES member(mem_id)
+);
+
+INSERT INTO member VALUES('TWC', '트와이스', 9, '서울', '02', '11111111', 167, '2015.10.19');
+INSERT INTO member VALUES('BLK', '블랙핑크', 4, '경남', '055', '22222222', 163, '2016.08.08');
+INSERT INTO member VALUES('WMN', '여자친구', 6, '경기', '031', '33333333', 166, '2015.01.15');
+INSERT INTO member VALUES('OMY', '오마이걸', 7, '서울', NULL, NULL, 160, '2015.04.21');
+INSERT INTO member VALUES('GRL', '소녀시대', 8, '서울', '02', '44444444', 168, '2007.08.02');
+INSERT INTO member VALUES('ITZ', '잇지', 5, '경남', NULL, NULL, 167, '2019.02.12');
+INSERT INTO member VALUES('RED', '레드벨벳', 4, '경북', '054', '55555555', 161, '2014.08.01');
+INSERT INTO member VALUES('APN', '에이핑크', 6, '경기', '031', '77777777', 164, '2011.02.10');
+INSERT INTO member VALUES('SPC', '우주소녀', 13, '서울', '02', '88888888', 162, '2016.02.25');
+INSERT INTO member VALUES('MMU', '마마무', 4, '전남', '061', '99999999', 165, '2014.06.19');
+
+INSERT INTO buy VALUES(NULL, 'BLK', '지갑', NULL, 30, 2);
+INSERT INTO buy VALUES(NULL, 'BLK', '맥북프로', '디지털', 1000, 1);
+INSERT INTO buy VALUES(NULL, 'APN', '아이폰', '디지털', 200, 1);
+INSERT INTO buy VALUES(NULL, 'MMU', '아이폰', '디지털', 200, 5);
+INSERT INTO buy VALUES(NULL, 'BLK', '청바지', '패션', 50, 3);
+INSERT INTO buy VALUES(NULL, 'MMU', '에어팟', '디지털', 80, 10);
+INSERT INTO buy VALUES(NULL, 'GRL', '2jelee', '서적', 15, 5);
+INSERT INTO buy VALUES(NULL, 'APN', '2jelee', '서적', 15, 2);
+INSERT INTO buy VALUES(NULL, 'APN', '청바지', '패션', 50, 1);
+INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 1);
+INSERT INTO buy VALUES(NULL, 'APN', '2jelee', '서적', 15, 1);
+INSERT INTO buy VALUES(NULL, 'MMU', '지갑', NULL, 30, 4);
+
+SELECT * FROM member;
+SELECT * FROM buy;
+```
+
+데이터베이스 생성
+
+```
+DROP DATABASE IF EXISTS market_db;
+CREATE DATABASE market_db;
+```
+
+-------------------------------------
+USE문
+
+- SELECT 문을 실행하려면 먼저 사용할 데이터베이스를 지정해야 한다. 현재 사용하는 데이터베이스를 지정 or 변경하는 형식은 다음과 같음.
+
+```
+USE 데이터베이스_이름;
+```
+-------------------------------------
+
+<h3>관계 연산자, 논리 연산자의 사용</h3>
+
+```
+SELECT mem_id, mem_name
+    FROM member
+    WHERE height <= 162;
+
+SELECT mem_name, height, mem_number
+    FROM member
+    WHERE height >= 165 AND mem_number > 6;
+```
+
+<h3>BETWEEN ~ AND</h3>
+AND를 사용해서 조회
+
+```
+SELECT mem_name, height
+    FROM member
+    WHERE height >= 163 AND <= 165;
+
+↓
+
+SELECT mem_name, height
+    FROM member
+    WHERE height BETWEEN 163 AND 165;
+
+>> 숫자의 범위를 조건식에서 사용할 때는 BETWEEN ~ AND가 편리
+```
+
+<h3>IN()</h3>
+평균 키와 같이 숫자로 구성된 데이터는 크다/작다의 범위를 지정할 수 있으므로 BETWEEN ~ AND를 사용할 수 있지만 <br>
+주소와 같은 데이터는 문자로 표현되기 때문에 어느 범위에 들어있다고 표현할 수 X
+
+```
+SELECT mem_name, addr
+    FROM member
+    WHERE addr = '인천' OR addr = '서울' OR '경기';
+
+↓
+
+SELECT mem_name, addr
+    FROM member
+    WHERE addr IN('인천', '서울', '경기');
+
+>> 조건식에서 여러 문자 중 하나에 포함되는지 비교할 때는 IN()이 간결
+```
+
+<h3>LIKE</h3>
+문자열의 일부 글자를 검색할 때 사용.
+
+```
+SELECT *
+    FROM member
+    WHERE mem_name LIKE '우%';
+
+>> 이 조건은 제일 앞 글자가 '우'이고 그 뒤는 무엇이든(%) 허용하겠다는 의미
+
+
+SELECT *
+    FROM member
+    WHERE mem_name LIKE '__핑크';       --언더바 2개
+
+>> 이 조건은 앞 두 글자는 상관없고 뒤는 '핑크'인 회원을 검색하겠다는 의미
+```
+
+<h2>서브쿼리</h2>
+SELECT 안에는 또 다른 SELECT가 들어갈 수 있다. 이를 subquery 또는 하위 쿼리라고 부른다. <br>
+[장점] <br>
+2개의 SQL을 하나로 만듦으로써 하나의 SQL만 관리하면 되므로 더 간단해진다.
+
+```
+SELECT height FROM member WHERE mem_name = '투애니원';
++
+SELECT mem_name, height FROM member WHERE height > 164;
+
+SELECT mem_name, height FROM member
+    WHERE height > (SELECT height FROM member WHERE mem_name = '투애니원');
+```
