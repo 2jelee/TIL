@@ -17,12 +17,28 @@ PHP로 작성된 코드를 HTML 코드 안에 추가하면, 웹 서버는 해당
 
 <body>
 <?php
-    echo "Welcome to PHP!"
+    echo "Welcome to PHP!";
+    print_r("Welcome to PHP~~~");
 ?>
 </body>
 
 </html>
 ```
+
+<h3>실행결과</h3>
+<img src="https://user-images.githubusercontent.com/82863823/144866565-7ec62951-6678-4c0b-aa67-f5d74ffac1a2.png">
+    
+
+PHP 특징
+---------------
+[장점]
+1. 주요 운영체제와 대부분의 웹 서버에서 지원
+2. 다른 프로그래밍 언어보다 직관적으로 코드를 작성할 수 있어서, 작성해야 하는 코드의 양이 ↓
+3. 텍스트 처리에 특화되어 있어 HTML 문서 처리에 적합
+
+[단점]
+1. 간단한 사이트를 제작하기 위해 만든 언어라서 복잡한 사이트를 만드는 데는 효율적 X <br>
+2. 보안에 안전하지 않은 언어 구조
 
 install
 ---------------
