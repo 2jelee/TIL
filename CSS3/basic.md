@@ -102,7 +102,6 @@ box-shadow: 20px 30px 50px #6d0202;
 
 
 ======
-과제
 깎기 border radius
 
 display창 >> div or input태그 사용 ... 숫자만 입력되면 된다.
