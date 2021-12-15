@@ -268,3 +268,136 @@ echo "Study PHP at " . $txt2 . "<br>";
 echo $x + $y;
 ?>
 ```
+
+----------------------------------
+
+<h2>Data type</h2>
+
+1. String 
+2. Integer
+3. Float
+4. Boolean
+5. Array
+6. Object 
+7. Null
+8. Resource
+
+
+<h3>String (문자열)</h3>
+따옴표 안에 있는 모든 텍스트가 될 수 있다.   
+작은따옴표나 큰따옴표를 사용 O
+
+```
+<?php
+$x = "Hello world!";
+$y = 'Hello world!';
+
+echo $x;
+echo "<br>";
+echo $y;
+?>
+```
+
+<h3>Integer (정수)</h3>
+[규칙]
+
+- 정수에는 하나 이상의 숫자가 있어야 한다.
+- 정수에는 소수점이 없어야 한다.
+- 정수는 양수 또는 음수일 수 있다.
+- 정수는 10진수(base 10), 16진수(base 16), 8진수(base 8) 또는 이진법(base 2) 표기법으로 지정할 수 있습니다.
+
+```
+<?php
+$x = 5985;
+var_dump($x);
+?>
+```
+해당 예시에서 $x는 정수(int)   
+PHP var_dump() 함수는 데이터유형과 값을 반환함.
+
+<h3>float</h3>
+소숫점이 있는 숫자 or 지수 형식의 숫자   
+
+```
+<?php
+$x = 10.365;
+var_dump($x);
+?>
+```
+해당 예시에서 $x는 float(실수)   
+PHP var_dump() 함수는 데이터유형과 값을 반환함.
+
+<h3>boolean</h3>
+true 또는 false 두 가지 상태를 나타냄.
+
+```
+$x = true;
+$y = false;
+```
+조건부 테스트에 사용됨.
+
+<h3>Array(배열)</h3>
+하나의 단일 변수에 여러 값을 저장.   
+
+```
+<?php
+$cars = array("Volvo","BMW","Toyota");
+var_dump($cars);
+?>
+```
+
+<h3>Object (객체)</h3>
+클래스와 객체는 <b>객체 지향 프로그래밍</b>의 2가지 주요 측면임.   
+클래스 : 객체의 template   
+객체 : 클래스의 instance   
+<br>
+개별 개체가 생성되면 클래스에서 모든 속성과 동작을 상속하나,   
+각 객체는 속성에 대해 서로 다른 값을 가진다.   
+   
+ex. Car라는 클래스가 있다고 가정.   
+Car는 모델, 색상 등과 같은 속성을 가질 수 O. 이러한 속성의 값을 유지하기 위해 $model, $color 등과 같은 변수를 정의할 수 있다.   
+개별 개체(현대, 기아, 볼보, BMW 등)가 생성되면 클래스에서 모든 속성과 동작을 상속하지만 각 개체는 속성에 대해 서로 다른 값을 가짐.   
+   
+__construct() 함수를 생성하면 클래스에서 객체를 생성할 때 PHP가 자동으로 이 함수를 호출함.
+
+```
+<?php
+class Car {
+  public $color;
+  public $model;
+  public function __construct($color, $model) {
+    $this->color = $color;
+    $this->model = $model;
+  }
+  public function message() {
+    return "My car is a " . $this->color . " " . $this->model . "!";
+  }
+}
+
+$myCar = new Car("black", "KIA");
+echo $myCar -> message();
+echo "<br>";
+$myCar = new Car("red", "Volvo");
+echo $myCar -> message();
+?>
+```
+
+<h3>NULL</h3>
+Null은 NULL이라는 하나의 값만 가질 수 있는 특수 데이터 유형.   
+데이터 유형이 NULL인 변수는 할당된 값이 없는 변수다.   
+   
+Tip! 값 없이 변수를 생성하면 자동으로 NULL 값이 할당됨.
+> 값을 NULL로 설정하여 변수를 비울 수도 있다.
+
+```
+<?php
+$x = "Hello world!";
+$x = null;
+var_dump($x);
+?>
+```
+
+<h3>Resource</h3>
+특수 자원 유형은 실제 데이터 유형이 아님. PHP 외부의 기능 및 리소스에 대한 참조를 저장하는 것임.   
+자원 데이터 유형을 사용하는 일반적인 예는 database 호출이다.
+> 리소스 유형은 고급 주제이므로 skip
