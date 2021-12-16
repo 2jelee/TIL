@@ -401,3 +401,134 @@ var_dump($x);
 특수 자원 유형은 실제 데이터 유형이 아님. PHP 외부의 기능 및 리소스에 대한 참조를 저장하는 것임.   
 자원 데이터 유형을 사용하는 일반적인 예는 database 호출이다.
 > 리소스 유형은 고급 주제이므로 skip
+
+----------------------------------
+
+<h2>PHP Numbers</h2>
+※주의 : 자동 데이터 유형 변환
+따라서 변수에 정수값을 할당하면 해당 변수의 유형은 자동으로 변수가 됨.   
+이 다음 동일한 변수에 문자열을 할당하면 유형이 문자열로 변경됨.   
+
+<h3>정수(Integers)</h3>
+※참고: 알아야 할 중요한 사항 => 4 * 2.5가 10인 경우에도 피연산자 중 하나가 float(2.5)이기 때문에 결과가 float로 저장됨.   
+   
+[규칙]
+
+- 정수에는 하나 이상의 숫자가 있어야 함.
+- 정수에는 소수점이 없어야 함.
+- 정수는 양수 또는 음수일 수 있음.
+- 정수는 10진수(10 기반), 16진수(16 기반 - 접두사 0x) 또는 8진(8 기반 - 접두사 0)의 세 가지 형식으로 지정할 수 있음. 
+   
+[미리 정의된 상수]
+
+- PHP_INT_MAX - 지원되는 가장 큰 정수
+- PHP_INT_MIN - 지원되는 가장 작은 정수
+- PHP_INT_SIZE - 바이트 단위의 정수 크기
+
+[변수의 유형이 정수인지 확인하는 함수]
+- is_int()
+- is_integer() - is_int()의 별칭
+- is_long() - is_int()의 별칭
+
+```
+<?php
+$x = 5985;
+var_dump(is_int($x));
+
+$x = 59.85;
+var_dump(is_int($x));
+?>
+```
+
+<h3>float</h3>
+소수점이 있는 숫자 또는 지수 형식의 숫자   
+   
+[PHP 7.2부터 사전 정의된 상수]
+
+- PHP_FLOAT_MAX - 표현 가능한 가장 큰 부동 소수점 숫자
+- PHP_FLOAT_MIN - 표현 가능한 가장 작은 양의 부동 소수점 숫자
+- PHP_FLOAT_MAX - 표현 가능한 가장 작은 음수 부동 소수점 숫자
+- PHP_FLOAT_DIG - 정밀도 손실 없이 부동 소수점으로 반올림할 수 있는 소수점 이하 자릿수
+- PHP_FLOAT_EPSILON - 표현 가능한 가장 작은 양수 x, x + 1.0 != 1.0
+
+[변수 유형이 float인지 확인하는 함수]
+- is_float()
+- is_double() - is_float()의 별칭
+
+```
+<?php
+$x = 10.365;
+var_dump(is_float($x));
+?>
+```
+
+<h3>Infinity</h3>
+PHP_FLOAT_MAX보다 큰 숫자 값은 무한으로 간주   
+   
+[숫자값이 유한인지 무한인지 확인하는 기능]
+
+- is_finite()
+- is_infinite()
+
+```
+<?php
+$x = 1.9e411;
+var_dump($x);
+?>
+```
+
+<h3>NaN</h3>
+숫자가 아님을 나타냄.   
+불가능한 수학 연산에 사용됨.
+   
+[값이 숫자가 아닌지 확인하는 기능]
+- is_nan()
+
+```
+<?php
+$x = acos(8);
+var_dump($x);
+?>
+```
+> 잘못된 계산은 NaN 값을 반환   
+
+<h3>Numerical Strings</h3>
+is_numeric() : 변수가 숫자인지 여부를 찾는 데 사용   
+> 이 함수는 변수가 숫자 또는 숫자 문자열이면 true를 반환하고 그렇지 않으면 false를 반환 
+
+```
+<?php
+$x = 5985;
+var_dump(is_numeric($x));
+
+$x = "5985";
+var_dump(is_numeric($x));
+
+$x = "59.85" + 100;
+var_dump(is_numeric($x));
+
+$x = "Hello";
+var_dump(is_numeric($x));
+?>
+```
+
+<h3>형변환 (Casting)</h3>
+> Casting Strings and Floats to Integers
+숫자값을 다른 데이터 유형으로 변환해야할 경우,   
+(int), (integer) 또는 intval() 함수는 값을 정수로 변환하는데 사용
+
+```
+<?php
+// Cast float to int
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast;
+
+echo "<br>";
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x;
+echo $int_cast;
+?>
+```
