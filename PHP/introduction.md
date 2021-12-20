@@ -609,3 +609,166 @@ ex) 10에서 100(포함) 사이의 임의의 정수를 원할 경우
 echo(rand(10, 100));
 ?>
 ```
+
+-------------------------------------
+
+<h2>Constants (상수)</h2>
+상수는 일단 정의되면 변경하거나 해제할 수 없다는 점을 제외하고는 변수와 동일
+
+<h3>상수</h3>
+상수는 단순 값의 식별자(이름)이다. 스크립트 중에는 값을 변경할 수 X   
+유효한 상수 이름은 문자 또는 밑줄로 시작(상수 이름 앞에 $ 기호 없음).   
+※참고: 변수와 달리 상수는 전체 스크립트에서 자동으로 전역(global)임
+
+<h3>상수 생성</h3>
+define() 함수 사용   
+   
+Syntax(문법)
+```
+define(name, value, case-insensitive)
+```
+
+매개변수 :
+
+- name : 상수의 이름을 지정
+- value : 상수의 값을 지정
+- 대소문자 구분 : 상수 이름이 대소문자를 구분하지 않아야 하는지 여부를 지정합니다. 기본값은 false.
+
+
+1) 대소문자를 구분하는 이름으로 상수를 생성
+
+```
+<?php
+define("GREETING", "Welcome to 2jelee's github!");
+echo GREETING;
+?>
+```
+
+2) 대소문자를 구분하지 않는 이름으로 상수를 생성
+
+```
+<?php
+define("GREETING", "Welcome to 2jelee's github!", true);
+echo greeting;
+?>
+```
+
+<h3>상수 배열</h3>
+PHP7에서 define() 함수를 사용하여 배열 상수를 생성할 수 있음.
+
+```
+<?php
+define("cars", [
+  "KIA",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0];
+?>
+```
+
+<h3>상수는 전역(global)</h3>
+상수는 자동으로 전역적, 전체 스크립트에서 사용 가능
+
+ex) 함수 외부에서 정의된 경우에도 함수 내부에서 상수를 사용
+
+```
+<?php
+define("GREETING", "Welcome to 2jelee's github!");
+
+function myTest() {
+  echo GREETING;
+}
+ 
+myTest();
+?>
+```
+
+-----------------------------------------
+
+<h2>Operators(연산자)</h2>
+연산자 : 변수와 값에 대한 연산을 수행하는데 사용됨   
+   
+PHP 연산자
+
+- 산술 연산자
+- 할당 연산자
+- 비교 연산자
+- 증가/감소 연산자
+- 논리 연산자
+- 문자열 연산자
+- 배열 연산자
+- 조건부 할당 연산자
+
+<h3>산술 연산자</h3>
+더하기, 빼기, 곱하기 등과 같은 일반적인 산술 연산을 수행하기 위해 숫자 값과 함께 사용
+
+> 연산자 (+) : $x + $y
+> 연산자 (-) : $x - $y
+> 연산자 (*) : $x * $y
+> 연산자 (/) : $x / $y
+> 연산자 (%) : $x % $y
+> 연산자 (**) : $x ** $y
+
+<h3>할당 연산자</h3>
+숫자값과 함께 변수에 값을 쓰는데 사용됨   
+기본 할당 연산자 : "="   
+> 이는 왼쪽 피연산자가 오른쪽 할당 표현식의 값으로 설정됨을 의미   
+   
+> x = y 는 x = y와 같다.
+> x += y 는 x = x + y와 같다.
+> x -= y 는 x = x - y와 같다.
+> x *= y 는 x = x * y와 같다.
+> x /= y 는 x = x / y와 같다.
+> x %= y 는 x = x % y와 같다.
+
+<h3>비교 연산자</h3>
+두 값(숫자 또는 문자열)을 비교하는데 사용   
+
+> == : equal
+> === : identical
+> != : not equal
+> <> : not equal
+> !== : not identical
+> > : greater than
+> < : less than
+> >= : greater than or equal to
+> <= : less than or equal to
+> <=> : spaceship
+
+<h3>증가/감소 연산자</h3>
+증가 연산자 : 변수 값을 증가시키는데 사용   
+감소 연산자 : 변수 값을 감소시키는데 사용   
+   
+> ++$x : Pre-increment
+> $x++ : Post-increment
+> --$x : Pre-decrement
+> $x-- : Post-decrement
+
+<h3>논리 연산자</h3>
+조건문을 결합하는데 사용   
+   
+> and : And
+> or : OR
+> xor : Xor
+> && : And
+> || : Or
+> ! : Not
+
+<h3>배열 연산자</h3>
+배열을 비교하는데 사용   
+   
+> + : 결합(Union)
+> == : Equality
+> === : Identity
+> != : Inequality
+> <> : Inequality
+> !== : Non-identity
+
+<h3>조건부 할당 연산자</h3>
+조건에 따라 값을 설정하는데 사용   
+   
+> ?: : Ternary
+> ?? : Null coalescing
+
+-----------------------------------------
