@@ -12,14 +12,21 @@
         div → input
         input의 유효성 검사를 작동시키기 위해서는 input이 form 안에 있어야한다.
     -->
-    <!-- <form id="login-form"> 
+    <form id="login-form"> 
         <input 
             required maxlength="15" 
             type="text" 
             placeholder="What is your name?" 
         />
+        <!-- input 안에 있는 button을 누르거나, type이 submit인 input을 클릭하면 작성한 form이 submit됨 -->
+
+        <!-- 현 문제점 : form은 자동적으로 submit 된다는 점 
+            → form이 submit될 때마다 페이지는 새로고침 된다는 점(웹 사이트 전체를 매번 새로고침 하고 싶지 X) 
+            해결방안 : form이 submit 되는 것을 막아주기
+        -->
+        <input type="submit" value="Login">
         <button>Log In</button>
-    </form> -->
+    </form>
     <div class = "hello">
         <h1 class="hot-font">Click me!</h1>
     </div>
