@@ -865,3 +865,55 @@ if ($t < "10") {
 ```
 
 -----------------------------------------
+
+<h2>Switch문</h2>
+다른 조건에 따라 다른 작업을 수행하는데 사용   
+   
+Syntax
+
+```
+switch (n) {
+  case label1:
+    code to be executed if n=label1;
+    break;
+  case label2:
+    code to be executed if n=label2;
+    break;
+  case label3:
+    code to be executed if n=label3;
+    break;
+    ...
+  default:
+    code to be executed if n is different from all labels;
+}
+```
+
+[동작방식]   
+먼저 한 번 평가 되는 단일 표현식 n(대부분 변수)이 존재.   
+그러한 다음 표현식의 값을 구조의 각 케이스에 대한 값과 비교.    
+일치하는 항목이 있으면 해당 사례와 관련된 코드 블록이 실행.   
+break 코드가 자동으로 다음 케이스로 실행되는 것을 방지하기 위해 사용.   
+default 일치하는 항목이 없는 경우 사용됨.
+
+ex)
+```
+<?php
+$favcolor = "red";
+
+switch ($favcolor) {
+  case "red":
+    echo "Your favorite color is red!";
+    break;
+  case "blue":
+    echo "Your favorite color is blue!";
+    break;
+  case "green":
+    echo "Your favorite color is green!";
+    break;
+  default:
+    echo "Your favorite color is neither red, blue, nor green!";
+}
+?>
+```
+
+--------------------------------
