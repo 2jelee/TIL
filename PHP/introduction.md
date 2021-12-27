@@ -772,3 +772,96 @@ PHP 연산자
 > ?? : Null coalescing
 
 -----------------------------------------
+
+<h2>if...else...elseif Statements</h2>
+조건문 : 다른 조건에 따라 다른 작업을 수행하는데 사용
+
+<h3>종류</h3>
+
+- if 명령문 : 하나의 조건이 참이면 일부 코드를 실행
+- if ... else 명령문 : 조건이 참이면 일부 코드를 실행, 해당 조건이 거짓이면 다른 코드를 실행
+- if ... elseif ... else 명령문 : 두 개 이상의 조건에 대해 다른 코드를 실행
+- switch statement : 실행할 많은 코드 블록 중 하나를 선택
+
+<h4>if문</h4>
+하나의 조건에 해당하는 경우, 몇가지 코드를 실행
+
+Syntax
+
+```
+if (condition) {
+  code to be executed if condition is true;
+}
+```  
+
+ex) "Have a good day!" 출력. 현재 시간(hour)이 20보다 작은 경우
+
+```
+<?php
+$t = date("H");
+
+if ($t < "20") {
+  echo "Have a good day!";
+}
+?>
+```
+
+<h4>if ... else 문</h4>
+if...else 명령문은 조건이 참이면 해당 코드를 실행하고 해당 조건이 거짓이면 다른 코드를 실행
+
+Syntax
+
+```
+if (condition) {
+  code to be executed if condition is true;
+} else {
+  code to be executed if condition is false;
+}
+```
+
+ex) "Have a good day!" 출력. 현재 시간이 20시 미만이면 "좋은 밤 되세요!"
+
+```
+<?php
+$t = date("H");
+
+if ($t < "20") {
+  echo "Have a good day!";
+} else {
+  echo "Have a good night!";
+}
+?>
+```
+
+<h4>if ... elseif ... else 문</h4>
+두 개 이상의 조건에 대해 서로 다른 코드를 실행
+
+Syntax
+
+```
+if (condition) {
+  code to be executed if this condition is true;
+} elseif (condition) {
+  code to be executed if first condition is false and this condition is true;
+} else {
+  code to be executed if all conditions are false;
+}
+```
+
+ex) "Have a good day!" 출력. 현재 시간이 10시 미만이면 "Have a good day!" 현재 시간이 20보다 작으면 "Have good night!"이 출력
+
+```
+<?php
+$t = date("H");
+
+if ($t < "10") {
+  echo "Have a good morning!";
+} elseif ($t < "20") {
+  echo "Have a good day!";
+} else {
+  echo "Have a good night!";
+}
+?>
+```
+
+-----------------------------------------
