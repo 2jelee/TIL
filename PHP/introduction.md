@@ -917,3 +917,246 @@ switch ($favcolor) {
 ```
 
 --------------------------------
+
+<h2>Loops</h2>
+루프는 특정 조건이 참인 동일한 코드 블록을 반복해서 실행하는 데 사용   
+   
+[종류]
+
+- While Loop
+- Do While Loop
+- For Loop
+- Foreach Loop
+- Break / Continue
+
+<h3>while</h3>
+지정된 조건이 <b>참</b>인 동안 코드 블록을 반복   
+while루프 길이 지정된 조건에 해당하는만큼의 코드 블록을 실행   
+
+Syntax
+
+```
+while (condition is true) {
+  code to be executed;
+}
+```
+
+ex)
+
+```
+<?php
+$x = 1;
+
+while($x <= 5) {
+  echo "The number is: $x <br>";
+  $x++;
+}
+?>
+```
+
+- 1에서 5까지의 숫자를 표시
+
+<h3>do ... while</h3>
+코드 블록을 한 번 루프한 다음 지정된 조건이 참인 동안 루프를 반복   
+do...while 루프는 항상 한 번 코드 블록을 실행함. 지정된 조건이 true 동안 다음 루프 상태를 확인하고 반복   
+   
+Syntax
+
+```
+do {
+  code to be executed;
+} while (condition is true);
+```
+
+<h3>for</h3>
+지정된 횟수만큼 코드 블록을 반복   
+스크립트가 실행해야하는 횟수를 미리 알고있을 때 루프가 사용   
+   
+Syntax
+
+```
+for (init counter; test counter; increment counter) {
+  code to be executed for each iteration;
+}
+```
+
+[Parameters(매개변수)]
+
+- init counter : 루프 카운터 값 초기화
+- test counter : 각 루프 반복에 대해 평가. TRUE로 평가되면 루프가 계속됨. FALSE로 평가되면 루프가 종료.
+- increment counter : 루프 카운터 값을 증가시킵
+
+
+<h3>foreach</h3>
+배열의 각 요소에 대한 코드 블록을 순환   
+작동 배열 및 배열의 각각의 키 / 값 쌍을 루프에 사용된다.   
+   
+Syntax
+
+```
+foreach ($array as $value) {
+  code to be executed;
+}
+```
+
+- 모든 루프 반복에 대해 현재 배열 요소의 값이 $value에 할당되고 배열 포인터가 마지막 배열 요소에 도달할 때까지 1만큼 이동
+
+ex)
+
+```
+<?php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $value) {
+  echo "$value <br>";
+}
+?>
+```
+
+result
+
+```
+red
+green
+blue
+yellow
+```
+
+<h3>Break / Continue</h3>
+break 명령문 : 루프를 벗어나는 데 사용할 수 있다.   
+
+```
+<?php
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+```
+
+- 예제는 x 가 4일 때 루프에서 빠져나옴
+
+continue : 지정된 조건이 발생하고있는 경우, (루프)에 문을 중단 한 반복 루프의 다음 반복을 계속
+
+```
+<?php
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    continue;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+```
+
+- 해당 예제는 4 값을 건너뜀
+
+[While Loop에서 break하고 continue]   
+break 예제
+
+```
+<?php
+$x = 0;
+
+while($x < 10) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+  $x++;
+}
+?>
+```
+
+continue 예제
+
+```
+<?php
+$x = 0;
+
+while($x < 10) {
+  if ($x == 4) {
+    $x++;
+    continue;
+  }
+  echo "The number is: $x <br>";
+  $x++;
+}
+?>
+```
+
+-----------------------------------------
+
+<h2>Functions</h2>
+사용자 정의 함수 선언
+
+```
+function functionName() {
+  code to be executed;
+}
+```
+
+- 참고 : 함수 이름은 문자 또는 밑줄로 시작해야 한다. 함수 이름은 대소문자를 구분 X
+
+ex)
+
+```
+<?php
+function writeMsg() {
+  echo "Hello world!";
+}
+
+writeMsg(); // call the function
+?>
+```
+
+<h3>Function Arguments (인자)</h3>
+정보는 인수를 통해 함수에 전달할 수 있다. 인수는 변수와 같다.   
+인수는 함수 이름 뒤에 괄호 안에 지정됨. 원하는 만큼 인수를 추가할 수 있으며 쉼표로 구분하면 됨.   
+다음 예에는 하나의 인수($fname)가 있는 함수가 있다. familyName() 함수가 호출되면 이름(예: Jani)도 전달하고 이름은 함수 내부에서 사용되며 여러 다른 이름을 출력하지만 성은 동일.
+
+```
+<?php
+function familyName($fname) {
+  echo "$fname Refsnes.<br>";
+}
+
+familyName("Jani");
+familyName("Hege");
+familyName("Stale");
+familyName("Kai Jim"); 
+?>
+```
+
+result
+
+```
+Jani Refsnes.
+Hege Refsnes.
+Stale Refsnes.
+Kai Jim Refsnes. 
+```
+
+ex) 2개의 인자(Argu)
+
+```
+<?php
+function familyName($fname, $year) {
+  echo "$fname Refsnes. Born in $year <br>";
+}
+
+familyName("Hege", "1975");
+familyName("Stale", "1978");
+familyName("Kai Jim", "1983");
+?>
+```
+
+result
+
+```
+Hege Refsnes. Born in 1975
+Stale Refsnes. Born in 1978
+Kai Jim Refsnes. Born in 1983
+```
