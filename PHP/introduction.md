@@ -1160,3 +1160,141 @@ Hege Refsnes. Born in 1975
 Stale Refsnes. Born in 1978
 Kai Jim Refsnes. Born in 1983
 ```
+
+<h3>PHP is a Loosely Typed Language</h3>
+변수가 어떠한 데이터 유형인지 php에 알릴 필요 X   
+> PHP는 값에 따라 데이터 유형을 변수에 자동으로 연결함. 데이터 유형이 엄격하게 설정되지 않으므로 오류없이 문자열을 추가하는 등의 작업이 가능
+> PHP 7의 경우 유형 선언이 추가됨 : 함수 선언 시 예상되는 데이터 유형을 지정할 수 있는 옵션이 제공되며 strict 선언을 추가 → 데이터 유형이 일치하지 않으면 <b>치명적인 오류 발생!</b>
+
+```
+<?php
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+echo addNumbers(5, "5 days");
+// since strict is NOT enabled "5 days" is changed to int(5), and it will return 10
+?>
+```
+
+result
+
+```
+10
+```
+
+- 지정하려면 strict를 설정해야함. declare(strict_types=1);. 이는 PHP 파일의 맨 처음 줄에 있어야 한다.
+
+이하 예제의 경우 숫자와 문자열을 모두 함수에 내보내려 하나, strict 선언을 추가했음
+
+```
+<?php declare(strict_types=1); // strict requirement
+
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+echo addNumbers(5, "5 days");
+// since strict is enabled and "5 days" is not an integer, an error will be thrown
+?>
+```
+
+- strict 선언 : 의도 된 방식으로 사용
+
+<h3>기본 인자값</h3>
+인수 없이 setHeight() 함수를 호출하면 기본값을 인수로 사용
+
+```
+<?php declare(strict_types=1); // strict requirement
+function setHeight(int $minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+?>
+```
+
+<h3>값 반환</h3>
+함수가 값을 반환하도록 하려면 다음 return명령문을 사용
+
+```
+<?php declare(strict_types=1); // strict requirement
+function sum(int $x, int $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+?>
+```
+
+result
+
+```
+5 + 10 = 15
+7 + 13 = 20
+2 + 4 = 6
+```
+
+<h3>return(반환) 유형 선언</h3>
+PHP7의 경우, return문에 대한 유형 선언도 지원.   
+함수 인자에 대한 형식 선언과 마찬가지로 엄격한 요구 사항을 활성화하면 형식 불일치에 대해 <b>치명적인 오류 발생</b>.   
+함수 반환에 : 대한 유형을 { 선언하려면 함수를 선언할 때 여는 중괄호() 바로 앞에 콜론()과 유형을 추가.
+
+ex) 함수의 반환 유형을 지정
+
+```
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+echo addNumbers(1.2, 5.2);
+?>
+```
+
+result
+
+```
+6.4
+```
+
+- 인자 유형과 다른 반환 유형을 지정할 수 있으나 반환 유형이 올바른지 확인해야함!
+
+```
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : int {
+  return (int)($a + $b);
+}
+echo addNumbers(1.2, 5.2);
+?>
+```
+
+result
+
+```
+6
+```
+
+<h3>참조로 인자 전달</h3>
+인수는 일반적으로 값으로 전달됨. 즉, 값의 복사본이 함수에서 사용되며 함수에 전달된 변수는 변경 X   
+함수 인자가 참조로 전달되어 인자를 변경하면 전달된 변수 또한 변겅됨.   
+함수 인수를 참조로 전환하기 위해 & 연산자가 사용됨.
+
+ex) 참조로 전달 인수를 사용하여 변수를 업데이트
+
+```
+<?php
+function add_five(&$value) {
+  $value += 5;
+}
+
+$num = 2;
+add_five($num);
+echo $num;
+?>
+```
+
+-----------------------------------------
