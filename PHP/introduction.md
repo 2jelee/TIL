@@ -1298,3 +1298,82 @@ echo $num;
 ```
 
 -----------------------------------------
+
+<h2>Arrays</h2>
+단일 변수에 여러 값을 저장
+
+```
+<?php
+$cars = array("Volvo", "BMW", "KIA");
+echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+?>
+```
+
+<h3>배열이란?</h3>
+한 번에 둘 이상의 값을 보유할 수 있는 특수 변수   
+항목 목록(예: 자동차 이름 목록)이 있는 경우 자동차를 단일 변수에 저장하면 다음과 같다.
+
+```
+$cars1 = "Volvo";
+$cars2 = "BMW";
+$cars3 = "KIA";
+```
+
+- 배열은 하나의 이름으로 많은 값을 가질 수 있으며 인덱스 번호를 참조하여 값에 액세스할 수 있음.
+
+<h3>배열 생성</h3>
+array() 함수 : 배열을 만드는데 사용   
+
+```
+array()
+```
+
+[배열의 3가지 유형]
+
+- 인덱스 배열(Indexed arrays) : 숫자 인덱스가 있는 배열
+- 연관 배열(Associative arrays) : 명명된 키가 있는 배열
+- 다차원 배열(Multidimensional arrays) : 하나 이상의 배열을 포함하는 배열
+
+<h3>count() 함수</h3>
+배열의 길이(elements 수)를 반환하는데 사용
+
+```
+<?php
+$cars = array("Volvo", "BMW", "KIA");
+echo count($cars);
+?>
+```
+
+```
+3
+```
+
+
+ex)
+
+```
+$fruits = array("Apple", "Banana", "Orange");
+echo count($fruits);
+```
+
+=================================================
+
+<h4>인덱스 배열(Indexed arrays)</h4>
+index 배열을 만드는 2가지 방법
+
+- 인덱스를 자동으로 할당(인덱스는 항상 0에서 시작)
+- 인덱스를 수동으로 할당
+
+자동 할당 ex)
+
+```
+$cars = array("KIA", "BMW", "Volvo");
+```
+
+수동 할당 ex)
+
+```
+$cars[0] = "KIA";
+$cars[1] = "BMW";
+$cars[2] = "Volvo";
+```
