@@ -17,9 +17,36 @@ import java.util.Scanner;
 
 public class Quiz_practice2 {
 	public static void main(String[] args) {
-		int x = new Scanner(System.in).nextInt();
-		int y = new Scanner(System.in).nextInt();
-		int z = new Scanner(System.in).nextInt();
 		
+		try {
+			System.out.println("숫자 2개를 입력해주세요.");
+			int a = new Scanner(System.in).nextInt();
+			int b = new Scanner(System.in).nextInt();
+			System.out.println("계산할 연산자를 입력하세요(선택 : +,-,*,/)");
+			String c = new Scanner(System.in).next();
+			int result = 0;		//담을 변수 선언
+
+			switch (c) {
+				case "+":
+					result = a+b; 
+					break;
+				case "-":
+					result = a-b;
+					break;
+				case "*":
+					result = a*b;
+					break;
+				case "/":
+					result = a/b;
+					break; 
+				default:
+					System.out.println("제대로 입력해주세요.");
+					break;
+			}
+			System.out.println(a +" "+ c +" "+ b + " = " + result);
+			
+		} catch(Exception e) {
+			System.out.println("예외 발생! : " + e); 
+		}
 	}
 }

@@ -21,25 +21,21 @@ public class Quiz_practice1 {
 		int a = new Scanner(System.in).nextInt();
 		int b = new Scanner(System.in).nextInt();
 		int c = new Scanner(System.in).nextInt();
-		int[] arr = new int[3];			//배열 생성
-		arr[0] = a;
-		arr[1] = b;
-		arr[2] = c;
 		
-		int temp;	//임시 저장할 변수
-		
-		for(int i=0; i<arr.length-1; i++) {
-			for(int j=i+1; j<arr.length; j++) {
-				if(arr[j] > arr[i]) {
-					temp = arr[j];
-					arr[j] = arr[i];
-					arr[i] = temp;
-				}
+		//총 경우의 수 : 3! = 6
+		if(a>b) {
+			if(a>c) { 
+				if(b>c) System.out.println(a + " " + b + " " + c);	//1. a>b>c
+				else System.out.println(a + " " + c + " " + b);		//2. a>c>b
 			}
-		}
-		System.out.println("큰 순서대로 정렬합니다.");
-		for(int k = 0; k < arr.length; k++ ) {
-            System.out.println(arr[k]);
-        }
+			else System.out.println(c + " " + a + " " + b);			//3. c>a>b
+		} 
+		else {
+			if(c>b) System.out.println(c + " " + b + " " + a);		//4. c>b>a
+			else {
+				if(a>c) System.out.println(b + " " + a + " " + c);	//5. b>a>c
+				else System.out.println(b + " " + c + " " + a);		//6. b>c>a
+			}
+		} 
 	}
 }
