@@ -9,13 +9,13 @@ switch문의 조건값은 long형을 제외한 정수형(byte, short, int) 또�
 
 장점 : 가독성 ↑
 
-switch(argument value_식){
-	case 조건값1 :		<< colon		| 수행문은 중복 가능
+switch(argument value_식_정수형만 가능하다!){
+	case 조건값1 :		<< colon (:)    	| 수행문은 중복 가능
 		수행문; 
-		break;
+		break;			<< 안써야하는 상황도 생긴다 : 누적하는 경우
 	case 조건값2 :
 		수행문; 
-		break;	<<
+		break;			
 	case 조건값3 :
 		수행문; 
 		break;
