@@ -5,11 +5,11 @@ import java.util.Scanner;
 /*
 [문제5]
 성적처리 프로그램 함수로 분할(분리)할 것
-입력함수 input() - 이름, 국어, 영어, 전산 점수
-총점함수 total(~~) - 총점 구하는 함수
-평균함수 average(~~) - 평균 구하는 함수
-평점(학점) grade(~~) - 학점 구하는 함수
-출력 함수 output() - 결과를 출력하는 함수
+	입력함수 input() - 이름, 국어, 영어, 전산 점수
+	총점함수 total(~~) - 총점 구하는 함수
+	평균함수 average(~~) - 평균 구하는 함수
+	평점(학점) grade(~~) - 학점 구하는 함수
+	출력 함수 output() - 결과를 출력하는 함수
 */
 
 public class Quiz_MethodScore {

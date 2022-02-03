@@ -1,11 +1,5 @@
 package ex06.oop;
-
-import java.io.ObjectInputStream.GetField;
-
-/*
- * 
- */
-
+  
 //좌표점 찍을 class인 Point
 class Point {
 //	int x, y;	//멤버변수(class 변수 O. local 변수 X)		| 앞에 아무것도 안쓰면 default 접근지정자임 | local변수는 초기화 필요. 해당 예제는 초기화 필요 X

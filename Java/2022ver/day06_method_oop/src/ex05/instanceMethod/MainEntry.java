@@ -20,5 +20,6 @@ public class MainEntry {
 	public static void main(String[] args) {
 		B b = new B();	//★★★객체 생성, 메모리에 할당, 생성자 함수 자동 호출
 		b.setData(20, 50);
+//		b.setData(3, 3);
 	}
 }
