@@ -57,8 +57,7 @@ class Sawn {
 
 public class Quiz_Sawn {
 	public static void main(String[] args) { 
-		Sawn sa = new Sawn();
-		
+		Sawn sa = new Sawn(); 
 		sa.setName("이지은");
 		sa.setJikgub("사원");
 		sa.setDep("개발부");
