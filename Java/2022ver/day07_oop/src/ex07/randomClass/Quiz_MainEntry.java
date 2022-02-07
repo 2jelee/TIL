@@ -18,9 +18,8 @@ package ex07.randomClass;
 */
 
 public class Quiz_MainEntry { 
-	String name, jikgub, dep, phoneNum;
-	
-	public Quiz_MainEntry() {
-		
+	public static void main(String[] args) {
+		Quiz_Employee emp = new Quiz_Employee();
+		emp.infoData(); 
 	}
 }

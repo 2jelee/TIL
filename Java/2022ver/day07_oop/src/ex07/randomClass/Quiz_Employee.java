@@ -1,5 +1,7 @@
 package ex07.randomClass;
 
+import java.util.Scanner;
+
 /*
 [문제] 직원(Employee) class 생성하기
 		이름, 직급, 부서, 연락처
@@ -18,9 +20,50 @@ package ex07.randomClass;
 */
 
 public class Quiz_Employee { 
-	String name, position, dep, phoneNum;
+	protected String name, position, dep, phoneNum;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getDep() {
+		return dep;
+	}
+
+	public void setDep(String dep) {
+		this.dep = dep;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	} 
 	
-	public Quiz_Employee() {
-		
+	public void infoData() {
+		Scanner sc = new Scanner(System.in);
+		//name, position, dep, phoneNum;
+		System.out.print("이름 : ");
+		setName(sc.next());
+		System.out.print("직급 : ");
+		setPosition(sc.next());
+		System.out.print("부서 : ");
+		setDep(sc.next());
+		System.out.print("연락처 : ");
+		setPhoneNum(sc.next());
 	}
 }

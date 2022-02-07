@@ -1,5 +1,7 @@
 package ex07.randomClass;
 
+import java.util.Scanner;
+
 /*
 [문제] 직원(Employee) class 생성하기
 		이름, 직급, 부서, 연락처
@@ -17,10 +19,44 @@ package ex07.randomClass;
 		메인까지 구현
 */
 
-public class Quiz_PartTime { 
-	String name, jikgub, dep, phoneNum;
+public class Quiz_PartTime extends Quiz_Employee {
+	protected int day, time;
 	
-	public Quiz_PartTime() {
-		
+	public Quiz_PartTime(String name, String dep, String phoneNum, String position){
+		super.setName(name);
+		super.setDep(dep);
+		super.setPhoneNum(phoneNum);
+		super.setPosition(position);
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+	
+	@Override
+	public void infoData() {
+//		super.infoData();
+		Scanner sc = new Scanner(System.in);
+		System.out.print("근무일수 : ");
+		setDay(sc.nextInt());
+		System.out.print("근무시간 : ");
+		setTime(sc.nextInt());
+	}
+	
+	@Override
+	public String toString() {
+		return "Quiz_PartTime [day=" + day + ", time=" + time + "]";
 	}
 }

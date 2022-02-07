@@ -1,5 +1,7 @@
 package ex07.randomClass;
 
+import java.util.Scanner;
+
 /*
 [문제] 직원(Employee) class 생성하기
 		이름, 직급, 부서, 연락처
@@ -17,10 +19,35 @@ package ex07.randomClass;
 		메인까지 구현
 */
 
-public class Quiz_Sales { 
-	String name, jikgub, dep, phoneNum;
-	
-	public Quiz_Sales() {
-		
+public class Quiz_Sales extends Quiz_Regular { 
+
+	protected double commission;
+	 
+	public Quiz_Sales(String name, String position, String dep, String phoneNum) {
+		super(name, position, dep, phoneNum);
+		super.setSalary(salary);
+		// TODO Auto-generated constructor stub
 	}
-}
+
+	public double getCommission() {
+		return commission;
+	}
+
+	public void setCommission(double commission) {
+		this.commission = commission;
+	}
+	
+	@Override
+	public String toString() {
+		return "Quiz_Sales [commission=" + commission + "]";
+	}
+
+	@Override
+	public void infoData() {
+//		super.infoData();
+		Scanner sc = new Scanner(System.in);
+		System.out.print("커미션 : ");
+		setCommission(sc.nextDouble());
+		super.setSalary((int)(super.getSalary()*1.3));
+	} 
+} 
