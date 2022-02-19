@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DynamicObject2.html</title>
+</head>
+<body>
+	<script>
+    //객체 선언
+    const student = { }
+    student.name = 'tobe_developer21'
+    student.hobby = 'cooking'
+    student.dream = 'developer'
+
+    delete student.hobby;
+		
+    //출력
+    console.log(JSON.stringify(student, null, 2));
+	</script>
+</body>
+</html>
