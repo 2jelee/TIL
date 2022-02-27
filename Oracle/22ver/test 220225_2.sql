@@ -29,12 +29,14 @@ desc c_emp4;
 insert into c_emp4 ( hiredate )
     select birthday from emp2; 
  
-select * from c_emp4;
+select * from c_emp4;  --4, 9, date, 7
+desc emp2;             --4, 
 
-
-desc emp2;
-
---rownum
+/*
+rownum : 검색 할 때 자동 행 번호 추가
+게시판 만들 때 페이징 처리 시 사용
+ex) 1 limit 7 : mySQL
+*/ 
 select * from emp;
 select rownum, ename, job, sal from emp;
 
@@ -42,13 +44,33 @@ select rownum, job from emp where rownum=3; --물리적으로 들어가 있는 field가 아�
 
 select rowid, ename, job, sal from emp;
 
+--0227추가
+select  ename, job, rownum,sal from emp;
+
+select rownum, job from emp where sal > 3000; -- rownum : 조건 적용 X
+select rownum, job sal, rowid from emp; --  where sal > 3000; 
+
+-- 가상 테이블 : dual 
+select sysdate from dual;
+-- //
 
 -----------------------Sequence-----------------------
+/*
+create sequence 시퀀스이름    --1부터 시작 1씩 증가
+    [start with 시작값]
+    [increment by 증가치]
+    [maxvalue 최대값]
+    [minvalue 최소값]
+    [cycle | nocycle ]
+    [cache | nocache ]
+*/
 drop sequence autonum;
 
 create sequence autonum; --1부터 시작해서 1씩 증가
+
  --시퀀스값 증가
 select autonum.nextval from dual;
+
  --현재 시퀀스값 가져오기
 select autonum.currval from dual;
  
@@ -70,7 +92,7 @@ insert into kosa values(seq_kosa.nextval, 'aa', 'name');
 insert into kosa values(seq_kosa.nextval, 'bb', 'name');
 insert into kosa values(seq_kosa.nextval, 'cc', 'name');
 insert into kosa values(seq_kosa.nextval, 'dd', 'name'); 
---해결 X
+--re
 
 create sequence seq_kosa
     increment by 100; --100씩 증가  
@@ -86,7 +108,7 @@ insert into kosa2 values(seq_board.nextval, 'cc', 'name');
 
 
 
----필기 못했음---
+---re---
 
 create sequence seq_jumin_no
     increment by 10
@@ -105,7 +127,7 @@ create table jumin_T(
     phone varchar2(15)
 ) segment creation immediate;
 
---segment ?
+--segment란?
 
 insert into jumin_T values (seq_jumin_no.nextval, 'aa', 111);
 insert into jumin_T values (seq_jumin_no.nextval, 'bb', 222);
@@ -200,31 +222,4 @@ revoke all on 계정명.테이블이름 from 계정명;
  drop table table명 [CASCADE CONSTRAINTS];
  */
  
- drop table dept CASCADE CONSTRAINTS;
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ drop table dept CASCADE CONSTRAINTS; 
