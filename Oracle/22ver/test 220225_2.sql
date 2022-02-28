@@ -18,7 +18,7 @@ select * from c_emp4;
 insert into c_emp4 --열의 갯수가 맞지 않으므로 error
     select ename, mar, sal, deptno from emp;
 
--- 열에 갯수에 맞춰 삽입
+--열에 갯수에 맞춰 삽입
 insert into c_emp4 (ename, mgr, sal, deptno)
     select ename, mgr, sal, deptno from emp;
 select * from c_emp4; --선택되지 않은 것은 null로 들어가 있음을 알 수 있다.
@@ -91,8 +91,7 @@ create SEQUENCE seq_kosa;
 insert into kosa values(seq_kosa.nextval, 'aa', 'name');
 insert into kosa values(seq_kosa.nextval, 'bb', 'name');
 insert into kosa values(seq_kosa.nextval, 'cc', 'name');
-insert into kosa values(seq_kosa.nextval, 'dd', 'name'); 
---re
+insert into kosa values(seq_kosa.nextval, 'dd', 'name');  
 
 create sequence seq_kosa
     increment by 100; --100씩 증가  
@@ -107,8 +106,7 @@ insert into kosa2 values(seq_board.nextval, 'bb', 'name');
 insert into kosa2 values(seq_board.nextval, 'cc', 'name');
 
 
-
----re---
+ 
 
 create sequence seq_jumin_no
     increment by 10
@@ -165,24 +163,23 @@ END;
  
  update c_emp100 set sal=1000;
  
- -----------
- update c_emp100 set sal=10 where deptno=30;
- savepoint update_sal_30;
+-----------
+-- savepoint 
+update c_emp100 set sal=10 where deptno=30;
+savepoint update_sal_30;
  
 update c_emp100 set sal=1 where deptno=30;
 
- select * from c_emp100;
- select sum(sal) from c_emp100;
- rollback to savepoint update_sal;
+select * from c_emp100;
+select sum(sal) from c_emp100;
+rollback to savepoint update_sal;
+  
+  
+commit / rollback; -- DML 명령에 적용된다.
  
- --실습 X ..
- 
- 
- commit / rollback; -- DML 명령에 적용된다.
- 
- --다른 계정에 있는 테이블 접근하기
- /*
- 현재 접속된 user 알아오기
+--다른 계정에 있는 테이블 접근하기
+/*
+현재 접속된 user 알아오기
 show user;
 - 다른계정에 있는 테이블에 접근하기 위해서는 권한설정 필요.
 1. system계정으로 접속하여 권한부여
@@ -195,31 +192,35 @@ SELECT * FROM 계정명.테이블이름;
 revoke all on 계정명.테이블이름 from 계정명;
  */
  
- show user;
+show user;
+select * from emp2;
+ 
+--kingsmile이라는 사람이 가진 권한을 smile에게 부여
+grant select on kingsmile.emp2 to smile; 
  
  
  
- ----------------------------------------
- /*
- 1. 테이블을 export 하는 방법.
-    => data를 옮기고 싶은 테이블을 dmp 파일로 만든다.
-    방법) cmd 창을연다(cmd창 위치는 상관 없다.)
-    exp id/pwd tables=(xxx,xxx,xxx ...) file=c:\aaa.dmp
-    exp id/pwd file=c:\aaa.dmp -> 모든테이블 백업
-    => xxx부분은 테이블이름으로 가지고 오고자하는 테이블 이름을콤마로 연결한다.
-    => aaa.dmp는 aaa는 원하는 파일명지정한다. c:\폴더에 만들어진다.
+----------------------------------------
+/*
+1. 테이블을 export 하는 방법.
+   => data를 옮기고 싶은 테이블을 dmp 파일로 만든다.
+   방법) cmd 창을연다(cmd창 위치는 상관 없다.)
+   exp id/pwd tables=(xxx,xxx,xxx ...) file=c:\aaa.dmp
+   exp id/pwd file=c:\aaa.dmp -> 모든테이블 백업
+   => xxx부분은 테이블이름으로 가지고 오고자하는 테이블 이름을콤마로 연결한다.
+   => aaa.dmp는 aaa는 원하는 파일명지정한다. c:\폴더에 만들어진다.
 2. 만들어진 aaa.dmp 파일을 import 하는 방법.
-    방법) cmd 창을 연다.(cmd창 위치는 상관 없다.)
-    imp id/pwd ignore=y full=y file=c:\aaa.dmp
-    imp id/pwd file=c:\aaa.dmp full=y 
-    => c:\aaa.dmp는 export로 만들 어진 파일을 가지고와
-    현재 컴퓨터의 c:\폴더에 넣어놓아야한다.
-    => 기존에 테이블이 존재 한다면 데이터가 추가 되고
-    테이블이 존재 하지 않으면 테이블을 자동으로 만들어 추가된다.
- */
- /*
- 걸려있는 제약조건까지 제거
- drop table table명 [CASCADE CONSTRAINTS];
- */
+   방법) cmd 창을 연다.(cmd창 위치는 상관 없다.)
+   imp id/pwd ignore=y full=y file=c:\aaa.dmp
+   imp id/pwd file=c:\aaa.dmp full=y 
+   => c:\aaa.dmp는 export로 만들 어진 파일을 가지고와
+   현재 컴퓨터의 c:\폴더에 넣어놓아야한다.
+   => 기존에 테이블이 존재 한다면 데이터가 추가 되고
+   테이블이 존재 하지 않으면 테이블을 자동으로 만들어 추가된다.
+*/
+/*
+걸려있는 제약조건까지 제거
+drop table table명 [CASCADE CONSTRAINTS];
+*/
  
- drop table dept CASCADE CONSTRAINTS; 
+drop table dept CASCADE CONSTRAINTS; -- 걸려있는 제약조건까지 제거
