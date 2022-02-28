@@ -100,3 +100,105 @@ Bad code를 살펴보면 Car라는 객체 안에서 carMake, carModel, carColor 
 접두어를 추가하면 맥락이 좀 더 분명해지는데 해당 객체 내 요소들은 스스로 의미가 분명하다고 판단했다.
 불필요하게 반복하지 말자.
 */
+
+
+
+---
+
+## Feedback
+
+### 2022.02.28 (월)
+
+다른 학습자(도전자)의 리팩토링 참고하기
+
+**mission1.js**
+
+```jsx
+// BAD 더러운 코드 😣
+// Hint❕ : 검색하기 쉬운 이름을 사용하세요.
+// blastOFF는 로켓 발사를 의미. 86400000은 하루의 밀리초 (milliseconds) 의미. 
+
+// What the heck is 86400000 for?
+setTimeout(blastOff, 86400000);
+
+// GOOD 😎
+// 위 코드를 깨끗하게 다시 작성해 주세요.
+const MAX_MILLISECOND = 1000;
+const MAX_SECONDS = 60;
+const MAX_MINUTES = 60;
+const MAX_HOURS = 24;
+const DAY_TO_MILLISECONDS =
+    MAX_MILLISECOND * MAX_SECONDS * MAX_MINUTES * MAX_HOURS;
+
+setTimeout(blastOff, DAY_TO_MILLISECONDS);
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+코딩을 하면서 단순 숫자나 문자열은 우리가 이름붙이기에 따라 정말 중요한 내용이 될 수도, 걸림돌이 될 수도 있다.
+이 점에서 위의 코드는 주석이 없다면 오해하기 쉬운 코드가 된다.
+실제로 주석을 읽지 않고 처음 코드를 봤을때 당연히 초(seconds)라고 생각했지, 밀리초(milliseconds)라고는 생각하지 못했다.
+해당 숫자가 밀리초인지, 초인지 주석이 없다면 판단하기 어려우며 주석의 정확성도 검증하기 어렵기 때문에
+위의 코드가 남아있을 경우 언젠가 문제가 생길 수 밖에 없는 코드라고 생각된다.
+단순 숫자나 문자는 의도를 명확하게 하기 위하여 상수를 사용하는 것이 좋겠다.
+```
+
+**mission2.js**
+
+```jsx
+// BAD 더러운 코드 😣
+// Hint❕ : 의미있는 이름을 사용해주세요.
+
+const yyyymmdstr = moment().format("YYYY/MM/DD");
+
+// GOOD 😎
+// 위 코드를 깨끗하게 다시 작성해 주세요.
+const currentDate = (formatString = 'YYYY/MM/DD') =>
+    moment().format(formatString);
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+의미없는 이름을 현재 날짜를 나타낸다는 변수로 변경하였으며, 조금 더 유연한 사용을 위해 formatString을 사용하는 함수로 변경하였다.
+오늘 날짜도 다양한 포맷으로 보여줘야할때가 있는데,
+그때마다 변수를 사용하는 것 보다는 포맷형식을 변경할 수 있도록 함수로 만들어서 쓰는게 좋을 것 같다.
++ moment는 꽤 무겁기도 하고 이제 더 이상 신규 개발없이 유지보수만 하는 레거시 프로젝트라서
+개인적으로는 dayjs사용을 추천한다.
+```
+
+**mission3.js**
+
+```jsx
+// BAD 더러운 코드 😣
+// Hint❕ : 불필요하게 반복하지 마세요.
+
+const Car = {
+  carMake: "Honda",
+  carModel: "Accord",
+  carColor: "Blue"
+};
+
+function paintCar(car, color) {
+  car.carColor = color;
+}
+
+// GOOD 😎
+// 위 코드를 깨끗하게 다시 작성해 주세요.
+class Car {
+    constructor(make, model, color) {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+    }
+
+    paint(color) {
+        this.color = color;
+    }
+}
+const car = new Car('Honda', 'Accord', 'Blue');
+car.paint('red');
+console.log(car);
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+// Car라는 개념으로 Car와 paintCar를 묶을 수 있으므로, 해당 코드는 클래스로 표현하는 것이 좋을 것 같다
+// Car라는 Object의 속성들은 일반적으로 Car의 속성을 나타낸다고 생각되게 때문에 굳이 car라는 접두어를 사용해서
+// 속성을 표현하는 것은 불필요한 반복이라고 생각된다.
+```
+
+#노마드코더 #북클럽 #노개북
