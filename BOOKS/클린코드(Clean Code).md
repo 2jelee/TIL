@@ -1003,7 +1003,85 @@ Bad code를 살펴보면 Car라는 객체 안에서 carMake, carModel, carColor 
 
 ### 2022.02.28 (월)
 
-다른 학습자(도전자)의 리팩토링 참고하기
+다른 학습자(도전자)의 리팩토링 살펴보기
+
+### 👩‍💻 **학습자 1**
+
+**mission1.js**
+
+```jsx
+// BAD 더러운 코드 😣
+// Hint❕ : 검색하기 쉬운 이름을 사용하세요.
+// blastOFF는 로켓 발사를 의미. 86400000은 하루의 밀리초 (milliseconds) 의미. 
+
+// What the heck is 86400000 for?
+
+setTimeout(blastOff, 86400000);
+
+// GOOD 😎
+// 위 코드를 깨끗하게 다시 작성해 주세요.
+
+const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
+setTimeout(blastOff, MILLISECONDS_PER_DAY);
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+
+Declare them as capitalized named constants.
+```
+
+**mission2.js**
+
+```jsx
+// BAD 더러운 코드 😣
+// Hint❕ : 의미있는 이름을 사용해주세요.
+
+const yyyymmdstr = moment().format("YYYY/MM/DD");
+
+// GOOD 😎
+// 위 코드를 깨끗하게 다시 작성해 주세요.
+
+const currentDate = moment().format("YYYY/MM/DD");
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+
+use meaningful name!
+```
+
+**mission3.js**
+
+```jsx
+// BAD 더러운 코드 😣
+// Hint❕ : 불필요하게 반복하지 마세요.
+
+const Car = {
+  carMake: "Honda",
+  carModel: "Accord",
+  carColor: "Blue"
+};
+
+function paintCar(car, color) {
+  car.carColor = color;
+}
+
+// GOOD 😎
+// 위 코드를 깨끗하게 다시 작성해 주세요.
+
+const Car = {
+  make: "Honda",
+  model: "Accord",
+  color: "Blue"
+};
+
+function paintCar(car, color) {
+  car.color = color;
+}
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+
+Don't add unneeded context
+```
+
+### 👨‍💻 **학습자 2**
 
 **mission1.js**
 
@@ -1260,5 +1338,6 @@ __ 들여쓰기
         
         고급언어인 C 언어의 경우에는 사람이 이해하기 편한 문법구조로 되어 있기도 하지만 기계어의 명령 구조와 유사한 문법들도 가지고 있어서 '중급 언어(Middle-Level Language)'라고 부르기도 한다.
         
+-----
 
 #노마드코더 #북클럽 #노개북
