@@ -1487,4 +1487,104 @@ __ 활성 레코드
 
 -----
 
+## **DAY 10 (2022.03.02)**
+
+## **복습 & Quiz**
+
+`📝 오늘 읽은 범위`
+
+복습
+
+`💡 Quiz`
+
+- 퀴즈를 풀면서 복습해봐요!
+- Quiz is based on Clean Code Chapter 4. 5. and 6.
+- 퀴즈는 단 1회만 응할 수 있습니다.
+
+****QUESTION 1 OF 10****
+
+```
+1. Is better to write code that does not need comments.
+```
+
+⇒ Answer : False
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f3094c01-ad09-4b0f-9fc9-73b2ce1a4acb/Untitled.png)
+
+****QUESTION 2 OF 10****
+
+```
+2. We write comments when we fail to communicate using only our code.
+```
+
+⇒ Answer : True
+
+****QUESTION 3 OF 10****
+
+```
+3. We should try to minimize comments as much as possible by writing better code.
+```
+
+⇒ Answer : True
+
+****QUESTION 4 OF 10****
+
+```
+4. The best place to find information about the code is should be the code itself rather than comments.Where should we declare our variables in a function?
+```
+
+⇒ Answer : True
+
+****QUESTION 5 OF 10****
+
+```
+5. Where should we declare our variables in a function?
+```
+
+⇒ Answer : At the top of the function.
+
+****QUESTION 6 OF 10****
+
+```
+6. If one function calls another, they should be vertically close.
+```
+
+⇒ Answer : True
+
+****QUESTION 7 OF 10****
+
+```
+7. A function that is called should be below a function that does the calling.
+```
+
+⇒ Answer : True
+
+****QUESTION 8 OF 10****
+
+```
+8. What does DTO mean?
+```
+
+⇒ Answer : Data Transfer Object
+
+****QUESTION 9 OF 10****
+
+```
+9. When do we use DTOs?
+```
+
+⇒ Answer : When working with DBs or parsing WebSocket messages.
+
+****QUESTION 10 OF 10****
+
+```
+10. Objects expose functions to operate in their data.
+```
+
+⇒ Answer : True
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/236a9c5c-e5f5-4bcc-807e-7fb421016de3/Untitled.png)
+
+------
+
 #노마드코더 #북클럽 #노개북
