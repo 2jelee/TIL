@@ -1,5 +1,8 @@
 package connectionUtil;
 
+import java.io.FileReader;
+import java.util.Properties;
+
 /*
 [순서]
 1. 드라이버 로드
@@ -9,13 +12,26 @@ package connectionUtil;
  */  
 public class GiftCRUD {
 	public static void main(String[] args) throws Exception {
-//		select
+		static {
+//			Properties properties = new Properties();
+//			Reader reader;
+//			
+//			try {
+//				reader = new FileReader
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//			}
+		}
+//		select()
+//		selectAll()
 		
 //		insert
 		
 //		update
 		
 //		delete
+		
+//		종료
 		
 //		menu
 	}
