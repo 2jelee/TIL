@@ -1,5 +1,7 @@
 package ex01.jdbc;
 
+// import 시 user패키지(유저가 생성한)가 우선순위가 높으므로 위에 선언하자. 
+import connUtil.*;
 import java.sql.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class JDBCProjectEx1 extends JFrame implements ActionListener{
+
+public class JDBCProjectEx2_DBSetting extends JFrame implements ActionListener{
 	// [component 객체 선언]
 	JPanel panWest, panSouth;  //왼쪽텍스트필드, 아래쪽 버튼
 	JPanel p1,p2,p3,p4,p5; 
@@ -25,7 +28,9 @@ public class JDBCProjectEx1 extends JFrame implements ActionListener{
 	int cmd = NONE;
 	
 	// [생성자 함수] - 멤버변수 초기화 담당
-	public JDBCProjectEx1(){
+	public JDBCProjectEx2_DBSetting(){
+		setTitle("고객 정보 입력 폼");
+		
 		//component 등록
 		panWest = new JPanel(new GridLayout(5, 0)); //행:5 열:0
 		p1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -45,7 +50,7 @@ public class JDBCProjectEx1 extends JFrame implements ActionListener{
 		
 		p4 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		p4.add(new JLabel("전화번호"));
-		p4.add(txtName = new JTextField(12));
+		p4.add(txtPhone = new JTextField(12));
 		panWest.add(p4);
 		
 		p5 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -78,7 +83,58 @@ public class JDBCProjectEx1 extends JFrame implements ActionListener{
 		//setBounds(100, 100, 700, 300); x좌표 100, y좌표 100, width:700, height:300
 		setBounds(100, 100, 700, 300); //setSize(W,H);   pack(); 
 		setVisible(true);		
+		
+		dbConnect();
 	} //constuctor end
+	
+	
+	
+	/*******************************************************************************/
+	//DB Setting
+	Connection conn;
+	Statement stmt;
+	PreparedStatement pstmtInsert, pstmtDelete;
+	PreparedStatement pstmtSelect, pstmtScroll;
+	PreparedStatement pstmtSearch, pstmtSearchScroll; //pstmtSearch : 조건에 의한 검색
+	
+	private String sqlInsert = "INSERT INTO Customers values(?, ?, ?, ?)";
+	private String sqlDelete = "DELETE FROM customers WHERE code = ?";
+	private String sqlSelect = "SELECT * FROM customers"; 
+	private String sqlSearch = "SELECT * FROM customers WHERE name = ?";
+
+	
+	public void dbConnect() {
+		try {
+			// DB 연결
+			conn = DBConnection.getConnection();
+			
+			//prepareStatement는 인자 반드시 필요
+			pstmtInsert = conn.prepareStatement(sqlInsert);
+			pstmtDelete = conn.prepareStatement(sqlDelete);
+			pstmtSelect = conn.prepareStatement(sqlSelect);
+			pstmtSearch = conn.prepareStatement(sqlSearch);
+			
+			/*
+			 * ResultSet.CONCUR_READ_ONLY : 읽기 전용
+			 * ResultSet.CONCUR_UPDATABLE : resultset object의 변경이 가능 <=> read_only
+			 */
+			pstmtScroll = conn.prepareCall(sqlSelect, 
+											ResultSet.TYPE_SCROLL_SENSITIVE, //커서 이동을 자유롭게 하고 업데이트 내용 반영
+											ResultSet.CONCUR_UPDATABLE); 
+			pstmtSearchScroll = conn.prepareCall(sqlSearch,
+												ResultSet.TYPE_SCROLL_SENSITIVE, 
+												ResultSet.CONCUR_UPDATABLE);  
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+
+	/*******************************************************************************/
+	
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) { // Button Click Event 처리
@@ -131,6 +187,7 @@ public class JDBCProjectEx1 extends JFrame implements ActionListener{
 				txtPhone.setEditable(true);
 				break;
 			case DELETE :
+				txtNo.setEditable(true);
 			case SEARCH :
 				txtName.setEditable(true);
 				break;
@@ -176,10 +233,6 @@ public class JDBCProjectEx1 extends JFrame implements ActionListener{
 	}//setButton end
 
 	public static void main(String[] args) {
-		new JDBCProjectEx1();
+		new JDBCProjectEx2_DBSetting();
 	}
-}
-
-
-
-
+} 
