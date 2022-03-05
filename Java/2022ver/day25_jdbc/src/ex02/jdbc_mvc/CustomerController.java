@@ -11,31 +11,27 @@ import java.util.Scanner;
 
 import connUtil.DBConnection;
 
-public class GiftController {
+public class CustomerController {
 
 	static Scanner sc = new Scanner(System.in);
 	static Statement stmt = null;
 	static ResultSet rs = null;
 	static Connection conn = null;
 	
-	//for update
 	static PreparedStatement pstmt = null;
 	
-	//연결
 	public static void connect() {
 		try {
-			conn = DBConnection.getConnection(); //연결 끝 => Connection 객체가 가진 getConnecton 가져와라.
-			stmt = conn.createStatement(); //완료하겠다, rollback도 하겠다는 의미
-			conn.setAutoCommit(false); //자동 commit 끄기
+			conn = DBConnection.getConnection();  
+			stmt = conn.createStatement();  
+			conn.setAutoCommit(false); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	//닫기
+	 
 	public static void close() {
-		try {
-			//작은 순서대로 닫기
+		try { 
 			if(rs != null) {
 				rs.close();
 			}
@@ -45,7 +41,7 @@ public class GiftController {
 			if(pstmt != null) {
 				pstmt.close();
 			}
-			if(conn != null) { //connection은 가장 나중에 닫는다. => 연결을 끊으므로
+			if(conn != null) {  
 				rs.close();
 			}
 		} catch (Exception e) {
@@ -54,11 +50,10 @@ public class GiftController {
 	}
 	
 	public static void menu() throws SQLException {
-		Gift gift = new Gift(); //Gift.java의 객체 생성
+		Customer customer = new Customer();
 		while(true) {
 			System.out.println("\t 0. ROLLBACK ");
-			DBConnection.menu();
-//			System.out.println("메뉴를 선택하세요.");
+			DBConnection.menu(); 
 			
 			switch (sc.nextInt()) {
 			case 0:
@@ -66,53 +61,50 @@ public class GiftController {
 				System.out.println("안하시려면 ROLLBACK 됩니다.");
 				if(sc.next().equalsIgnoreCase("Y")) {
 					commit();
-					selectAll(gift.getClassName());
+					selectAll(customer.getClassName());
 				} else {
 					rollback();
-					selectAll(gift.getClassName());
+					selectAll(customer.getClassName());
 				}
 				break;
 			case 1:
-				selectAll(gift.getClassName()); //화면을 먼저 보여줘
+				selectAll(customer.getClassName());
 				insert();
-				selectAll(gift.getClassName()); //화면을 보여줘
+				selectAll(customer.getClassName());
 				break;
 			case 2:
 				update();
 				break;
 			case 3:
-				selectAll(gift.ClassName);
+				selectAll(customer.ClassName);
 				break;
 			case 4:
-				update();
+				selectCon();
 				break;
 			case 5:
-				update();
-				break;
-				
-				
+				delete();
+				break; 
 			case 6:
 				close();
 				System.out.println("프로그램 종료합니다.");
-				System.exit(0); // 종료
+				System.exit(0);  
 
 			default:
 				break;
 			}
 		}
 	}
-
-	//selectAll
+ 
 	public static void selectAll(String className) throws SQLException {
-		rs = stmt.executeQuery("SELECT * FROM "+ className); //테이블명으로 넣어놨으므로 
+		rs = stmt.executeQuery("SELECT * FROM "+ className);  
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int count = rsmd.getColumnCount();
 		
 		while(rs.next()) {
-			for (int i = 1; i <= count; i++) { //why? 테이블은 무조건 1부터 시작 => 각 타입별로 출력하기
-				switch (rsmd.getColumnType(i)) { //1~4까지
-				case Types.NUMERIC: //Types. 열거형
-				case Types.INTEGER: //Types.
+			for (int i = 1; i <= count; i++) {  
+				switch (rsmd.getColumnType(i)) {  
+				case Types.NUMERIC:  
+				case Types.INTEGER:  
 					System.out.println(rsmd.getColumnName(i)+ " : " + rs.getInt(i)+ " ");
 					break;
 				case Types.FLOAT: //Types.
@@ -137,25 +129,23 @@ public class GiftController {
 	}
 	
 	private static void insert() {
-		System.out.println("GNO : ");
-		String gno = sc.next();
-		System.out.println("GNAME : ");
-		String gname = sc.next();
-		System.out.println("G_START : ");
-		String g_start = sc.next();
-		System.out.println("G_END : ");
-		String g_end = sc.next();
+		System.out.println("code : ");
+		String code = sc.next();
+		System.out.println("name : ");
+		String name = sc.next();
+		System.out.println("email : ");
+		String email = sc.next();
+		System.out.println("phone : ");
+		String phone = sc.next();
 		
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO gift values(?, ?, ?, ?)");
+			pstmt = conn.prepareStatement("INSERT INTO customers values(?, ?, ?, ?)");
 			
-			pstmt.setNString(1, gno);
-			pstmt.setNString(2, gname);
-			pstmt.setNString(3, g_start);
-			pstmt.setNString(4, g_end);
-			
-			//반드시 DB저장을 위해 완료시켜주자.
-//			pstmt.executeUpdate();
+			pstmt.setNString(1, code);
+			pstmt.setNString(2, name);
+			pstmt.setNString(3, email);
+			pstmt.setNString(4, phone);
+			 
 			int result = pstmt.executeUpdate();
 			System.out.println(result+"개 데이터가 추가되었습니다.");
 		} catch (Exception e) {
@@ -164,28 +154,28 @@ public class GiftController {
 	}
 
 	private static void update() {
-		System.out.println("바꿀 상품은?");
-		System.out.print("GNO : ");
-		String g_n = sc.next();
+		System.out.println("바꿀 고객의 번호는?");
+		System.out.print("번호 : ");
+		String phone = sc.next();
 		
 		try { 
 			stmt = conn.createStatement();
 			String sql;
-			System.out.print("바꿀 상품의 정보는? 1. 상품명 | 2. 최저가 | 3. 최고가");
+			System.out.print("바꿀 고객의 정보는? 1. 고객고유번호 | 2. 이름 | 3. 이메일");
 			switch (sc.nextInt()) {
 			case 1:
-				System.out.println("GNAME의 정보");
-				String gname = sc.next();			
-				sql = ("UPDATE gift SET gname="+gname+" WHERE gno="+ g_n);
+				System.out.println("code의 정보");
+				String code = sc.next();			
+				sql = ("UPDATE customers SET code="+code+" WHERE phone="+ phone);
 				break;
 			case 2:
-				System.out.println("최저가에 넣을 정보");
-				String g_start = sc.next();
-				sql = ("UPDATE gift SET g_start="+g_start+"WHERE gno=" + g_n);
+				System.out.println("고객의 정보");
+				String name = sc.next();
+				sql = ("UPDATE customers SET name="+name+"WHERE phone=" + phone);
 			case 3:
-				System.out.println("최고가에 넣을 정보");
-				String g_end = sc.next();
-				sql = ("UPDATE gift SET g_end="+g_end+" WHERE gno="+g_n);
+				System.out.println("고객의 이메일 정보");
+				String email = sc.next();
+				sql = ("UPDATE gift SET email="+email+" WHERE phone="+phone);
 			default:
 				break;
 			}
