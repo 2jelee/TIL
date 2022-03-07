@@ -1977,4 +1977,104 @@ F.I.R.S.T.
 
 ---
 
+## **DAY 13 (2022.03.07)**
+
+## **복습 & Quiz 2**
+
+`📝 오늘 읽은 범위`
+
+복습
+
+`💡 Quiz`
+
+- 퀴즈를 풀면서 복습해봐요!
+- Quiz is based on Clean Code Chapter 7 and 9
+- 퀴즈는 단 1회만 응할 수 있습니다.
+
+****QUESTION 1 OF 10****
+
+```
+1. What is better, to throw Exceptions or return error codes?
+```
+
+⇒ Answer : Exceptions
+
+****QUESTION 2 OF 10****
+
+```
+2. When should we write try/catch/finally?
+```
+
+⇒ Answer : First, before we write any code.
+
+****QUESTION 3 OF 10****
+
+```
+3. What kind of information should our error messages have?
+```
+
+⇒ Answer : The operation that failed, type of failure, more information about the error.
+
+****QUESTION 4 OF 10****
+
+```
+4. Why shouldn’t we return ‘null’ from methods/functions?
+```
+
+⇒ Answer : We might forget to check for null and can easily have null pointer exceptions.
+
+****QUESTION 5 OF 10****
+
+```
+5. Is passing ‘null’ as an argument a good practice?
+```
+
+⇒ Answer : No
+
+****QUESTION 6 OF 10****
+
+```
+6. Having dirty tests can be worse than having no tests at all.
+```
+
+⇒ Answer : True
+
+****QUESTION 7 OF 10****
+
+```
+7. Test code is as important as production code.
+```
+
+⇒ Answer : True
+
+****QUESTION 8 OF 10****
+
+```
+8. How many concepts should a test function test?
+```
+
+⇒ Answer : One
+
+****QUESTION 9 OF 10****
+
+```
+9. Should tests depend on each other
+```
+
+⇒ Answer : No
+
+****QUESTION 10 OF 10****
+
+```
+10. What output should a test have?
+```
+
+⇒ Answer : Boolean
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c9367369-5d23-4a63-bc1a-3d866411a1e7/Untitled.png)
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/59458846-fa9e-4f9c-a4e9-871a5f29a0a3/Untitled.png)
+
+---
+
 #노마드코더 #북클럽 #노개북
