@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table 만들기 / tag - table, tr, td, th </title>
+    <style type="text/css">
+        body {
+            background-color: lightblue;
+        }
+        /* .table {
+            border: 1px dotted black;
+            width: 650px;
+            height: 100px;
+        }  */
+        .table, th, td {
+            border: 1px dotted black;
+            width: 650px;
+            height: 100px;
+            border-collapse: collapse;
+            text-align: center;
+        } 
+    </style>
+</head>
+
+<body>
+<!-- 셀과 글자와의 간격, cell과 cell간의 간격 -->
+<!-- <table class="table" cellpadding="20" cellspacing="10"> -->
+<table>
+    <td>Title1</td> 
+    <td>Title2</td> 
+    <td>Title3</td>
+    <tr>
+        <td colspan="2">1</td></td> <!-- 열과 열 합치기 : colspan--> 
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td colspan="2">8</td>
+    </tr>
+</table>
+<hr>
+<table>
+    <td>Title1</td> 
+    <td>Title2</td> 
+    <td>Title3</td>
+    <tr>
+        <td>1</td>
+        <td rowspan="2">2</td>  
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td> 
+        <td rowspan="2">6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>8</td> 
+    </tr>
+</table>
+<hr>
+<table border="3" width="350px" align="center">
+    <!-- width 단위 : 비율 = % , pixel = px -->
+    <th>Title1</th>
+    <th>Title2</th>
+    <th>Title3</th>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> tag - table , image </title>
+</head>
+<body>
+<!-- 상대경로 -->
+<img src="house.gif" alt="우리집" width="100" height="100" />
+
+<!-- 
+절대경로 : 
+. = 나 자신
+.. = 상위로 올라간다.
+-->
+<a href="http://www.naver.com">
+	<img src="../images/Flowser2.jpg" alt="꽃2">
+</a>
+
+<a href="">
+	<img src="../images/Flowser2.jpg" alt="꽃2_copy">
+</a>
+
+<img src="C:00DouZone_th2\\03HTML\\images\\Flowser1.jpg" alt="꽃1" />
+<img src="/images/bullet.gif" alt="bullet" />
+
+<hr>
+	<p>frame 속성의 예입니다.</p>
+
+	<table frame="hsides" border="3">
+		<tr>
+			<td>First row</td>
+		</tr>
+	</table>
+	<br />
+	<table frame="vsides" border="3">
+		<tr>
+			<td>First row</td>
+		</tr>
+	</table>
+
+	<p>rule 속성은 Internet Explorer에서는 적용되지 않을 수 있습니다.</p>
+
+	<p>다음은 rule 속성의 예입니다.</p>
+	<p>Table with rules="rows":</p>
+	<table rules="rows"> <!-- Firefox, Opera 잘 나옴. -->
+		<tr>
+			<th>Month</th>
+			<th>Savings</th>
+		</tr>
+		<tr>
+			<td>January</td>
+			<td>$100</td>
+		</tr>
+	</table>
+
+	<p>Table with rules="all":</p>
+	<table rules="all">
+		<tr>
+			<th>Month</th>
+			<th>Savings</th>
+		</tr>
+		<tr>
+			<td>January</td>
+			<td>$100</td>
+		</tr>
+	</table>
+
+</body>
+</html>
+
+<p>frame 속성의예입니다.</p>
+
+<table frame="hsides" border="3">
+	<tr>
+		<td>First row</td>
+	</tr>
+</table>
+<br />
+<table frame="vsides" border="3">
+	<tr>
+		<td>First row</td>
+	</tr>
+</table>
+
+<p>rule 속성은Internet Explorer에서는 적용되지않을수있습니다.</p>
+
+<p>다음은rule 속성의예입니다.</p>
+<p>Table with rules="rows":</p>
+<table rules="rows">
+	<tr>
+		<th>Month</th>
+		<th>Savings</th>
+	</tr>
+	<tr>
+		<td>January</td>
+		<td>$100</td>
+	</tr>
+</table>
+
+<p>Table with rules="all":</p>
+<table rules="all">
+	<tr>
+		<th>Month</th>
+		<th>Savings</th>
+	</tr>
+	<tr>
+		<td>January</td>
+		<td>$100</td>
+	</tr>
+</table>
+
+</body>
+</html>
