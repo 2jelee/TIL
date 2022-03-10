@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex10_input.html</title>
+</head>
+<body>
+  <h3>input type 알아보기</h3>
+  <form action="../jsp/result.jsp" method="get">
+    아이디 : <input type="text" name="name" id="name" placeholder="아이디를 입력하시오." required="required" autofocus="autofocus"> <br>
+    비밀번호 : <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하시오"> <br>
+    hidden : <input type="hidden"> <br>
+    search : <input type="search" placeholder="검색어를 입력하세요"> <br>
+    tel : <input type="tel" placeholder="연락처를 입력하세요"> <br>
+    url : <input type="url"> <br>
+    email : <input type="email"> <br>
+    number : <input type="number"> <br>
+    time : <input type="time"> <br>
+    date : <input type="date"> <br>
+    text(size, maxlength): <input type="text" size="12" maxlength="3"> <br>
+
+    range : <input type="range" max="10" min="0"> <br>
+    radio : 
+    <label><input type="radio">여자 <input type="radio">남자</label>
+    checkbox : <input type="checkbox">
+
+    <br>
+    <input type="submit" value="전송">
+    <input type="reset" value="취소">
+  </form>
+</body>
+</html>
