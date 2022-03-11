@@ -2301,4 +2301,577 @@ SRP는 객체 지향 설계에서 더욱 중요한 개념이다. 또한 이해�
 
 ---
 
+## **DAY 15 (2022.03.11)**
+
+### **복습 & Mission 3**
+
+`📝 오늘 책 읽기`
+
+복습
+
+`📝 오늘의 과제 - Mission`
+
+- 3가지 예제 만들기
+
+## **Final Mission**
+
+- 본인이 잘 이해했는지 확인하는 가장 정확한 방법은 가르쳐 보는 것!
+- 클린코드 읽으며 뼈맞았던 내용 중 3가지 원칙을 고르고, 이를 따르는 예시를 만들면 됩니다!
+- (1) **[여기 Replit 링크를 클릭하여](https://replit.com/@LynnPark1/Final-mission#README.md)** 템플릿을 확인한다.
+- (2) 본인이 가장 잘하는 언어로(JS, Python 등) 예시를 만든다.
+- (3) 작성한 Replit 링크를 아래 제출한다.
+- **[Replit 사용방법](https://nomadcoders.co/faq/challenge/replit)**을 참고하세요.
+
+`💡 Final mission`
+
+### 1. 원칙 1
+
+원칙_1.js → 원칙_1.java
+
+```java
+
+/*
+본인이 가장 잘하는 언어로(JS, Python 등등) 더러운 코드를 깨끗한 코드로 리팩토링하는 예시를 만들어보세요. 
+현재 파일은 JS 로 되어있지만. 자유롭게 다른 언어로 변경해주세요. 
+*/
+
+// 원칙 1. 
+2장. 의미있는 이름
+
+// Before 😣
+package magicnumber.before;
+
+public class Robot {
+	
+	private String name;
+	
+	public Robot(String name) {
+		this.name = name;
+	}
+	
+	public void order(int command) {
+		
+		if(command == 0) {  // 걷기
+			System.out.println("walk");
+		}
+		else if(command == 1) {  //멈추기 
+			System.out.println("stop");
+		}
+		else if(command == 2) { // 점프 
+			System.out.println("jump");
+		}
+		else {
+			System.out.println("error");
+		}
+	}
+}
+
+/***************************************************************/  
+
+package magicnumber.before;
+
+public class RobotMain {
+
+	public static void main(String[] args) {
+
+		Robot robot = new Robot("2jelee");
+		robot.order(0);
+		robot.order(1);
+		robot.order(2);
+	}
+}
+
+// 무엇을 고치려고 하는지, 고치려는 문제가 무엇인지 알려주세요.
+문제점
+1. 의미를 알기 어렵다
+2. 수정이 어렵다. 
+  
+
+// After 😎
+package magicnumber.after;
+
+public class Robot {
+	
+	private String name;
+	
+	public enum Command {
+		WALK, 
+		STOP,
+		JUMP,
+	};
+	
+	public Robot(String name) {
+		this.name = name;
+	}
+	
+	public void order(Robot.Command command) {
+		
+		if( command == Command.WALK ) {   
+			System.out.println("walk");
+		}
+		else if( command == Command.STOP) {   
+			System.out.println("stop");
+		}
+		else if(command == Command.JUMP ) {  
+			System.out.println("jump");
+		}
+		else {
+			System.out.println("error");
+		}
+	}
+}
+
+/***************************************************************/  
+
+package magicnumber.after;
+
+public class RobotMain {
+
+	public static void main(String[] args) {
+
+		Robot robot = new Robot("2jelee");
+		robot.order(Robot.Command.WALK);
+		robot.order(Robot.Command.STOP);
+		robot.order(Robot.Command.JUMP);
+	}
+
+}
+  
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+리팩토링 결과
+- 숫자를 상수로 바꾸기
+
+```
+
+### 2. 원칙 2
+
+원칙_2.js → 원칙_2.java
+
+```java
+
+/*
+본인이 가장 잘하는 언어로(JS, Python 등등) 더러운 코드를 깨끗한 코드로 리팩토링하는 예시를 만들어보세요. 
+현재 파일은 JS 로 되어있지만. 자유롭게 다른 언어로 변경해주세요. 
+*/
+
+// 원칙 2. 
+6장. 객체와 자료 구조 + 10장. 클래스
+
+// Before 😣
+Customer.java
+
+package fatorymethod.before;
+
+public class Customer {
+
+	private int customerType;
+	private String customerName;
+	private String customerGrade;
+	private int bonusPoint;
+	
+	public static final int BRONZE_CUSTOMER = 0; 
+	public static final int SILVER_CUSTOMER = 1;
+	public static final int GOLD_CUSTOMER = 2;
+	
+	
+	Customer( int customerType, String customerName){
+		this.customerType = customerType;
+		this.customerName = customerName;
+	}
+	
+	public String getCustomerGrade() {
+		
+		switch(customerType) {
+			case BRONZE_CUSTOMER : return "BRONZE";
+			case SILVER_CUSTOMER : return "SILVER";
+			case GOLD_CUSTOMER : return "GOLD";
+			default : return null;
+		}
+	}
+	
+	public int calcPrice(int price) {
+		switch(customerType) {
+			case BRONZE_CUSTOMER :
+				return price;
+			case SILVER_CUSTOMER : 
+				return price - (int)(price * 0.05);
+			case GOLD_CUSTOMER :
+				return price - (int)(price * 0.1);
+			default : return price;
+		}
+	}
+	
+	public int calcBonusPoint(int price) {
+		switch(customerType) {
+			case BRONZE_CUSTOMER :
+				return bonusPoint += (price * 0.01);
+			case SILVER_CUSTOMER : 
+				return bonusPoint += (price * 0.05);
+			case GOLD_CUSTOMER :
+				return bonusPoint += (price * 0.1);
+		default : return price;
+		}
+	}
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+	
+	public String toString() {
+		return customerName + "님의 멤버십 등급은 " + getCustomerGrade() + "입니다.";
+	}
+}
+
+/***************************************************************/  
+
+Main.java
+
+package fatorymethod.before;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Customer bronzeCustomer = new Customer(Customer.BRONZE_CUSTOMER, "Tomas");
+		Customer silverCustomer = new Customer(Customer.SILVER_CUSTOMER, "Alice");
+		Customer goldCustomer = new Customer(Customer.GOLD_CUSTOMER, "Edward");
+		
+		int price = 10000;
+		
+		System.out.println(bronzeCustomer);
+		System.out.println(bronzeCustomer.getCustomerName() + ": price :" + bronzeCustomer.calcPrice(price) 
+		           + ": point :" + bronzeCustomer.calcBonusPoint(price));
+		System.out.println(silverCustomer);
+		System.out.println(silverCustomer.getCustomerName() + ": price :" + silverCustomer.calcPrice(price) 
+        + ": point :" + silverCustomer.calcBonusPoint(price));
+
+		System.out.println(goldCustomer);
+		System.out.println(goldCustomer.getCustomerName() + ": price :" + goldCustomer.calcPrice(price) 
+        + ": point :" + goldCustomer.calcBonusPoint(price));
+	}
+}
+
+// 무엇을 고치려고 하는지, 고치려는 문제가 무엇인지 알려주세요.
+문제점
+1. new 키워드로 객체 생성 시 클래스의 이름 노출
+2. 생성되는 클래스의 이름을 숨기거나 상황에 따라 인스턴스의 생성이 가능하도록 할 때
+3. 컴파일 시간이 아닌, 실행 시간에 생성되는 인스턴스가 결정되어야 할 때
+  
+
+// After 😎
+Customer.java
+
+package factorymethod.after2;
+
+public abstract class Customer {
+
+	private String customerName;
+	protected int bonusPoint;
+
+	
+	protected Customer( String customerName){
+		this.customerName = customerName;
+	}
+	
+	public abstract String getCustomerGrade();
+	public abstract int calcPrice(int price);
+	public abstract int calcBonusPoint(int price);
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+	
+	public String toString() {
+		return customerName + "님의 멤버십 등급은 " + getCustomerGrade() + "입니다.";
+	}
+}
+  
+/***************************************************************/  
+
+BronzeCustomer.java
+
+package factorymethod.after2;
+
+public class BronzeCustomer extends Customer{
+
+	
+	private BronzeCustomer( String customerName) {
+		super( customerName);
+	}
+	
+	public static BronzeCustomer create(String customerName) {
+		return new BronzeCustomer(customerName);
+	}
+
+	public int calcPrice(int price) {
+		return price;
+	}
+
+	public String getCustomerGrade() {
+		return "BRONZE";
+	}
+	
+	public int calcBonusPoint(int price) {
+		return bonusPoint += (price * 0.01);
+	}
+}
+
+/***************************************************************/  
+
+SilverCustomer.java
+
+public class SilverCustomer extends Customer{
+
+	SilverCustomer(String customerName) {
+		super(customerName);
+	}
+
+	public static SilverCustomer create(String customerName) {
+		return new SilverCustomer(customerName);
+	}
+	
+	@Override
+	public String getCustomerGrade() {
+		return "SILVER";
+	}
+
+	@Override
+	public int calcPrice(int price) {
+		return price - (int)(price * 0.05);
+	}
+
+	@Override
+	public int calcBonusPoint(int price) {
+		return bonusPoint += (price * 0.05);
+	}
+
+}
+
+/***************************************************************/  
+
+Goldcustomer.java
+
+package factorymethod.after2;
+
+public class GoldCustomer extends Customer{
+
+	private GoldCustomer(String customerName) {
+		super(customerName);
+	}
+
+	public static GoldCustomer create(String customerName) {
+		return new GoldCustomer(customerName);
+	}
+	
+	@Override
+	public String getCustomerGrade() {
+		return "GOLD";
+	}
+
+	@Override
+	public int calcPrice(int price) {
+		return price - (int)(price * 0.1);
+	}
+
+	@Override
+	public int calcBonusPoint(int price) {
+		return bonusPoint += (price * 0.1);
+	}
+
+}
+
+/***************************************************************/  
+
+Main.java
+
+package factorymethod.after2;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Customer bronzeCustomer = BronzeCustomer.create("Tomas");
+		Customer silverCustomer = SilverCustomer.create("Alice");
+		Customer goldCustomer = GoldCustomer.create("Edward");
+		
+		int price = 10000;
+		
+		System.out.println(bronzeCustomer);
+		System.out.println(bronzeCustomer.getCustomerName() + ": price :" + bronzeCustomer.calcPrice(price) 
+		           + ": point :" + bronzeCustomer.calcBonusPoint(price));
+		System.out.println(silverCustomer);
+		System.out.println(silverCustomer.getCustomerName() + ": price :" + silverCustomer.calcPrice(price) 
+        + ": point :" + silverCustomer.calcBonusPoint(price));
+
+		System.out.println(goldCustomer);
+		System.out.println(goldCustomer.getCustomerName() + ": price :" + goldCustomer.calcPrice(price) 
+        + ": point :" + goldCustomer.calcBonusPoint(price));
+
+	}
+}
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+리팩토링 결과
+단계 : 1. 팩토리 메서드 구현 -> 2. 하위 클래스로 분리
+```
+
+### 3. 원칙 3
+
+원칙_3.js → 원칙_3.java
+
+```java
+
+/*
+본인이 가장 잘하는 언어로(JS, Python 등등) 더러운 코드를 깨끗한 코드로 리팩토링하는 예시를 만들어보세요. 
+현재 파일은 JS 로 되어있지만. 자유롭게 다른 언어로 변경해주세요. 
+*/
+
+// 원칙 3. 
+7장. 오류처리
+
+// Before 😣
+Password.java
+
+public class Password {
+
+		private String password;
+		
+		public String getPassword(){
+			return password;
+		}
+		
+		public void setPassword(String password) {
+			
+			if(password == null){
+				 System.out.println( "비밀번호는 null 일 수 없습니다");
+				 return;
+			}
+			else if( password.length() < 5){
+				System.out.println( "비밀번호는 5자 이상이어야 합니다.");
+				return;
+			}
+			else if (password.matches("[a-zA-Z]+")){
+				System.out.println("비밀번호는 숫자나 특수문자를 포함해야 합니다.");
+				return;
+			}
+			else {
+				System.out.println("오류 없음");
+			}
+			
+			this.password = password;
+		}
+}
+
+/***************************************************************/  
+
+Main.java
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Password test = new Password();
+		String password = null;
+		test.setPassword(password);
+		
+		password = "abcd";
+		test.setPassword(password);
+		
+		password = "abcde";
+		test.setPassword(password);
+		
+		password = "abcde#1";
+		test.setPassword(password);
+	}
+}
+
+// 무엇을 고치려고 하는지, 고치려는 문제가 무엇인지 알려주세요.
+문제점
+1. 정상적인 처리와 에러에 대한 내용이 코드에 혼재
+2. 에러 코드 상황이 점점 추가될 수 있다.
+
+ 
+// After 😎
+PassWord.java
+
+public class Password {
+
+		private String password;
+		
+		public String getPassword(){
+			return password;
+		}
+		
+		public void setPassword(String password) throws PasswordException{
+			
+			if(password == null){
+				throw new PasswordException("비밀번호는 null 일 수 없습니다");
+			}
+			else if( password.length() < 5){
+				throw new PasswordException("비밀번호는 5자 이상이어야 합니다.");
+			}
+			else if (password.matches("[a-zA-Z]+")){
+				throw new PasswordException("비밀번호는 숫자나 특수문자를 포함해야 합니다.");
+			}
+			
+			this.password = password;
+		}
+}
+
+PasswordException.java
+
+public class PasswordException extends IllegalArgumentException{
+	
+	public PasswordException(String message) {
+		super(message);
+	}
+}
+
+/***************************************************************/  
+
+Main.java
+
+public class Main {
+	
+	public static void main(String[] args) {
+
+		Password test = new Password();
+		String password = null;
+		try {
+			test.setPassword(password);
+		} catch (PasswordException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		password = "abcd";
+		try {
+			test.setPassword(password);
+		} catch (PasswordException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		password = "abcde";
+		try {
+			test.setPassword(password);
+		} catch (PasswordException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		password = "abcde#1";
+		try {
+			test.setPassword(password);
+			System.out.println("오류 없음");
+		} catch (PasswordException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+
+// 어떻게 고쳤는지, 사례에서 무엇을 배워야 하는지 설명해주세요.
+리팩토링 결과
+- 에러 상황을 Exeption으로 만들고 try-catch 블럭을 이용하여 예외 처리
+```
+
+---
+
 #노마드코더 #북클럽 #노개북
