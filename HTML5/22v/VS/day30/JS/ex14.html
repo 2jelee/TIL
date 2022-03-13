@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Start!</title>
+  <style>
+    p {
+      font-size: 20px;
+      color: red;
+    }
+  </style>
+</head>
+<!-- onload 이벤트 : 해당 페이지 접속 후 자동 load-->
+<body onload="javascript:alert('alert를 body 태그의 onload 이벤트를 직접 넣어 띄우기')"> 
+  <p onclick="hello();">브라우저에서 출력된 것입니다.</p>
+</body>
+<script>
+  document.write('JavaScript를 이용한 출력');
+  document.write('<font color="blue" size="4"> JavaScript를 이용한 출력</font>');
+  
+  function hello() {
+    alert('안녕');
+  }
+</script>
+</html>

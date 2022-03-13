@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 /* import : @ */
-@import url("test.css");  /* 외부에 있는 것 가져오기 */
+/*@import url("test.css"); */  /* 외부에 있는 것 가져오기 */
 
 body {
 	font: 14px 맑은 고딕;
@@ -153,4 +153,9 @@ header, section, footer, aside, article, figure {
 .banner {
 	margin: 0 10px 15px 10px;
 	padding:0;	
+}
+
+.banner1{
+	margin: 5px 20px 25px 10px; /* margin : 외부 여백 */
+	padding: 5; /* padding : 내부 여백 */
 }
