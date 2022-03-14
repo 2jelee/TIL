@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[제어문] ex17_js.html</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+브라우저를 엽니다. <br>
+DOM API - Document Object Model Application Programing Interface
+<hr>
+<div class="box">div Box</div>
+
+<span class="box">span Box</span>
+<p class="box">p Box</p>
+</body>
+
+<script src="./main.js">
+let isShow = true;
+let checked = false;
+
+if(isShow){
+  document.write('보입니다.');
+  console.log('console로 실행합니다 => 보이나요?');
+} else {
+  document,write('123');
+  console.log('123');
+}
+
+// if(checked){
+//   document.write('checked');
+//   console.log('checked');
+// } else{
+//   // document.write('else checked');
+// }
+</script>
+
+</html>

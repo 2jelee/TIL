@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 유기명 함수 : 함수명이 존재
+  
+  //함수 선언
+  function helloFunc() {
+    //실행 코드
+    console.log("Hello");
+  }
+
+  //함수 호출
+  helloFunc();
+
+  ///////////////////////
+  
+  function returnFunc() {
+    return 1004;
+  }
+  
+  //변수에 저장하여 호출하기
+  let result = returnFunc();
+  console.log(result);
+  
+  //함수를 바로 호출
+  console.log(returnFunc());
+
+  ///////////////////////
+  
+  //매개변수 있는 함수 선언
+  function hasParam(a, b) { //parameters
+    return a+b;
+  }
+
+  let sum = hasParam(1, 2);
+  let sub = hasParam(1, 2);
+
+  console.log(sum);
+  console.log(sub);
+</script>
+</html>

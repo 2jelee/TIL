@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex15.html</title>
+  <style> 
+  </style>
+</head>
+<body>
+  Good<br>
+  <h5>축하합니다.</h5>
+
+  <div id="divId"></div>
+
+  <hr>
+
+  <span id="countSpan">0</span>번 클릭했습니다. 
+  <input type="button" value="Increase" onclick="increaseEvent();">
+  <input type="button" value="Decrease" onclick="decreaseEvent();">
+
+</body>
+<script>
+  // 익명 함수
+  window.onload = function() {
+    // alert("innerHTML : " +document.body.innerHTML + "\n" 
+    //       + "innerText : " + document.body.innerText)
+
+  // 변수 선언 : var, let, const
+    var list = '';
+    list += "<ul>";  
+    list += "<li> Hello! </li>";  
+    list += "<li> This is li tag. </li>";  
+    list += "<li> LIST </li>";  
+    list += "</ul>";  
+
+    // document.body.innerHTML = list; /* body에 innerHtml을 붙여라. */
+    document.getElementById('divId').innerHTML = list;
+    // alert(list);
+  }
+    
+  function increaseEvent() {
+    var spanObj = document.getElementById('countSpan')
+    // 웹은 모두 text(string)으로 이루어진다.
+    // spanObj.innerHTML += 1; // <- 동작 X
+    spanObj.innerHTML = parseInt(spanObj.innerHTML) + 1;
+  }
+  function decreaseEvent(){
+    var spanObj = document.getElementById('countSpan');
+    spanObj.innerHTML = parseInt(spanObj.innerHTML) - 1; 
+  }
+</script>
+</html>

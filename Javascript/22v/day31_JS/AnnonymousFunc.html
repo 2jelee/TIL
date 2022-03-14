@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// 익명 함수 : 함수명이 존재 X
+let world = function () {
+  console.log("세계");
+};
+world(); //변수가 곧 함수명이 된다.
+
+// 객체 데이터
+const person = {
+  name: '2jelee',
+  age: 26,
+  
+  //메소드
+  getName: function() {
+    return this.name; //멤버변수 접근 시 반드시 this를 써주어야 한다.
+  }
+};
+
+const herName = person.getName;
+console.log(herName);
+console.log(person.getName);
+</script>
+</html>
