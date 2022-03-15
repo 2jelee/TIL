@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<ul>
+  <li>사과</li>
+  <li>포도</li>
+  <li>바나나</li>
+</ul>
+  
+<hr>
+
+<div class="box">
+  span 태그를 동적으로 3개 생성하고 사자-1,2,3 이름 텍스트 추가
+</div>
+
+
+<!-- <input type="text"> -->
+</body>
+<!-- <script src="./importRandom.js" type="module"> -->
+<script>
+
+// HTML 요소(element) 1개 검색/찾기
+const boxEl = document.querySelector('.box');
+
+//getter
+console.log(boxEl.textContent);
+
+//setter
+boxEl.textContent = '2jelee';
+
+
+</script>
+</html>

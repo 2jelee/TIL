@@ -56,3 +56,12 @@ console.log(fruits[0]);
 console.log(fruits[1]);
 console.log(fruits[2]);
 console.log(fruits); //배열 전체 출력하기 + 정보까지 출력된다.
+
+
+console.log('---------------------');
+
+/* with 사용 */
+with(user){
+  console.log(name);
+  console.log(age);
+}

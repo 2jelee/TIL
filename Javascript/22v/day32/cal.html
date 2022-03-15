@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator.html</title>
+</head>
+<body>
+  <input type="text" id="monitor"> <br>
+  <input type="button" value="1" onclick="clickNumber(this.value)"> <!-- this : 여기에서 해당 value값(1)을 가져와줘 -->
+  <input type="button" value="2" onclick="clickNumber(this.value)">
+  <input type="button" value="3" onclick="clickNumber(this.value)"> <br>
+  <input type="button" value="+" onclick="clickNumber(this.value)">
+  <input type="button" value="-" onclick="clickNumber(this.value)">
+  <input type="button" value="*" onclick="clickNumber(this.value)">
+  <input type="button" value="/" onclick="clickNumber(this.value)">
+  <input type="button" value="%" onclick="clickNumber(this.value)">
+  <input type="button" value="=" onclick="clickNumber(this.value)"> <br>
+  <input type="button" value="clear" onclick="clickNumber(this.value)">
+</body>
+<script>
+  function clickNumber(data) {
+    let num = document.getElementById('num');
+    // alert(data);
+
+    if(data == 'clear'){
+      monitor.value='';
+    } else if (data!='='){
+      monitor.value += data; // += 연산자를 사용함으로써 계속해서 연결
+    } else {
+      monitor.value = eval(monitor.value); //input type이 text이므로 숫자로 변환
+    }
+  }
+</script>
+</html>
