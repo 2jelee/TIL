@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex22_js.html</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// object : { }
+var person = {
+  name: "홍길동",
+  phone: "010-1234-5678",
+  addr: "경기도 성남시 수정구",
+  
+  info : function() {
+      alert("name : " + this.name + "\n"
+        + "phone : " + this.phone +"\n"
+        + "addr : " + this.addr 
+      );
+      
+      var list = '';
+      for(var key in this) { // for in, forEach()
+        list += (key + " : " + this[key] + "\n")
+      } // for end
+      
+      alert(list);
+  } // info end      
+};
+
+person.info();
+person.name = '2jelee';
+console.log(person.name);
+console.log(Object.values(person));
+</script>
+</html>

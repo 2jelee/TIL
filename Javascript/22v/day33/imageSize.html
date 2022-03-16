@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table{
+      border: 1px solid black;
+      width: 700px;
+      align-content: center;
+    }
+    img {
+      border: 0;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body onload="imageSize()">
+브라우저 오픈
+<h1>head01</h1>
+
+<table>
+  <tr>
+    <td>Douzone 미니 홈페이지</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="../day28/house.gif" id = "backImg" align="center">
+    </td>
+  </tr>
+</table>
+<!-- 방향 : 기본값이 오->왼 | scrollamount : 흘러가는 속도. 숫자가 커질수록 빨라진다. -->
+<marquee behavior="" direction="right" scrollamount="3">Your slide-in next goes here...</marquee>
+</body>
+
+<script>
+  function imageSize() {
+    if(backImg.style.pixelWidth < 500){
+      backImg.style.pixelWidth += 3;
+      backImg.style.pixelHeight += 2;
+      window.setTimeout('imageSize()', 10) //10(0.01초동안) 내 자신 부르기 {} 없이 사용
+    }
+  }
+</script>
+</html>

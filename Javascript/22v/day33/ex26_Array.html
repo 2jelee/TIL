@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex26.html</title>
+</head>
+<body>
+  참고 사이트 : <input type="text" value="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array">
+  <hr>
+  
+  구조 분해 할당 : JS에서 쓰이는 자료구조
+  <input type="text" value="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">
+  <hr>
+</body> 
+
+<script>
+  let fruits = ['사과', '바나나'];
+  
+  //item : 요소(사과, 바나나) 하나하나
+  //index: index 넘버
+  //array: 해당되는 데이터 다 가져오기
+  fruits.forEach(function (item, index, array) {
+    document.write(item, index+'<br>');
+    document.write(array + '<br>');
+  })
+  
+  document.write('**********************' + '<br>');
+  
+  // push : 배열에 추가(뒤에) --> 앞 추가는 따로 존재 unshift
+  // pop : 앞에 있는 것 제거
+  let newLength = fruits.push('메론');
+  let newLength2 = fruits.unshift('참외');
+  document.write(fruits);
+</script>
+</html>

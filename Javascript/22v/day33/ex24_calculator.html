@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calculator</title>
+</head>
+<body>
+</body>
+<script>
+  //선언만 된 상태
+  var calculator; //초기화하지 않으면 undefined == false
+  // console.log(calculator);
+
+  // 1. && 연산 : 좌측 0, undefined, null, NaN, "" 이들 외 값을 가지면 true로 평가됨
+  calculator && document.write('calculator.plus(2, 3) : ' + calculator.plus(2, 3));
+  
+  //객체 정의부
+  calculator = {
+    plus: function(num1, num2){
+      return num1+num2;
+    } 
+  }
+  // 1. && 연산 : 좌측 0, undefined, null, NaN, "" 이들 외 값을 가지면 true로 평가됨
+  calculator && document.write('calculator.plus(2, 3) : ' + calculator.plus(2, 3));
+  document.write('<br>');
+  // 2. ||연산
+  calculator.sub || (calculator.sub = function (num1, num2) { return num1-num2 });
+  calculator && document.write('calculator.sub(5, 1) : ' + calculator.sub(5, 1));
+
+</script>
+</html>

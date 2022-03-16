@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex23_addFunc.html</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  function makePerson(name, phone, addr) { 
+    const person2 = {
+      name: name,
+      phone: phone,
+      addr: addr,
+    
+      // method
+      info : function() {
+        var list = '';
+        for(var key in this) {
+          if(key!='info'){
+            list += key + " : " + this[key] + "\n";
+          }
+        }
+        alert(list);
+      }      
+    };
+    return person2;
+  }
+
+  let ps = [];
+  ps.push(makePerson("Yong", "111", "Incheon"));
+  ps.push(makePerson("Yongalee", "222", "Seoul"));
+
+  for(var i in ps) {
+    ps[i].info();
+  }
+</script>
+</html>
