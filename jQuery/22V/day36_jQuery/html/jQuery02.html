@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery.html</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <header>
+    <h1>jQuery sample</h1>
+  </header>
+
+  <input id="input_demo" value=""> <!-- input type의 default : text -->
+  <input type="button" value="변환1" onclick="document.getElementById('input_demo').value='반가워요'">
+  <!-- jQuery : $로 표시한다. -->
+  <input type="button" value="변환2" onclick="$('#input_demo').val('OK') ">
+
+  <div class="welcome"></div>
+  <div class="welcome"></div>
+  <hr>
+
+  <div id="demo">
+    <div id="inner">
+      Create jQuery Test
+    </div>
+  </div>
+
+</body>
+<script> 
+  $('h1').css({'color':'blue'});
+
+  //1. 체이닝(chain) 방식
+  $('.welcome').html('Hello World! Douzone th2')
+                .css('background-color','skyblue')
+                // evnet 넣을 때 on/off 존재 | argu1 : event명 / argu2 : 할 일 // on('event', function(){})
+                // function(e){ }
+                .on('click', function (e) {
+                  let clicked = e.target;
+                  console.log(clicked);
+                  $(this).css('background-color', 'pink'); // 클릭한 이벤트 너
+                });
+</script>
+</html>
