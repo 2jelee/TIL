@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>angular test (index03.html)</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> 
+
+  <script>
+    let app = angular.module("app", []);
+
+    app.controller("myController", function($scope) { 
+      $scope.boardList = [
+        {no:1, title:'Title1', writer:'user1'},
+        {no:2, title:'Title2', writer:'user2'},
+        {no:3, title:'Title3', writer:'user3'},
+      ];
+
+      //번호를 가지고 삭제하므로 위의 no를 가져온다
+      $scope.remove = function(no) {
+        if(!no) {
+          return;
+        }
+
+        let num = -1; //-1은 초기화 하지 않았다는 뜻?
+        
+        for (let i = 0; i < $scope.boardList.length; i++) {
+          if($scope.boardList[i].no === no){
+            num=i;
+            break;
+          }
+        }
+        if(num === -1){
+          return;
+        }
+        $scope.boardList.splice(num, 1);
+      }
+
+      $scope.boardListForm = {};
+
+      $scope.addBoard = function () {
+        let newNo = ! $scope.boardList.length ? 1 : $scope.boardList[$scope.boardList.length-1].no +1;
+        let newItem = {
+          no: newNo,
+          title: $scope.boardListForm.title,
+          writer: $scope.boardListForm.writer,
+        };
+
+        $scope.boardList.push(newItem);
+
+        $scope.boardListForm.title="";
+        $scope.boardListForm.writer="";
+      }
+    });
+  </script>
+</head>
+<body>
+  <div ng-controller="myController">
+    <form ng-submit="addBoard()">
+      <!-- data -> model -->
+      Title: <input type="text" ng-model="boardListForm.title" autofocus /><br>
+      User(Writer): <input type="text" ng-model="boardListForm.writer" autofocus /><br>
+      <button type="submit">추 가</button>
+    </form>
+
+    <table border="1">
+      <tr>
+        <td style="width: 50px;">No</td>
+        <td style="width: 200px;">Title</td>
+        <td style="width: 50px;">Name</td>
+        <td style="width: 50px;">Remove</td>
+        <td style="width: 50px;">Add</td>
+      </tr>
+      <tr ng-repeat="item in boardList"> <!-- 반복하라는 지시어 ng-repeat -->
+        <td style="width: 50px;">{{$index +1}}</td>
+        <td style="width: 200px;">{{item.title}}</td>
+        <td style="width: 50px;">{{item.writer}}</td>
+        <td style="width: 50px;"><button type="button" ng-click="remove(item.no)">삭제</button></td>
+        <!-- 구현하기 -->
+        <td style="width: 50px;"><button type="button" ng-click="update(item.no)">수정</button></td>
+      </tr>
+    </table>
+  </div>
+  <hr>
+  <!-- <div ng-controller="myController">
+    <h1>{{ hello }}</h1>
+  </div> -->
+</body> 
+</html>
