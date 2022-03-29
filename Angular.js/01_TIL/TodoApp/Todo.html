@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+  <style>
+    .form {
+      border: 1px solid black;
+      width: 500px;
+    }
+
+    .title{
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .content{
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body ng-app="todo_app">
+  <div class="form">
+    <p class="title">오늘의 할일</p>
+    <hr>
+    <div ng-controller="Todo_controller">
+      <div class="content">
+        <input type="text" ng-model="text">
+        <button ng-click="add_list(text)">추가</button>
+      </div>
+      <hr>
+      <ul class="todo_list">
+        <li ng-repeat="todo in todos">
+          <span class="">{{todo.text}}</span>
+          <button ng-click="delete_list(text)">삭제</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script>
+// function Todo_controller($scope) {
+//   $scope.totalTodos = 4;
+
+//   $scope.todos = [
+//     {text:'aa', done:false},
+//     {text:'bb', done:false},
+//   ];
+
+//   $scope.getTotalTodos = function() {
+//     return $scope.todos.length;
+//   }
+//   $scope.clearComplete = function() {
+//     $scope.todos = _.filter($scope.todos, function(todo) {
+//       return !todo.done;
+//     });
+//   }
+
+//   $scope.addTodo = function() {
+//     $scope.todos.push({text:$scope.formTodoText, done:false});
+//     $scope.formTodoText='';
+//   }
+// }
+  let addInput = document.createElement('input')
+  addInput.setAttribute('class', 'input_box');
+  // addInput.innerHTML = a
+
+  let ngApp = angular.module('Todo_app', []);
+  ngApp.controller('Todo_controller', function ($scope) {
+    $scope.message = addInput;
+  });
+</script>
+</html>

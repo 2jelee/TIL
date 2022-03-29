@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+  <style>
+    .form {
+      border: 1px solid black;
+      width: 500px;
+    }
+
+    .title{
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .content{
+      text-align: center;
+    }
+
+    .Todo{
+      padding: 50px;
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .completed-true{
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div class="Todo">
+    <div ng-controller="todo_controller">
+      <form ng-submit="todo_add()">
+        <p class="title">오늘의 할일</p><hr>
+        <input type="text" ng-model="todoListForm.list"><button type="submit">추 가</button>
+      </form>
+    
+      <table class="table"> 
+        <tr ng-repeat="item in todoList"> 
+          <td class="completed-{{todo.completed}}">
+            <input type="checkbox" ng-model="todo.completed">{{item.list}}</td> 
+          <td>
+            <input type="button" ng-click="done(item.no)" value="완료"> 
+          </td>
+        </tr>
+      </table>
+    </div> 
+  </div>
+</body>
+<script>
+  let app = angular.module("app", []);
+
+  app.controller("todo_controller", function($scope) {
+    $scope.todoList = [ 
+      { no: 1, 
+        list: 'Angular.js로 Todo List 만들기', 
+        completed: false }, 
+    ]; 
+    
+    $scope.done = function(no) {  
+      if (!no) { return; } 
+      let num = -1;  
+
+      for (let i = 0; i < $scope.todoList.length; i++) {
+        if ($scope.todoList[i].no === no) {
+          num = i;
+          break;
+        }
+      }
+      if (num === -1) {
+        return;
+      }
+      $scope.todoList.splice(num, 1);
+    }
+
+    $scope.todoListForm = {};
+
+    // 추가
+    $scope.todo_add = function () {
+      const newItem = { list: $scope.todoListForm.list, };
+      $scope.todoList.push(newItem);
+    } 
+  }); 
+</script>
+</html>

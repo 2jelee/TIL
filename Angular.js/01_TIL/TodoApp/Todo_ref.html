@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+  <title>Todo_ref</title>
+  <script src="angular.min.js"></script>
+</head>
+<body>
+  <div ng-app>
+    <h2>To Do List</h2>
+    <div ng-controller="x">
+      <span>{{pending()}} of {{schedule.length}} pending</span>
+      <ul>
+        <li ng-repeat="todo in schedule">
+          <input type="checkbox" ng-model="todo.completed">
+          <span class="completed-{{todo.completed}}">{{todo.work}}</span>
+        </li>
+      </ul>
+      <input type="text" ng-model="todoWork" size="30" placeholder="add new work here">
+      <input class="btn-primary" type="button" ng-click="addNew()" value="add">
+    </div>
+  </div>
+</body>
+<script>
+  function x($scope) {
+    $scope.schedule = [
+      { work: 'Wash the Car', completed: true },
+      { work: 'Meet Ajay', completed: false }
+    ];
+    $scope.addNew = function () {
+      $scope.schedule.push({ work: $scope.todoWork, completed: false });
+      $scope.todoWork = '';
+    };
+
+    $scope.pending = function () {
+      var count = 0;
+      angular.forEach($scope.schedule, function (todo) {
+        count += todo.completed ? 0 : 1;
+      });
+      return count;
+    };
+  }
+</script>
+</html>
