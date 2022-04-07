@@ -1,0 +1,65 @@
+
+@import './main.css';
+
+$mainColor : #f00;
+
+.red {
+    color: $mainColor;
+}
+
+div.container {
+    h4{
+        color: blue;
+    }
+    p{
+        color: black;
+    }
+}
+
+.my-alert {
+    background: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+@mixin myAlertFunc() {
+    background: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    
+}
+
+.my-alert-yellow {
+    // @include myAlertFunc();
+    @extend .my-alert;
+    background: yellow;
+    
+}
+
+.my-alert p {
+    margin-bottom: 0;
+    // color: red;
+}
+
+.tabfont{
+    font-size: 20px;
+    color: #f00;
+    text-align: left;
+}
+
+.tabcxt-enter {
+    opacity: 0;
+  }
+.tabcxt-enter-active {
+    opacity: 1;
+    transition: all 500ms;
+  }
+

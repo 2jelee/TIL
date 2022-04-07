@@ -3,14 +3,19 @@
 }
 
 .jumbotron {
-  /* height: 150%; */
-  height: 350px;
-  background-image: url('/public/logo192.png');
-  background-size: cover; /*다 덮겠다.*/
-  background-position: center;
-  color: yellowgreen;
+  background-repeat: no-repeat;
+  background-image: url('./background.jpg');
+  /* background-position: center; */
+  background-size: cover;
+  overflow: hidden;
+
 }
+/* .jumbotron img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+} */
 
 .jp button {
-  margin-bottom: auto;
+  margin-top: 300px;
 }
