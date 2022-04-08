@@ -1,8 +1,14 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import{ connect } from 'react-redux';
+// import{ connect } from 'react-redux';
+import{ useDispatch, useSelector } from 'react-redux';
 
 function Cart(props) {
+
+    let state = useSelector((state)=> state.reducer);
+    console.log(state.reducer);
+    let dispatch = useDispatch();
+
   return (
     <div>
       <Table>
@@ -16,15 +22,17 @@ function Cart(props) {
         </thead>
         <tbody>
             {
-               props.state.map((item, i)=>{
+            //   state.reducer.map((item, i)=>{
+              state.map((item, i)=>{
                    return(
                     <tr key={i}>
                         <td>1</td>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.quan}</td>
-                        <td><button onClick={()=>{props.dispatch({type: 'INCREASE', no : item.id})}}> + </button></td>
-                        <td><button onClick={()=>{props.dispatch({type: 'DECREASE', no : item.id})}}> - </button></td>
+                        <td><button onClick={()=>{dispatch({type: 'INCREASE', no : item.id})}}> + </button></td>
+                        <td><button onClick={()=>{dispatch({type: 'DECREASE', no : item.id})}}> - </button></td>
+                        {/* <td><button onClick={()=>{props.dispatch({type: 'DECREASE', no : item.id})}}> - </button></td> */}
                     </tr>
                    )
                }) 
@@ -45,12 +53,14 @@ function Cart(props) {
   );
 }
 
-function stateStatus(state){
-    console.log(state);
-    // console.log(state.reducer);
-    return {
-        state : state.reducer,
-        alertClose : state.reducerClose,
-    }
-}
-export default connect(stateStatus)(Cart);
+export default Cart;
+
+// function stateStatus(state){
+//     console.log(state);
+//     // console.log(state.reducer);
+//     return {
+//         state : state.reducer,
+//         alertClose : state.reducerClose,
+//     }
+// }
+// export default connect(stateStatus)(Cart);
