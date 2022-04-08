@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.jumbotron {
+  /* height: 150%; */
+  height: 350px;
+  background-image: url('/public/logo192.png');
+  background-size: cover; /*다 덮겠다.*/
+  background-position: center;
+  color: yellowgreen;
+}
+
+.jp button {
+  margin-bottom: auto;
+}
