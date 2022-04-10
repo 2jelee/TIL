@@ -13,12 +13,11 @@ let basicState = [
   {id:1, name:'완전이쁜옷', quan:1},
 ];
 
-function reducer(state=basicState, action){
+function reducer(state = basicState, action){
   let stateIndex = state.findIndex((item)=>{ return item.id === action.no});
 
   if(action.type === 'ADDITEM'){
-
-    let searchIndex = state.find((item)=>{ return item.id === action.no.id});
+    let searchIndex = state.find( (item) => { return item.id === action.no.id} );
 
     if(searchIndex >= 0 ) {  // 찾은 데이터가 있다면 
       let newState = [...state];
@@ -28,21 +27,20 @@ function reducer(state=basicState, action){
       let newState = [...state];
       newState.push(action.payload);
       return newState
-    }
-    
-
-  } else if(action.type === 'INCREASE') {
-
+    } 
+  } else if (action.type === 'INCREASE') {
     let newState = [...state];
     newState[stateIndex].quan++;
-    return newState
-
-  } else if(action.type === 'DECREASE') {
+    return newState 
+  } else if (action.type === 'DECREASE') {
     let newState = [...state];
    
-    if(newState[stateIndex].quan < 0 ) newState[stateIndex].quan= 0;
-    else  newState[stateIndex].quan--;
-    
+    if(newState[stateIndex].quan < 0 ) {
+      newState[stateIndex].quan = 0;
+    }
+    else {
+      newState[stateIndex].quan--;
+    }
     return newState
 
   } else {

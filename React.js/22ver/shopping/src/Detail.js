@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import {Nav} from 'react-bootstrap'
-import {CSSTransition} from 'react-transition-group'
-
-import {connect, useDispatch, useSelector } from "react-redux";
-import "./Detail.scss";
-
+import { Nav } from 'react-bootstrap'
+import { CSSTransition } from 'react-transition-group'
+import { connect, useDispatch, useSelector } from "react-redux";
+import "./Detail.scss"; 
 // import InventContext from './App.js'   // import 안해서 인식 못했음.
 
 let MyBox = styled.div`
@@ -27,7 +25,7 @@ function Detail(props) {
   let search = props.shrit.find((item) => {
     return item.id == id;
   });
-  // 재고 글자 2초후에 사라짐
+  // 재고 문구 2초 후에 사라짐
   let [alert, setAlert] = useState(true);
 
   useEffect(() => {
@@ -50,7 +48,6 @@ function Detail(props) {
   // let state = useSelector((state)=> state );
   // console.log(state.reducer);
   // let dispatch = useDispatch();
-
 
   return (
     <div className="container">
@@ -79,13 +76,13 @@ function Detail(props) {
               `.jpg`
             }
           />
-          <h4>{search.id}</h4>
+          <h4>{search.title}</h4>
           <p>{search.content}</p>
           <p>{search.price}원</p>
           {/* <Infomation invent={props.invent} setInvent={props.setInvent} /> */}
           <button
             className="btn btn-danger"
-            onClick={()=>{
+            onClick = { () => {
               props.dispatch({type:'ADDITEM', payload: {id:search.id, name:search.title, quan:1} });
               history.push('/cart');
             }}
@@ -141,17 +138,16 @@ function Detail(props) {
 }
 
 function TabCotrol(props){
-
   useEffect(()=>{
-    props.setAni(true);  // 탭내용 컴포넌트가 로드될 때 true
+    props.setAni(true);  // 탭 내용 컴포넌트가 로드될 때 true
   });
 
   if(props.clickTab === 0 ){
-    return <div className="tabfont mt-3">제품 하자 있을시 돈 돌려드립니다.</div>
-  } else  if(props.clickTab === 1 ){
-    return <div  className="tabfont  mt-3">제품에 마음에 안들면 같은 값에 원하는 제품교환가능</div>
-  } else  if(props.clickTab === 2 ){
-    return <div className="tabfont  mt-3">좋아요~ 완전 좋아요.</div>
+    return <div className="tabfont mt-3">제품 하자 있을 시 돈 돌려드립니다.</div>
+  } else if(props.clickTab === 1 ){
+    return <div  className="tabfont mt-3">제품에 마음에 안들면 같은 값에 원하는 제품교환 가능</div>
+  } else if(props.clickTab === 2 ){
+    return <div className="tabfont mt-3">좋아요!</div>
   }
 }
 
