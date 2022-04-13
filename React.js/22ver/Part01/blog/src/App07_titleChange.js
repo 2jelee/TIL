@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import './App.css';
 
+
 function App() {  
   let [title, setTitle] = useState( ['React.js', 'Java', 'JavaScript']);  
   let [awesome, setAwesome] = useState(0); 
   let [modal, setModal] = useState(false);
+
   let [titleClick, setTitleClick] = useState(0);
-  let [inputValue, setInputValue] = useState('');   
 
   function changeTitle() {
     let newArray = [...title];     
@@ -19,15 +20,11 @@ function App() {
   function changeSorted() {
     let newSorted = [...title].sort(); 
     setTitle(newSorted);
-  }   
-
-  function post() {
-    let title_copy = [...title]; 
-    title_copy.unshift(inputValue);
-    setTitle(title_copy);
+  }  
+  
+  function changeTitle() {
+    
   }
-
-  let today = new Date();
  
   return (
     <div className="App"> 
@@ -39,26 +36,20 @@ function App() {
         <button onClick={ changeSorted }>순서변경 버튼</button> 
       </div>  
       {
+        // 여기서 2번째 인자인 a는 반복문이 돌때마다 0, 1, 2, ... 가 되는(= 1씩 증가하는) 변수다.
         title.map(function(i, a) {
           return(
-            <div className="list" key={a}> 
+            <div className="list">
               <h3 onClick={ () => { setTitleClick(a)} }>{ i } <span onClick={ () => { setAwesome(awesome+1) } }>👍</span>{awesome} </h3>
-              <p>{today}</p>
+              <p>22년 04월 11일 발행</p>
               <hr />
             </div>
           )
         })
       } 
-
-      <div className='publish'>
-        <input onChange={ (e) => { setInputValue(e.target.value); }}  />
-        <button onClick={ post }>저장1</button>
-        <button onClick={ () => {
-          let title_copy = [...title];  
-          title_copy.unshift(inputValue);
-          setTitle(title_copy);
-        } }>저장2</button>
-      </div>
+      {/* <button onClick={ () => { setTitleClick(0)} }>1</button>
+      <button onClick={ () => { setTitleClick(1)} }>2</button>
+      <button onClick={ () => { setTitleClick(2)} }>3</button> */}
 
       <button onClick={ () => { setModal(!modal) } }>Modal Control</button>
       {
@@ -66,8 +57,6 @@ function App() {
         ? <Modal title={title} titleClick={titleClick} />
         : null
       } 
-      {/* <input onChange={ (e) => { setInputValue(e.target.value) } } /> */}
-
     </div> 
   ); 
 } 

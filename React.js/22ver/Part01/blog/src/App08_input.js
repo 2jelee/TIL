@@ -8,7 +8,8 @@ function App() {
   let [awesome, setAwesome] = useState(0); 
   let [modal, setModal] = useState(false);
   let [titleClick, setTitleClick] = useState(0);
-  let [inputValue, setInputValue] = useState('');   
+
+  let [inputValue, setInputValue] = useState(''); //초기값
 
   function changeTitle() {
     let newArray = [...title];     
@@ -20,14 +21,6 @@ function App() {
     let newSorted = [...title].sort(); 
     setTitle(newSorted);
   }   
-
-  function post() {
-    let title_copy = [...title]; 
-    title_copy.unshift(inputValue);
-    setTitle(title_copy);
-  }
-
-  let today = new Date();
  
   return (
     <div className="App"> 
@@ -41,24 +34,15 @@ function App() {
       {
         title.map(function(i, a) {
           return(
+            // map으로 돌린 HTML에는 key = {}가 필요해서 console에 warning이 뜬다.
             <div className="list" key={a}> 
               <h3 onClick={ () => { setTitleClick(a)} }>{ i } <span onClick={ () => { setAwesome(awesome+1) } }>👍</span>{awesome} </h3>
-              <p>{today}</p>
+              <p>22년 04월 11일 발행</p>
               <hr />
             </div>
           )
         })
       } 
-
-      <div className='publish'>
-        <input onChange={ (e) => { setInputValue(e.target.value); }}  />
-        <button onClick={ post }>저장1</button>
-        <button onClick={ () => {
-          let title_copy = [...title];  
-          title_copy.unshift(inputValue);
-          setTitle(title_copy);
-        } }>저장2</button>
-      </div>
 
       <button onClick={ () => { setModal(!modal) } }>Modal Control</button>
       {
@@ -66,7 +50,9 @@ function App() {
         ? <Modal title={title} titleClick={titleClick} />
         : null
       } 
-      {/* <input onChange={ (e) => { setInputValue(e.target.value) } } /> */}
+      {/* { inputValue } */}
+      {/* React에서는 onChange나 onInput이나 비슷하므로 혼용 O */}
+      <input onChange={ (e) => { setInputValue(e.target.value) } } />
 
     </div> 
   ); 

@@ -8,7 +8,8 @@ function App() {
   let [awesome, setAwesome] = useState(0); 
   let [modal, setModal] = useState(false);
   let [titleClick, setTitleClick] = useState(0);
-  let [inputValue, setInputValue] = useState('');   
+
+  let [inputValue, setInputValue] = useState(''); //초기값
 
   function changeTitle() {
     let newArray = [...title];     
@@ -26,8 +27,6 @@ function App() {
     title_copy.unshift(inputValue);
     setTitle(title_copy);
   }
-
-  let today = new Date();
  
   return (
     <div className="App"> 
@@ -43,7 +42,7 @@ function App() {
           return(
             <div className="list" key={a}> 
               <h3 onClick={ () => { setTitleClick(a)} }>{ i } <span onClick={ () => { setAwesome(awesome+1) } }>👍</span>{awesome} </h3>
-              <p>{today}</p>
+              <p>22년 04월 11일 발행</p>
               <hr />
             </div>
           )
@@ -54,7 +53,9 @@ function App() {
         <input onChange={ (e) => { setInputValue(e.target.value); }}  />
         <button onClick={ post }>저장1</button>
         <button onClick={ () => {
-          let title_copy = [...title];  
+          // unshift() : array 맨 앞에 자료를 추가하는 문법
+          // state 데이터는 = 등호로 직접 수정하면 안되므로 사본을 만들어 그것을 수정해야 한다.
+          let title_copy = [...title]; // copy하자!!!!!!
           title_copy.unshift(inputValue);
           setTitle(title_copy);
         } }>저장2</button>
