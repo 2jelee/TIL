@@ -1,0 +1,11 @@
+// 모든 페이지에 필요한 CSS reset 이러한 것들
+// 보통 파일명을 쓸 때, _reset.scss로 작명한다. => 컴파일을 자동적으로 하지말라는.. 등 필요없는 애들임을 알려주는.
+
+body {
+  margin: 0;
+  // color: green;
+}
+
+div {
+  box-sizing: border-box;
+}
