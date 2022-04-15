@@ -20,18 +20,21 @@ function Detail(props) {
   let [alert, changeAlert] = useState(true); 
   let [inputData, changeInputData] = useState();
 
+  // useEffect : 컴포넌트 등장/업데이트 시 실행된다. => 업데이트될 때도 실행되므로 ★중요★
   useEffect( () => {
-    // axios.get()
     let timer = setTimeout(() => {
       changeAlert(false)
-      return () => { clearTimeout(timer) }  
-    }, 2000);
-  }, [ alert ]);    
+      // console.log('안녕');
 
-  function minusInv() {
-    let inv = props.inventory[0]; 
-    console.log(typeof(inv));
-  }
+      // [ setTimeout 사용 시 주의점 ] 타이머 해제 스킬
+      // 여기서의 return : 실행해라 O (뱉는다 X)
+      return () => { clearTimeout(timer) } // 타이머를 제거해주는 clearTimeout 함수를 사용하여 
+      // 의미 : Detail 컴포넌트가 사라질 때 timer를 제거를 실행해라
+    }, 2000);
+  // }); 
+  }, [ alert ]); // []에 실행조건을 적는다. => alert라는 state가 변경이 될 때만 재랜더링 하라.
+  // 만약 [ alert ]가 아니라, [ ] 빈 공간이라면? _가 변경될 때만 useEffect 실행해라.
+  // 즉, <Detail /> 업데이트 시 실행 안된다는 소리.
 
   return (
     <div className="container">
@@ -55,22 +58,14 @@ function Detail(props) {
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{find_product.title}</h4> 
           <p>{ find_product.content }</p>
-          <p>{ find_product.price }원</p>
-          <Info inventory={props.inventory} id={id} />
-          <button className="btn btn-danger" 
-            onClick={ () => { minusInv() }}>주문하기</button> 
+          <p>{ find_product.price }</p>
+          <button className="btn btn-danger">주문하기</button> 
           <button className="btn btn-primary" 
             onClick={ () => { history.push('/'); } }>
           뒤로가기</button> 
         </div>
       </div>
     </div> 
-  )
-}
-
-function Info(props) {
-  return (
-    <div>재고 : {props.inventory[props.id]}</div>
   )
 }
 

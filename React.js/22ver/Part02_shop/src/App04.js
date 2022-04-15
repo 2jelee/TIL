@@ -13,9 +13,15 @@ import { Button } from 'react-bootstrap'
 // import { Axios } from 'axios';
 
 function App() { 
-  let [ shoes, setShoes ] = useState(Datas); 
-  let [ btnCnt, setBtnCnt ] = useState(0);  
-  let [ inventory, setInventory ] = useState([10, 11, 12]);
+  let [ shoes, setShoes ] = useState(Datas);
+  // let [ notice, setNotice ] = useState(true);
+  let [ btnCnt, setBtnCnt ] = useState(0); 
+
+  // useEffect( () => {
+  //   setTimeout(() => {
+  //     notice(false)
+  //   }, [ ]);
+  // })
 
   function sort_price() {
     let newShoes = [...shoes]; 
@@ -45,9 +51,22 @@ function App() {
             <Button variant="primary" 
               style={ {fontWeight: 'bold', alignContent: 'right' } } 
               onClick={ () => { 
+                // 더보기 버튼을 n번째 누를 경우 해당 새로운 URL로 데이터 요청 보내기
                 setBtnCnt(btnCnt+1);
- 
+
+                // 미구현
+                // {
+                //   notice === true
+                //   ? <p>Loading...</p>
+                //   : null
+                // }
+
+                // 1. get 요청
                 axios.get('https://codingapple1.github.io/shop/data'+(btnCnt+2)+'.json') 
+                // 2. post 요청
+                // axios.post('서버URL', { 서버에게 전달할 데이터 })
+                // 요청 시의 header 설정(쿠키 전송 등..)도 가능 -> 라이브러리 사용법을 찾아보자
+                // axios.post('https://codingapple1.github.io/shop/data2.json', { id: '2jelee', pw: 1234 }) 
                 .then( (result) => {  
                   setShoes( [...shoes, ...result.data] );
                 })
@@ -57,7 +76,7 @@ function App() {
         </Route>
  
         <Route path="/detail/:id"> 
-          <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
+          <Detail shoes={shoes} />
         </Route> 
       </Switch>
     </div>

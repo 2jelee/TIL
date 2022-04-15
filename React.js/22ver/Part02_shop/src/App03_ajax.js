@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Carous from './components/Carous'; 
 import './App.css'; 
@@ -10,12 +10,10 @@ import axios from 'axios';
 
 import { Switch, Route } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-// import { Axios } from 'axios';
+import { Axios } from 'axios';
 
 function App() { 
-  let [ shoes, setShoes ] = useState(Datas); 
-  let [ btnCnt, setBtnCnt ] = useState(0);  
-  let [ inventory, setInventory ] = useState([10, 11, 12]);
+  let [shoes, setShoes] = useState(Datas);
 
   function sort_price() {
     let newShoes = [...shoes]; 
@@ -23,8 +21,15 @@ function App() {
       return a.price-b.price;
     });
     setShoes(price_compare); 
-  } 
-  
+  }
+
+  function add_data() {
+    let addProducts = [...shoes];
+    addProducts.push(result.data);
+    setShoes(addProducts);
+    console.log(setShoes);
+  }
+
   return (
     <div className='App'> 
       <Header />  
@@ -45,22 +50,42 @@ function App() {
             <Button variant="primary" 
               style={ {fontWeight: 'bold', alignContent: 'right' } } 
               onClick={ () => { 
-                setBtnCnt(btnCnt+1);
- 
-                axios.get('https://codingapple1.github.io/shop/data'+(btnCnt+2)+'.json') 
-                .then( (result) => {  
-                  setShoes( [...shoes, ...result.data] );
+                //get 요청 코드
+                // [1. axios]
+                axios.get('https://codingapple1.github.io/shop/data2.json')
+                // [2. fetch()]
+                // fetch('https://codingapple1.github.io/shop/data2.json')
+                // .then( () => { console.log('성공!'); } )
+                // .then( (result) => { console.log(result); } )
+                // .then( (result) => { console.log(result.data); } )
+                .then( (result) => { 
+                  console.log(result.data); 
+                  let spreadData = [...result.data];
+                  let addProducts = [...shoes];
+                  addProducts.push(spreadData);
+                  console.log(addProducts);
+                  setShoes(addProducts);
+                  
+                  // shoes.map((a, i) => {
+                  //   return <Product shoes={a} i={i} key={i} />  
+                  // })
                 })
                 .catch( () => { console.log('실패ㅠㅠ'); } );
-              } }>더보기</Button>
+               } }>더보기</Button>
           </div>
         </Route>
  
         <Route path="/detail/:id"> 
-          <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
-        </Route> 
+          <Detail shoes={shoes} />
+        </Route>
+        
+        {/* <Route path="/:id"> 
+          <div>아무거나 보여줘</div>
+        </Route> */}
+
       </Switch>
     </div>
   );
-} 
+}
+
 export default App;
