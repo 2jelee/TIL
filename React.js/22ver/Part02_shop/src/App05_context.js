@@ -6,16 +6,21 @@ import './App.css';
 import Datas from './data'
 import Product from './Product'; 
 import Detail from './components/Detail'; 
-import Cart from './components/Cart'; 
 import axios from 'axios';
-import { Switch, Route } from 'react-router-dom'
-import { Button } from 'react-bootstrap' 
 
+import { Switch, Route } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+// import { Axios } from 'axios';
+
+// React.createContext() 관습 : 변수 선언 시 ~context 붙인다.
+// let inventoryContext = React.createContext()
+// export를 사용하여 외부로 내보내기
 export let inventoryContext = React.createContext(); 
 
 function App() { 
   let [ shoes, setShoes ] = useState(Datas); 
   let [ btnCnt, setBtnCnt ] = useState(0);  
+  // 재고 데이터
   let [ inventory, setInventory ] = useState([10, 11, 12]);
 
   function sort_price() {
@@ -66,10 +71,6 @@ function App() {
             <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
           </inventoryContext.Provider>
         </Route> 
-
-        <Route path='/cart'>
-          <Cart />
-        </Route>
       </Switch>
     </div>
   );
