@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Header from './components/Header';
 import Carous from './components/Carous'; 
 import './App.css'; 
@@ -12,9 +12,15 @@ import { Switch, Route } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 // import { Axios } from 'axios';
 
+// React.createContext() 관습 : 변수 선언 시 ~context 붙인다.
+// let inventoryContext = React.createContext()
+// export를 사용하여 외부로 내보내기
+export let inventoryContext = React.createContext(); 
+
 function App() { 
   let [ shoes, setShoes ] = useState(Datas); 
   let [ btnCnt, setBtnCnt ] = useState(0);  
+  // 재고 데이터
   let [ inventory, setInventory ] = useState([10, 11, 12]);
 
   function sort_price() {
@@ -35,13 +41,17 @@ function App() {
           <br />
           <Button variant="outline-success" style={ {fontWeight: 'bold', alignContent: 'right' } } onClick={ () => { sort_price() } }>낮은 가격순 정렬</Button>
           <div className="container">
-            <div className="row"> 
-            { 
-              shoes.map((a, i) => {
-                return <Product shoes={a} i={i} key={i} />  
-              })
-            }
-            </div>
+
+            <inventoryContext.Provider value={ inventory }>
+              <div className="row"> 
+                { 
+                  shoes.map((a, i) => {
+                    return <Product shoes={a} i={i} key={i} />  
+                  })
+                }
+              </div>
+            </inventoryContext.Provider>
+
             <Button variant="primary" 
               style={ {fontWeight: 'bold', alignContent: 'right' } } 
               onClick={ () => { 
@@ -57,10 +67,14 @@ function App() {
         </Route>
  
         <Route path="/detail/:id"> 
-          <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
+          <inventoryContext.Provider value={ inventory }>
+            <Detail shoes={shoes} inventory={inventory} setInventory={setInventory} />
+          </inventoryContext.Provider>
         </Route> 
       </Switch>
     </div>
   );
 } 
+
+ 
 export default App;

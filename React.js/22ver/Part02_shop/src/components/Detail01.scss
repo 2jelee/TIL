@@ -1,0 +1,65 @@
+@import './_reset.scss';
+
+// 변수 생성
+$mainColor: #ff0000;
+
+.red {
+  color: $mainColor; //변수 사용
+}
+
+// [과거 CSS]
+// div.container h4 {
+//   color: blue;
+// }
+// div.container p {
+//   color: green;
+// }
+
+// [ nesting ] <= 셀렉터 대신 사용
+// 직관적으로 파악 가능 : 이들은 전부 div.container 안에 있는 UI들이구나!
+// div.container {
+//   h4 {
+//     color: blue;
+//   }
+
+//   p {
+//     color: green;
+//   }
+// }
+
+.my-alert {
+  background-color: #eeeeee;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+
+  p {
+    margin-bottom: 0;
+  } 
+}  
+
+// SASS 문법 : 기존 스타일링 해놓은거 @extend 하기 (붙여넣는 것과 같은 효과)
+.my-alert2 {
+  @extend .my-alert;
+  background-color: #ffe591;
+}
+
+// SASS 문법 : @mixin은 함수 만드는 문법 Why? 긴 코드 축약을 위해.
+@mixin 함수() {
+  background-color: green;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+
+  p {
+    margin-bottom: 0;
+  }  
+}
+
+.my-alert3 {
+  @include 함수();
+}  
