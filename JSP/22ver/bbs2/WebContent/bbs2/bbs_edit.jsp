@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="my.bbs2.*" %>
+   <%request.setCharacterEncoding("UTF-8"); %>
+<%
+	//편집 폼에 출력하기 위해 글번호를 얻어오자.
+	String idxStr = request.getParameter("idx");
+	if(idxStr == null){
+		response.sendRedirect("bbs_list.jsp");
+		return;
+	}
+	
+	idxStr = idxStr.trim();
+	
+	BbsManager mgr = BbsManager.getInstance();
+	////////////////////////////////////////////////
+	BbsDTO gul  =mgr.edit(idxStr);
+	////////////////////////////////////////////////
+	if(gul == null){
+		response.sendRedirect("bbs_list.jsp");
+		return;
+	}
+	
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>bbs_write.jsp</title>
+<!-- SCRIPT -->
+<script type="text/javascript">
+	function check(){
+		if(!f.subject.value){
+			alert("제목 입력");
+			f.subject.focus();
+			return;
+		}
+		if(!f.content.value){
+			alert("내용 입력");
+			f.content.focus();
+			return;
+		}
+		if(!f.writer.value){
+			alert("이름 입력");
+			f.writer.focus();
+			return;
+		}
+		if(!f.email.value){
+			alert("이메일 입력");
+			f.email.focus();
+			return;
+		}
+		if(!f.pwd.value){
+			alert("비밀번호 입력");
+			f.pwd.focus();
+			return;
+		}
+		
+		document.f.submit();
+	} // check() ----------------------
+</script>
+</head>
+<body>
+<center>
+		<br>
+		<font color="navy" size="5">
+			<b>글 수 정</b>
+		</font>
+		<br>
+	<hr width=500 color="red">
+		<a href="/bbs2/bbs/bbs_list.jsp">LIST</a>|<a href="/bbs2/bbs2/bbs_list.jsp">HOME</a>
+	<hr width=500 color="red">
+	
+	<form name="f" method="post" action="bbs_editOk.jsp">
+	<input type="hidden" name="idx" value="<%=idxStr %>">
+		<table border=1 width=600>
+			<tr>
+				<td width="20%" align="center"><B>제 목</B></td>
+				<td width="80%">
+					<input type="text" name="subject" size=60 value="<%=gul.getSubject() %>">
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" align="center"><B>내 용</B></td>
+				<td width="80%">
+					<textarea name = content rows=10 cols=60 ><%=gul.getContent() %></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" align="center"><B>글쓴이</B></td>
+				<td width="80%">
+					<input type="text" name="writer" size=60 value="<%=gul.getWriter() %>">
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" align="center"><B>이메일</B></td>
+				<td width="80%">
+					<input type="text" name="email" size=60 value="<%=gul.getEmail() %>">
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" align="center"><B>홈페이지</B></td>
+				<td width="80%">
+					<input type="text" name="homepage" size=60 value="<%=gul.getHomepage() %>" >
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" align="center"><B>비밀번호</B></td>
+				<td width="80%">
+					<input type="password" name="pwd" size=60 >
+				</td>
+			</tr>
+			<tR>
+				<td colspan="2" align="center">
+					<input type="button" value="수정 하기" onclick="check();">
+					<input type ="reset" value="다시 쓰기">
+				</td>
+			</tR>
+		</table>
+	</form>
+</center>
+</body>
+</html>
