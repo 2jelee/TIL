@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		//요청 URL
+		//http://api.flickr.com/services/feeds/photos_public.gne?tags=소녀시대&tagmode=any&format=json&jsoncallback=?
+		/*  
+		   function(data){
+			  $.each(data.items, function(index,obj)
+		    }
+		
+			{
+				"title":...
+				"link":...
+				"items":[
+				         	{
+				         		"title":"겨울그림",
+				         		"media":{"m":www.naver.com/images/1.jpg}
+				         	},
+				         	{
+				         		"title":"겨울그림2",
+				         		"media":{"m":이미지경로}
+				         	},
+				         	{
+				         		"title":"겨울그림3",
+				         		"media":{"m":이미지경로}
+				         	}
+				        ]
+			}
+		
+		
+		 /////////////////////////////////////////////////////////////////
+		 객체.title => 겨울그림
+		 객체.media => {"m":www.naver.com/images/1.jpg}
+		 객체.media.m => www.naver.com/images/1.jpg
+		 [
+				         	{
+				         		"title":"겨울그림",
+				         		"media":{"m":www.naver.com/images/1.jpg}
+				         	},
+				         	{
+				         		"title":"겨울그림2",
+				         		"media":{"m":이미지경로}
+				         	},
+				         	{
+				         		"title":"겨울그림3",
+				         		"media":{"m":이미지경로}
+				         	}
+		]
+		*/	
+		$(function(){
+			$('#btn').click(function(){
+				var search=$('#search').val();
+				$.getJSON(
+						   "http://api.flickr.com/services/feeds/photos_public.gne?tags="+search+"&tagmode=any&format=json&jsoncallback=?"
+				           ,function(data){
+							   //console.log(data);
+							   //console.log(data.items);
+						   	   /*  
+						   	   		$.each(Array,function(){})
+						   	   		
+						   	   		(Array).each(function(){})
+						   	   		
+						   	   		items[0].media.m =>이미지 경로
+						   	   		객체.media.m => 이미지경로
+						   	   
+						   	   */
+							   
+							   $('#images').empty();
+							   $.each(data.items,function(index,obj){
+						   		  //console.log(obj.media.m);
+						   		  $('<img>').attr('src',obj.media.m).appendTo('#images');
+						   	   });	
+						   }
+						 );
+			});
+			
+			
+		});		
+	</script>
+</head>
+<body>
+	<input type="text" id="search">
+	<input type="button" value="검색하기" id="btn">
+	<hr>
+	<div id="images"></div>
+</body>
+</html>

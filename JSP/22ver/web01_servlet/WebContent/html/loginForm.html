@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>Login Form</title>
+
+<script type="text/javascript"  src="../js/login.js"></script>
+</head>
+<body>
+	<font size="4" color="blue"><b>Login HTML</b></font>
+	<hr />
+	<table>
+		<!-- action : 서버측에서 받아줄  -->
+		<!-- <form action="../LoginServlet"  name="frm" method="post"> -->
+		<form action="../kosa"  name="frm" method="post">
+			<tr>
+				<td>User ID : <input type="text" name="id" placeholder="아이디를 입력하세요." />  </td>
+			</tr>
+			<tr>
+				<td>User PWD : <input type="password" name="pwd" placeholder="암호를 입력하세요." />  </td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" value="Submit"  onclick="sendData()" />
+					<input type="reset" value="Reset"  />
+				</td>
+			</tr>
+		</form>
+	</table>
+</body>
+</html>
+
+
