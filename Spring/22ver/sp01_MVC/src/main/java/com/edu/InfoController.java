@@ -11,7 +11,7 @@ public class InfoController implements Controller {  // Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
-		// 본인 주소, 학과, 학교 
+		// 본인 주소, 학과, 학교
 		String address = "서울 연희동";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("address", address);
