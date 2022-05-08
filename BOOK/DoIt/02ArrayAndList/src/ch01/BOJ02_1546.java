@@ -2,7 +2,7 @@ package ch01;
 
 import java.util.Scanner;
 
-public class BOJ_1546 {
+public class BOJ02_1546 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		// 1. 변수 N에 과목의 수 입력받기 

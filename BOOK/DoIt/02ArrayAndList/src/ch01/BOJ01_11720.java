@@ -2,7 +2,7 @@ package ch01;
 
 import java.util.*;
 
-public class BOJ_11720 {
+public class BOJ01_11720 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		// 1. N값 입력받기 
