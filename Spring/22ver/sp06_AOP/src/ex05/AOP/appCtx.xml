@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  
+	appCtx.xml
+	
+	1. before
+	2. around(대상 메소드 수행 전)
+	3. 대상 메소드
+	4. after-returning
+	5. after(finally)
+	6. around (대상 메소드 수행 후)
+-->
+	
+	<bean class="ex05.AOP.CalcImpl" id="calc" />
+	<bean class="ex05.AOP.LogPrintAroundAdvice" id="logPrintArounAdvice" />
+	
+	<bean class="org.springframework.aop.framework.ProxyFactoryBean" id="proxy">
+		<property name="proxyInterfaces">
+			<!-- interface 경로를 이곳에 적는다. -->
+			<list>
+				<value>ex05.AOP.iCalc</value>
+			</list>
+		</property>
+		<!-- 주 관심사 : target -->
+		<property name="target" ref="calc" />
+		<!-- 보조관심사 : interceptorNames -->
+		<property name="interceptorNames">
+			<list>
+				<!-- 
+					여러 개의 보조관심사 적용이 가능하다.
+					AroundAdvice, BeforeAdvice, logPrintAfterAdvice ... 동시에 적용 가능  
+				 -->
+				 <value>logPrintAroundAdvice</value>
+			</list>
+			
+		</property>
+	</bean>
+
+</beans>

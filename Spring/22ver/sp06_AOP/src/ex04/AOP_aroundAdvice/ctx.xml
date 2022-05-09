@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean class="ex04.AOP_aroundAdvice.BookBeanImpl" id="bookBeanImpl" />
+	<bean class="ex04.AOP_aroundAdvice.MessageBeanImpl" id="messageBeanImpl" />
+	<bean class="ex04.AOP_aroundAdvice.LoggingAdvice" id="loggingAdvice" />
+	
+	<aop:config>
+		<!-- bean의 id와 aop:aspect의 ref와 동일해야 한다.  -->
+		<aop:aspect id="aspect" ref="loggingAdvice"> 
+			<!-- 매개변수 1개 이상 : Hello(..) / 매개변수 없게 : Hello() -->
+			<aop:pointcut expression="execution(public void ex04.AOP_aroundAdvice.*.*Hello(..))" id="pointCut" />
+			<aop:around method="arround" pointcut-ref="pointCut" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>
