@@ -3,7 +3,7 @@ package edu.kosa.dao_di;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class LConnectionMakerImpl implements ConnectionMaker {
+public class LConnectionMakerImpl implements ConnectionMaker { 
 
 	@Override
 	public Connection makeConnection() throws Exception {
