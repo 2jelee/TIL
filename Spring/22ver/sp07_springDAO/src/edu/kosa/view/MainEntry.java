@@ -6,7 +6,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import edu.kosa.dao_xml.UserDAO;
 import edu.kosa.model.UserVO; 
 
-
 public class MainEntry {
 	public static void main(String[] args) throws Exception  {
 		
@@ -56,6 +55,7 @@ public class MainEntry {
 			
 		default:
 			break;
-		}*/
+		}
+		*/
 	}
 } 

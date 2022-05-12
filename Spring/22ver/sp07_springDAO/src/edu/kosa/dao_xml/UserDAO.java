@@ -19,7 +19,7 @@ public class UserDAO {		// Controller
 	// selectById
 	public UserVO selectById(String id) throws Exception {
 		Connection conn = connectionMaker.makeConnection();
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM USERS WHERE ID = ?");
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
 		ps.setString(1, id);
 		ResultSet  rs = ps.executeQuery();
 		rs.next();
