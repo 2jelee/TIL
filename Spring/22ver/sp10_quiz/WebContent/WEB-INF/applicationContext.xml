@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- applicationContext.xml -->
+	<!-- JDBC 설정 정보, DB 연결 하기 -->
+	<bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"   value="oracle.jdbc.driver.OracleDriver" />
+		
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.2.36:1521:orcl" /> -->
+		<property name="url" value="jdbc:oracle:thin:@jel_high?TNS_ADMIN=/Users/ijieun/02Workspaces/02SQL/New/Wallet_jel" />
+		<property name="username"><value>jel</value></property>
+		<property name="password"><value>xxxxxxAt22cc</value></property>
+		<!-- <property name="password"><value>xxxxxxAt22cc</value></property> -->
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource">
+		<!-- <property name="dataSource"  ref="dataSource" /> -->
+	</bean>
+	
+	<!-- DAO 객체 생성 -->
+	<bean id="dao" class="edu.kosa.model.DeptDAOImpl"  p:jdbcTemplate-ref="jdbcTemplate">
+		<!-- <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+	</bean>
+
+</beans>
+
+
+

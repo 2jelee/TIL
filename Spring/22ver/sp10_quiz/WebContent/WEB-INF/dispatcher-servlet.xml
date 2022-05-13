@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- dispatcher-servlet.xml -->
+	<!-- user class instance(object) create & viewResolver 설정등을 한다-->
+	
+	<bean class="edu.kosa.controller.WriteFormController"  />
+	<bean class="edu.kosa.controller.WriteController" p:deptDAO-ref="dao">
+		<!-- <property name="guestDAO"  ref="dao"/> -->
+	</bean>
+	<bean class="edu.kosa.controller.DeptController" p:deptDAO-ref="dao" />
+
+	<!-- <bean class="edu.kosa.model.GuestDAOImpl"  id="dao" /> -->
+	
+	
+	<!-- InternalResourceViewResolver -->
+    <bean id="viewResolver" 
+    		  class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    		  p:prefix="/WEB-INF/views/"   p:suffix=".jsp"  >
+ 		<!-- 	<property name="prefix" value= />
+	 		<property name="suffix" value=/> -->
+ 	</bean>
+</beans>
