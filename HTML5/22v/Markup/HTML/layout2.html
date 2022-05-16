@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout2.html</title>
+    <link rel="stylesheet" href="../CSS/nomarlize.css">
+    <link rel="stylesheet" href="../CSS/layout2.css">
+</head>
+<!-- body 태그 기본 margin이 존재하므로 없애줌 -->
+<body style="margin: 0px;">
+<!-- 현재 창의 width는 곧 body의 width -->
+    <header>
+        header 입니다요
+    </header>
+    <div class="main-background">
+        <h4 class="main-title">Buy our Shoes!</h4>
+        <p class="main-content">Shoooooooooes</p>  
+        <!-- class명 중복을 피하려면 접두어 많이 활용하자 -->
+        <button class="main-button" onclick="">BUY</button>
+    </div>
+    <div class="box">
+        <h4>How we design our shoes</h4>
+        <p>Shoooooooooes</p>
+    </div>
+    <br>
+    <div class="box" style="padding: 50px;">
+    <!-- 
+    둘다 max-width: 500px인데 padding을 부여하자마자 500px을 넘어갔다.
+    이유?
+    *** 중요 ***
+    width는 content 영역(실제 글 작성하는 등의)의 너비를 의미하기 때문.
+    -->
+        <h4>How we design our shoes</h4>
+        <p>Shoooooooooes</p>
+    </div>
+
+    <form action="#" method="get">
+        <!-- input name 속성을 통해 서버 전달 -->
+        <input type="text" name="age" value="input value입니다요">
+        <input type="text" name="age" placeholder="input placeholder인디요">
+        <input type="text" class="text-input">
+
+        <input type="password">
+        <input type="email" name="" id="">
+        <input type="date" name="" id="">
+        <input type="checkbox" name="" id="">
+        <input type="radio" name="" id="">
+        <select name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+        </select>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button type="submit">전송</button>
+    </form>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer>
+        footer 입니다요
+    </footer>
+</body>
+</html>

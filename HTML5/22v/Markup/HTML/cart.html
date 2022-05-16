@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart.html</title>
+    <link rel="stylesheet" href="../CSS/cart.css">
+</head>
+<body>
+    <div>
+        <table>
+            <!-- 가로행 만들기 => tr -->
+            <!-- 세로열 만들기 => td -->
+            <!-- 제목용 세로열 => th -->
+
+            <!-- 
+            [thead, tbody] 기능상 차이는 X
+            제목행 : thead
+            일반행 : tbody
+            -->
+            <thead>
+            <tr>
+                <th>
+                    <p>aa</p>
+                    <p>bb</p>
+                </th>
+                <!-- 셀 안의 요소 상하정렬 : vetical-align: top/middel/bottom super/sub -->
+                <td style="vertical-align: top;">2</td>
+                <td>3</td> 
+            </tr> 
+            </thead>    
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>2</td>
+                    <td>3</td> 
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 
+        vertical-align: 의 용도
+        1. inline/inline-block 요소 간의 세로 정렬을 할 때 사용
+        2. table 안에서 세로 정렬할 때 vertical-align 사용 (top/middle/bottom 가능)
+        ** display: inline => 항상 옆으로 채워지는 폭과 너비가 없는 요소 =
+            ex) span 태그
+        -->
+        <div>
+            <p style="font-size: 50px;">Greetings <span style="font-size: 20px; vertical-align: bottom;">안녕</span></p>
+        </div>
+
+        <div> 
+            <img src="https://mdn.mozillademos.org/files/12245/frame_image.svg" width="32" height="32"> <span style="vertical-align: sub;">image with a default alignment.</span>   
+        </div> 
+
+        <!-- 참고: 일반 div 태그로 표 만들기 -->
+        <div style="display: table;">
+            <!-- tr과 동일 -->
+            <div style="display: table-row;">
+                <!-- td와 동일 -->
+                <div style="display: table-cell;">aa</div>
+            </div>
+        </div>
+
+        <div class="box-container">
+            <div class="table-container">
+                <div class="table-title">
+                    <h3>Your shopping cart</h3>
+                </div>
+                <table class="table-item">
+                    <thead style="height: 50px;">
+                        <tr>
+                            <td colspan="2">ITEM</td>
+                            <td>AMOUNT</td>
+                            <td>PRICE</td>
+                            <td>TOTAL</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="../img/item1.png" width="60px" alt=""></td>
+                            <td>NIKE</td> 
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">1000.0</td>
+                            <td style="text-align: right;">1000.0</td> 
+                        </tr>
+                        <tr>
+														<td><img src="../img/item1.png" width="60px" alt=""></td>
+                            <td>PONY</td> 
+                            <td style="text-align: right;">1</td>
+                            <td style="text-align: right;">1000.0</td>
+                            <td style="text-align: right;">1000.0</td> 
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align: right; height: 50px;">2000.00</td> 
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="foot">
+                    <a href="#">Edit your shopping cart</a> 
+                    <button class="btn" type="submit" onclick="">Choose payment method</button>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

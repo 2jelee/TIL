@@ -1,0 +1,59 @@
+td, th {
+    border: 1px solid black;
+}
+
+table{
+    /* 
+    table tag는 기본적으로 틈이 존재하므로 없애기 위해
+    border-collapse: collapse;로 없앤다.
+    */
+    border-collapse: collapse;
+}
+
+.box-container{
+    background: #c2d3de;
+    width: 80%;
+    padding: 30px;
+}
+.table-item {
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    /* border: ; */  
+    border-radius: 15px;
+    border: 2px solid #c2d3de;
+}
+
+.table-item td{  
+    border-bottom: 1px solid #c2d3de;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+}
+
+.foot>a {
+    padding: 10px;
+    width: 50%;
+    float: left; 
+}
+
+.btn {
+    margin-top: 10px;
+    float: right;
+    padding: 10px;
+    border: none;
+    color: white;
+    background-color: navy;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+/* :nth-child() 셀렉터 */
+/* 
+해당 클래스의 모든 td 중에 2번째 자식요소 
+n번째 등장하는 요소만 스타일링할 때
+*/
+.table-item td:nth-child(2){
+    color: red;
+}

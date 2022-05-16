@@ -1,0 +1,51 @@
+.container {
+    width: 800px;  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-content{
+    width: 80%;
+    height: 200px;
+    background: #eee;
+    float: left;
+}
+
+.blog-img{
+    width: 20%;
+    height: 200px;
+    background: yellow;
+    float: left;
+}
+
+.blog-profile{
+    width: 50px;
+    float: left;
+    display: block;
+}
+
+.blog-name{
+    float: left;
+}
+
+/* selector 문법 중 공백 : '~ 안에 있는' 이라는 의미 */
+/* > 와의 차이점 : 공백은 ~안에 있는 모든 자식을 의미*/
+.navbar li{
+/* > : ~ 안에 있는 직계 자식 */
+/* .navbar>li */
+    display: inline-block;
+}
+
+/* .navbar>li>a */
+.navbar a {
+    font-size: 16px;
+    text-decoration: none; /* a 태그의 밑줄 제거 & 방문 후 보라색으로 변경되는 것 변경 가능 */
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+}
+
