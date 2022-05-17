@@ -2,7 +2,7 @@ package com.fc.ch2;
 
 import java.lang.reflect.Method;
 
-public class Main {
+public class PrivateMethodCall {
 	public static void main(String[] args) throws Exception {
 //		Hello hello = new Hello();
 //		hello.main(); // 접근제어자가 public이 아닌, private 이므로 외부 호출 X
