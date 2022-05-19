@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
+// Controller를 직접 생성하고 method 호출하는 예제 
 
 class ModelController {
 	public String main(HashMap map) {
@@ -21,12 +22,12 @@ class ModelController {
 public class MethodCall {
 	public static void main(String[] args) throws Exception{
 		HashMap map = new HashMap();
-		System.out.println("before:"+map);
+		System.out.println("before : " + map); //결과 : before : { }
 
-		ModelController mc = new ModelController();
-		String viewName = mc.main(map);
+		ModelController mc = new ModelController(); // ModelController라는 클래스 호출 
+		String viewName = mc.main(map); // mc의 main을 호출하여 map에 값을 담기 
 		
-		System.out.println("after :"+map);
+		System.out.println("after : "+map); // map에 값을 저장하여 반환하기 => 결과 : after : {id=asdf, pwd=1111}
 		
 		render(map, viewName);
 	}
@@ -37,8 +38,9 @@ public class MethodCall {
 		// 1. 뷰의 내용을 한줄씩 읽어서 하나의 문자열로 만든다.
 		Scanner sc = new Scanner(new File(viewName+".txt"));
 		
-		while(sc.hasNextLine())
-			result += sc.nextLine()+ System.lineSeparator();
+		while(sc.hasNextLine()) {
+			result += sc.nextLine()+ System.lineSeparator();			
+		}
 		
 		// 2. map에 담긴 key를 하나씩 읽어서 template의 ${key}를 value바꾼다.
 		Iterator it = map.keySet().iterator();
@@ -66,8 +68,8 @@ pwd:${pwd}
 
 
 [실행결과]
-before:{}
-after :{id=asdf, pwd=1111}
+before : {}
+after : {id=asdf, pwd=1111}
 [txtView2.txt]
 id:asdf
 pwd:1111
