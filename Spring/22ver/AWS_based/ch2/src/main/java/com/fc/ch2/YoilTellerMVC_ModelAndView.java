@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class YoilTellerMVC_ModelAndView {
 //	public static void main(String[] args) {	
-	@RequestMapping("/getYoilMVC")
+//	@RequestMapping("/getYoilMVC") //에러로 인해 해당 줄만 주석 처
 	// http://localhost:8080/ch2/getYoilMVC?year=2022&month=5&day=16
 //	public String main(int year, int month, int day, Model model) throws IOException {
 //	public void main(int year, int month, int day, Model model) throws IOException { 
