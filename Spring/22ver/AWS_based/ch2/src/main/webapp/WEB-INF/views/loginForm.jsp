@@ -57,6 +57,7 @@
     </style>
 </head>
 <body>
+	<!-- url 태그 중요!! : 쿠키를 허용하지 않는 브라우저를 위해 -->
     <form action="<c:url value='/login/login'/>" method="post" onsubmit="return formCheck(this);">
         <h3 id="title">Login</h3>
         <div id="msg">

@@ -3,7 +3,9 @@ package com.fc.ch2;
 import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +21,17 @@ public class LoginController {
 		return "loginForm";
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		// [Session] 1. session 종료
+		session.invalidate();
+		
+		// [Session] 2. 홈으로 이동 
+		return "redirect:/";
+	}
+	
 	@PostMapping("/login")
-	public String login(String id, String pwd, boolean remeberId, HttpServletResponse response) throws Exception {
+	public String login(String id, String pwd, boolean remeberId, HttpServletResponse response, HttpServletRequest request) throws Exception {
 //	public String login(String id, String pwd, String remeberId) throws Exception {
 				
 		//1. id와 pwd를 확인 
@@ -31,6 +42,11 @@ public class LoginController {
 		}
 		
 		// 2-2. 일치하면 
+		// [Session] 세션 객체 얻어오기  
+		HttpSession session = request.getSession();
+		// [Session] 세션 객체에 id 저장 
+		session.setAttribute("id", id);
+		
 		if (remeberId) { //boolean type
 			// 1. 쿠키를 생성
 			Cookie cookie = new Cookie("id", id);  
@@ -44,10 +60,10 @@ public class LoginController {
 			response.addCookie(cookie);	//응답에 저장 
 		}
 			
-			// 3. 홈으로 이동 
+		// 3. 홈으로 이동 
 		return "redirect:/"; //index.jsp로 가도록 
-	}
-
+	} 
+	
 	private boolean loginCheck(String id, String pwd) { 
 //		return true;
 		return "asdf".equals(id) && "1234".equals(pwd); // id가 asdf고 패스워드가 1234일때 로그인 되도록 
