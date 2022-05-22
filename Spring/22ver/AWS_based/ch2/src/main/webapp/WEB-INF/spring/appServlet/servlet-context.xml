@@ -11,6 +11,9 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	<!-- Bean 등록 -->
+	<annotation-driven validator="globalValidator" />
+	<beans:bean id="globalValidator" class="com.fc.ch2.GlobalValidator" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/**" location="/resources/" />
