@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
 <%@ page import="java.net.URLDecoder"%>
 
 <!DOCTYPE html>
@@ -71,9 +72,11 @@
 </head>
 <body>
 	<!-- JSTL 추가  -->
-   <form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)">
+   <%-- <form action="<c:url value="/register/save"/>" method="post" onsubmit="return formCheck(this)" --%>
+    <form:form modelAttribute="user" >
     <div class="title">Register</div>
-    <div id="msg" class="msg">
+    <!-- <div id="msg" class="msg"> -->
+    <div id="msg" class="msg"><form:errors path="id" /></div>
    	    <c:if test="${not empty param.msg}">
 	        <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(param.msg)}</i>            
 	    </c:if>
@@ -92,11 +95,11 @@
     <input class="input-field" type="text" name="hobby" >
     <div class="sns-chk">
         <label><input type="checkbox" name="sns" value="facebook"/>페이스북</label>
-        <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
+        <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label> 
         <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
     </div>
     <button>회원 가입</button>
-   </form> 
+   </form:form> 
    <script>
        function formCheck(frm) {
             let msg ='';
