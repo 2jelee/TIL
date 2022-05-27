@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Annual">
+	
+	<select id="selectNear" parameterType="int"
+		resultType="com.gs52.vo.attendance.AnnualManageVO">
+		<!-- SELECT * from VACATION where vacation_emp_id = #{userid} -->
+		select attend_date as VACATION_DATE  from (select attend_date from attend where attend_EMP_INDEX = #{EMP_INDEX} and attend_attend_type_index <![CDATA[ > ]]> 6 and attend_date <![CDATA[ > ]]> sysdate order by attend_date ) where rownum <![CDATA[ < ]]> 2
+	</select>
+	
+	
+
+	<select id="selectAnnual" parameterType="int"
+		resultType="com.gs52.vo.attendance.AnnualManageVO">
+		<!-- SELECT * from VACATION where vacation_emp_id = #{userid} -->
+		 select VACATION_INDEX,
+		VACATION_EMP_INDEX,
+		VACATION_DATE,
+		VACATION_CONTENTS,
+		VACATION_STATUS,
+		VACATION_ATTEND_INFO_INDEX,
+		ATTEND_TYPE_NAME,
+		EMP_VACATION
+		from VACATION  , EMP, ATTEND_TYPE WHERE VACATION_EMP_INDEX = EMP_INDEX 
+        AND VACATION_ATTEND_INFO_INDEX = ATTEND_TYPE_INDEX AND VACATION_EMP_INDEX=#{userid}
+	</select>
+	
+	<select id="selectEmpVacation" parameterType="int"
+		resultType="com.gs52.vo.attendance.AnnualManageVO">
+		<!-- SELECT * from VACATION where vacation_emp_id = #{userid} -->
+		SELECT EMP_VACATION, EMP_NAME, EMP_ID FROM EMP WHERE EMP_INDEX=#{userid}
+	</select>
+	
+	<update id="updateEmpVacation"  parameterType="com.gs52.vo.attendance.AnnualManageVO">
+		UPDATE EMP SET EMP_VACATION = EMP_VACATION +#{COUNT} WHERE EMP_ID = #{EMP_ID}
+	</update>
+	
+	
+	
+	<insert id="insertAnnual"
+		parameterType="com.gs52.vo.attendance.AnnualManageVO">
+		INSERT INTO
+		VACATION(VACATION_INDEX,VACATION_EMP_INDEX,VACATION_DATE,VACATION_ATTEND_INFO_INDEX,VACATION_CONTENTS,VACATION_STATUS)
+		VALUES(#{VACATION_INDEX},#{VACATION_EMP_INDEX},#{VACATION_DATE},#{VACATION_ATTEND_INFO_INDEX},#{VACATION_CONTENTS},#{VACATION_STATUS})
+
+	</insert>
+	
+	<insert id="insertAttend" parameterType="com.gs52.vo.attendance.AnnualManageVO">
+	insert into attend(ATTEND_EMP_INDEX, ATTEND_DATE, ATTEND_ATTEND_TYPE_INDEX)
+values(#{VACATION_EMP_INDEX},#{VACATION_DATE},#{VACATION_ATTEND_INFO_INDEX})
+	
+	
+	</insert>
+	
+
+	<delete id="deleteAnnual">
+		DELETE FROM VACATION WHERE VACATION_DATE= #{VACATION_DATE} and VACATION_EMP_INDEX = #{VACATION_EMP_INDEX}
+	</delete>
+	
+	<delete id="deleteAttend">
+		DELETE FROM ATTEND WHERE ATTEND_DATE= #{VACATION_DATE} and ATTEND_EMP_INDEX = #{VACATION_EMP_INDEX}
+	</delete>
+	
+	
+	
+</mapper>

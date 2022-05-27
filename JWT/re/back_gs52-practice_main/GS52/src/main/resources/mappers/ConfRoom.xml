@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ConfRoom">
+   <insert id="Insert_book" parameterType="com.gs52.vo.schedule.ConfRoomBookVO">
+   insert into CONF (CONF_TITLE, CONF_ROOM_INDEX, CONF_DATE, CONF_START, CONF_END, CONF_EMP_INDEX_SEND )
+       VALUES (#{CONF_TITLE}, #{CONF_ROOM_INDEX}, #{CONF_DATE}, #{CONF_START}, #{CONF_END}, #{CONF_EMP_INDEX_SEND})
+   </insert>
+   
+   <select id="Select_conf_seq" parameterType="int" resultType="int">
+     SELECT CONF_SEQ.CURRVAL FROM DUAL
+   </select>
+   
+   <insert id="Insert_conf_re"  parameterType="com.gs52.vo.schedule.ConfReVO">
+    <!--  insert into CONF_RE (CONF_RE_EMP_INDEX, CONF_RE_CONF_INDEX) VALUES -->
+     <foreach collection="CONF_RE_EMP_INDEX" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+     	<!-- (${item}, ${CONF_RE_CONF_INDEX}) -->
+     	INTO CONF_RE  ( 
+                       CONF_RE_EMP_INDEX                     
+                     , CONF_RE_CONF_INDEX              
+                ) VALUES(
+                       ${item}                    
+                     , ${CONF_RE_CONF_INDEX}
+                )
+     </foreach>
+   </insert>
+   
+      <select id="Select_book" parameterType="map" resultType="com.gs52.vo.schedule.ConfRoomBookVO">
+      select * from conf
+      <!-- select c.CONF_INDEX, c.CONF_TITLE, 
+      				c.CONF_ROOM_INDEX, c.CONF_DATE, 
+      				c.CONF_START, c.CONF_END, 
+      				c.CONF_EMP_INDEX_SEND, 
+      				cr.CONF_RE_INDEX, cr.CONF_RE_EMP_INDEX, 
+      				cr.CONF_RE_CONF_INDEX 
+      				
+      				from CONF c, CONF_RE cr 
+      				where c.CONF_INDEX = cr.CONF_RE_CONF_INDEX -->
+           
+          <!--   select c.CONF_INDEX, c.CONF_TITLE, 
+      				c.CONF_ROOM_INDEX, c.CONF_DATE, 
+      				c.CONF_START, c.CONF_END, 
+      				c.CONF_EMP_INDEX_SEND, 
+      				cr.CONF_RE_INDEX, cr.CONF_RE_EMP_INDEX, 
+      				cr.CONF_RE_CONF_INDEX 
+      				
+      				from CONF c, CONF_RE cr 
+      				where c.CONF_INDEX = cr.CONF_RE_CONF_INDEX -->
+      
+   </select>
+      
+      <select id="Select_room" parameterType="map" resultType="com.gs52.vo.schedule.ConfRoomVO">
+      	select CONF_ROOM_INDEX,CONF_ROOM_FLOOR,CONF_ROOM_NUMBER,NVL(conf.cnt,0) as CONF_ROOM_COUNT
+		from conf_room left join 
+		(select a.conf_room_index ind,count(*) as cnt
+		from conf_room a,conf b 
+		where a.CONF_ROOM_INDEX=b.CONF_ROOM_INDEX 
+		group by a.conf_room_index) 
+		conf 
+		on (conf.ind= conf_room_index)   order by conf_room_index
+   </select>
+   
+      <select id="Select_room_floor" parameterType="map" resultType="com.gs52.vo.schedule.ConfRoomVO">
+      select distinct CONF_ROOM_FLOOR from CONF_ROOM
+   </select>
+   
+    <select id="Select_conf_room" parameterType="map" resultType="com.gs52.vo.schedule.ConfRoomVO">
+      select * from CONF_ROOM where CONF_ROOM_FLOOR=#{CONF_ROOM_FLOOR}
+   </select>
+   
+    <select id="Select_emp" parameterType="map" resultType="com.gs52.vo.emp.EmpVO">
+      select * from emp
+   </select>
+   
+   	<delete id="Delete_conf_re" >
+   		delete from CONF_RE where CONF_RE_CONF_INDEX = #{CONF_RE_CONF_INDEX}
+	</delete>   	
+	<delete id="Delete_conf" >
+   		delete from CONF where CONF_INDEX=#{CONF_INDEX} and CONF_EMP_INDEX_SEND=#{CONF_EMP_INDEX_SEND}
+	</delete>
+    <select id="Select_conf_find" parameterType="map" resultType="com.gs52.vo.schedule.ConfRoomVO">
+      select * from CONF where CONF_INDEX=#{CONF_INDEX} and CONF_EMP_INDEX_SEND=#{CONF_EMP_INDEX_SEND}
+   </select>
+	
+      <select id="Select_confOne" parameterType="com.gs52.vo.schedule.ConfRoomBookVO" resultType="com.gs52.vo.schedule.ConfRoomBookVO">
+					select c.CONF_INDEX, c.CONF_TITLE, 
+     				c.CONF_ROOM_INDEX, c.CONF_DATE, 
+     				c.CONF_START, c.CONF_END, 
+     				c.CONF_EMP_INDEX_SEND, 
+     				cr.CONF_RE_INDEX, cr.CONF_RE_EMP_INDEX, 
+     				cr.CONF_RE_CONF_INDEX,
+                    e.EMP_NAME, 
+                    c_ro.CONF_ROOM_FLOOR, c_ro.CONF_ROOM_NUMBER
+                    
+     				from CONF c, CONF_RE cr , EMP e, CONF_ROOM c_ro
+     				
+     				where c.CONF_INDEX = cr.CONF_RE_CONF_INDEX and 
+     						c.CONF_INDEX=#{CONF_INDEX, jdbcType=VARCHAR } and 
+     						cr.CONF_RE_EMP_INDEX=e.EMP_INDEX and 
+     						c_ro.CONF_ROOM_INDEX=c.CONF_ROOM_INDEX
+      
+   </select>
+   
+   <select id="Select_confOverlap" parameterType="com.gs52.vo.schedule.ConfRoomBookVO" resultType="com.gs52.vo.schedule.ConfRoomBookVO">
+   		
+		SELECT * FROM conf where 
+		CONF_ROOM_INDEX = #{CONF_ROOM_INDEX} and
+		CONF_DATE = #{CONF_DATE} and
+		((CONF_START between #{CONF_START, jdbcType = VARCHAR} and #{CONF_END, jdbcType = VARCHAR}) or
+		(CONF_END between #{CONF_START, jdbcType = VARCHAR} and #{CONF_END, jdbcType = VARCHAR}))
+   </select>
+   
+   <select id="Select_conf_emp_attend" parameterType="com.gs52.vo.schedule.ConfRoomBookVO" resultType="com.gs52.vo.schedule.ConfRoomBookVO">
+   		select * from attend 
+   		where ATTEND_EMP_INDEX = #{ATTEND_EMP_INDEX} and ATTEND_ATTEND_TYPE_INDEX
+   
+   </select>
+   
+</mapper>
+

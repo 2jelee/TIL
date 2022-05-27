@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WorkTime">
+	<select id="Select_Emp_Image" parameterType="map" resultType="com.gs52.vo.emp.EmpVO">
+		select EMP_IMG_PATH from EMP where EMP_INDEX=${EMP_INDEX}
+	</select>
+
+
+	<select id="Select_Work_Rule" parameterType="map" resultType="com.gs52.vo.main.WorkTimeVO">
+		select * from WORK_RULE W, TEAM T where W.WORK_RULE_INDEX=T.TEAM_WORK_TYPE and T.TEAM_INDEX=${EMP_TEAM_INDEX}
+	</select>
+
+
+   <insert id="Insert_Start" parameterType="com.gs52.vo.main.WorkTimeVO">
+   insert into ATTEND (ATTEND_EMP_INDEX, ATTEND_DATE, ATTEND_START, ATTEND_ATTEND_TYPE_INDEX)
+       VALUES (#{ATTEND_EMP_INDEX}, #{ATTEND_DATE}, 
+       #{ATTEND_START}, 
+       <!-- #{ATTEND_ATTEND_TYPE_INDEX}) -->
+       <!-- &lt; === < -->
+       <choose>
+		    <when test="ATTEND_START&lt;WORK_RULE_START">
+		    <!-- 출근  -->
+		      1
+		    </when>
+		    <when test="ATTEND_START&gt;WORK_RULE_START">
+		    <!-- 지각  -->
+		      3
+		    </when>
+		    <!-- 
+		    <otherwise>
+		      AND featured = 1
+		    </otherwise>
+		     -->
+		</choose>
+		)
+   </insert>
+   
+   
+	<update id="Update_End" parameterType="com.gs52.vo.main.WorkTimeVO">
+		update ATTEND set
+		 ATTEND_END= #{ATTEND_END}, 
+		 ATTEND_TOTAL=ROUND((TO_DATE(#{ATTEND_END}, 'HH24:MI') - TO_DATE(ATTEND_START, 'HH24:MI')) * 24 * 60-60, 2)
+		where ATTEND_EMP_INDEX=#{ATTEND_EMP_INDEX} and ATTEND_DATE=#{ATTEND_DATE}
+	</update>
+		
+	<update id="Update_BreakTime" parameterType="com.gs52.vo.main.WorkTimeVO">
+		update ATTEND set ATTEND_BREAK=NVL(ATTEND_BREAK, 0)+#{ATTEND_BREAK}
+		where ATTEND_EMP_INDEX=#{ATTEND_EMP_INDEX} and ATTEND_DATE=#{ATTEND_DATE}
+	</update>
+		
+   
+   <select id="Select_WorkCheck" parameterType="com.gs52.vo.main.WorkTimeVO" resultType="com.gs52.vo.main.WorkTimeVO">
+   		select * from ATTEND where ATTEND_DATE='${ATTEND_DATE}' and ATTEND_EMP_INDEX=${ATTEND_EMP_INDEX}
+   </select>
+
+   <insert id="Insert_BreakStart" parameterType="com.gs52.vo.main.BreakTimeVO" >
+  		 <selectKey keyProperty="BREAK_INDEX" resultType="long">
+			SELECT BREAK_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+   		insert into BREAK(BREAK_EMP_INDEX, BREAK_DATE, BREAK_START)
+   		VALUES(#{BREAK_EMP_INDEX}, #{BREAK_DATE}, #{BREAK_START})
+   </insert>
+   
+   	<update id="Update_BreakEnd" parameterType="com.gs52.vo.main.BreakTimeVO">
+  		 <selectKey keyProperty="BREAK_TIME" resultType="int">
+			SELECT ROUND((TO_DATE(#{BREAK_END}, 'HH24:MI') - TO_DATE(BREAK_START, 'HH24:MI')) * 24 * 60, 2) FROM BREAK WHERE BREAK_INDEX=#{BREAK_INDEX}
+		</selectKey>
+		update BREAK set BREAK_END=#{BREAK_END}
+		where BREAK_INDEX=#{BREAK_INDEX}
+	</update>
+	
+</mapper>

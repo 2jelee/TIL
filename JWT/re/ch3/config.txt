@@ -1,0 +1,4 @@
+# car=com.fc.ch3.diCopy.SportsCar
+car=com.fc.ch3.diCopy4.Truck
+engine=com.fc.ch3.diCopy4.Engine
+door=com.fc.ch3.diCopy4.Door

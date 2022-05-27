@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPage">
+	<select id="select_Emp" parameterType="com.gs52.vo.schedule.ProjectVO" resultType="com.gs52.vo.emp.EmpVO">
+		select EMP_INDEX,EMP_ID, EMP_NAME, EMP_EMAIL, EMP_ADDRESS, EMP_PHONE, EMP_BIRTH,
+		EMP_ENTRY_DATE, EMP_RANK_INDEX, RANK_NAME,
+		DEPT_NAME,EMP_TEAM_INDEX,TEAM_NAME,
+		EMP_POSITION_INDEX,POSITION_NAME,
+		EMP_VACATION, EMP_IMG_PATH	
+		from emp,rank,dept,team,position
+		where emp.emp_rank_index = rank.rank_index and
+		emp.emp_team_index = team.team_index and
+        team.team_dept_index= dept.dept_index and
+		emp.emp_position_index = position.position_index and
+		emp.EMP_INDEX =#{EMP_INDEX}
+	</select>
+	
+	<update id="update_inform" parameterType="com.gs52.vo.emp.EmpVO">
+		update EMP set 
+			            EMP_NAME= nvl(#{EMP_NAME, jdbcType=VARCHAR },EMP.EMP_NAME),
+						EMP_EMAIL=nvl(#{EMP_EMAIL, jdbcType=VARCHAR },EMP.EMP_EMAIL),
+						EMP_ADDRESS=nvl(#{EMP_ADDRESS, jdbcType=VARCHAR },EMP.EMP_ADDRESS),
+						EMP_PHONE=nvl(#{EMP_PHONE, jdbcType=VARCHAR },EMP.EMP_PHONE)
+		where EMP_INDEX=#{EMP_INDEX}
+	</update>
+	
+</mapper>
