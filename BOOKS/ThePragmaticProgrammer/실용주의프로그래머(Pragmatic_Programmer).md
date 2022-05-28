@@ -555,6 +555,61 @@ DRY는 *지식의 중복*, *의도의 중복*에 대한 것이다 ⇒ 코드 뿐
 
 [[TIL 1] 실용주의 프로그래머 #2. 실용주의 접근법 - 노마드 코더 Nomad Coders](https://nomadcoders.co/community/thread/3536)
 
+--- 
+
+## DAY 08 (2022.05.??)
+
+## **복습 3, 4장**
+
+## **Mission 1**
+
+1. 오늘의 책읽기: 복습 (3, 4장)
+2. 오늘의 과제: 퀴즈를 풀면서 복습하기
+
+`📝 오늘 복습할 범위`
+
+**[DAY 02]** 서문 ~ 1장. 실용주의 철학
+
+**[DAY 03]** 2장. 실용주의 접근법
+
+`💡 Mission : 나의 최애 Book TIL`
+
+### Question 1 of 5
+
+What is the best format to keep knowledge on?
+
+- [ ]  Plan Text
+- [ ]  Encrypted Text
+
+### Question 2 of 5
+
+What does WYSIWYG mean?
+
+- [ ]  Where You Seat is Where You Go
+- [ ]  What You See is What You Get
+
+### Question 3 of 5
+
+What does VCS mean?
+
+- [ ]  Version Control System
+- [ ]  Verification Control System
+
+### Question 4 of 5
+
+Where should we use Version Control?
+
+- [ ]  Everywhere
+- [ ]  At work
+
+### Question 5 of 5
+
+What was the first computer bug?
+
+- [ ]  A COBOL error
+- [ ]  An ant
+- [ ]  A moth
+
 ---
 
 [#코딩](https://www.instagram.com/explore/tags/%EC%BD%94%EB%94%A9/) [#개발자](https://www.instagram.com/explore/tags/%EA%B0%9C%EB%B0%9C%EC%9E%90/) [#노마드북클럽](https://www.instagram.com/explore/tags/%EB%85%B8%EB%A7%88%EB%93%9C%EB%B6%81%ED%81%B4%EB%9F%BD/) [#노개북](https://www.instagram.com/explore/tags/%EB%85%B8%EA%B0%9C%EB%B6%81/)
