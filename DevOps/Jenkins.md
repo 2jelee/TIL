@@ -18,3 +18,12 @@ brew services stop jenkins
 brew services restart jenkins
 ```
 
+### 접속 포트 변경
+```
+vi (jenkins가 설치된 경로)/jenkins/(jenkins 설치version)/homebrew.mxcl.jenkins.plist
+```
+
+`
+<string>--httpPort=XXXX</string>
+`
+을 원하는 포트로 변경
