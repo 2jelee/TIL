@@ -7,15 +7,27 @@
     "dev": "nodemon"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.8",
-    "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.11",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "D": "^1.0.0",
     "express": "^4.17.3",
     "pug": "^3.0.2",
     "ws": "^8.5.0"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2jelee/webRTC-server-study.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/2jelee/webRTC-server-study/issues"
+  },
+  "homepage": "https://github.com/2jelee/webRTC-server-study#readme"
 }
