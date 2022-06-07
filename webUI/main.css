@@ -53,3 +53,13 @@
     padding: 100px 20px;
     background-color: lightgray;
 }
+
+.dark {
+    background-color: black;
+    color: white;
+}
+
+.light {
+    background-color: none;
+    color: none;
+}

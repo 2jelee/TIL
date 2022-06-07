@@ -10,10 +10,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   </head>
-  <body>
+  <body class="mode">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <span class="navbar-brand">Navbar</span>
+          <span id='darkBtn' class="badge bg-dark">Dark 🔄</span>
           <button class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -62,17 +63,7 @@
 
       $('#close').on('click', function() {
         $('.back-bg').hide();
-      })
-
-      // $('.btn-primary').on('click', function() {
-      //   if
-      // })
-      // $('form').on('submit', function () {
-      //   if(document.getElementById('email').value == ''){
-      //     alert('공백이 있습니다.');
-      //     return false;
-      //   }
-      // }) 
+      }) 
 
       // 1. 전송 버튼 누르면 아이디/비밀번호 입력란 둘 다 공백검사
       $('form').submit('click', function() { 
@@ -97,8 +88,40 @@
         console.log('안뇽');
       })
       
-      
+      ////////////////////////////////////////////////////////////
 
+      let count = 0;
+
+      // 1. badge 클릭 시 내부 글자를 Light로 변경  
+      $('.badge').on('click', function() {
+        count += 1; 
+        
+        if(count%2==1){
+          $('.badge').html('Light 🔄');  
+          $('.mode').addClass('dark'); 
+        } else{
+          $('.badge').html('Dark 🔄'); 
+          $('.mode').removeClass('dark');
+        }
+      })
+
+      // 변수의 선언과 할당을 동시에.
+      let name = 'Lee';
+      // 변수의 재할당
+      name = 'Park';
+
+      console.log(name);
+
+      function familyName() {
+        // 변수의 범위 
+
+      }
+
+      /*
+        var : 변수의 재선언 O, 재할당 O, 범위 function
+        let : 변수의 재선언 X, 재할당 O, 범위 { }
+        const : 변수의 재선언 X, 재할당 X, 범위 { } 
+      */
     </script>
   </body>
 </html>
