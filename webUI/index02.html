@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index02.html</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body> 
+    <div id="alert-box">
+        <p id="title">알림창</p>
+        <button id="btn-handler">CLOSE</button>
+    </div> 
+
+    <button onclick="alertID()">BUTTON1</button>
+    <button onclick="alertPW()">BUTTON2</button>
+
+</body>
+<script>  
+
+    // 긴 코드를 짧게 축약 : function(parameter)
+    function alertID() {
+        document.getElementById('alert-box').style.display = 'block'; 
+        document.getElementById('title').innerHTML = '아이디를 입력하세요.';
+    }
+
+    function alertPW() {
+        document.getElementById('alert-box').style.display = 'block';
+        document.getElementById('title').innerHTML = '비밀번호를 입력하세요.';
+    } 
+
+    // addEventListener(파라미터, 콜백함수) << 이처럼 파라미터 2개 필요
+    // 콜백함수 : 파라미터 자리에 들어가는 함수 -> 코드를 순차적으로 실행할 때 콜백함수를 요구한다.
+    document.getElementById('btn-handler').addEventListener('click', function() {
+        document.getElementById('alert-box').style.display = 'none';  
+    }); 
+</script>
+</html>
