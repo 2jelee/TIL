@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>quiz02.html</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css"> 
+  </head>
+  <body>
+    <!-- Q5. -->
+    <p>태조 이성계가 태어난 년도는?</p>
+    <input type="text" id="answer">
+    <button id="send-answer">제출</button>
+ 
+    <script>
+      /*
+        Q1. 변수를 만들어봅시다.
+        내 나이와 출신지역을 자바스크립트 변수에 저장해봅시다. 
+        나이는 맨날 변하니 재할당가능한 변수,
+        출신지역은 바뀌지 않으니 재할당불가능한 변수에 저장해보십시오.
+      */
+      // 내 나이
+      let myAge = 20;
+      const bornAddress = 'Incheon';
+
+      /*
+        Q2. 왜 이 변수는 동작하지 않죠?
+        var name = 'park';
+        var id = 0;
+
+        function showName(){
+          var name = 'kim';
+          var id = 1;
+          console.log(name);
+        }
+
+        showName();
+        console.log(id);
+      */
+      // 코드를 실행했을 때 콘솔에 출력될 것은?
+      // showName() // => 'kim'
+      // console.log(id); // => 0
+      /*
+        console.log(name) 부분에선 'kim' 이 출력되고 
+        console.log(id) 부분에선 0이 출력됩니다. 
+        var name의 경우 함수 안에서 재선언 + 재할당 해버리고 출력해버렸으니 그냥 'kim' 잘 나오는데  
+        var id의 경우 함수 안에 있던 변수는 바깥으로 탈출하지 않습니다. 
+        그래서 함수 바깥에서 console.log(id) 하면 그냥 위에있던 var id = 0 이 출력됩니다.
+      */
+
+      /*
+        Q3. 이자율 계산하기 
+        철수는 은행에 예금을 하러 갔는데 예금 금액에 따라 이율이 달라지는 것을 보고 크게 당황했습니다. 
+        첫 예금액이 5만원 미만이면 이율이 연 15퍼센트, 첫 예금액이 5만원 이상이면 이율이 연 20퍼센트라고 합니다. 
+        그래서 민준이는 
+        (1) 변수에 예금액을 넣으면 
+        (2) 2년 후의 총 예금액을 자동으로 콘솔창에 출력해주는 기능을 자바스크립트로 만들려고하는데 
+        어떻게 코드를 짜면 될까요? 
+      */ 
+      function deposit(money) {
+        if(money >= 50000){
+          result = money * 1.2 * 1.2;
+          console.log(result);
+        } else {
+          result = money * 1.15 * 1.15;
+          console.log(result);
+        }
+      }
+      deposit(60000); 
+
+      /*
+        Q4. 커피 리필을 이상하게 해주는 곳이 있습니다. 최대한 마실 수 있는 커피양을 계산해봅시다.  
+        방금 마신 커피의 3분의 2만큼 총 2번 리필해주는 카페가 있습니다. 
+        예를 들면 처음 커피를 90ml 주문하면 첫 리필은 60ml를 해주며, 그 다음 리필은 40ml를 해주는 카페입니다. 
+        그럼 처음 주문한 커피 양에 따라서 최대한 마실 수 있는 커피를 콘솔창에 계산해주는 코드를 작성해봅시다. 
+      */
+      let first = 360;
+
+      function refill(drinkCoffee) {
+        // if(drinkCoffee)  
+      }
+
+      /*
+        Q5. 간단한 퀴즈 UI를 만들어보자
+      */
+      // 숫자 카운트할 변수
+      let count = 0;
+      // $('#answer').val()
+      function quiz(params) {
+        $('#send-answer').on('click', function() {
+          count++;
+          if(count === 3){
+            alert('멍청아');
+          }
+        })
+      }
+
+    </script>
+  </body>
+</html>
