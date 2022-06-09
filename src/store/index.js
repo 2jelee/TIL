@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import tokenReducer from './Auth';
+import tokenReducer from '../auth/Auth';
 // import tokenReducer, {tokenSlice} from './Auth';
 // import {combineReducers} from "redux";
 // import {persistReducer} from "redux-persist";

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import {Routes, Route, Link} from 'react-router-dom';
-import Home from "./routes/Home";
-import Login from "./store/Login";
-import Logout from "./store/Logout";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import {useSelector} from "react-redux";
 
 function App() {
