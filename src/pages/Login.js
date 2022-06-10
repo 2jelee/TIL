@@ -1,10 +1,12 @@
+import React from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { loginUser } from '../auth/Users';
 import { setRefreshToken } from '../auth/Cookie';
 import { SET_TOKEN } from '../auth/Auth';
-import ama from "../img/Untitled.png"
+import '../css/login.css'
+import Fade from 'react-reveal';
 
 function Login() {
     const navigate = useNavigate();
@@ -26,10 +28,10 @@ function Login() {
             alert('로그인 성공')
             console.log(response.status) //true
             console.log(response) // status ...
-            console.log(response.text) // refresh token 확인???? 아닌듯.
+            console.log(response.text)
             return navigate("/");
         } else {
-            alert('ID와 PASSWORD를 다시 한번 확인하세요.')
+            alert('사번과 PASSWORD를 다시 한번 확인하세요.')
             console.log(response.text);
         }
         // 실패 시 초기화
@@ -38,41 +40,23 @@ function Login() {
     };
 
     // Login 버튼을 누르면
-    function LoginBtn() {
-        alert("jj");
-    }
+    // function LoginBtn() {
+    //     alert("jj");
+    // }
 
     return (
         <>
-            <div className="App">
-                <header className="App-header">
-                    <div>
-                        {/*<h2>LOGIN</h2>*/}
-                        <div id="login-button" onClick={ () => LoginBtn()}>
-                            <img src={ama} alt=""/>
-                            {/*<img src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png" />*/}
-                        </div>
-                    </div>
-                    <form onSubmit ={ handleSubmit(onValid) }>
+            <div className="login-bg">
+                <Fade bottom>
+                    <form className='form-login' onSubmit={handleSubmit(onValid)}>
+                        <img src="../img/logo_team.png" alt="logo-team" width='300px' height='auto' /> <br/>
+                        <input name="box" {...register("user_id")} type="text" placeholder="사 번" />
+                        <input name="box" {...register("password")} type="password" placeholder="비밀번호" />
                         <div>
-                            <div>
-                                <input {...register("user_id")} type="text" placeholder="ID (사번)" />
-                            </div>
-                            <div>
-                                <input {...register("password")} type="password" placeholder="PASSWORD" />
-                            </div>
-
-                            <div id="remember-container">
-                                <input type="checkbox" id="checkbox-2-1" className="checkbox" checked="checked"/>
-                                <span id="remember">Remember me</span>
-                                <span id="forgotten">Forgotten password</span>
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit"> 로그인 </button>
+                            <button className="btn-login" type="submit">LOGIN</button>
                         </div>
                     </form>
-                </header>
+                </Fade>
             </div>
         </>
     );
