@@ -5,8 +5,9 @@ import { useForm } from 'react-hook-form';
 import { loginUser } from '../auth/Users';
 import { setRefreshToken } from '../auth/Cookie';
 import { SET_TOKEN } from '../auth/Auth';
-import '../css/login.css'
 import Fade from 'react-reveal';
+import '../css/login.css'
+import logo from '../img/logo_team.png';
 
 function Login() {
     const navigate = useNavigate();
@@ -46,18 +47,25 @@ function Login() {
 
     return (
         <>
-            <div className="login-bg">
-                <Fade bottom>
-                    <form className='form-login' onSubmit={handleSubmit(onValid)}>
-                        <img src="../img/logo_team.png" alt="logo-team" width='300px' height='auto' /> <br/>
-                        <input name="box" {...register("user_id")} type="text" placeholder="사 번" />
-                        <input name="box" {...register("password")} type="password" placeholder="비밀번호" />
-                        <div>
-                            <button className="btn-login" type="submit">LOGIN</button>
-                        </div>
-                    </form>
-                </Fade>
-            </div>
+            <div className="login-bg" />
+            <Fade bottom>
+                <form className='form-login' onSubmit={handleSubmit(onValid)}>
+                    <div>
+                        <img className="logo" src={logo} alt="logo" />
+                    </div>
+                        {/*<img src="../img/logo_team.png" alt="logo-team" width='300px' height='auto' />*/}
+                    {/*</div>*/}
+                    <div className="form-input">
+                        <input {...register("user_id")} type="text" placeholder="사 번" />
+                    </div>
+                    <div className="form-input">
+                        <input {...register("password")} type="password" placeholder="비밀번호" />
+                    </div>
+                    <div>
+                        <button className="btn-login" type="submit">LOGIN</button>
+                    </div>
+                </form>
+            </Fade>
         </>
     );
 }

@@ -1,54 +1,78 @@
+/* init */
+div, input, textarea {
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+}
+
+/*********************************************/
+
 .login-bg{
     height: 100vh;
     background: url(../img/login_img.jpeg);
     background-size: cover;
-    background-repeat : no-repeat;
+    /*background-size: contain; !* 이미지가 잘리지 않게 *!*/
+    background-repeat: no-repeat;
     /*filter: blur(2px);*/
     /*filter: brightness(80%);*/
 }
 .logo{
-    background: url(../img/logo_team.png);
-}
-
-.btn-login{
-    background: #00AAFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    /*width: auto;*/
-    /*width: inherit;*/
-    box-shadow : 5px 5px 10px -5px black;
-    width: 33vh;
-    height: 5vh;
+    /*padding-top: 5%;*/
+    /*padding-bottom: 5%;*/
+    padding: 5% 0 0 5%;
+    width: 28%;
+    max-width: 200px;
 }
 
 .form-login{
     display: block;
     margin-left: auto;
     margin-right: auto;
-
-    border-radius: 4px;
-    border: 2px solid;
-    width: 25%;
-    color: white;
+    border-radius: 10px;
     background: white;
+    opacity: 0.9 !important;
     box-shadow : 5px 5px 10px -5px black;
+    position: relative;
+    text-align: center;
+    width: 22%;
+    max-width: 450px;
+    /*height: 44vh;*/
+    height: auto;
+    right: 0;
+    left: 0;
+    top: -70vh;
+    box-sizing: border-box;
+    padding: 0.3%;
 }
 
-input[type=text] {
-    width: 70%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
+input[type=text], input[type=password] {
+    margin-top: 7%;
+    width: 90%;
+    height: 5vh;
+    font-size: 20px;
+    font-weight: bold;
     border: none;
-    border-bottom: 2px solid #00AAFF;
+    background: lightgray;
+    border-radius: 4px;
+    letter-spacing: 3px;
+    padding-left: 20px;
 }
 
-input[type=password] {
-    width: 70%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
+input::placeholder {
+    color: white;
+}
+
+.btn-login{
+    margin-top: 7%;
+    margin-bottom: 7%;
+    width: 90%;
+    height: 5vh;
+    background-color: #00AAFF;
     border: none;
-    border-bottom: 2px solid #00AAFF;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    /*box-shadow : 5px 5px 10px -5px black;*/
 }
