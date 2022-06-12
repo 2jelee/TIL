@@ -4,10 +4,27 @@ div, input, textarea {
 }
 body{
     margin: 0px;
+    /*scrollbar: none;*/
+}
+
+/* Login 페이지에서 새로고침 시 움직임 방지를 위해 추가 */
+::-webkit-scrollbar {
+    display: none;
 }
 
 /*********************************************/
 
+html{
+    height: 100vh;
+    background: url(../img/login_img.jpeg);
+    background-size: cover;
+    /*background-size: contain; !* 이미지가 잘리지 않게 *!*/
+    background-repeat: no-repeat;
+    /*filter: blur(2px);*/
+    /*filter: brightness(80%);*/
+}
+
+/* 사용 X */
 .login-bg{
     height: 100vh;
     background: url(../img/login_img.jpeg);
@@ -17,6 +34,7 @@ body{
     /*filter: blur(2px);*/
     /*filter: brightness(80%);*/
 }
+
 .logo{
     /*padding-top: 5%;*/
     /*padding-bottom: 5%;*/
@@ -32,23 +50,24 @@ body{
     border-radius: 10px;
     background: white;
     opacity: 0.9 !important;
-    box-shadow : 5px 5px 10px -5px black;
+    box-shadow: 10px 10px 30px #000;
     position: relative;
     text-align: center;
-    width: 22%;
+    width: 21%;
     max-width: 450px;
     /*height: 44vh;*/
     height: auto;
     right: 0;
     left: 0;
-    top: -70vh;
+    top: 30vh;
     box-sizing: border-box;
     padding: 0.3%;
 }
 
 input[type=text], input[type=password] {
+    position: relative;
     margin-top: 7%;
-    width: 90%;
+    width: 85%;
     height: 5vh;
     font-size: 20px;
     font-weight: bold;
@@ -64,9 +83,10 @@ input::placeholder {
 }
 
 .btn-login{
+    position: relative;
     margin-top: 7%;
     margin-bottom: 7%;
-    width: 90%;
+    width: 85%;
     height: 5vh;
     background-color: #00AAFF;
     border: none;
@@ -75,4 +95,9 @@ input::placeholder {
     color: white;
     font-size: 20px;
     /*box-shadow : 5px 5px 10px -5px black;*/
+}
+
+button:hover{
+    opacity: 0.7;
+    cursor: pointer;
 }

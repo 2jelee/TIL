@@ -14,9 +14,12 @@ function Login() {
     const dispatch = useDispatch();
 
     // useForm 사용을 위한 선언
-    const { register, setValue,
-        formState: { errors },
-        handleSubmit } = useForm();
+    const {
+            register,
+            setValue,
+            formState: { errors },
+            handleSubmit
+          } = useForm();
 
     // submit 이후 동작할 코드
     const onValid = async ({ user_id, password }) => {
@@ -30,7 +33,7 @@ function Login() {
             console.log(response.status) //true
             console.log(response) // status ...
             console.log(response.text)
-            return navigate("/");
+            return navigate("/user");
         } else {
             alert('사번과 PASSWORD를 다시 한번 확인하세요.')
             console.log(response.text);
@@ -40,26 +43,19 @@ function Login() {
         setValue("password", "");
     };
 
-    // Login 버튼을 누르면
-    // function LoginBtn() {
-    //     alert("jj");
-    // }
-
     return (
         <>
-            <div className="login-bg" />
+            {/*<div className="login-bg" />*/}
             <Fade bottom>
                 <form className='form-login' onSubmit={handleSubmit(onValid)}>
                     <div>
                         <img className="logo" src={logo} alt="logo" />
                     </div>
-                        {/*<img src="../img/logo_team.png" alt="logo-team" width='300px' height='auto' />*/}
-                    {/*</div>*/}
                     <div className="form-input">
-                        <input {...register("user_id")} type="text" placeholder="사 번" />
+                        <input {...register("user_id")} type="text" placeholder="사 번" autofocus />
                     </div>
                     <div className="form-input">
-                        <input {...register("password")} type="password" placeholder="비밀번호" />
+                        <input {...register("password")} type="password" placeholder="비밀번호" autofocus />
                     </div>
                     <div>
                         <button className="btn-login" type="submit">LOGIN</button>
