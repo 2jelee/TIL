@@ -1,36 +1,26 @@
 import React from 'react';
 import './App.css';
-import {Routes, Route, Link} from 'react-router-dom';
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import PrivateRoute from "./pages/PrivateRoute";
+import Main from "./pages/Main";
 import Logout from "./pages/Logout";
-import {useSelector} from "react-redux";
-import User from "./pages/User";
 
 function App() {
-    const token = useSelector((state) => { return state })
-    console.log(token)
+  return (
+    <>
+        <Routes>
+            <Route path="/login" element={<Login />} />
 
-    return (
-      <>
-          <Link to="/">HOME</Link>&nbsp;
-          {/*<Link to="/login">LOGIN</Link>&nbsp;*/}
-          {/*<Link to="/logout">LOGOUT</Link>&nbsp;*/}
-          {/* ACCESS_TOKEN이 있으면 LOGOUT */}
-          {
-              token.ACCESS_TOKEN.authenticated === false
-              ? <Link to="/login">LOGIN</Link> : <Link to="/logout">LOGOUT</Link>
-          }
+          {/*<Route element={ <PrivateRoute /> }>*/}
+            <Route path="/main" element={<Main />} />
+            <Route path="/logout" element={<Logout />} />
+          {/*</Route>*/}
 
-          <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/user" element={<User />} />
-              {/* 404 page */}
-              <Route path="*" element={<div> 없는 페이지 </div>} />
-          </Routes>
-      </>
+          {/* 404 page */}
+          <Route path="*" element={<div> 없는 페이지 <Login/> </div>} />
+        </Routes>
+    </>
   );
 }
 
