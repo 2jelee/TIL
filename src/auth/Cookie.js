@@ -12,7 +12,6 @@ export const setRefreshToken = (refreshToken) => {
     return cookies.set('refresh_token', refreshToken, {
         sameSite: 'strict',
         path: "/",
-        // path: "/login",
         expires: new Date(expireDate)
     });
 };
@@ -24,5 +23,8 @@ export const getCookieToken = () => {
 
 // 로그아웃 시 Cookie 삭제
 export const removeCookieToken = () => {
-    return cookies.remove('refresh_token', { sameSite: 'strict', path: "/" })
+    return cookies.remove('refresh_token', {
+        sameSite: 'strict',
+        path: "/"
+    });
 }
