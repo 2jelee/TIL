@@ -509,25 +509,3 @@ Transition 예제
  
 
 useTransition 훅을 활용해 isPending 과 startTransition 을 반환받았고, isPending 을 활용해 결과 화면에 대한 UI를 활용할 수 있었으며, startTransition 을 활용해 state 업데이트의 우선순위를 구현해 Component의 효율적인 렌더링을 기대할 수 있게 됩니다.
-
- 
-
-CodeSandbox 를 통해서 살펴보기
-
- 
-
-느꼈던 점(회고)
-18 버전을 통해서 React 팀이 React 를 얼마나 사랑하며 문제점을 개선하고자 하는지 느껴볼 수 있게 되었습니다. 16.8 버전에 출시된 hook 만큼 놀랄 만한 개선사항 (breaking change) 은 아니지만 다양한 부분에서 세심하게 신경 쓰고 있다는 점을 느끼게 되었습니다.
-
- 
-
-이렇게 다양한 팀 혹은 개인이 신경 쓰고 사랑하는 라이브러리 라면 이미 성숙기에 접어든 상태지만 꾸준히 안정적으로 롱런 하는 라이브러리로 남지 않을까 생각해 봅니다.
-
- 
-
-읽어봐주셔서 감사합니다. React Forever!!
-
- 
-
-참고자료
-React 18 v Official Document
