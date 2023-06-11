@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+    <table border="1" bordercolor="black" width ="800" height="30" align = "center" >
+        <tr bgcolor="gray" align ="center">
+       
+        </tr>
+        <tr align = "center" bgcolor="lightgray">
+        <td>성별정보</td>
+        <td>신체정보</td>
+        <td>비만도 결과</td>
+        <tr>
+            <td id="title">성별
+                <input type="radio" name="gender" value="남" checked>남
+                <input type="radio" name="gender" value="여" >여
+            <td id="title">키&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="height"/></br>
+                    몸무게<input type="text" name="weight"/></br>
+                    나이&nbsp;&nbsp;&nbsp;<input type="text" name="age"/>
+            </td>
+            <td id="title">체질량지수
+                <input type="text" name="height"/></br>
+                몸무게&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="weight"/>
+            </td>
+        </tr>
+        <tr>
+        <td colspan="3" align = "center" bgcolor="lightgray"><a href="javascript:fn_calBMI();" class="btn btn-default btn-block" role="button">계산하기</a></td>
+        </td>
+    </tr>
+ 
+    </table>
+</body>
+</html>
