@@ -1,0 +1,16 @@
+$color--black: #000;
+$color--white: #fff;
+/* 
+-- : 상태를 의미
+__ : 일부 요소를 의미
+ */
+
+body{
+    background-color: $color--black;
+
+    h1 {
+        color: $color--white;
+        font-size: 40px;
+        display: flex; // 1열로 | 공급업체...
+    }
+}
