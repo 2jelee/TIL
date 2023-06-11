@@ -1,0 +1,103 @@
+/* init */
+div, input, textarea {
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+    /*scrollbar: none;*/
+}
+
+/* Login 페이지에서 새로고침 시 움직임 방지를 위해 추가 */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*********************************************/
+
+html{
+    height: 100vh;
+    background: url(../img/login_img.jpeg);
+    background-size: cover;
+    /*background-size: contain; !* 이미지가 잘리지 않게 *!*/
+    background-repeat: no-repeat;
+    /*filter: blur(2px);*/
+    /*filter: brightness(80%);*/
+}
+
+/* 사용 X */
+.login-bg{
+    height: 100vh;
+    background: url(../img/login_img.jpeg);
+    background-size: cover;
+    /*background-size: contain; !* 이미지가 잘리지 않게 *!*/
+    background-repeat: no-repeat;
+    /*filter: blur(2px);*/
+    /*filter: brightness(80%);*/
+}
+
+.logo{
+    /*padding-top: 5%;*/
+    /*padding-bottom: 5%;*/
+    padding: 5% 0 0 5%;
+    width: 28%;
+    max-width: 200px;
+}
+
+.form-login{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    background: white;
+    opacity: 0.9 !important;
+    box-shadow: 10px 10px 30px #000;
+    position: relative;
+    text-align: center;
+    width: 21%;
+    max-width: 450px;
+    /*height: 44vh;*/
+    height: auto;
+    right: 0;
+    left: 0;
+    top: 30vh;
+    box-sizing: border-box;
+    padding: 0.3%;
+}
+
+input[type=text], input[type=password] {
+    position: relative;
+    margin-top: 7%;
+    width: 85%;
+    height: 5vh;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background: lightgray;
+    border-radius: 4px;
+    letter-spacing: 3px;
+    padding-left: 20px;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.btn-login{
+    position: relative;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    width: 85%;
+    height: 5vh;
+    background-color: #00AAFF;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    /*box-shadow : 5px 5px 10px -5px black;*/
+}
+
+button:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
