@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>index05_jQuery.html</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand">Navbar</span>
+          <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth ite m</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+    <p class="hello">안녕</p>
+    <p class="hello">안녕</p>
+    <p class="hello">안녕</p>
+    <button id="test-btn">TEST BUTTON</button>
+    <br><br>
+    <button class="loginBtn">LOGIN</button>
+
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <button class="btn btn-danger" id="close">닫기</button>
+      </div>
+    </div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <script>
+      document.querySelector('.navbar-toggler').addEventListener('click', function () {
+        document.querySelectorAll('.list-group')[0].classList.toggle('show');
+      })
+
+      // $('.hello') : querySelectAll() 과 비슷하다.
+      $('.hello').html('안녕하세요');
+      $('.hello').css('color', 'blue');
+
+      // class 탈부착 코드
+      $('.hello').addClass('show');
+      // 제거
+      $('.hello').removeClass('show');
+      // 토글
+      $('.hello').toggleClass('show');
+
+      // 한 번에 바꾸기
+      $('.hello').html('안녕하세요');
+
+      // eventListener => .on()
+      // display: none => .hide()
+      $('#test-btn').on('click', function() {
+        // $('.hello').hide()
+        // $('.hello').fadeOut()
+        $('.hello').slideUp()
+      })
+
+      /*
+      [주의]
+      jQuery : $('셀렉터')로 찾으면 jQuery 함수만 붙일 수 있고
+      순수 JavaScript : querySelector('셀렉터')로 찾으면 JS 함수만 붙일 수 있다.
+
+      즉, $('.셀렉터').innerHTML 이 불가하다는 말!
+      */
+
+      // LOGIN 버튼 누르면 modal창이 뜨도록
+      $('.loginBtn').on('click', function() {
+        $('.black-bg').toggleClass('show-modal') 
+      }) 
+    </script>
+  </body>
+</html>

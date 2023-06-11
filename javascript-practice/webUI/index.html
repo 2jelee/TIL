@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index.html</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <h1 id="hello">안녕하세요</h1>
+    <h1 id="hi">JS 색상 및 사이즈 변경</h1>
+    
+    <div class="alert-box" id="alert">
+        알림창
+        <button onclick="btnHandle('none')">close</button>
+    </div> 
+    <button onclick="btnHandle('block')">BUTTON</button>
+    <br>
+    <button onclick="clickBtn('아이디를 입력하세요.')">BUTTON1</button>
+    <button onclick="clickBtn('비밀번호를 입력하세요')">BUTTON2</button>
+
+</body>
+<script> 
+    document.getElementById('hello').innerHTML = '안녕';
+    document.getElementById('hi').style.color = 'green';
+    document.getElementById('hi').style.fontSize = '16px';  
+
+    // 긴 코드를 짧게 축약 : function(parameter)
+    function btnHandle(parameter) {
+        document.getElementById('alert').style.display = parameter;
+    }
+
+    function clickBtn(params) {
+        document.getElementById('alert').style.display = 'block';
+        document.getElementById('alert').innerHTML = params;
+    }
+
+    function plus(a){
+        2 + a
+    }
+
+    plus(1);
+</script>
+</html>

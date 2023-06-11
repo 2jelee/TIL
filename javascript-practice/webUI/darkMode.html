@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>index05_jQuery.html</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  </head>
+  <body class="mode">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand">Navbar</span>
+          <span id='darkBtn' class="badge bg-dark">Dark 🔄</span>
+          <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+
+    <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth ite m</li>
+        <li class="list-group-item">And a fifth one</li>
+    </ul>
+
+    <div class="main-bg">
+      <h4>Shirts on Sale</h4>
+      <button id="login" class="btn btn-danger">LOGIN</button>
+    </div>
+ 
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html"> <!-- action='server로 전송할 url' -->
+          <div class="my-3">
+            <input type="email" class="form-control" id="email">
+           </div>
+           <div class="my-3">
+             <input type="password" class="form-control" id="password">
+           </div>
+           <button type="submit" class="btn btn-primary">전송</button>
+           <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form>  
+      </div>
+    </div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <script>
+      document.querySelector('.navbar-toggler').addEventListener('click', function () {
+        document.querySelectorAll('.list-group')[0].classList.toggle('show');
+      });
+ 
+      $('#login').on('click', function() {
+        $('.black-bg').toggleClass('show-modal') 
+      })
+
+      $('#close').on('click', function() {
+        $('.back-bg').hide();
+      }) 
+
+      // 1. 전송 버튼 누르면 아이디/비밀번호 입력란 둘 다 공백검사
+      $('form').submit('click', function() { 
+        if(document.getElementById('email').value == ''){
+          alert('email 공백')
+          return false
+        }
+        if(document.getElementById('password').value == ''){
+          alert('비밀번호 공백')
+          return false
+        }
+        // 2. 비밀번호가 6자 미만이면 더 길게 입력하라고 알림창
+        if(document.getElementById('password').value.length < 6){
+          alert('비밀번호를 6자 이상으로 입력하세요')
+          return false
+        }
+      })
+
+      // input 태그에서 일어나는 input 이벤트
+      // document.getElementById('email').addEventListener('input', function() { // 입력마다 값 변화
+      document.getElementById('email').addEventListener('change', function() {   // 입력마다 X -> 입력 끝내고 다른 곳 찍으면(즉, 포커스를 잃으면) 변화
+        console.log('안뇽');
+      })
+      
+      ////////////////////////////////////////////////////////////
+
+      let count = 0;
+
+      // 1. badge 클릭 시 내부 글자를 Light로 변경  
+      $('.badge').on('click', function() {
+        count += 1; 
+        
+        if(count%2==1){
+          $('.badge').html('Light 🔄');  
+          $('.mode').addClass('dark'); 
+        } else{
+          $('.badge').html('Dark 🔄'); 
+          $('.mode').removeClass('dark');
+        }
+      })
+
+      // 변수의 선언과 할당을 동시에.
+      let name = 'Lee';
+      // 변수의 재할당
+      name = 'Park';
+
+      console.log(name);
+
+      function familyName() {
+        // 변수의 범위 
+
+      }
+
+      /*
+        var : 변수의 재선언 O, 재할당 O, 범위 function
+        let : 변수의 재선언 X, 재할당 O, 범위 { }
+        const : 변수의 재선언 X, 재할당 X, 범위 { } 
+      */
+    </script>
+  </body>
+</html>
