@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문제 3. 팝업/모달창: dialog 요소 이용</title>
+    <style>
+      /* 다이얼로그 디자인 */
+      dialog {
+        border: none;
+        border-radius: 12px;
+        padding: 20px 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+      }
+
+      /* 백드롭 디자인 */
+      dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+      }
+
+      /* 버튼 스타일 */
+      button {
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+      .btn-group {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      .confirm {
+        background-color: #00c73c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+      }
+
+      .cancel {
+        background-color: #ff0000;
+        color: white;
+        border: none;
+        border-radius: 4px;
+      }
+
+      .delete {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>dialog 요소 활용 예제</h2>
+    <p>현재 상태: <strong id="result">대기 중...</strong></p>
+
+    <button id="openBtn" autofocus>모달 열기</button>
+
+    <dialog id="myDialog">
+      <h3>파일 등록</h3>
+      <p>정말로 이 파일을 등록하시겠습니까?</p>
+      <form method="dialog">
+        <div class="btn-group">
+          <button value="confirm" class="confirm" autofocus>등록</button>
+          <button value="cancel" class="cancel">취소</button>
+          <button value="delete" class="delete">삭제</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script>
+      const dialog = document.getElementById("myDialog");
+      const openBtn = document.getElementById("openBtn");
+      const resultText = document.getElementById("result");
+
+      // 모달 열기
+      openBtn.addEventListener("click", () => {
+        dialog.showModal();
+      });
+
+      // 결과 처리
+      dialog.addEventListener("close", () => {
+        if (dialog.returnValue === "confirm") {
+          resultText.textContent = "등록되었습니다!";
+          resultText.style.color = "green";
+        } else if (dialog.returnValue === "cancel") {
+          resultText.textContent = "취소되었습니다.";
+          resultText.style.color = "red";
+        } else if (dialog.returnValue === "delete") {
+          resultText.textContent = "삭제되었습니다!";
+          resultText.style.color = "blue";
+        }
+      });
+    </script>
+  </body>
+</html>

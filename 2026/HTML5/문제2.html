@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>문제 2. HTML5 문서 완성</title>
+    <style>
+      .title-style {
+        font-weight: bold; /* 굵게 */
+        font-style: italic; /* 기울임 */
+        text-decoration: underline; /* 밑줄 */
+      }
+
+      ol {
+        list-style-type: lower-roman;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1 class="title-style">HTML5 웹 프로그래밍</h1>
+    </section>
+
+    <section>
+      <p>
+        <strong>
+          <abbr title="Korea National Open University">KNOU</abbr>
+        </strong>
+      </p>
+    </section>
+
+    <section>
+      <h2>나의 수강과목 학습진도 비율</h2>
+      <!-- 순서있는 리스트 -->
+      <ol>
+        <li>
+          HTML5 웹프로그래밍
+          <meter
+            value="80"
+            min="0"
+            max="100"
+            low="30"
+            high="70"
+            optimum="100"
+            title="나의 학습진도는 80%!"
+          ></meter>
+        </li>
+        <li>
+          J a v a 프 로 그 래 밍
+          <meter
+            value="60"
+            min="0"
+            max="100"
+            low="30"
+            high="70"
+            optimum="100"
+            title="나의 학습진도는 60%!"
+          ></meter>
+        </li>
+        <li>
+          파이썬프로그래밍기초
+          <meter
+            value="30"
+            min="0"
+            max="100"
+            low="40"
+            high="70"
+            optimum="100"
+            title="나의 학습진도는 30%!"
+          ></meter>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <figure>
+        <img src="logo_knou.png" alt="한국방송통신대학교 로고" loading="lazy" />
+        <figcaption>
+          그림 1. 한국방송통신대학교 로고 (출처: 한국방송통신대학교 홈페이지)
+        </figcaption>
+      </figure>
+    </section>
+  </body>
+</html>
